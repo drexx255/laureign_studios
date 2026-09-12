@@ -746,6 +746,28 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
       } else {
+        const photoSamples = samples.filter(s => s.type !== 'video');
+        const sampleItems = photoSamples.map((s, sIdx) => ({
+          url: s.url,
+          title: s.title || `${pkg.title} · Sample ${sIdx + 1}`,
+          catLabel: pkg.catLabel,
+          price: (pkg.options[0] || {}).price || 0,
+          targetUrl: getPackageShowcaseUrl(pkg)
+        }));
+
+        if (samplesModalDesc) {
+          samplesModalDesc.innerHTML = `
+            <span>Inspect real studio lighting, composition and skin retouching. Tap any photo to swap and swipe through in full screen.</span>
+            ${photoSamples.length > 0 ? `<button type="button" id="btnStartSlideshow" style="margin-top:6px; display:inline-flex; align-items:center; gap:6px; background:var(--gold-soft); color:#000000; border:none; padding:5px 14px; border-radius:999px; font-size:12px; font-weight:700; cursor:pointer;"><span>▶ Open Fullscreen Viewer (Swipe to Next)</span></button>` : ''}
+          `;
+          const btnSlideshow = document.getElementById("btnStartSlideshow");
+          if (btnSlideshow) {
+            btnSlideshow.onclick = () => {
+              openLightbox(sampleItems, 0);
+            };
+          }
+        }
+
         samplesGalleryGrid.innerHTML = samples.map((s, idx) => {
           if (s.type === 'video') {
             return `
@@ -765,18 +787,19 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
         }).join("");
 
-        // Attach lightbox zoom on click with full gallery navigation
-        samplesGalleryGrid.querySelectorAll(".js-lightbox-trigger").forEach((item, idx) => {
-          item.addEventListener("click", () => {
-            const sampleItems = samples.map((s, sIdx) => ({
-              url: s.url,
-              title: `${pkg.title} · Sample ${sIdx + 1}`,
-              catLabel: pkg.catLabel,
-              price: (pkg.options[0] || {}).price || 0,
-              targetUrl: getPackageShowcaseUrl(pkg)
-            }));
-            openLightbox(sampleItems, idx);
-          });
+        // Attach lightbox zoom on click with exact matching photo index
+        let pIdx = 0;
+        samples.forEach((s) => {
+          if (s.type !== 'video') {
+            const currentPIdx = pIdx++;
+            const itemEl = samplesGalleryGrid.querySelector(`.js-lightbox-trigger[data-url="${s.url}"]`);
+            if (itemEl) {
+              itemEl.onclick = (e) => {
+                e.stopPropagation();
+                openLightbox(sampleItems, currentPIdx);
+              };
+            }
+          }
         });
       }
     }
@@ -811,6 +834,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let lightboxItems = [];
   let lightboxIndex = 0;
   let lightboxZoom = 1;
+  let isLightboxDragging = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
 
   function openLightbox(items, startIndex = 0) {
     if (!sampleLightbox || !items || items.length === 0) return;
@@ -920,27 +946,49 @@ document.addEventListener("DOMContentLoaded", () => {
   if (sampleLightboxResetZoom) sampleLightboxResetZoom.addEventListener("click", (e) => { e.stopPropagation(); setLightboxZoom(1); });
 
   if (sampleLightboxImg) {
-    sampleLightboxImg.addEventListener("dblclick", toggleLightboxZoom);
+    sampleLightboxImg.addEventListener("dblclick", (e) => {
+      e.stopPropagation();
+      toggleLightboxZoom();
+    });
+
+    // Tap left 35% of image for Prev, right 35% for Next
+    sampleLightboxImg.addEventListener("click", (e) => {
+      if (lightboxZoom > 1) return;
+      const rect = sampleLightboxImg.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      if (clickX < rect.width * 0.35) {
+        lightboxPrev();
+      } else if (clickX > rect.width * 0.65) {
+        lightboxNext();
+      }
+    });
   }
 
-  // Touch Swipe on mobile for Lightbox
+  // Fluid Touch Swipe on Mobile for Lightbox
   if (sampleLightbox) {
     let touchStartX = 0;
     let touchStartY = 0;
+    let touchMoved = false;
 
     sampleLightbox.addEventListener("touchstart", (e) => {
       if (e.touches.length === 1) {
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
+        touchMoved = false;
       }
     }, { passive: true });
 
+    sampleLightbox.addEventListener("touchmove", (e) => {
+      touchMoved = true;
+    }, { passive: true });
+
     sampleLightbox.addEventListener("touchend", (e) => {
-      if (lightboxZoom > 1) return;
+      if (lightboxZoom > 1 || !touchMoved) return;
       if (e.changedTouches.length === 1) {
         const dx = e.changedTouches[0].clientX - touchStartX;
         const dy = e.changedTouches[0].clientY - touchStartY;
-        if (Math.abs(dx) > 40 && Math.abs(dy) < 70) {
+        // Natural thumb swipe: horizontal movement greater than vertical, at least 30px
+        if (Math.abs(dx) > 30 && Math.abs(dx) > Math.abs(dy) * 0.6) {
           if (dx < 0) {
             lightboxNext();
           } else {
@@ -949,6 +997,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }, { passive: true });
+
+    // Mouse drag swipe on Desktop
+    sampleLightbox.addEventListener("mousedown", (e) => {
+      if (e.target.closest("button") || e.target.closest("a")) return;
+      isLightboxDragging = true;
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+    });
+
+    window.addEventListener("mouseup", (e) => {
+      if (!isLightboxDragging) return;
+      isLightboxDragging = false;
+      if (lightboxZoom > 1) return;
+      const dx = e.clientX - dragStartX;
+      const dy = e.clientY - dragStartY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 0.6) {
+        if (dx < 0) {
+          lightboxNext();
+        } else {
+          lightboxPrev();
+        }
+      }
+    });
 
     sampleLightbox.addEventListener("click", (e) => {
       if (e.target === sampleLightbox || e.target === sampleLightboxImgWrapper) {

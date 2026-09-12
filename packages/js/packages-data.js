@@ -304,11 +304,11 @@ const PACKAGES_DATA = [
     subcat: "white-shirt",
     catLabel: "Crisp White Shirt",
     title: "Crisp White Shirt Shoot (Studio)",
-    tagline: "The viral, clean minimalist studio white shirt look with studio shirts provided (Minimum 5 images)",
+    tagline: "The viral, clean minimalist studio white shirt look with studio shirts provided",
     image: "samples/03-indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES.jpg",
-    badge: "👔 Min 5 Images (Outfits Given)",
+    badge: "👔 Studio Shirts Provided",
     turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 400 to KSh 1,400 (lock your slot)",
+    depositRate: "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
     sampleFolder: "samples/03-indoor-shirt-shoot",
     samples: [
       { url: "samples/03-indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES.jpg", type: "image", title: "Indoor White Shirt Shoot Rates & Guide" },
@@ -316,17 +316,32 @@ const PACKAGES_DATA = [
     ],
     options: [
       {
+        id: "single-photo",
+        name: "Single Image (Solo White Shirt · Dressing Included)",
+        price: 350,
+        deposit: 200,
+        summary: "1 Masterpiece Retouched Photo with Studio White Shirt Wardrobe & Sizing Included",
+        inclusions: [
+          "1 Magazine-Grade Retouched White Shirt Portrait",
+          "Studio Crisp White Shirt Wardrobe & Sizing Included",
+          "High-Key Studio Lighting & High-End Skin Retouching",
+          "Extra Retouched Photos: KSh 300 each",
+          "10–15 Mins Dedicated Studio Session",
+          "Delivered via WhatsApp & Cloud within 24 Hours"
+        ]
+      },
+      {
         id: "starter-5",
         name: "Starter (5 Images · Studio Shirts Included)",
         price: 1500,
         deposit: 400,
-        summary: "5 edited white shirt portraits (Minimum 5 images when studio wardrobe is included)",
+        summary: "5 edited white shirt portraits with studio shirts included",
         inclusions: [
           "5 Premium Edited White Shirt Portraits",
           "Studio Button-Down Shirts Provided",
-          "Minimum 5 Images (No Single Image when Outfits Provided)",
           "15–20 Mins Studio Session",
-          "High-Key Clean White Backdrop"
+          "High-Key Clean White Backdrop",
+          "Delivered via WhatsApp & Cloud"
         ]
       },
       {
@@ -442,11 +457,11 @@ const PACKAGES_DATA = [
     subcat: "silk-wrap",
     catLabel: "Luxury Silk Wrap",
     title: "Luxury Silk Wrap Shoot",
-    tagline: "Sculpted luxury silk drape sessions with studio drapery wardrobe provided (Minimum 5 images)",
+    tagline: "Sculpted luxury silk drape sessions with studio drapery wardrobe provided",
     image: "samples/06-silk-wrap/cover.JPG",
-    badge: "✨ Min 5 Images (Outfits Given)",
+    badge: "✨ Luxury Silk Wardrobe",
     turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 400 to KSh 1,400 (lock your slot)",
+    depositRate: "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
     sampleFolder: "samples/06-silk-wrap",
     samples: [
       { url: "samples/06-silk-wrap/BR2A0814.JPG", type: "image", title: "Flowing Satin Drapery & Studio Silhouette" },
@@ -460,15 +475,29 @@ const PACKAGES_DATA = [
     ],
     options: [
       {
+        id: "single-photo",
+        name: "Single Image (Solo Silk Wrap · Dressing Included)",
+        price: 350,
+        deposit: 200,
+        summary: "1 Masterpiece Retouched Photo with Luxury Silk Wardrobe & Studio Dressing Included",
+        inclusions: [
+          "1 Magazine-Grade Retouched Silk Wrap Portrait",
+          "Studio 6-Meter Flowing Luxury Silk Drapery Wardrobe Provided",
+          "Dedicated Studio Lighting & Sculpted Posing Direction",
+          "Extra Retouched Photos: KSh 300 each",
+          "15 Mins Dedicated Studio Session",
+          "Delivered via WhatsApp & Cloud within 24 Hours"
+        ]
+      },
+      {
         id: "starter-5",
         name: "Starter (5 Images · Silk Wardrobe Included)",
         price: 1500,
         deposit: 400,
-        summary: "5 sculpted silk drape portraits (Minimum 5 images when studio wardrobe is included)",
+        summary: "5 sculpted silk drape portraits with studio wardrobe included",
         inclusions: [
           "5 Magazine-Grade Retouched Silk Drape Portraits",
           "Studio 6-Meter Flowing Silk Drapery Wardrobe Provided",
-          "Minimum 5 Images (No Single Image when Outfits Provided)",
           "20 Mins Dedicated Sculpted Posing Session",
           "Delivered via WhatsApp & Cloud"
         ]
@@ -531,7 +560,7 @@ const PACKAGES_DATA = [
     image: "samples/07-traditional-creative/cover.jpg",
     badge: "👑 Cultural Heritage",
     turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 300 to KSh 1,100 (lock your slot)",
+    depositRate: "Booking deposit: KSh 200 to KSh 1,100 (lock your slot)",
     sampleFolder: "samples/07-traditional-creative",
     samples: [
       { url: "samples/07-traditional-creative/O13A0286.jpg", type: "image", title: "Authentic African Heritage Attire" },
@@ -543,6 +572,21 @@ const PACKAGES_DATA = [
       { url: "samples/07-traditional-creative/_INDOOR TRADITIONALCREATIVE  SHOOT.jpg", type: "image", title: "Indoor Traditional Shoot Rates & Guide" }
     ],
     options: [
+      {
+        id: "single-photo",
+        name: "Single Image (Solo Traditional & Creative · Dressing Included)",
+        price: 350,
+        deposit: 200,
+        summary: "1 Masterpiece Retouched Photo with Traditional Dressing & Cultural Styling",
+        inclusions: [
+          "1 Master Magazine-Grade Retouched Photo",
+          "Studio Cultural Regalia, Tribal Beads & Ankara Fabric Styling Included",
+          "Creative Studio Lighting & Heritage Backdrop",
+          "Extra Retouched Photos: KSh 300 each",
+          "15 Mins Dedicated Studio Session",
+          "Delivered via WhatsApp & Cloud within 24 Hours"
+        ]
+      },
       {
         id: "silver",
         name: "Silver",
