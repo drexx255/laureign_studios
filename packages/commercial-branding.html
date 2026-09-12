@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commercial &amp; Branding · Laureign Studios | Products, Hotels &amp; Corporate Identity</title>
+  <meta name="description" content="Commercial photography, e-commerce product shoots, hotel/AirBnB interior showcases, and corporate branding assets by Laureign Studios. Drive sales with high-end imagery.">
+  <meta property="og:title" content="Commercial &amp; Branding · Laureign Studios">
+  <meta property="og:description" content="E-commerce products, architectural hospitality showcases, and complete brand visual identity.">
+  <meta property="og:image" content="images/hero.jpg">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="icon" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/packages.css?v=darkglass_v2">
+  <script src="js/theme-switcher.js"></script>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="pkg-topbar">
+    <div class="wrap pkg-topbar-in">
+      <a class="pkg-brand" href="index.html">
+        <img src="images/logo.png" alt="Laureign Studios">
+        <span>Laureign <i>Studios</i></span>
+      </a>
+
+      <div class="header-right-btns" style="display:flex; align-items:center; gap:10px;">
+        <!-- Apple Theme Switcher -->
+        <button type="button" class="apple-theme-toggle" aria-label="Toggle Apple Color Scheme" title="Switch between Light &amp; Dark Mode">
+          <span class="theme-toggle-pill-inner">
+            <span class="theme-opt-light">
+              <svg class="theme-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <span class="theme-text">Light</span>
+            </span>
+            <span class="theme-opt-dark">
+              <svg class="theme-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+              <span class="theme-text">Dark</span>
+            </span>
+          </span>
+        </button>
+        <a href="index.html" class="pkg-rate-pill">‹ All Packages</a>
+        <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Commercial%20or%20Product%20Photography%20%F0%9F%9A%80" target="_blank" rel="noopener" class="hero-btn-wa" style="padding:8px 16px; font-size:12.5px;">
+          <svg viewBox="0 0 24 24" width="14" height="14" style="width:14px;height:14px;"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+          <span>WhatsApp 0790048905</span>
+        </a>
+        <button type="button" class="packages-mobile-toggle" id="packagesNavToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+        <!-- Mobile Drawer -->
+    <div class="packages-mobile-drawer" id="packagesMobileDrawer">
+      <div class="drawer-theme-row" style="padding:10px 18px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--panel-border); margin-bottom:8px;">
+        <span style="font-size:12.5px; color:var(--muted); font-weight:500;">Appearance</span>
+        <button type="button" class="apple-theme-toggle" aria-label="Toggle Apple Color Scheme" title="Switch Theme">
+          <span class="theme-toggle-pill-inner">
+            <span class="theme-opt-light">
+              <svg class="theme-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+              <span class="theme-text">Light</span>
+            </span>
+            <span class="theme-opt-dark">
+              <svg class="theme-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+              <span class="theme-text">Dark</span>
+            </span>
+          </span>
+        </button>
+      </div>
+            <div class="drawer-action-strip" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:2px 8px 10px; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:8px;">
+        <a href="index.html#packagesBrowse" class="drawer-link" style="justify-content:center; background:rgba(255,255,255,0.08); color:#ffffff; font-weight:600; font-size:12px; border-radius:999px; padding:8px 10px; border:1px solid rgba(255,255,255,0.15);">📅 Book on Calendar</a>
+        <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20your%20packages%20%F0%9F%93%B8" target="_blank" rel="noopener" class="drawer-link" style="justify-content:center; background:#25D366; color:#000000 !important; font-weight:700; font-size:12px; border-radius:999px; padding:8px 10px;">💬 WhatsApp</a>
+      </div>
+<a href="index.html" class="drawer-link" style="color:var(--gold-soft);font-weight:700;">← Back to All Packages (Rate Card)</a>
+      <div style="padding:6px 18px 2px; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); font-weight:600;">Studio Shoots</div>
+      <a href="portrait-shoot.html" class="drawer-link">🎨 Portrait Shoot</a>
+      <a href="graduation-shoot.html" class="drawer-link">🎓 Graduation Milestone</a>
+      <a href="baby-bump.html" class="drawer-link">🍼 Baby Bump &amp; Maternity</a>
+      <a href="newborn-shoot.html" class="drawer-link">👶 Newborn &amp; Infant</a>
+      <a href="model-portfolio.html" class="drawer-link">✨ Model &amp; Portfolio</a>
+      <a href="shirt-shoot.html" class="drawer-link">👔 Crisp White Shirt</a>
+      <a href="wrap-shoot.html" class="drawer-link">✨ Luxury Silk Wrap</a>
+      <a href="headshots.html" class="drawer-link">💼 Corporate Headshots</a>
+      <a href="birthday-shoots.html" class="drawer-link">🎂 Birthday Shoot</a>
+      <a href="family-shoot.html" class="drawer-link">👨‍👩‍👧 Family Shoot</a>
+      <a href="couple-shoot.html" class="drawer-link">💖 Couple Shoot</a>
+      <a href="boudoir-shoot.html" class="drawer-link">🌹 Boudoir Shoot</a>
+      <a href="kids-shoot.html" class="drawer-link">🎈 Kids Shoot</a>
+      <a href="product-shoot.html" class="drawer-link">📦 Product Shoot</a>
+      <a href="corporate-branding.html" class="drawer-link">🏢 Corporate &amp; Branding</a>
+      <a href="hotel-shoot.html" class="drawer-link">🏖️ Hotel &amp; Hospitality</a>
+      <a href="pre-wedding-shoot.html" class="drawer-link">💍 Pre-Wedding Shoot</a>
+      <div style="padding:10px 18px 2px; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); font-weight:600;">Events &amp; Coverage</div>
+      <a href="wedding-shoot.html" class="drawer-link">💍 Wedding Shoot</a>
+      <a href="traditional-wedding.html" class="drawer-link">👑 Traditional Wedding</a>
+      <a href="burials.html" class="drawer-link">🕊️ Burials &amp; Memorials</a>
+      <a href="birthday-events.html" class="drawer-link">🎉 Birthday Events</a>
+      <a href="graduation-events.html" class="drawer-link">🎓 Graduation Events</a>
+      <a href="corporate-events.html" class="drawer-link">📊 Corporate Events</a>
+      <a href="school-events.html" class="drawer-link">🏫 School Events Coverage</a>
+      <a href="hotel-events.html" class="drawer-link">🥂 Hotel Events</a>
+      <a href="club-events.html" class="drawer-link">🎧 Club Event Coverage</a>
+      <a href="fun-club-events.html" class="drawer-link">🏎️ Fun Club Events</a>
+      <a href="https://wa.me/254790048905" target="_blank" rel="noopener" class="drawer-link" style="color:var(--accent-soft);">💬 WhatsApp: 0790048905</a>
+    </div>
+  </header>
+  <div class="packages-drawer-backdrop" id="packagesDrawerBackdrop" hidden></div>
+
+  <!-- PROMINENT BACK OPTION ARROW BUTTON STRIP -->
+  <div class="inside-back-strip">
+    <div class="wrap inside-back-wrap">
+      <a href="index.html" class="btn-inside-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <span>Back to All Packages</span>
+      </a>
+      <span style="font-size:12px; color:var(--gold-soft); font-weight:500;">🚀 Commercial &amp; Brand Growth</span>
+    </div>
+  </div>
+
+  <!-- SHOWCASE HERO -->
+  <section class="showcase-hero">
+    <div class="wrap">
+      <div class="showcase-tag">🚀 Commercial Growth &amp; Branding</div>
+      <h1 class="showcase-title">
+        Commercial &amp; Product Photography<br>
+        <i>Sell More with High-End Commercial Assets.</i>
+      </h1>
+      <p class="showcase-desc">
+        Elevate your brand beyond competitors. From clean white-background e-commerce product catalogs to AirBnB &amp; luxury hotel architectural showcases, restaurant menus, and complete corporate identity assets. Delivered in <b>48 hours</b>.
+      </p>
+
+      <!-- FAST SHARE LINK -->
+      <div class="share-link-bar">
+        <div class="share-link-text">
+          <span class="share-label">🔗 Direct Page Link:</span>
+          <span class="share-url" id="pageShareUrl">commercial-branding.html</span>
+        </div>
+        <button type="button" class="btn-copy-link" onclick="copyPageLink()">
+          <span>📋 Copy Link to Share</span>
+        </button>
+      </div>
+
+      <div class="showcase-cta-group">
+        <a href="index.html#packagesBrowse" class="hero-btn-cal">📅 Reserve Date on Calendar</a>
+        <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Commercial%20or%20Product%20Photography%20%F0%9F%9A%80" target="_blank" rel="noopener" class="hero-btn-wa">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/>
+          </svg>
+          <span>Chat on WhatsApp (0790048905)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REAL CLIENT PHOTO SAMPLES GALLERY -->
+  <section class="gallery-sec">
+    <div class="wrap">
+      <div class="block-head" style="text-align:center;">
+        <h2 class="serif" style="font-size:36px;color:#14532d;">Real Commercial Client Samples</h2>
+        <p class="hint" style="max-width:600px;margin:8px auto 0;color:var(--muted);">Click any photo to zoom in and view full size.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox('images/hero.jpg')">
+          <img src="images/hero.jpg" alt="Photoshoot Sample" loading="lazy">
+          <div class="gallery-zoom-hint"><span>🔍 Tap to view</span></div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('images/ceo.jpg')">
+          <img src="images/ceo.jpg" alt="Photoshoot Sample" loading="lazy">
+          <div class="gallery-zoom-hint"><span>🔍 Tap to view</span></div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('images/work-9.jpg')">
+          <img src="images/work-9.jpg" alt="Photoshoot Sample" loading="lazy">
+          <div class="gallery-zoom-hint"><span>🔍 Tap to view</span></div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox('images/work-7.jpg')">
+          <img src="images/work-7.jpg" alt="Photoshoot Sample" loading="lazy">
+          <div class="gallery-zoom-hint"><span>🔍 Tap to view</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVERYTHING EXPLAINED: FULL TIERS BREAKDOWN -->
+  <section class="detailed-packages-sec">
+    <div class="wrap">
+      <div class="block-head" style="text-align:center;">
+        <h2 class="serif" style="font-size:36px;color:#14532d;">Commercial Packages &amp; Tiers</h2>
+        <p class="hint" style="max-width:640px;margin:8px auto 0;color:var(--muted);">Scalable packages for e-commerce shops, venues, and growing corporate brands:</p>
+      </div>
+
+      <div class="detail-card-grid">
+
+                <!-- Tier 0: Single Image (Starter) -->
+        <div class="detail-pkg-card">
+          <span class="pkg-type-tag">Catalog & Ads · Entry Tier</span>
+          <h2 class="pkg-title-big">Single Image (Product / Asset)</h2>
+          <div class="pkg-price-row">
+            <span class="pkg-price-val">KSh 300</span>
+            <span class="pkg-deposit-val">· Booking Deposit: KSh 200</span>
+          </div>
+          <p class="pkg-desc-text">
+            Single commercial-grade product hero shot or brand asset for online catalogs, website menu, or Instagram ads.
+          </p>
+          <ul class="deliverables-list">
+            <li><b>1 Commercial Retouched Product Hero Shot</b></li>
+            <li>Pure White or Dark Obsidian Studio Surface</li>
+            <li>Extra retouched product photos: <b>KSh 300 each</b></li>
+            <li>Unedited / RAW files: <b>KSh 150 each</b></li>
+            <li>High-Res Web & Print Ready Files</li>
+            <li>Delivered via Cloud Gallery</li>
+          </ul>
+          <div class="card-actions">
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Product%20Single%20Image%20%28KSh%20300%29%20%F0%9F%93%A6" target="_blank" rel="noopener" class="btn-tier-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Book Single Image via WhatsApp</span>
+            </a>
+            <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
+          </div>
+        </div>
+
+<!-- Tier 1: Silver -->
+        <div class="detail-pkg-card">
+          <span class="pkg-type-tag">E-Commerce Product Starter</span>
+          <h2 class="pkg-title-big">Silver (Product Catalog)</h2>
+          <div class="pkg-price-row">
+            <span class="pkg-price-val">KSh 4,500</span>
+            <span class="pkg-deposit-val">· 80% Deposit: KSh 3,600</span>
+          </div>
+          <p class="pkg-desc-text">
+            For online shops, beauty brands, fashion items, and e-commerce stores requiring razor-sharp clean catalog photos.
+          </p>
+          <ul class="deliverables-list">
+            <li><b>Up to 10 Products Photographed</b></li>
+            <li>3 Angles per item (Front, Side &amp; Texture Macro)</li>
+            <li>Pure White Background or Transparent PNG cutouts</li>
+            <li>Color-accurate calibration for web &amp; print</li>
+            <li>Web-optimized compressed formats + Full RAW exports</li>
+            <li>Express <b>48hr Cloud Delivery</b></li>
+          </ul>
+          <div class="card-actions">
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Commercial%20Shoot%20%28Silver%20Tier%20-%20KSh%204%2C500%29%20%F0%9F%9A%80" target="_blank" rel="noopener" class="btn-tier-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Book Silver via WhatsApp</span>
+            </a>
+            <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
+          </div>
+        </div>
+
+        <!-- Tier 2: Gold -->
+        <div class="detail-pkg-card featured">
+          <div class="featured-ribbon">Business Choice ⭐</div>
+          <span class="pkg-type-tag">Hospitality, AirBnB &amp; Dining</span>
+          <h2 class="pkg-title-big">Gold (Hospitality &amp; Venue)</h2>
+          <div class="pkg-price-row">
+            <span class="pkg-price-val">KSh 12,000</span>
+            <span class="pkg-deposit-val">· 80% Deposit: KSh 9,600</span>
+          </div>
+          <p class="pkg-desc-text">
+            For AirBnB hosts, boutique hotels, restaurants, clinics, and interior designers wanting high-end architectural imagery that drives direct bookings.
+          </p>
+          <ul class="deliverables-list">
+            <li><b>25 Magazine-Grade Interior &amp; Exterior HDR Images</b></li>
+            <li><b>1x 45-Second 4K Vertical Video Tour</b> for Instagram Reels</li>
+            <li>Interior living spaces, bedrooms, bathrooms &amp; amenities</li>
+            <li>Twilight / Golden Hour exterior lighting session</li>
+            <li>Full commercial usage rights included</li>
+            <li>Express <b>48hr Delivery</b> via private cloud link</li>
+          </ul>
+          <div class="card-actions">
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Commercial%20Shoot%20%28Gold%20Tier%20-%20KSh%2012%2C000%29%20%F0%9F%9A%80" target="_blank" rel="noopener" class="btn-tier-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Book Gold via WhatsApp</span>
+            </a>
+            <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
+          </div>
+        </div>
+
+        <!-- Tier 3: Platinum VIP -->
+        <div class="detail-pkg-card">
+          <span class="pkg-type-tag">Corporate Brand Film + Stills</span>
+          <h2 class="pkg-title-big">Platinum (Brand Production)</h2>
+          <div class="pkg-price-row">
+            <span class="pkg-price-val">KSh 25,000</span>
+            <span class="pkg-deposit-val">· 80% Deposit: KSh 20,000</span>
+          </div>
+          <p class="pkg-desc-text">
+            Complete corporate production for enterprise companies and established organizations wanting brand commercials, executive bios, and team action shots.
+          </p>
+          <ul class="deliverables-list">
+            <li><b>50+ Retouched Commercial Images</b></li>
+            <li><b>1x 60-Second 4K Corporate Brand Film</b> with voiceover/music</li>
+            <li>Executive leadership headshots + Staff in action</li>
+            <li>Office facilities, workshop &amp; client interaction coverage</li>
+            <li>Perpetual commercial and advertising rights worldwide</li>
+            <li>Express Priority Delivery within 3 days</li>
+          </ul>
+          <div class="card-actions">
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20book%20the%20Commercial%20Shoot%20%28Platinum%20VIP%20-%20KSh%2025%2C000%29%20%F0%9F%9A%80" target="_blank" rel="noopener" class="btn-tier-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Book Platinum VIP via WhatsApp</span>
+            </a>
+            <a href="index.html#packagesBrowse" class="btn-tier-cal">Reserve Date on Calendar →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- EXTRA IMAGES & OVER-LIMIT ADD-ON BANNER -->
+      <div class="extra-images-banner">
+        <div class="extra-banner-badge">💎 Commercial Flexibility &amp; Extra Assets</div>
+        <h3 class="extra-banner-title">Need Extra Product Angles, Staff Headshots or Video Cuts?</h3>
+        <p class="extra-banner-desc">
+          Scale your campaign deliverables effortlessly. Clear, transparent business add-on rates:
+        </p>
+        <div class="extra-rates-grid">
+          <div class="extra-rate-card highlight">
+            <div class="extra-rate-pill">High-Volume Retouching</div>
+            <div class="extra-rate-val">KSh 300 <span>/ extra product image</span></div>
+            <div class="extra-rate-label">Additional Retouched Commercial Image</div>
+            <p class="extra-rate-sub">Dust removal, true-to-life color grading, clipping path, and web + print resolution exports.</p>
+          </div>
+          <div class="extra-rate-card">
+            <div class="extra-rate-pill">RAW Camera Proofs</div>
+            <div class="extra-rate-val">KSh 150 <span>/ raw image</span></div>
+            <div class="extra-rate-label">Unedited RAW Soft Copies</div>
+            <p class="extra-rate-sub">High-resolution unedited camera proofs available upon request at KSh 150 per image.</p>
+          </div>
+          <div class="extra-rate-card">
+            <div class="extra-rate-pill">Catalog Cut-Out</div>
+            <div class="extra-rate-val">KSh 400 <span>/ cut</span></div>
+            <div class="extra-rate-label">Transparent Background PNG Cut-Out</div>
+            <p class="extra-rate-sub">Pure white (RGB 255,255,255) or transparent alpha cutout ready for Amazon, Jumia &amp; Shopify.</p>
+          </div>
+          <div class="extra-rate-card">
+            <div class="extra-rate-pill">Social Video</div>
+            <div class="extra-rate-val">KSh 2,500 <span>/ cut</span></div>
+            <div class="extra-rate-label">30s 4K Product / Venue Promo Reel</div>
+            <p class="extra-rate-sub">High-energy vertical video showcasing product unboxing, food sizzle, or venue ambiance for ads.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STUDIO MAKEUP SERVICES (APPEARS ACROSS ALL PACKAGES) -->
+      <div class="services-out-banner">
+        <div class="services-out-header">
+          <span class="services-out-badge">💄 Commercial Model &amp; Executive Prep</span>
+          <h3 class="services-out-title">Professional Commercial &amp; Studio Makeup Services</h3>
+          <p class="services-out-desc">
+            Available across all Laureign Studios shoot packages! Ensure your brand models, staff, or company executives look polished and high-definition under studio strobes:
+          </p>
+        </div>
+
+        <div class="services-cards-grid">
+          <!-- Option 1: Simple Makeup -->
+          <div class="service-out-card">
+            <span class="service-tag-pill">Natural &amp; Camera-Fresh</span>
+            <h4 class="service-out-name">Simple Makeup (Natural Glow)</h4>
+            <div class="service-price-box">
+              <div class="service-price-line">
+                <span class="price-lbl">Studio Session Rate</span>
+                <span class="price-amt">KSh 1,500</span>
+              </div>
+              <div class="service-price-line">
+                <span class="price-lbl">Prep Duration</span>
+                <span class="price-amt" style="font-size:12px;color:var(--ink);">20–25 Mins</span>
+              </div>
+            </div>
+            <p class="service-out-sub">
+              Clean camera skin prep, lightweight matte foundation, brow grooming, neutral lip tint/gloss, and soft mascara. Perfect for commercial staff, product models, and corporate website bios.
+            </p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20add%20Simple%20Makeup%20%28KSh%201%2C500%29%20to%20my%20Commercial%20session%20%F0%9F%92%84" target="_blank" rel="noopener" class="btn-service-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Add Simple Makeup (KSh 1,500)</span>
+            </a>
+          </div>
+
+          <!-- Option 2: Full Glam Makeup -->
+          <div class="service-out-card highlight">
+            <span class="service-tag-pill" style="background:rgba(34, 197, 94, 0.14);border-color:rgba(74, 222, 128, 0.34);color:var(--gold-soft);">⭐ Commercial Fashion Glam</span>
+            <h4 class="service-out-name">Full Studio Glam Makeup</h4>
+            <div class="service-price-box">
+              <div class="service-price-line">
+                <span class="price-lbl">Studio Session Rate</span>
+                <span class="price-amt">KSh 2,500</span>
+              </div>
+              <div class="service-price-line">
+                <span class="price-lbl">Prep Duration</span>
+                <span class="price-amt" style="font-size:12px;color:var(--ink);">40–50 Mins</span>
+              </div>
+            </div>
+            <p class="service-out-sub">
+              High-definition full facial sculpting, bold eye artistry, premium lashes, pore-blurring HD powder, and setting mist. Crafted for fashion lookbooks, billboard campaigns, and advertising print runs.
+            </p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20add%20Full%20Studio%20Glam%20Makeup%20%28KSh%202%2C500%29%20to%20my%20Commercial%20session%20%F0%9F%92%84" target="_blank" rel="noopener" class="btn-service-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Add Full Glam (KSh 2,500)</span>
+            </a>
+          </div>
+
+          <!-- Option 3: Executive Touch-Up -->
+          <div class="service-out-card">
+            <span class="service-tag-pill">Executive Quick Fix</span>
+            <h4 class="service-out-name">Men &amp; Executive Touch-Up</h4>
+            <div class="service-price-box">
+              <div class="service-price-line">
+                <span class="price-lbl">Studio Session Rate</span>
+                <span class="price-amt">KSh 500</span>
+              </div>
+              <div class="service-price-line">
+                <span class="price-lbl">Prep Duration</span>
+                <span class="price-amt" style="font-size:12px;color:var(--ink);">10 Mins</span>
+              </div>
+            </div>
+            <p class="service-out-sub">
+              Anti-shine translucent powder application, hairline and beard grooming, lip hydration, and skin tone balancing for leadership and founders.
+            </p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20add%20Executive%20Touch-Up%20%28KSh%20500%29%20to%20my%20Commercial%20session%20%F0%9F%91%94" target="_blank" rel="noopener" class="btn-service-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Add Quick Touch-Up (KSh 500)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- STUDIO WARDROBE & DRESSING HIRE (WITH SHOOT VS. STANDALONE HIRE ALONE) -->
+      <div class="services-out-banner" style="margin-top:28px;">
+        <div class="services-out-header">
+          <span class="services-out-badge">👗 Studio Wardrobe &amp; Hire Out</span>
+          <h3 class="services-out-title">Studio Dressing &amp; Outfit Rental Services</h3>
+          <p class="services-out-desc">
+            Need wardrobe styling for your commercial models, or want to take our luxury wraps, shirts, or gowns for an external campaign/event? We offer both session styling and standalone 24-hour takeaway hire without booking a shoot:
+          </p>
+        </div>
+
+        <div class="services-cards-grid">
+          <!-- Card 1: Silk Wraps -->
+          <div class="service-out-card">
+            <span class="service-tag-pill">Satin &amp; Silk Silhouettes</span>
+            <h4 class="service-out-name">Luxury Silk &amp; Satin Wraps</h4>
+            <div class="service-price-box">
+              <div class="service-price-line">
+                <span class="price-lbl">With Studio Shoot</span>
+                <span class="price-amt">+KSh 800</span>
+              </div>
+              <div class="service-price-line">
+                <span class="price-lbl">Takeaway Hire Alone</span>
+                <span class="price-amt">KSh 1,500 <span style="font-size:11px;font-weight:400;color:var(--muted);">/ 24hrs</span></span>
+              </div>
+            </div>
+            <p class="service-out-sub">
+              6-meter continuous flowing luxury satin in Gold, Emerald Green, Rich Ruby Wine, Jet Black, and Crisp White. Standalone takeaway hire requires refundable KSh 1,000 security deposit.
+            </p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Luxury%20Silk%20Wrap%20rental%20%28Commercial%20add-on%20or%20Standalone%20hire%29%20%E2%9C%A8" target="_blank" rel="noopener" class="btn-service-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Inquire / Rent Silk Wrap</span>
+            </a>
+          </div>
+
+          <!-- Card 2: White Shirts -->
+          <div class="service-out-card">
+            <span class="service-tag-pill">Corporate &amp; Commercial Crisp</span>
+            <h4 class="service-out-name">Crisp White Studio Shirts</h4>
+            <div class="service-price-box">
+              <div class="service-price-line">
+                <span class="price-lbl">With Studio Shoot</span>
+                <span class="price-amt">+KSh 500</span>
+              </div>
+              <div class="service-price-line">
+                <span class="price-lbl">Takeaway Hire Alone</span>
+                <span class="price-amt">KSh 1,000 <span style="font-size:11px;font-weight:400;color:var(--muted);">/ 24hrs</span></span>
+              </div>
+            </div>
+            <p class="service-out-sub">
+              Premium tailored cotton shirts in Boyfriend Oversized and Fitted Executive styles. Laundered, pressed, and ready. Standalone takeaway hire requires refundable KSh 500 security deposit.
+            </p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Crisp%20White%20Shirt%20rental%20%28Commercial%20add-on%20or%20Standalone%20hire%29%20%F0%9F%91%94" target="_blank" rel="noopener" class="btn-service-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Inquire / Rent White Shirt</span>
+            </a>
+          </div>
+
+          <!-- Card 3: Gowns & Dresses -->
+          <div class="service-out-card">
+            <span class="service-tag-pill">Luxury Fashion &amp; Gowns</span>
+            <h4 class="service-out-name">Commercial &amp; Evening Gowns</h4>
+            <div class="service-price-box">
+              <div class="service-price-line">
+                <span class="price-lbl">With Studio Shoot</span>
+                <span class="price-amt">+KSh 1,200</span>
+              </div>
+              <div class="service-price-line">
+                <span class="price-lbl">Takeaway Hire Alone</span>
+                <span class="price-amt">KSh 2,500 <span style="font-size:11px;font-weight:400;color:var(--muted);">/ 24hrs</span></span>
+              </div>
+            </div>
+            <p class="service-out-sub">
+              Luxury chiffon trailing dresses, off-shoulder gowns, and brand lookbook statement pieces. Standalone takeaway hire requires refundable KSh 2,000 security deposit.
+            </p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Gown%20rental%20%28Commercial%20add-on%20or%20Standalone%20hire%29%20%F0%9F%91%97" target="_blank" rel="noopener" class="btn-service-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Inquire / Rent Studio Gown</span>
+            </a>
+          </div>
+
+          <!-- Card 4: Graduation Regalia -->
+          <div class="service-out-card">
+            <span class="service-tag-pill">Academic Honors</span>
+            <h4 class="service-out-name">Graduation Regalia (Gown &amp; Cap)</h4>
+            <div class="service-price-box">
+              <div class="service-price-line">
+                <span class="price-lbl">With Studio Shoot</span>
+                <span class="price-amt">+KSh 800</span>
+              </div>
+              <div class="service-price-line">
+                <span class="price-lbl">Takeaway Hire Alone</span>
+                <span class="price-amt">KSh 2,000 <span style="font-size:11px;font-weight:400;color:var(--muted);">/ day</span></span>
+              </div>
+            </div>
+            <p class="service-out-sub">
+              Complete gown, hood &amp; trencher cap sets for academic publications, institutional billboards, and alumni magazines. Standalone hire requires refundable KSh 2,000 deposit.
+            </p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Graduation%20Regalia%20hire%20%28Commercial%20add-on%20or%20Standalone%20hire%29%20%F0%9F%8E%93" target="_blank" rel="noopener" class="btn-service-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Inquire / Rent Regalia Set</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTO MOUNTS & ARCHIVAL WALL ART BANNER -->
+      <div class="photo-mounts-banner">
+        <div class="mounts-header">
+          <span class="mounts-badge">🖼️ Archival Wall Art &amp; Keepsakes</span>
+          <h3 class="mounts-title">Museum-Quality Wooden Photo Mounts</h3>
+          <p class="mounts-desc">
+            Showcase your brand products, architectural venue photography, and executive leadership on professional wooden mounts. Printed on premium archival photographic paper, heat-laminated with anti-glare scratch protection, and hand-mounted on solid 18mm MDF wooden blocks with chamfered edges. Ready to hang in corporate boardrooms, hotel lobbies, and executive suites!
+          </p>
+          <div class="mounts-deal-ribbon">
+            <span>🔥 Special Shoot Client Discount: Save up to KSh 500 per mount when ordered with your session!</span>
+          </div>
+        </div>
+
+        <div class="mounts-cards-grid">
+          <!-- Mount Card 1: A4 Size -->
+          <div class="mount-card">
+            <span class="mount-discount-pill">Save KSh 300</span>
+            <span class="mount-tag-pill">Bedside &amp; Desk Favorite</span>
+            <h4 class="mount-name">A4 Archival Photo Mount</h4>
+            <div class="mount-dimensions">
+              <span>📏 8.3" × 11.7" (21 × 30 cm)</span>
+              <span>· 18mm MDF Block</span>
+            </div>
+            <div class="mount-preview-frame" onclick="openLightbox('images/work-1.jpg')">
+              <img src="images/work-1.jpg" alt="A4 Photo Mount Sample" loading="lazy">
+              <span class="mount-size-indicator">A4 (21×30cm)</span>
+            </div>
+            <div class="mount-price-box">
+              <div class="mount-price-row">
+                <span class="mount-price-lbl">Shoot Client Rate</span>
+                <div>
+                  <del class="mount-old-price">KSh 1,500</del>
+                  <span class="mount-new-price">KSh 1,200</span>
+                </div>
+              </div>
+            </div>
+            <p class="mount-sub-desc">
+              Perfect for bedside nightstands, work desks, shelves, or combining in clusters for a family photo wall.
+            </p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20order%20an%20A4%20Photo%20Mount%20%28Discounted%20to%20KSh%201%2C200%29%20%F0%9F%96%BC%EF%B8%8F" target="_blank" rel="noopener" class="btn-mount-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Order A4 Mount (KSh 1,200)</span>
+            </a>
+          </div>
+
+          <!-- Mount Card 2: A3 Size -->
+          <div class="mount-card highlight">
+            <span class="mount-discount-pill" style="background:rgba(34, 197, 94, 0.19);color:var(--gold-soft);border-color:rgba(74, 222, 128, 0.42);">⭐ Most Popular Size</span>
+            <span class="mount-tag-pill" style="background:rgba(34, 197, 94, 0.14);border-color:rgba(74, 222, 128, 0.34);color:var(--gold-soft);">Living Room Statement</span>
+            <h4 class="mount-name">A3 Statement Photo Mount</h4>
+            <div class="mount-dimensions">
+              <span>📏 11.7" × 16.5" (30 × 42 cm)</span>
+              <span>· Double A4 Area</span>
+            </div>
+            <div class="mount-preview-frame" onclick="openLightbox('images/work-3.jpg')">
+              <img src="images/work-3.jpg" alt="A3 Photo Mount Sample" loading="lazy">
+              <span class="mount-size-indicator">A3 (30×42cm)</span>
+            </div>
+            <div class="mount-price-box">
+              <div class="mount-price-row">
+                <span class="mount-price-lbl">Shoot Client Rate</span>
+                <div>
+                  <del class="mount-old-price">KSh 2,500</del>
+                  <span class="mount-new-price">KSh 2,300</span>
+                </div>
+              </div>
+            </div>
+            <p class="mount-sub-desc">
+              Our #1 client choice! Twice the size of A4. Command attention over your living room sofa, hallway corridor, or office.
+            </p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20order%20an%20A3%20Photo%20Mount%20%28Discounted%20to%20KSh%202%2C300%29%20%F0%9F%96%BC%EF%B8%8F" target="_blank" rel="noopener" class="btn-mount-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Order A3 Mount (KSh 2,300)</span>
+            </a>
+          </div>
+
+          <!-- Mount Card 3: A2 Size -->
+          <div class="mount-card">
+            <span class="mount-discount-pill">Save KSh 500</span>
+            <span class="mount-tag-pill">Grand Focal Masterpiece</span>
+            <h4 class="mount-name">A2 Grand Gallery Mount</h4>
+            <div class="mount-dimensions">
+              <span>📏 16.5" × 23.4" (42 × 60 cm)</span>
+              <span>· 4× A4 Size</span>
+            </div>
+            <div class="mount-preview-frame" onclick="openLightbox('images/work-9.jpg')">
+              <img src="images/work-9.jpg" alt="A2 Photo Mount Sample" loading="lazy">
+              <span class="mount-size-indicator">A2 (42×60cm)</span>
+            </div>
+            <div class="mount-price-box">
+              <div class="mount-price-row">
+                <span class="mount-price-lbl">Shoot Client Rate</span>
+                <div>
+                  <del class="mount-old-price">KSh 4,500</del>
+                  <span class="mount-new-price">KSh 4,000</span>
+                </div>
+              </div>
+            </div>
+            <p class="mount-sub-desc">
+              Grand gallery centerpiece! Ideal for wedding portraits, graduation milestones, and master bedroom feature walls.
+            </p>
+            <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20order%20an%20A2%20Photo%20Mount%20%28Discounted%20to%20KSh%204%2C000%29%20%F0%9F%96%BC%EF%B8%8F" target="_blank" rel="noopener" class="btn-mount-wa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+              <span>Order A2 Mount (KSh 4,000)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="faq-sec">
+    <div class="wrap">
+      <div class="block-head" style="text-align:center;">
+        <h2 class="serif" style="font-size:36px;color:#14532d;">Commercial Photography FAQs</h2>
+        <p class="hint" style="max-width:600px;margin:8px auto 0;color:var(--muted);">Straightforward answers for business owners and marketing managers:</p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>How do product shoots work? Can we courier products?</h4>
+          <p>Yes! You can courier your products directly to our studio in Nairobi or Kakamega. We steam, clean, style, and shoot according to your brand brief, then securely courier them back to you.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Are commercial usage rights included in the price?</h4>
+          <p>Yes! All our commercial tiers include full perpetual commercial rights for websites, billboards, social media ads, menus, and e-commerce listings without recurring royalties.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can you shoot on-site at our restaurant, hotel, or warehouse?</h4>
+          <p>Yes! We bring our full mobile lighting and tethered preview monitors directly to your premises anywhere in Kenya.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do you offer Graphic Design and brand identity packages?</h4>
+          <p>Yes! In addition to photography, our creative studio provides brand logos, menus, packaging stickers, and complete social media templates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL (Tap anywhere to close) -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+    <button type="button" class="lightbox-close-btn" aria-label="Close" onclick="closeLightbox()">&times;</button>
+    <div style="text-align:center; max-width:90vw; max-height:85vh; display:flex; flex-direction:column; align-items:center;" onclick="closeLightbox()">
+      <img src="" id="lightboxImg" class="lightbox-content" alt="Photo Sample">
+      <div class="lightbox-hint">Tap anywhere or press Esc to exit ✕</div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-notice" id="toastNotice">✓ Link copied to clipboard! Share directly with client.</div>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap" style="text-align:center;padding:40px 16px;">
+      <p style="color:var(--head);font-weight:600;margin-bottom:8px;">Laureign Studios</p>
+      <p style="color:var(--muted);font-size:13px;margin-bottom:16px;">Luxury Photography &amp; Film Crew · WhatsApp: 0790048905 · Nairobi, Kakamega, Eldoret &amp; Across Kenya</p>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;font-size:13px;">
+        <a href="index.html" style="color:var(--gold-soft);">Rate Card Home</a>
+        <a href="graduation-shoot.html" style="color:var(--ink);">Graduation</a>
+        <a href="headshots.html" style="color:var(--ink);">Headshots</a>
+        <a href="weddings-events.html" style="color:var(--ink);">Weddings</a>
+        <a href="https://wa.me/254790048905" style="color:var(--accent-soft);">WhatsApp Chat</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function copyPageLink() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        showToast("✓ Link copied to clipboard! Share directly with client.");
+      }).catch(() => {
+        const dummy = document.createElement("input");
+        document.body.appendChild(dummy);
+        dummy.value = url;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+        showToast("✓ Link copied to clipboard! Share directly with client.");
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toastNotice");
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2800);
+    }
+
+    function openLightbox(src) {
+      const modal = document.getElementById("lightboxModal");
+      const img = document.getElementById("lightboxImg");
+      if (!modal || !img) return;
+      img.src = src;
+      modal.classList.add("open");
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById("lightboxModal");
+      if (modal) modal.classList.remove("open");
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeLightbox();
+    });
+
+    // Mobile Navigation Drawer Toggle
+    const navToggle = document.getElementById("packagesNavToggle");
+    const mobileDrawer = document.getElementById("packagesMobileDrawer");
+    const drawerBackdrop = document.getElementById("packagesDrawerBackdrop");
+
+    function toggleDrawer(open) {
+      if (!mobileDrawer) return;
+      const shouldOpen = open !== undefined ? open : !mobileDrawer.classList.contains("open");
+      if (navToggle) {
+        navToggle.classList.toggle("open", shouldOpen);
+        navToggle.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
+      }
+      mobileDrawer.classList.toggle("open", shouldOpen);
+      if (drawerBackdrop) {
+        drawerBackdrop.classList.toggle("open", shouldOpen);
+        drawerBackdrop.hidden = !shouldOpen;
+      }
+    }
+
+    if (navToggle) navToggle.addEventListener("click", () => toggleDrawer());
+    if (drawerBackdrop) drawerBackdrop.addEventListener("click", () => toggleDrawer(false));
+    document.querySelectorAll(".drawer-link").forEach(link => {
+      link.addEventListener("click", () => toggleDrawer(false));
+    });
+  
+    // Floating Back Up Arrow scroll listener
+    const backToTopBtn = document.getElementById("backToTopBtn");
+    window.addEventListener("scroll", () => {
+      if (!backToTopBtn) return;
+      if (window.scrollY > 280) {
+        backToTopBtn.classList.add("visible");
+      } else {
+        backToTopBtn.classList.remove("visible");
+      }
+    }, { passive: true });
+
+  </script>
+
+  <!-- FLOATING BACK-UP ARROW (SCROLL TO TOP) -->
+  <button type="button" class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top" title="Scroll back up" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+    <span>Back Up</span>
+  </button>
+
+</body>
+</html>
