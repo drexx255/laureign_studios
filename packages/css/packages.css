@@ -7512,4 +7512,194 @@ h2.serif,
   }
 }
 
+/* ============================================================
+   INVOICE / RECEIPT MODE SWITCHER & REAL-LIFE WORKSTATION STYLES
+   ============================================================ */
+.inv-mode-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.inv-mode-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.inv-mode-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+}
+
+.inv-mode-pill-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 3px;
+}
+
+.inv-mode-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--head-sub);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.inv-mode-pill:hover {
+  color: #ffffff;
+}
+
+.inv-mode-pill.active {
+  background: #22c55e;
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(34, 197, 94, 0.35);
+}
+
+.inv-mode-pill.active.mode-quote {
+  background: var(--gold-soft);
+  color: #000000;
+  box-shadow: 0 2px 10px rgba(234, 179, 8, 0.35);
+}
+
+.btn-walkin-preset {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(234, 179, 8, 0.16);
+  border: 1px solid rgba(234, 179, 8, 0.45);
+  color: var(--gold-soft);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-walkin-preset:hover {
+  background: rgba(234, 179, 8, 0.3);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.25);
+}
+
+/* Receipt Settings Panel in Customizer */
+.inv-receipt-settings {
+  margin-top: 14px;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-sizing: border-box;
+  animation: invSlideDown 0.25s ease;
+}
+
+@keyframes invSlideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.inv-receipt-settings-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.receipt-badge {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  background: #22c55e;
+  color: #000000;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+/* Verified Receipt Banner on Sheet */
+.inv-receipt-verified-banner {
+  background: #dcfce7;
+  border: 1.5px solid #86efac;
+  color: #15803d;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+/* Status Pills */
+.inv-meta-item .status-paid {
+  color: #15803d !important;
+  background: #dcfce7 !important;
+  border: 1px solid #86efac !important;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.inv-meta-item .status-deposit {
+  color: #1d4ed8 !important;
+  background: #dbeafe !important;
+  border: 1px solid #93c5fd !important;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* Paid Seal Stamp */
+.inv-seal-stamp.paid-stamp {
+  border: 2px dashed #16a34a !important;
+  color: #16a34a !important;
+  background: rgba(34, 197, 94, 0.04);
+  transform: rotate(-3deg);
+}
+
+.inv-tot-line.inv-paid-row {
+  color: #15803d;
+  font-weight: 800;
+  font-size: 13.5px;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin: 4px 0;
+}
+
+
 

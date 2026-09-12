@@ -1650,6 +1650,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const invAddonsPills = document.getElementById("invAddonsPills");
   const invCustomItemsList = document.getElementById("invCustomItemsList");
 
+  let invoiceMode = "quotation"; // "quotation" | "receipt"
   let currentInvoiceRef = "";
   let invoiceDateIssued = "";
   let invoiceValidity = "";
@@ -1660,7 +1661,146 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!toast) return;
     toast.textContent = msg;
     toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 3200);
+    setTimeout(() => toast.classList.remove("show"), 3400);
+  }
+
+  // Normalizes Kenyan phone numbers (07..., 01..., +254..., 254...) into international format: 254XXXXXXXXX
+  function normalizeKenyanPhone(raw) {
+    if (!raw) return "";
+    let clean = String(raw).replace(/\D/g, "");
+    // If 07... or 01... (10 digits)
+    if (clean.length === 10 && clean.startsWith("0")) {
+      return "254" + clean.slice(1);
+    }
+    // If 7... or 1... (9 digits)
+    if (clean.length === 9 && (clean.startsWith("7") || clean.startsWith("1"))) {
+      return "254" + clean;
+    }
+    // If already 254... (12 digits)
+    if (clean.length === 12 && clean.startsWith("254")) {
+      return clean;
+    }
+    // Fallback if international length
+    if (clean.length >= 9) {
+      return clean;
+    }
+    return "";
+  }
+
+  // Switch between Online Quotation mode and Walk-in / Official Receipt mode
+  function setInvoiceMode(mode) {
+    invoiceMode = mode === "receipt" ? "receipt" : "quotation";
+
+    const btnQuote = document.getElementById("btnModeQuotation");
+    const btnReceipt = document.getElementById("btnModeReceipt");
+    const receiptSettings = document.getElementById("invReceiptSettings");
+    const docBadge = document.getElementById("invDisplayDocType");
+    const refLabel = document.getElementById("invDisplayRefLabel");
+    const validityItem = document.getElementById("invValidityMetaItem");
+    const verifiedBanner = document.getElementById("invReceiptVerifiedBanner");
+    const sealStamp = document.getElementById("invSealStamp");
+    const sealMid = document.getElementById("invSealMid");
+    const sealBot = document.getElementById("invSealBot");
+    const termsTitle = document.getElementById("invTermsTitle");
+    const termsNote = document.getElementById("invTermsNote");
+    const btnPdfText = document.getElementById("btnDownloadPdfText");
+    const btnWaText = document.getElementById("btnSendWaText");
+
+    if (invoiceMode === "receipt") {
+      if (btnQuote) btnQuote.classList.remove("active", "mode-quote");
+      if (btnReceipt) btnReceipt.classList.add("active");
+      if (receiptSettings) receiptSettings.style.display = "block";
+
+      // Flip reference prefix to LS-REC-
+      if (currentInvoiceRef.startsWith("LS-QUO-")) {
+        currentInvoiceRef = currentInvoiceRef.replace("LS-QUO-", "LS-REC-");
+      } else if (!currentInvoiceRef.startsWith("LS-REC-")) {
+        const randNum = Math.floor(1000 + Math.random() * 9000);
+        currentInvoiceRef = `LS-REC-2026-${randNum}`;
+      }
+
+      if (docBadge) docBadge.textContent = "OFFICIAL PAYMENT RECEIPT & CONFIRMATION";
+      if (refLabel) refLabel.textContent = "RECEIPT REF:";
+      if (validityItem) validityItem.style.display = "none";
+      if (verifiedBanner) verifiedBanner.style.display = "flex";
+      if (sealStamp) sealStamp.classList.add("paid-stamp");
+      if (sealMid) sealMid.textContent = "✓ OFFICIAL PAYMENT";
+      if (sealBot) sealBot.textContent = "PAID & CONFIRMED";
+      if (termsTitle) termsTitle.textContent = "Payment Verification & Delivery Terms";
+      if (termsNote) termsNote.textContent = "* Official payment confirmed with thanks. Digital master files will be delivered within agreed timelines via high-speed cloud gallery and direct WhatsApp link. Thank you for choosing Laureign Studios!";
+      if (btnPdfText) btnPdfText.textContent = "📥 Download Official Receipt (PDF)";
+      if (btnWaText) btnWaText.textContent = "📲 Send Receipt to Client";
+    } else {
+      if (btnReceipt) btnReceipt.classList.remove("active");
+      if (btnQuote) btnQuote.classList.add("active", "mode-quote");
+      if (receiptSettings) receiptSettings.style.display = "none";
+
+      // Flip reference prefix to LS-QUO-
+      if (currentInvoiceRef.startsWith("LS-REC-")) {
+        currentInvoiceRef = currentInvoiceRef.replace("LS-REC-", "LS-QUO-");
+      } else if (!currentInvoiceRef.startsWith("LS-QUO-")) {
+        const randNum = Math.floor(1000 + Math.random() * 9000);
+        currentInvoiceRef = `LS-QUO-2026-${randNum}`;
+      }
+
+      if (docBadge) docBadge.textContent = "PROFORMA INVOICE & QUOTATION";
+      if (refLabel) refLabel.textContent = "QUOTATION REF:";
+      if (validityItem) validityItem.style.display = "flex";
+      if (verifiedBanner) verifiedBanner.style.display = "none";
+      if (sealStamp) sealStamp.classList.remove("paid-stamp");
+      if (sealMid) sealMid.textContent = "VERIFIED & APPROVED";
+      if (sealBot) sealBot.textContent = "2026 OFFICIAL";
+      if (termsTitle) termsTitle.textContent = "Official Payment & M-Pesa Instructions";
+      if (termsNote) termsNote.textContent = "* A booking commitment deposit locks your date on our production calendar. RAW unedited proofs available at KSh 150 per image. The remaining balance is payable upon delivery of your master high-resolution gallery and deliverables.";
+      if (btnPdfText) btnPdfText.textContent = "📥 Download Official PDF";
+      if (btnWaText) btnWaText.textContent = "📲 Send PDF via WhatsApp";
+    }
+
+    updateInvoiceDisplay();
+  }
+
+  // 1-Click Preset for Studio Walk-in Clients (auto-fills today's shoot details)
+  function applyWalkinPreset() {
+    setInvoiceMode("receipt");
+
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+
+    if (invDateInput) invDateInput.value = todayStr;
+    if (invTimeInput) invTimeInput.value = "Walk-in Studio Session (Completed)";
+    if (invLocationInput) invLocationInput.value = "Laureign Studios (In-Studio, Kakamega)";
+    if (invCrewInput) invCrewInput.value = "Studio Lead Photographer + Lighting Assistant";
+
+    const payStatusSelect = document.getElementById("invPaymentStatusSelect");
+    if (payStatusSelect) payStatusSelect.value = "full";
+
+    const payMethodSelect = document.getElementById("invPaymentMethodSelect");
+    if (payMethodSelect) payMethodSelect.value = "M-Pesa Buy Goods Till (0790048905)";
+
+    const payRefInput = document.getElementById("invPaymentRefInput");
+    if (payRefInput && !payRefInput.value.trim()) {
+      const mpesaChars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let code = "SL";
+      for (let i = 0; i < 6; i++) {
+        code += mpesaChars.charAt(Math.floor(Math.random() * mpesaChars.length));
+      }
+      payRefInput.value = code;
+    }
+
+    if (invNotesInput && (!invNotesInput.value.trim() || invNotesInput.value.includes("Includes high-end"))) {
+      invNotesInput.value = "Walk-in studio shoot completed at Laureign Studios. Master retouched photos deliverable within 24–48 hours via secure Google Drive & WhatsApp link.";
+    }
+
+    updateInvoiceDisplay();
+    showInvoiceToast("⚡ Walk-in session preset applied! Ready to print or send.");
+
+    if (invClientInput) {
+      invClientInput.focus();
+      if (invClientInput.value === "Valued Client") invClientInput.value = "";
+    }
   }
 
   function initInvoice() {
@@ -1693,11 +1833,12 @@ document.addEventListener("DOMContentLoaded", () => {
     validDate.setDate(today.getDate() + 14);
     invoiceValidity = `${validDate.toLocaleDateString('en-GB', options)} (14 Days)`;
 
-    // Handle package change to update tiers
+    // Handle package change to update tiers and auto-fill defaults
     onInvoicePackageChange();
   }
 
-  function onInvoicePackageChange() {
+  // Auto-fill assignment details whenever a package is selected
+  function onInvoicePackageChange(forceAutofill = false) {
     if (!invPackageSelect || !invTierSelect) return;
     const pkgId = invPackageSelect.value;
     const pkg = PACKAGES_DATA.find(p => p.id === pkgId) || PACKAGES_DATA[0];
@@ -1706,6 +1847,79 @@ document.addEventListener("DOMContentLoaded", () => {
     invTierSelect.innerHTML = pkg.options.map((opt, idx) =>
       `<option value="${idx}">${opt.name} — KSh ${opt.price.toLocaleString()}</option>`
     ).join("");
+
+    const isReceipt = invoiceMode === "receipt";
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+
+    // Auto-fill Date if empty or in receipt mode
+    if (invDateInput && (!invDateInput.value || isReceipt || forceAutofill)) {
+      invDateInput.value = `${yyyy}-${mm}-${dd}`;
+    }
+
+    // Auto-fill Location based on package pathway
+    if (invLocationInput) {
+      const curLoc = invLocationInput.value.trim();
+      if (!curLoc || forceAutofill || curLoc === "Nairobi / In-Studio" || curLoc.startsWith("Laureign Studios") || curLoc.startsWith("Kakamega")) {
+        if (pkg.pathway === "studio" || pkg.id.includes("studio") || pkg.id.includes("headshot") || pkg.id.includes("white-shirt") || pkg.id.includes("silk-wrap")) {
+          invLocationInput.value = "Laureign Studios (In-Studio, Kakamega)";
+        } else if (pkg.pathway === "outdoor" || pkg.id.includes("outdoor")) {
+          invLocationInput.value = "Kakamega / On-Location Shoot";
+        } else if (pkg.pathway === "events" || pkg.id.includes("wedding")) {
+          invLocationInput.value = "Client Event Venue / Nairobi & Across Kenya";
+        } else {
+          invLocationInput.value = "Client Premises / Studio Facility";
+        }
+      }
+    }
+
+    // Auto-fill Timing based on package pathway
+    if (invTimeInput) {
+      const curTime = invTimeInput.value.trim();
+      if (!curTime || forceAutofill || curTime === "Standard Coverage Session" || curTime.includes("Session")) {
+        if (isReceipt) {
+          invTimeInput.value = "Walk-in Studio Session (Completed)";
+        } else if (pkg.pathway === "studio") {
+          invTimeInput.value = "Standard Studio Session (45–60 mins)";
+        } else if (pkg.pathway === "outdoor") {
+          invTimeInput.value = "Golden Hour Session (1.5–2 hrs)";
+        } else if (pkg.pathway === "events") {
+          invTimeInput.value = "Full Day Production Coverage";
+        } else {
+          invTimeInput.value = "Tailored Coverage Session";
+        }
+      }
+    }
+
+    // Auto-fill Crew based on package pathway
+    if (invCrewInput) {
+      const curCrew = invCrewInput.value.trim();
+      if (!curCrew || forceAutofill || curCrew.includes("Lead Production")) {
+        if (pkg.pathway === "studio") {
+          invCrewInput.value = "Studio Lead Photographer + Lighting Assistant";
+        } else if (pkg.pathway === "outdoor") {
+          invCrewInput.value = "Lead Outdoor Photographer + Reflector Assistant";
+        } else if (pkg.pathway === "events") {
+          invCrewInput.value = "Senior Cinematographer + 2 Lead Photographers";
+        } else {
+          invCrewInput.value = "Commercial Director of Photography + Gear Tech";
+        }
+      }
+    }
+
+    // Auto-fill Delivery remarks / Notes
+    if (invNotesInput) {
+      const curNotes = invNotesInput.value.trim();
+      if (!curNotes || forceAutofill || curNotes.includes("Includes high-end") || curNotes.includes("Walk-in studio shoot")) {
+        if (isReceipt) {
+          invNotesInput.value = `Walk-in session completed at Laureign Studios. Master retouched gallery deliverable within ${pkg.turnaround || "2–3 business days"} via private online gallery and WhatsApp link.`;
+        } else {
+          invNotesInput.value = `Includes high-end lighting, color grading and magazine-grade skin retouching. Expected delivery turnaround: ${pkg.turnaround || "2–3 business days"}. Booking confirmed upon receipt of deposit.`;
+        }
+      }
+    }
 
     updateInvoiceDisplay();
   }
@@ -1783,8 +1997,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailVal = (invEmailInput && invEmailInput.value.trim()) || "";
     const dateVal = (invDateInput && invDateInput.value) || "To Be Scheduled";
     const timeVal = (invTimeInput && invTimeInput.value.trim()) || "Standard Coverage Session";
-    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Nairobi / In-Studio";
-    const crewVal = (invCrewInput && invCrewInput.value.trim()) || "Lead Production Crew (Cinema 4K Bodies)";
+    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (In-Studio, Kakamega)";
+    const crewVal = (invCrewInput && invCrewInput.value.trim()) || "Studio Lead Photographer + Lighting Assistant";
     const notesVal = (invNotesInput && invNotesInput.value.trim()) || "";
 
     const elClient = document.getElementById("invSheetClient");
@@ -1794,7 +2008,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const elSTime = document.getElementById("invSheetTime");
     const elLoc = document.getElementById("invSheetLocation");
     const elCrew = document.getElementById("invSheetCrew");
-    const elPayRef = document.getElementById("invPayRef");
 
     if (elClient) elClient.textContent = clientVal;
     if (elPhone) elPhone.textContent = phoneVal ? `Phone: ${phoneVal}` : "Phone: Not Specified";
@@ -1810,10 +2023,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elSTime) elSTime.textContent = timeVal;
     if (elLoc) elLoc.textContent = locVal;
     if (elCrew) elCrew.textContent = crewVal;
-    if (elPayRef) {
-      const cleanRef = clientVal.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(0, 8);
-      elPayRef.textContent = `LS-${cleanRef || "BOOKING"}`;
-    }
 
     // Selected Add-ons
     const checkedAddons = [];
@@ -1853,7 +2062,6 @@ document.addEventListener("DOMContentLoaded", () => {
           <td style="text-align:right; font-weight:600;">KSh ${basePrice.toLocaleString()}</td>
           <td style="text-align:right; font-weight:700;">KSh ${basePrice.toLocaleString()}</td>
         </tr>
-
       `;
 
       checkedAddons.forEach(a => {
@@ -1864,7 +2072,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="inv-item-sub">Selected Enhancement Upgrade</div>
             </td>
             <td>
-              <div style="font-size:11.5px; color:#475569;">Optional session / event add-on delivery item.</div>
+              <div style="font-size:11.5px; color:#475569;">Optional session / event deliverable enhancement.</div>
             </td>
             <td style="text-align:right; font-weight:600;">KSh ${a.price.toLocaleString()}</td>
             <td style="text-align:right; font-weight:700;">KSh ${a.price.toLocaleString()}</td>
@@ -1916,20 +2124,119 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Update Totals
+    // Totals Elements
     const elBase = document.getElementById("invBaseAmt");
     const elAddons = document.getElementById("invAddonsAmt");
     const elGrand = document.getElementById("invGrandTotal");
-    const elDepLbl = document.getElementById("invDepositLabel");
-    const elDep = document.getElementById("invDepositRequired");
-    const elBal = document.getElementById("invBalanceDue");
+    const elGrandLbl = document.getElementById("invGrandTotalLabel");
 
     if (elBase) elBase.textContent = `KSh ${basePrice.toLocaleString()}`;
     if (elAddons) elAddons.textContent = `KSh ${(addonsTotal + customTotal).toLocaleString()}`;
     if (elGrand) elGrand.textContent = `KSh ${grandTotal.toLocaleString()}`;
-    if (elDepLbl) elDepLbl.textContent = `REQUIRED BOOKING DEPOSIT (${depPercent}%):`;
-    if (elDep) elDep.textContent = `KSh ${deposit.toLocaleString()}`;
-    if (elBal) elBal.textContent = `KSh ${balance.toLocaleString()}`;
+    if (elGrandLbl) elGrandLbl.textContent = invoiceMode === "receipt" ? "TOTAL SHOOT INVESTMENT:" : "TOTAL PROJECT INVESTMENT:";
+
+    // Mode-Specific Financial Breakdown
+    const isReceipt = invoiceMode === "receipt";
+    const payStatusSelect = document.getElementById("invPaymentStatusSelect");
+    const payMethodSelect = document.getElementById("invPaymentMethodSelect");
+    const payRefInput = document.getElementById("invPaymentRefInput");
+
+    const paymentStatus = payStatusSelect ? payStatusSelect.value : "full"; // "full" or "deposit"
+    const paymentMethod = payMethodSelect ? payMethodSelect.value : "M-Pesa Buy Goods Till (0790048905)";
+    const paymentRef = (payRefInput && payRefInput.value.trim()) || "M-Pesa Verified";
+
+    const elStatusPill = document.getElementById("invDisplayStatusPill");
+    const elPaidRow = document.getElementById("invPaidRow");
+    const elPaidLabel = document.getElementById("invPaidLabel");
+    const elPaidAmt = document.getElementById("invPaidAmt");
+    const elDepositRow = document.getElementById("invDepositRow");
+    const elDepositLabel = document.getElementById("invDepositLabel");
+    const elDepositVal = document.getElementById("invDepositRequired");
+    const elBalRow = document.getElementById("invBalanceRow");
+    const elBalLabel = document.getElementById("invBalanceLabel");
+    const elBalVal = document.getElementById("invBalanceDue");
+
+    const elPayChannelLine = document.getElementById("invPayChannelLine");
+    const elPayTillLine = document.getElementById("invPayTillLine");
+    const elPayAccountLine = document.getElementById("invPayAccountLine");
+    const elPayRefLine = document.getElementById("invPayRefLine");
+
+    if (isReceipt) {
+      if (paymentStatus === "full") {
+        if (elStatusPill) {
+          elStatusPill.className = "val status-paid";
+          elStatusPill.textContent = "✓ PAID IN FULL (RECEIPT)";
+        }
+        if (elPaidRow) {
+          elPaidRow.style.display = "flex";
+          if (elPaidLabel) elPaidLabel.textContent = "AMOUNT RECEIVED IN FULL:";
+          if (elPaidAmt) elPaidAmt.textContent = `KSh ${grandTotal.toLocaleString()}`;
+        }
+        if (elDepositRow) elDepositRow.style.display = "none";
+        if (elBalRow) {
+          elBalRow.style.display = "flex";
+          if (elBalLabel) elBalLabel.textContent = "BALANCE REMAINING:";
+          if (elBalVal) {
+            elBalVal.textContent = "KSh 0 (CLEARED)";
+            elBalVal.style.color = "#15803d";
+            elBalVal.style.fontWeight = "800";
+          }
+        }
+      } else {
+        // Partial deposit received
+        if (elStatusPill) {
+          elStatusPill.className = "val status-deposit";
+          elStatusPill.textContent = "✓ DEPOSIT RECEIVED";
+        }
+        if (elPaidRow) {
+          elPaidRow.style.display = "flex";
+          if (elPaidLabel) elPaidLabel.textContent = `DEPOSIT RECEIVED (${depPercent}%):`;
+          if (elPaidAmt) elPaidAmt.textContent = `KSh ${deposit.toLocaleString()}`;
+        }
+        if (elDepositRow) elDepositRow.style.display = "none";
+        if (elBalRow) {
+          elBalRow.style.display = "flex";
+          if (elBalLabel) elBalLabel.textContent = "BALANCE DUE ON DELIVERY:";
+          if (elBalVal) {
+            elBalVal.textContent = `KSh ${balance.toLocaleString()}`;
+            elBalVal.style.color = "#dc2626";
+            elBalVal.style.fontWeight = "800";
+          }
+        }
+      }
+
+      // Update payment box details to reflect verified payment
+      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Payment Channel:</b> <span style="font-weight:700; color:#15803d;">${paymentMethod}</span>`;
+      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Payment Ref / Code:</b> <span class="till-num" style="background:#dcfce7; color:#15803d; border-color:#86efac;">${paymentRef}</span>`;
+      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Verified:</b> Laureign Studios (Till: 0790048905)`;
+      if (elPayRefLine) elPayRefLine.innerHTML = `<b>Receipt Clearance:</b> <span style="font-weight:700; color:#15803d;">✓ Validated &amp; Logged by Studio Reception</span>`;
+    } else {
+      // Quotation mode
+      if (elStatusPill) {
+        elStatusPill.className = "val status-proforma";
+        elStatusPill.textContent = "PROFORMA / UNPAID";
+      }
+      if (elPaidRow) elPaidRow.style.display = "none";
+      if (elDepositRow) {
+        elDepositRow.style.display = "flex";
+        if (elDepositLabel) elDepositLabel.textContent = `REQUIRED BOOKING DEPOSIT (${depPercent}%):`;
+        if (elDepositVal) elDepositVal.textContent = `KSh ${deposit.toLocaleString()}`;
+      }
+      if (elBalRow) {
+        elBalRow.style.display = "flex";
+        if (elBalLabel) elBalLabel.textContent = "BALANCE DUE ON MASTER DELIVERY:";
+        if (elBalVal) {
+          elBalVal.textContent = `KSh ${balance.toLocaleString()}`;
+          elBalVal.style.color = "";
+          elBalVal.style.fontWeight = "";
+        }
+      }
+
+      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Payment Method:</b> <span id="invPayChannelVal">M-Pesa Buy Goods Till / Phone</span>`;
+      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Till / Phone Number:</b> <span class="till-num">0790048905</span>`;
+      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name:</b> Laureign Studios`;
+      if (elPayRefLine) elPayRefLine.innerHTML = `<b>Account Reference:</b> <span id="invPayRef">${clientVal ? `LS-${clientVal.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(0, 8)}` : "LS-BOOKING"}</span>`;
+    }
   }
 
   function openInvoiceModal(pkgId, optIdx) {
@@ -1962,7 +2269,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Prepare a dedicated, off-screen A4 sandbox for 100% clean, non-blank PDF rendering
+  // Prepare a dedicated, clean A4 sandbox container for 100% crisp, non-blank PDF rendering
   function prepareInvoicePdfSandbox() {
     const sourceSheet = document.getElementById("invoicePrintableSheet");
     if (!sourceSheet) return null;
@@ -1971,15 +2278,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const clone = sourceSheet.cloneNode(true);
     clone.id = "invoicePrintableSheet_PdfSandboxClone";
 
-    // Strip interactive screen-only elements that should not print on official quotation
+    // Strip interactive screen-only elements that should not print on official document
     clone.querySelectorAll(".inv-addons-selector-box, button, .inv-btn-action, .screen-only").forEach(el => el.remove());
 
-    // Create an isolated sandbox container attached to body
-    // Using top:0 and left:0 with off-screen positioning ensures html2canvas renders at exact coordinates without scroll offsets
+    // Create an isolated sandbox container attached to body with fixed positioning at top:0
+    // Using z-index 9999999 and full opacity ensures html2canvas renders the sheet without blank/negative-layer issues
     const sandbox = document.createElement("div");
     sandbox.id = "invoice-pdf-sandbox-container";
     sandbox.style.cssText = `
-      position: absolute;
+      position: fixed;
       left: 0;
       top: 0;
       width: 794px;
@@ -1988,7 +2295,7 @@ document.addEventListener("DOMContentLoaded", () => {
       color: #0f172a;
       padding: 32px 36px;
       box-sizing: border-box;
-      z-index: -999999;
+      z-index: 9999999;
       opacity: 1;
       visibility: visible;
       overflow: visible;
@@ -2038,7 +2345,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Generate Official PDF with html2pdf
   function downloadInvoicePdf() {
     if (typeof html2pdf === "undefined") {
-      showInvoiceToast("Printing invoice format...");
+      showInvoiceToast("Printing document format...");
       window.print();
       return;
     }
@@ -2046,10 +2353,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const sandbox = prepareInvoicePdfSandbox();
     if (!sandbox) return;
 
-    showInvoiceToast("⏳ Compiling official PDF quotation...");
+    const isReceipt = invoiceMode === "receipt";
+    const docName = isReceipt ? "Receipt" : "Quotation";
+    showInvoiceToast(`⏳ Compiling official PDF ${docName}...`);
+
     const clientVal = (invClientInput && invClientInput.value.trim()) || "Valued_Client";
     const cleanClient = clientVal.replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 20);
-    const filename = `Laureign_Studios_Invoice_${currentInvoiceRef}_${cleanClient}.pdf`;
+    const docPrefix = isReceipt ? "Laureign_Studios_Receipt" : "Laureign_Studios_Quotation";
+    const filename = `${docPrefix}_${currentInvoiceRef}_${cleanClient}.pdf`;
 
     const opt = {
       margin: [10, 8, 10, 8],
@@ -2070,7 +2381,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     html2pdf().set(opt).from(sandbox).save().then(() => {
       if (sandbox && sandbox.parentNode) sandbox.parentNode.removeChild(sandbox);
-      showInvoiceToast("✓ Official PDF downloaded successfully!");
+      showInvoiceToast(`✓ Official PDF ${docName} downloaded successfully!`);
     }).catch(err => {
       if (sandbox && sandbox.parentNode) sandbox.parentNode.removeChild(sandbox);
       console.error("PDF generation failed:", err);
@@ -2089,11 +2400,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const sandbox = prepareInvoicePdfSandbox();
     if (!sandbox) return;
 
+    const isReceipt = invoiceMode === "receipt";
+    const docName = isReceipt ? "Receipt" : "Quotation";
     const clientVal = (invClientInput && invClientInput.value.trim()) || "Valued Client";
     const cleanClient = clientVal.replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 20);
-    const filename = `Laureign_Studios_Invoice_${currentInvoiceRef}_${cleanClient}.pdf`;
+    const docPrefix = isReceipt ? "Laureign_Studios_Receipt" : "Laureign_Studios_Quotation";
+    const filename = `${docPrefix}_${currentInvoiceRef}_${cleanClient}.pdf`;
 
-    showInvoiceToast("⏳ Generating PDF for WhatsApp...");
+    showInvoiceToast(`⏳ Generating PDF ${docName} for WhatsApp...`);
 
     const opt = {
       margin: [10, 8, 10, 8],
@@ -2122,10 +2436,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
         await navigator.share({
           files: [pdfFile],
-          title: `Laureign Studios Invoice ${currentInvoiceRef}`,
-          text: `Official Proforma Invoice & Quotation from Laureign Studios for ${clientVal}`
+          title: `Laureign Studios ${docName} ${currentInvoiceRef}`,
+          text: `Official ${docName} from Laureign Studios for ${clientVal}`
         });
-        showInvoiceToast("✓ Sent via WhatsApp!");
+        showInvoiceToast(`✓ ${docName} sent via WhatsApp!`);
       } else {
         // Fallback for Desktop: Auto-download the PDF, then launch WhatsApp with prefilled message
         const downloadUrl = URL.createObjectURL(pdfBlob);
@@ -2137,7 +2451,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.removeChild(a);
         URL.revokeObjectURL(downloadUrl);
 
-        showInvoiceToast("📥 PDF downloaded! Opening WhatsApp to send...");
+        showInvoiceToast(`📥 PDF ${docName} downloaded! Opening WhatsApp to send...`);
         setTimeout(() => {
           sendInvoiceWhatsApp(true);
         }, 1000);
@@ -2145,24 +2459,25 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (err) {
       if (sandbox && sandbox.parentNode) sandbox.parentNode.removeChild(sandbox);
       console.warn("Share fallback:", err);
-      // If user dismissed share or API error, download PDF and open WA
       sendInvoiceWhatsApp(true);
     }
   }
 
+  // Builds formatted message and opens WhatsApp chat (Direct to client if phone is provided)
   function sendInvoiceWhatsApp(pdfDownloaded = false) {
+    const isReceipt = invoiceMode === "receipt";
     const pkgId = invPackageSelect ? invPackageSelect.value : "";
     const pkg = PACKAGES_DATA.find(p => p.id === pkgId) || PACKAGES_DATA[0];
     const optIdx = invTierSelect ? parseInt(invTierSelect.value, 10) || 0 : 0;
     const opt = pkg.options[optIdx] || pkg.options[0];
 
     const clientVal = (invClientInput && invClientInput.value.trim()) || "Valued Client";
-    const phoneVal = (invPhoneInput && invPhoneInput.value.trim()) || "Not specified";
+    const rawPhone = (invPhoneInput && invPhoneInput.value.trim()) || "";
     const emailVal = (invEmailInput && invEmailInput.value.trim()) || "";
     const dateVal = (invDateInput && invDateInput.value) || "TBD";
     const timeVal = (invTimeInput && invTimeInput.value.trim()) || "Standard Session";
-    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Nairobi / In-Studio";
-    const crewVal = (invCrewInput && invCrewInput.value.trim()) || "Lead Studio Team";
+    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (In-Studio, Kakamega)";
+    const crewVal = (invCrewInput && invCrewInput.value.trim()) || "Studio Lead Team";
     const notesVal = (invNotesInput && invNotesInput.value.trim()) || "";
 
     const checkedAddons = [];
@@ -2183,60 +2498,139 @@ document.addEventListener("DOMContentLoaded", () => {
     const deposit = Math.round(grandTotal * (depPercent / 100));
     const balance = Math.max(0, grandTotal - deposit);
 
-    let msg = `*LAUREIGN STUDIOS — OFFICIAL PROFORMA INVOICE*\n`;
-    msg += `📄 *Ref:* ${currentInvoiceRef}\n`;
-    msg += `📅 *Issued:* ${invoiceDateIssued} (Valid 14 Days)\n\n`;
-    msg += `👤 *Client / Org:* ${clientVal}\n`;
-    msg += `📞 *Phone / WhatsApp:* ${phoneVal}\n`;
-    if (emailVal) msg += `✉️ *Email:* ${emailVal}\n`;
-    msg += `🗓️ *Target Date:* ${dateVal} (${timeVal})\n`;
-    msg += `📍 *Venue / Location:* ${locVal}\n`;
-    msg += `🎥 *Assigned Crew:* ${crewVal}\n\n`;
-    msg += `*CORE PACKAGE DELIVERABLE:*\n`;
-    msg += `📸 *${pkg.title}* — ${opt.name}\n`;
-    msg += `💰 *Base Investment:* KSh ${basePrice.toLocaleString()}\n`;
+    const payStatusSelect = document.getElementById("invPaymentStatusSelect");
+    const payMethodSelect = document.getElementById("invPaymentMethodSelect");
+    const payRefInput = document.getElementById("invPaymentRefInput");
 
-    if (checkedAddons.length > 0) {
-      msg += `\n*SELECTED STUDIO ADD-ONS:*\n`;
-      checkedAddons.forEach(a => {
-        msg += `• ${a.name} (+KSh ${a.price.toLocaleString()})\n`;
-      });
+    const paymentStatus = payStatusSelect ? payStatusSelect.value : "full";
+    const paymentMethod = payMethodSelect ? payMethodSelect.value : "M-Pesa Buy Goods Till (0790048905)";
+    const paymentRef = (payRefInput && payRefInput.value.trim()) || "SLD8927K";
+
+    // Determine target WhatsApp number: Route directly to client if provided!
+    const clientPhone = normalizeKenyanPhone(rawPhone);
+    const targetPhone = clientPhone || "254790048905";
+
+    let msg = "";
+
+    if (isReceipt) {
+      msg += `*LAUREIGN STUDIOS — OFFICIAL PAYMENT RECEIPT*\n`;
+      msg += `🧾 *Receipt Ref:* ${currentInvoiceRef}\n`;
+      msg += `📅 *Date:* ${invoiceDateIssued}\n\n`;
+
+      msg += `👤 *Client / Customer:* ${clientVal}\n`;
+      if (rawPhone) msg += `📞 *Phone / WhatsApp:* ${rawPhone}\n`;
+      if (emailVal) msg += `✉️ *Email:* ${emailVal}\n`;
+      msg += `🗓️ *Shoot Date:* ${dateVal} (${timeVal})\n`;
+      msg += `📍 *Location:* ${locVal}\n`;
+      msg += `🎥 *Assigned Crew:* ${crewVal}\n\n`;
+
+      msg += `*SERVICE & DELIVERABLES:*\n`;
+      msg += `📸 *${pkg.title}* — ${opt.name}\n`;
+      msg += `💰 *Base Investment:* KSh ${basePrice.toLocaleString()}\n`;
+
+      if (checkedAddons.length > 0) {
+        msg += `\n*SELECTED ADD-ONS:*\n`;
+        checkedAddons.forEach(a => {
+          msg += `• ${a.name} (+KSh ${a.price.toLocaleString()})\n`;
+        });
+      }
+
+      if (customLineItems.length > 0) {
+        msg += `\n*CUSTOM SERVICES:*\n`;
+        customLineItems.forEach(item => {
+          msg += `• ${item.name}: KSh ${(parseInt(item.rate, 10) || 0).toLocaleString()}\n`;
+        });
+      }
+
+      if (discount > 0) {
+        msg += `\n🎁 *Special Discount:* - KSh ${discount.toLocaleString()}\n`;
+      }
+
+      msg += `\n*PAYMENT VERIFICATION:*\n`;
+      msg += `💵 *Total Shoot Investment:* KSh ${grandTotal.toLocaleString()}\n`;
+
+      if (paymentStatus === "full") {
+        msg += `✅ *Amount Received:* KSh ${grandTotal.toLocaleString()} *(PAID IN FULL)*\n`;
+        msg += `💳 *Payment Method:* ${paymentMethod}\n`;
+        msg += `🏷️ *Transaction Code / Ref:* *${paymentRef}*\n`;
+        msg += `🎉 *Balance Remaining:* *KSh 0 (CLEARED)*\n\n`;
+      } else {
+        msg += `✅ *Deposit Received:* KSh ${deposit.toLocaleString()} *(${depPercent}% PAID)*\n`;
+        msg += `💳 *Payment Method:* ${paymentMethod}\n`;
+        msg += `🏷️ *Transaction Code / Ref:* *${paymentRef}*\n`;
+        msg += `💳 *Balance Due on Delivery:* *KSh ${balance.toLocaleString()}*\n\n`;
+      }
+
+      if (notesVal) {
+        msg += `📝 *Studio Deliverable Notes:*\n_${notesVal}_\n\n`;
+      }
+
+      if (pdfDownloaded) {
+        msg += `📥 *Official PDF Receipt Generated & Saved.* Please see attached PDF document.\n\n`;
+      }
+
+      msg += `✨ *Thank you for creating memories with Laureign Studios! Your master high-definition photographs will be delivered via private gallery link.* ✨\n`;
+      msg += `📞 Studio Contact: 0790 048 905`;
+    } else {
+      msg += `*LAUREIGN STUDIOS — OFFICIAL PROFORMA INVOICE & QUOTATION*\n`;
+      msg += `📄 *Quotation Ref:* ${currentInvoiceRef}\n`;
+      msg += `📅 *Issued:* ${invoiceDateIssued} (Valid 14 Days)\n\n`;
+
+      msg += `👤 *Client / Org:* ${clientVal}\n`;
+      if (rawPhone) msg += `📞 *Phone / WhatsApp:* ${rawPhone}\n`;
+      if (emailVal) msg += `✉️ *Email:* ${emailVal}\n`;
+      msg += `🗓️ *Target Date:* ${dateVal} (${timeVal})\n`;
+      msg += `📍 *Venue / Location:* ${locVal}\n`;
+      msg += `🎥 *Assigned Crew:* ${crewVal}\n\n`;
+
+      msg += `*CORE PACKAGE DELIVERABLE:*\n`;
+      msg += `📸 *${pkg.title}* — ${opt.name}\n`;
+      msg += `💰 *Base Investment:* KSh ${basePrice.toLocaleString()}\n`;
+
+      if (checkedAddons.length > 0) {
+        msg += `\n*SELECTED STUDIO ADD-ONS:*\n`;
+        checkedAddons.forEach(a => {
+          msg += `• ${a.name} (+KSh ${a.price.toLocaleString()})\n`;
+        });
+      }
+
+      if (customLineItems.length > 0) {
+        msg += `\n*CUSTOM PRODUCTION ITEMS:*\n`;
+        customLineItems.forEach(item => {
+          msg += `• ${item.name}: KSh ${(parseInt(item.rate, 10) || 0).toLocaleString()} (${item.spec})\n`;
+        });
+      }
+
+      if (discount > 0) {
+        msg += `\n🎁 *Special Client Discount:* - KSh ${discount.toLocaleString()}\n`;
+      }
+
+      if (notesVal) {
+        msg += `\n📝 *Production Scope Notes:*\n_${notesVal}_\n`;
+      }
+
+      msg += `\n*FINANCIAL SUMMARY:*\n`;
+      msg += `💵 *Total Project Investment:* KSh ${grandTotal.toLocaleString()}\n`;
+      msg += `🔒 *Required Booking Deposit (${depPercent}%):* KSh ${deposit.toLocaleString()}\n`;
+      msg += `💳 *Balance Due on Master Delivery:* KSh ${balance.toLocaleString()}\n\n`;
+
+      msg += `*OFFICIAL PAYMENT TILL:*\n`;
+      msg += `M-Pesa Buy Goods Till / Phone: *0790048905*\n`;
+      msg += `Account Ref: *LS-${clientVal.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(0, 8) || "BOOKING"}*\n\n`;
+
+      if (pdfDownloaded) {
+        msg += `📥 *Official PDF Quotation Generated & Saved.* Please see attached PDF document.\n\n`;
+      }
+
+      msg += `_Please confirm date availability and issue deposit receipt to reserve your slot._`;
     }
 
-    if (customLineItems.length > 0) {
-      msg += `\n*CUSTOM PRODUCTION ITEMS:*\n`;
-      customLineItems.forEach(item => {
-        msg += `• ${item.name}: KSh ${(parseInt(item.rate, 10) || 0).toLocaleString()} (${item.spec})\n`;
-      });
-    }
-
-    if (discount > 0) {
-      msg += `\n🎁 *Special Client Discount:* - KSh ${discount.toLocaleString()}\n`;
-    }
-
-    if (notesVal) {
-      msg += `\n📝 *Production Scope Notes:*\n_${notesVal}_\n`;
-    }
-
-    msg += `\n*FINANCIAL SUMMARY:*\n`;
-    msg += `💵 *Total Project Investment:* KSh ${grandTotal.toLocaleString()}\n`;
-    msg += `🔒 *Required Booking Deposit (${depPercent}%):* KSh ${deposit.toLocaleString()}\n`;
-    msg += `💳 *Balance Due on Master Delivery:* KSh ${balance.toLocaleString()}\n\n`;
-    msg += `*OFFICIAL PAYMENT TILL:*\n`;
-    msg += `M-Pesa Buy Goods Till / Phone: *0790048905*\n`;
-    msg += `Account Ref: *LS-${clientVal.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(0, 8) || "BOOKING"}*\n\n`;
-
-    if (pdfDownloaded) {
-      msg += `📥 *Official PDF Invoice Downloaded.* Please attach the PDF document to complete your record.\n\n`;
-    }
-
-    msg += `_Please confirm date availability and issue deposit receipt._`;
-
-    const waUrl = `https://wa.me/254790048905?text=${encodeURIComponent(msg)}`;
+    const waUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`;
     window.open(waUrl, "_blank");
   }
 
   function copyInvoiceText() {
+    const isReceipt = invoiceMode === "receipt";
     const pkgId = invPackageSelect ? invPackageSelect.value : "";
     const pkg = PACKAGES_DATA.find(p => p.id === pkgId) || PACKAGES_DATA[0];
     const optIdx = invTierSelect ? parseInt(invTierSelect.value, 10) || 0 : 0;
@@ -2247,7 +2641,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailVal = (invEmailInput && invEmailInput.value.trim()) || "";
     const dateVal = (invDateInput && invDateInput.value) || "TBD";
     const timeVal = (invTimeInput && invTimeInput.value.trim()) || "Standard Session";
-    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Nairobi / In-Studio";
+    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (In-Studio, Kakamega)";
 
     const checkedAddons = [];
     document.querySelectorAll(".inv-addon-checkbox:checked").forEach(cb => {
@@ -2267,12 +2661,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const deposit = Math.round(grandTotal * (depPercent / 100));
     const balance = Math.max(0, grandTotal - deposit);
 
-    let text = `LAUREIGN STUDIOS — OFFICIAL PROFORMA INVOICE\n`;
+    let text = isReceipt
+      ? `LAUREIGN STUDIOS — OFFICIAL PAYMENT RECEIPT\n`
+      : `LAUREIGN STUDIOS — OFFICIAL PROFORMA INVOICE\n`;
     text += `Ref: ${currentInvoiceRef}\n`;
-    text += `Issued: ${invoiceDateIssued} (Valid 14 Days)\n\n`;
+    text += `Date: ${invoiceDateIssued}${isReceipt ? "" : " (Valid 14 Days)"}\n\n`;
     text += `Client: ${clientVal}\nPhone: ${phoneVal}\n`;
     if (emailVal) text += `Email: ${emailVal}\n`;
-    text += `Target Date: ${dateVal} (${timeVal})\nLocation: ${locVal}\n\n`;
+    text += `Shoot Date: ${dateVal} (${timeVal})\nLocation: ${locVal}\n\n`;
     text += `Package: ${pkg.title} — ${opt.name}\n`;
     text += `Base Rate: KSh ${basePrice.toLocaleString()}\n`;
 
@@ -2294,13 +2690,19 @@ document.addEventListener("DOMContentLoaded", () => {
       text += `Special Discount: - KSh ${discount.toLocaleString()}\n`;
     }
 
-    text += `\nTotal: KSh ${grandTotal.toLocaleString()}\nDeposit Required (${depPercent}%): KSh ${deposit.toLocaleString()}\nBalance Due: KSh ${balance.toLocaleString()}\n\n`;
-    text += `M-Pesa Payment: 0790048905\nAccount Ref: LS-${clientVal.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(0, 8) || "BOOKING"}`;
+    text += `\nTotal: KSh ${grandTotal.toLocaleString()}\n`;
+    if (isReceipt) {
+      text += `Amount Received: KSh ${grandTotal.toLocaleString()} (PAID IN FULL)\nBalance: KSh 0 (CLEARED)\n\n`;
+      text += `Payment Channel: M-Pesa Buy Goods Till 0790048905\nStudio: Laureign Studios (Official Receipt)`;
+    } else {
+      text += `Deposit Required (${depPercent}%): KSh ${deposit.toLocaleString()}\nBalance Due: KSh ${balance.toLocaleString()}\n\n`;
+      text += `M-Pesa Payment: 0790048905\nAccount Ref: LS-${clientVal.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(0, 8) || "BOOKING"}`;
+    }
 
     navigator.clipboard.writeText(text).then(() => {
-      showInvoiceToast("✓ Formal Quotation copied to clipboard!");
+      showInvoiceToast(`✓ ${isReceipt ? "Official Receipt" : "Formal Quotation"} copied to clipboard!`);
     }).catch(() => {
-      prompt("Copy formal quotation below:", text);
+      prompt("Copy below:", text);
     });
   }
 
@@ -2343,6 +2745,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Expose globally to window
   window.openInvoiceModal = openInvoiceModal;
   window.closeInvoiceModal = closeInvoiceModal;
+  window.setInvoiceMode = setInvoiceMode;
+  window.applyWalkinPreset = applyWalkinPreset;
+  window.normalizeKenyanPhone = normalizeKenyanPhone;
   window.onInvoicePackageChange = onInvoicePackageChange;
   window.onInvoiceTierChange = onInvoiceTierChange;
   window.updateInvoiceDisplay = updateInvoiceDisplay;
