@@ -1420,67 +1420,56 @@
         <div class="inv-preview-pane" id="invPreviewPane">
           <div class="invoice-printable-sheet" id="invoicePrintableSheet">
             
-            <!-- Executive Header Tile: Studio Branding & Document Dossier -->
-            <div class="inv-sheet-header-tile" id="invSheetHeaderTile">
+            <!-- Clean Apple Executive Header: Studio Identity & Document Reference -->
+            <div class="inv-sheet-header" id="invSheetHeader">
               <div class="inv-brand-col">
                 <div class="inv-brand-header-flex">
-                  <div class="inv-logo-wrap">
-                    <img src="images/logo.png" alt="Laureign Studios" class="inv-sheet-logo">
-                  </div>
+                  <img src="images/logo.png" alt="Laureign Studios" class="inv-sheet-logo">
                   <div class="inv-brand-titles-wrap">
-                    <div class="inv-brand-eyebrow">HAUTE VISUAL PRODUCTIONS · ATELIER KENYA</div>
                     <h1 class="inv-brand-name"><span class="brand-part-main">LAUREIGN</span> <span class="brand-part-accent">STUDIOS</span></h1>
                     <p class="inv-brand-tagline">Visual Masterpieces · Luxury Photography &amp; Cinematography</p>
                     <div class="inv-brand-badge" id="invDisplayDocType">PROFORMA INVOICE &amp; CLIENT QUOTATION</div>
                   </div>
                 </div>
 
-                <!-- Studio Location & Direct Contact Ribbon -->
+                <!-- Studio Physical Address & Direct Contact -->
                 <div class="inv-contact-mini">
-                  <div class="inv-reach-row">
-                    <span class="reach-icon">📍</span>
-                    <span class="reach-text"><b>Kakamega Town along Mumias Rd, Opp. Jamia Mosque / Kakamega Furniture</b> (Bukura Pharmacy Bldg, 1st Floor) · Nationwide Across Kenya</span>
-                  </div>
-                  <div class="inv-contact-row">
-                    <span><span class="contact-icon">📞</span> <b>+254 790 048 905</b></span>
-                    <span class="contact-sep">|</span>
-                    <span><span class="contact-icon">✉️</span> <b>laureignstudios25@gmail.com</b></span>
-                    <span class="contact-sep">|</span>
-                    <span><span class="contact-icon">🌐</span> <b>laureignstudios.co.ke</b></span>
+                  <div class="inv-contact-line">📍 Kakamega Town along Mumias Rd, Opp. Jamia Mosque / Kakamega Furniture (Bukura Pharmacy Bldg, 1st Floor)</div>
+                  <div class="inv-contact-line">
+                    <span>📞 +254 790 048 905</span>
+                    <span class="contact-sep">·</span>
+                    <span>✉️ laureignstudios25@gmail.com</span>
+                    <span class="contact-sep">·</span>
+                    <span>🌐 laureignstudios.co.ke</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Executive Document Dossier Vault Card (Top Right) -->
+              <!-- Document Metadata Column (Top Right) -->
               <div class="inv-meta-col">
-                <div class="inv-vault-card" id="invVaultCard">
-                  <div class="inv-vault-ref-row">
-                    <span class="inv-ref-label" id="invDisplayRefLabel">INVOICE REF:</span>
-                    <span class="inv-ref-val" id="invDisplayRef">LS-QUO-2026-9051</span>
-                  </div>
-                  <div class="inv-vault-divider"></div>
-                  <div class="inv-meta-item">
-                    <span class="lbl" id="invDisplayDateLabel">Date Issued:</span>
-                    <span class="val" id="invDisplayDateIssued">13 Sept 2026</span>
-                  </div>
-                  <div class="inv-meta-item" id="invValidityMetaItem">
-                    <span class="lbl">Validity:</span>
-                    <span class="val" id="invDisplayValidity">27 Sept 2026 (14 Days)</span>
-                  </div>
-                  <div class="inv-meta-item inv-meta-status-row">
-                    <span class="lbl">Status:</span>
-                    <span class="val status-proforma" id="invDisplayStatusPill">PROFORMA / UNPAID</span>
-                  </div>
+                <div class="inv-ref-pill">
+                  <span class="inv-ref-label" id="invDisplayRefLabel">INVOICE REF:</span>
+                  <span class="inv-ref-val" id="invDisplayRef">LS-QUO-2026-9051</span>
+                </div>
+                <div class="inv-meta-item">
+                  <span class="lbl" id="invDisplayDateLabel">Date Issued:</span>
+                  <span class="val" id="invDisplayDateIssued">13 Sept 2026</span>
+                </div>
+                <div class="inv-meta-item" id="invValidityMetaItem">
+                  <span class="lbl">Validity:</span>
+                  <span class="val" id="invDisplayValidity">27 Sept 2026 (14 Days)</span>
+                </div>
+                <div class="inv-meta-item">
+                  <span class="lbl">Status:</span>
+                  <span class="val status-proforma" id="invDisplayStatusPill">PROFORMA / UNPAID</span>
                 </div>
               </div>
             </div>
 
             <!-- Verified Receipt Banner (Shows in receipt mode) -->
-            <div class="inv-receipt-verified-banner" id="invReceiptVerifiedBanner" style="display:none; margin-top:14px; background:#dcfce7; border:1px solid #86efac; color:#15803d; padding:7px 12px; border-radius:6px; font-weight:800; font-size:11px; text-align:center;">
+            <div class="inv-receipt-verified-banner" id="invReceiptVerifiedBanner" style="display:none; margin-bottom:18px;">
               <span>🧾 OFFICIAL PAYMENT CONFIRMATION &amp; RECEIPT · LAUREIGN STUDIOS · ACCOUNT RECORD VERIFIED</span>
             </div>
-
-            <div class="inv-divider"></div>
 
             <!-- Executive Document Main Category Title Header -->
             <div class="inv-main-category-header" id="invMainCategoryHeader">
