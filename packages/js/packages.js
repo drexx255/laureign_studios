@@ -2804,18 +2804,27 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elSheetCatVal) {
       elSheetCatVal.textContent = cat.name;
     }
-    if (elHonorName) {
-      elHonorName.textContent = (clientVal && clientVal !== "Valued Client") ? clientVal.toUpperCase() : "VALUED CLIENT";
-    }
-    if (elTargetDate) {
-      elTargetDate.textContent = dateVal;
-    }
-
     // Occasion / Event Title for specifications box
     const occInput = document.getElementById("invOccasionTitleInput");
     let occTitle = (occInput && occInput.value.trim()) || "";
     if (!occTitle) {
       occTitle = invoiceSessions.length > 0 ? invoiceSessions.map(s => s.title).join(" + ") : cat.name;
+    }
+
+    const elClientSub = document.getElementById("invDisplayClientSub");
+    if (elClientSub) {
+      const honorText = (clientVal && clientVal !== "Valued Client") ? clientVal.toUpperCase() : "VALUED CLIENT";
+      const occBadge = (occTitle && occTitle !== cat.name)
+        ? ` &nbsp;·&nbsp; Commission: <span style="color:#047857; font-weight:700;">${escapeHtml(occTitle)}</span>`
+        : "";
+      elClientSub.innerHTML = `Curated Exclusively For: <b id="invDisplayHonorName" style="color:#047857; font-weight:800;">${escapeHtml(honorText)}</b>${occBadge} &nbsp;·&nbsp; Shoot Date: <span id="invDisplayTargetDate" style="font-weight:700; color:#0f172a;">${escapeHtml(dateVal)}</span>`;
+    } else {
+      if (elHonorName) {
+        elHonorName.textContent = (clientVal && clientVal !== "Valued Client") ? clientVal.toUpperCase() : "VALUED CLIENT";
+      }
+      if (elTargetDate) {
+        elTargetDate.textContent = dateVal;
+      }
     }
 
     const elClient = document.getElementById("invSheetClient");
