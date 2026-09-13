@@ -1791,7 +1791,7 @@ document.addEventListener("DOMContentLoaded", () => {
       quoteTitle: "STUDIO SESSION QUOTATION",
       receiptTitle: "OFFICIAL STUDIO SESSION RECEIPT",
       scope: "IN-STUDIO PRODUCTION",
-      defaultLoc: "Laureign Studios (In-Studio, Kakamega)"
+      defaultLoc: "Laureign Studios (Kakamega Town, Mumias Rd, Opp. Jamia Mosque, Bukura Pharmacy Bldg, 1st Floor)"
     },
     weddings: {
       id: "weddings",
@@ -2077,7 +2077,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (sealStamp) sealStamp.classList.remove("paid-stamp");
 
       if (termsTitle) termsTitle.textContent = "Official Payment & Remittance Details";
-      if (termsNote) termsNote.textContent = "* A 40% commitment deposit confirms your booking and reserves our creative crew on your event date. The remaining balance is payable upon delivery of your master high-resolution deliverables.";
+      if (termsNote) termsNote.textContent = "* An 80% commitment deposit confirms your booking and reserves our creative crew on your event date. The remaining 20% balance is payable upon delivery of your master high-resolution deliverables.";
       const promiseEl = document.getElementById("invBrandPromise");
       if (promiseEl) {
         promiseEl.innerHTML = `
@@ -2107,7 +2107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (invDateInput) invDateInput.value = todayStr;
     if (invTimeInput) invTimeInput.value = "Walk-in Instant Studio Shoot (Completed)";
-    if (invLocationInput) invLocationInput.value = "Laureign Studios (In-Studio, Kakamega)";
+    if (invLocationInput) invLocationInput.value = "Laureign Studios (Kakamega Town, Mumias Rd, Opp. Jamia Mosque, Bukura Pharmacy Bldg, 1st Floor)";
     if (invCrewInput) invCrewInput.value = "Studio Lead Photographer + Lighting Assistant";
 
     const payStatusSelect = document.getElementById("invPaymentStatusSelect");
@@ -2130,7 +2130,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (invNotesInput && (!invNotesInput.value.trim() || invNotesInput.value.includes("Includes high-end") || invNotesInput.value.includes("Walk-in studio shoot"))) {
       invNotesInput.value = status === "deposit"
-        ? "Walk-in studio shoot. 50% deposit received via M-Pesa. Master retouched gallery ready in 24–48 hours; final balance due on delivery."
+        ? "Walk-in studio shoot. 80% deposit received via M-Pesa. Master retouched gallery ready in 24–48 hours; final balance due on delivery."
         : "Walk-in studio shoot completed at Laureign Studios. Master retouched photos deliverable within 24–48 hours via secure Google Drive & WhatsApp link.";
     }
 
@@ -2182,7 +2182,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       addInvoiceSession("wedding-coverage", 2, false); // Gold (75,000)
-      if (invDepositPercent) invDepositPercent.value = "40";
+      if (invDepositPercent) invDepositPercent.value = "80";
       autoSuggestOccasionTitle(true);
       showInvoiceToast("💍 Full-Day Wedding Gold Collection applied (KSh 75,000)!");
     }
@@ -2203,7 +2203,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       addInvoiceSession("wedding-coverage", 3, false); // Platinum (90,000)
-      if (invDepositPercent) invDepositPercent.value = "40";
+      if (invDepositPercent) invDepositPercent.value = "80";
       autoSuggestOccasionTitle(true);
       showInvoiceToast("👑 Royal VIP Platinum Wedding applied (KSh 90,000)!");
     }
@@ -2224,7 +2224,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       addInvoiceSession("traditional-wedding", 2, false); // Gold (75,000)
-      if (invDepositPercent) invDepositPercent.value = "40";
+      if (invDepositPercent) invDepositPercent.value = "80";
       autoSuggestOccasionTitle(true);
       showInvoiceToast("🥂 Traditional Ruracio Collection applied (KSh 75,000)!");
     }
@@ -2252,7 +2252,7 @@ document.addEventListener("DOMContentLoaded", () => {
         price: 3000
       });
       renderInvoiceAddons();
-      if (invDepositPercent) invDepositPercent.value = "50";
+      if (invDepositPercent) invDepositPercent.value = "80";
       autoSuggestOccasionTitle(true);
       showInvoiceToast("🏢 Corporate Summit & Gala applied (KSh 38,000)!");
     }
@@ -2266,7 +2266,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (invClientInput) invClientInput.value = "Graduate & Proud Family";
       if (invDateInput) invDateInput.value = `${yyyy}-${mm}-${dd}`;
       if (invTimeInput) invTimeInput.value = "Studio Regalia Session + Campus Location (2 Hours)";
-      if (invLocationInput) invLocationInput.value = "Laureign Studios (Kakamega Studio) / Campus";
+      if (invLocationInput) invLocationInput.value = "Laureign Studios (Kakamega Town, Mumias Rd, Opp. Jamia Mosque, Bukura Pharmacy Bldg, 1st Floor) / Campus";
       if (invCrewInput) invCrewInput.value = "Studio Lead Photographer + Lighting Assistant";
       if (invNotesInput) {
         invNotesInput.value = "🎓 Graduation Milestone VIP: Solo academic regalia portraits, degree scroll, academic hood, cap toss, family and parents combination portraits.\n• Includes magazine-grade skin retouching, living room wooden A3 photo mount & complete high-speed cloud download.";
@@ -2280,7 +2280,7 @@ document.addEventListener("DOMContentLoaded", () => {
         price: 2300
       });
       renderInvoiceAddons();
-      if (invDepositPercent) invDepositPercent.value = "40";
+      if (invDepositPercent) invDepositPercent.value = "80";
       autoSuggestOccasionTitle(true);
       showInvoiceToast("🎓 Graduation Milestone + Wall Mount applied (KSh 5,800)!");
     }
@@ -2379,7 +2379,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const curLoc = invLocationInput.value.trim();
       if (!curLoc || forceAutofill || curLoc === "Nairobi / In-Studio" || curLoc.startsWith("Laureign Studios") || curLoc.startsWith("Kakamega")) {
         if (pkg.pathway === "studio" || pkg.id.includes("studio") || pkg.id.includes("headshot") || pkg.id.includes("white-shirt") || pkg.id.includes("silk-wrap")) {
-          invLocationInput.value = "Laureign Studios (In-Studio, Kakamega)";
+          invLocationInput.value = "Laureign Studios (Kakamega Town, Mumias Rd, Opp. Jamia Mosque, Bukura Pharmacy Bldg, 1st Floor)";
         } else if (pkg.pathway === "outdoor" || pkg.id.includes("outdoor")) {
           invLocationInput.value = "Kakamega / On-Location Shoot";
         } else if (pkg.pathway === "events" || pkg.id.includes("wedding")) {
@@ -2777,7 +2777,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailVal = (invEmailInput && invEmailInput.value.trim()) || "";
     const dateVal = (invDateInput && invDateInput.value) || "To Be Scheduled";
     const timeVal = (invTimeInput && invTimeInput.value.trim()) || "Standard Coverage Session";
-    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (In-Studio, Kakamega)";
+    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (Kakamega Town, Mumias Rd, Opp. Jamia Mosque, Bukura Pharmacy Bldg, 1st Floor)";
     const crewVal = (invCrewInput && invCrewInput.value.trim()) || "Studio Lead Photographer + Lighting Assistant";
     const notesVal = (invNotesInput && invNotesInput.value.trim()) || "";
 
@@ -2864,7 +2864,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const discount = parseInt(invDiscountInput ? invDiscountInput.value : 0, 10) || 0;
     const grandTotal = Math.max(0, basePrice + addonsTotal - discount);
 
-    const depPercent = parseInt(invDepositPercent ? invDepositPercent.value : 40, 10) || 40;
+    const depPercent = parseInt(invDepositPercent ? invDepositPercent.value : 80, 10) || 80;
     const deposit = Math.round(grandTotal * (depPercent / 100));
     const balance = Math.max(0, grandTotal - deposit);
 
@@ -3052,7 +3052,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (elBalRow) {
         elBalRow.style.display = "flex";
-        if (elBalLabel) elBalLabel.textContent = "BALANCE DUE ON MASTER DELIVERY:";
+        if (elBalLabel) elBalLabel.textContent = `BALANCE DUE ON MASTER DELIVERY (${100 - depPercent}%):`;
         if (elBalVal) {
           elBalVal.textContent = `KSh ${balance.toLocaleString()}`;
           elBalVal.style.color = "";
@@ -3065,7 +3065,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name to Verify:</b> <span style="font-weight:700; color:#047857;">JANE AKOTH</span> (Laureign Studios)`;
       const elBankLine = document.getElementById("invPayBankLine");
       if (elBankLine) elBankLine.innerHTML = `<b>Direct Bank Remittance:</b> <span>I&amp;M Bank Kenya · Account No: <b>486197</b></span>`;
-      if (elTermsNote) elTermsNote.textContent = `* A ${depPercent}% commitment deposit confirms your booking and reserves our creative crew on your event date. The remaining balance is payable upon delivery of your master high-resolution deliverables.`;
+      if (elTermsNote) elTermsNote.textContent = `* An ${depPercent}% commitment deposit confirms your booking and reserves our creative crew on your event date. The remaining ${100 - depPercent}% balance is payable upon delivery of your master high-resolution deliverables.`;
     }
 
     // Dynamic Rubber Stamp Content & Live Up-To-Date Dates
@@ -3372,7 +3372,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailVal = (invEmailInput && invEmailInput.value.trim()) || "";
     const dateVal = (invDateInput && invDateInput.value) || "TBD";
     const timeVal = (invTimeInput && invTimeInput.value.trim()) || "Standard Session";
-    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (In-Studio, Kakamega)";
+    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (Kakamega Town, Mumias Rd, Opp. Jamia Mosque, Bukura Pharmacy Bldg, 1st Floor)";
     const crewVal = (invCrewInput && invCrewInput.value.trim()) || "Studio Lead Team";
     const notesVal = (invNotesInput && invNotesInput.value.trim()) || "";
 
@@ -3385,7 +3385,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const discount = parseInt(invDiscountInput ? invDiscountInput.value : 0, 10) || 0;
     const grandTotal = Math.max(0, basePrice + addonsTotal - discount);
 
-    const depPercent = parseInt(invDepositPercent ? invDepositPercent.value : 40, 10) || 40;
+    const depPercent = parseInt(invDepositPercent ? invDepositPercent.value : 80, 10) || 80;
     const deposit = Math.round(grandTotal * (depPercent / 100));
     const balance = Math.max(0, grandTotal - deposit);
 
@@ -3514,7 +3514,7 @@ document.addEventListener("DOMContentLoaded", () => {
       msg += `\n*FINANCIAL SUMMARY & BOOKING:*\n`;
       msg += `💵 *Total Project Investment:* KSh ${grandTotal.toLocaleString()}\n`;
       msg += `🔒 *Commitment Deposit to Lock Date (${depPercent}%):* KSh ${deposit.toLocaleString()}\n`;
-      msg += `💳 *Balance Due on Master Delivery:* KSh ${balance.toLocaleString()}\n\n`;
+      msg += `💳 *Balance Due on Master Delivery (${100 - depPercent}%):* KSh ${balance.toLocaleString()}\n\n`;
 
       msg += `*OFFICIAL REMITTANCE DETAILS:*\n`;
       msg += `📲 *M-Pesa Paybill:* *542542*\n`;
@@ -3527,7 +3527,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       msg += `_To confirm booking and lock your date on our production calendar, please remit the commitment deposit and share confirmation._\n`;
-      msg += `✨ *Laureign Studios · Kakamega · Nairobi · Nationwide Kenya*`;
+      msg += `✨ *Laureign Studios · Kakamega Town along Mumias Rd, Opp. Jamia Mosque (Bukura Pharmacy Bldg, 1st Floor) · Nationwide Across Kenya*`;
     }
 
     const waUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`;
@@ -3542,7 +3542,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailVal = (invEmailInput && invEmailInput.value.trim()) || "";
     const dateVal = (invDateInput && invDateInput.value) || "To Be Scheduled";
     const timeVal = (invTimeInput && invTimeInput.value.trim()) || "Standard Session";
-    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (Kakamega)";
+    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (Kakamega Town, Mumias Rd, Opp. Jamia Mosque, Bukura Pharmacy Bldg, 1st Floor)";
 
     const catData = INVOICE_CATEGORIES[currentInvoiceCategory] || INVOICE_CATEGORIES["studio"];
     const occInput = document.getElementById("invOccasionTitleInput");
@@ -3556,7 +3556,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const discount = parseInt(invDiscountInput ? invDiscountInput.value : 0, 10) || 0;
     const grandTotal = Math.max(0, basePrice + addonsTotal - discount);
 
-    const depPercent = parseInt(invDepositPercent ? invDepositPercent.value : 40, 10) || 40;
+    const depPercent = parseInt(invDepositPercent ? invDepositPercent.value : 80, 10) || 80;
     const deposit = Math.round(grandTotal * (depPercent / 100));
     const balance = Math.max(0, grandTotal - deposit);
 
@@ -3595,8 +3595,8 @@ document.addEventListener("DOMContentLoaded", () => {
       text += `Amount Received: KSh ${grandTotal.toLocaleString()} (PAID IN FULL)\nBalance: KSh 0 (CLEARED)\n\n`;
       text += `Payment Channel: I&M Bank · M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)\nReceipt Ref: ${paymentRef}\nStatus: Cashless Verified · Laureign Studios`;
     } else {
-      text += `Commitment Deposit Required (${depPercent}%): KSh ${deposit.toLocaleString()}\nBalance Due on Delivery: KSh ${balance.toLocaleString()}\n\n`;
-      text += `OFFICIAL REMITTANCE:\nBank: I&M Bank Kenya (Acc: 486197)\nM-Pesa Paybill: 542542\nAccount No: 486197\nAccount Name: JANE AKOTH (Laureign Studios)\nStudio Direct Line: +254 790 048 905`;
+      text += `Official Booking Deposit Required (${depPercent}%): KSh ${deposit.toLocaleString()}\nBalance Due on Master Delivery (${100 - depPercent}%): KSh ${balance.toLocaleString()}\n\n`;
+      text += `OFFICIAL REMITTANCE:\nBank: I&M Bank Kenya (Acc: 486197)\nM-Pesa Paybill: 542542\nAccount No: 486197\nAccount Name: JANE AKOTH (Laureign Studios)\nStudio Direct Line: +254 790 048 905\nStudio Email: laureignstudios25@gmail.com\nStudio Location: Kakamega Town along Mumias Rd, Opp. Jamia Mosque (Bukura Pharmacy Bldg, 1st Floor)`;
     }
 
     navigator.clipboard.writeText(text).then(() => {
@@ -4013,8 +4013,9 @@ document.addEventListener("DOMContentLoaded", () => {
       body += `* To secure your slot on our production calendar, kindly remit your booking deposit via the Paybill above and reply with the M-Pesa confirmation message.*\n\n`;
     }
 
-    body += `Studio Phone / WhatsApp: 0790 048 905\n`;
-    body += `Location: Kakamega Studio · Nairobi · Eldoret · Across Kenya\n`;
+    body += `Studio Phone / WhatsApp: +254 790 048 905\n`;
+    body += `Studio Email: laureignstudios25@gmail.com\n`;
+    body += `Studio Location: Kakamega Town along Mumias Rd, Opp. Jamia Mosque / Kakamega Furniture (Bukura Pharmacy Bldg, 1st Floor) · Nationwide Across Kenya\n`;
     body += `Laureign Studios — Luxury Photography & Cinematography\n`;
 
     // Save lead
