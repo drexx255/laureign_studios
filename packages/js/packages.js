@@ -398,6 +398,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (pkg.id === "hotel-events") return "hotel-events.html";
       if (pkg.id === "product-shoot") return "product-shoot.html";
       if (pkg.id === "hotel-hospitality") return "hotel-shoot.html";
+      if (pkg.id === "boudoir-shoot") return "boudoir-shoot.html";
+      if (pkg.id === "model-portfolio") return "model-portfolio.html";
+      if (pkg.id === "newborn-shoot") return "newborn-shoot.html";
+      if (pkg.id === "club-events") return "club-events.html";
+      if (pkg.id === "school-events") return "school-events.html";
+      if (pkg.id === "fun-club-events") return "fun-club-events.html";
+      if (pkg.id === "events") return "events.html";
       if (pkg.id === "corporate-branding") return "corporate-branding.html";
       if (pkg.id === "graphic-starter" || pkg.id === "graphic-growth") return "commercial-branding.html";
       return "graduation-shoot.html";

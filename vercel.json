@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/", "destination": "/packages/index.html", "permanent": false },
+    { "source": "/packages", "destination": "/packages/index.html", "permanent": false }
+  ]
+}

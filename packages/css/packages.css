@@ -7868,5 +7868,199 @@ h2.serif,
   margin: 4px 0;
 }
 
+/* ============================================================
+   CLIENT TESTIMONIALS & REVIEWS STRIP
+   ============================================================ */
+.reviews-section {
+  padding: 70px 0 40px;
+  position: relative;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+  margin-top: 32px;
+}
+
+.review-card {
+  background: var(--bg-card);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(234, 179, 8, 0.35);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+}
+
+.review-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.review-stars {
+  color: #facc15;
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+.review-tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(234, 179, 8, 0.12);
+  color: var(--gold-soft);
+  border: 1px solid rgba(234, 179, 8, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.review-quote {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--head-sub);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.review-author-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--divider);
+  padding-top: 14px;
+}
+
+.review-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.25) 0%, rgba(34, 197, 94, 0.25) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.review-author-info h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--head);
+  margin-bottom: 2px;
+}
+
+.review-author-info span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ============================================================
+   OFFICIAL M-PESA & DEPOSIT VERIFICATION TRUST BANNER
+   ============================================================ */
+.payment-trust-strip {
+  margin: 36px 0 10px;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(234, 179, 8, 0.06) 100%);
+  border: 1px solid rgba(74, 222, 128, 0.25);
+  border-radius: 20px;
+  padding: 24px 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.payment-trust-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 620px;
+}
+
+.payment-badge-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(34, 197, 94, 0.16);
+  border: 1px solid rgba(74, 222, 128, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.payment-trust-content h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--head);
+  margin-bottom: 4px;
+}
+
+.payment-trust-content p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.payment-trust-right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.payment-mpesa-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #16a34a;
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13.5px;
+  box-shadow: 0 4px 16px rgba(22, 163, 74, 0.35);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.payment-mpesa-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.45);
+}
+
+@media (max-width: 768px) {
+  .payment-trust-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  .payment-trust-right {
+    width: 100%;
+  }
+  .payment-mpesa-pill {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 
 

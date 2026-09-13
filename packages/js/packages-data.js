@@ -10,7 +10,7 @@ const PACKAGES_CONFIG = {
   phoneDisplay: "+254 790 048 905",
   currency: "KSh ",
   locations: ["Nairobi", "Kakamega", "Eldoret", "Kisumu", "Across Kenya"],
-  bookingPortalUrl: "../index.html#book"
+  bookingPortalUrl: "index.html#book"
 };
 
 // High-Level Pathways (4 Distinct Experience Categories)

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laureign Studios · Official Rates, Packages &amp; Booking</title>
+  <meta name="description" content="Explore clear, transparent photography &amp; videography packages from Laureign Studios. Graduation shoots, studio portraits, maternity, birthdays, weddings, and events.">
+  
+  <!-- Instant Redirects -->
+  <meta http-equiv="refresh" content="0; url=packages/index.html">
+  <link rel="canonical" href="packages/index.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Laureign Studios · Official Rates, Packages &amp; Booking">
+  <meta property="og:description" content="Explore transparent photography &amp; videography packages from Laureign Studios. Instant WhatsApp booking &amp; official quotations.">
+  <meta property="og:image" content="packages/images/hero.jpg">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="icon" href="packages/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    // Seamlessly preserve query strings (e.g. ?pkg=graduation) and anchors (e.g. #book)
+    var target = "packages/index.html" + window.location.search + window.location.hash;
+    window.location.replace(target);
+  </script>
+
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: rgba(18, 22, 34, 0.85);
+      --border: rgba(255, 255, 255, 0.12);
+      --gold: #eab308;
+      --gold-soft: #fde047;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    .splash-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 32px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      animation: fadeIn 0.4s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .brand-logo {
+      width: 76px;
+      height: 76px;
+      object-fit: contain;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      border: 2px solid rgba(234, 179, 8, 0.4);
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px;
+    }
+    .brand-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+    .brand-name span { color: var(--gold-soft); font-style: italic; }
+    .brand-tagline {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .loader-ring {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      border: 3px solid rgba(234, 179, 8, 0.2);
+      border-radius: 50%;
+      border-top-color: var(--gold);
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .status-msg {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .btn-portal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 24px;
+      background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+      color: #000000;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 20px rgba(234, 179, 8, 0.35);
+    }
+    .btn-portal:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(234, 179, 8, 0.45);
+    }
+    .btn-wa-sub {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 16px;
+      color: #4ade80;
+      font-size: 13px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .btn-wa-sub:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="splash-card">
+    <img src="packages/images/logo.png" alt="Laureign Studios Logo" class="brand-logo" onerror="this.style.display='none'">
+    <h1 class="brand-name">Laureign <span>Studios</span></h1>
+    <p class="brand-tagline">Pictures with a language</p>
+    
+    <div class="loader-ring" aria-hidden="true"></div>
+    <p class="status-msg">Opening official rates &amp; booking platform...</p>
+    
+    <a href="packages/index.html" class="btn-portal">
+      <span>Enter Packages &amp; Rates Portal</span>
+      <span aria-hidden="true">→</span>
+    </a>
+
+    <div>
+      <a href="https://wa.me/254790048905" target="_blank" rel="noopener" class="btn-wa-sub">
+        <span>💬 Direct Studio WhatsApp: +254 790 048 905</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
