@@ -1806,6 +1806,27 @@ document.addEventListener("DOMContentLoaded", () => {
       if (sealBot) sealBot.textContent = "PAID & CONFIRMED";
       if (termsTitle) termsTitle.textContent = "Payment Verification & Delivery Terms";
       if (termsNote) termsNote.textContent = "* Official payment confirmed with thanks. Digital master files will be delivered within agreed timelines via high-speed cloud gallery and direct WhatsApp link. Thank you for choosing Laureign Studios!";
+      const termsCardTitle = document.getElementById("invTermsCardTitle");
+      const termsCardList = document.getElementById("invTermsCardList");
+      const ackNote = document.getElementById("invAckNote");
+      if (termsCardTitle) termsCardTitle.textContent = "PRODUCTION CLEARANCE & USAGE RIGHTS";
+      if (termsCardList) {
+        termsCardList.innerHTML = `
+          <div class="inv-term-item">
+            <span class="inv-term-bullet">▪</span>
+            <span><b>Official Clearance:</b> Payment received and authenticated. Master production and editorial retouching are in active queue.</span>
+          </div>
+          <div class="inv-term-item">
+            <span class="inv-term-bullet">▪</span>
+            <span><b>Usage Rights Granted:</b> Client is granted non-exclusive personal reproduction, printing &amp; social media distribution rights for all delivered assets.</span>
+          </div>
+          <div class="inv-term-item">
+            <span class="inv-term-bullet">▪</span>
+            <span><b>Delivery Guarantee:</b> Private cloud gallery download and direct WhatsApp link delivered within committed studio timeline.</span>
+          </div>
+        `;
+      }
+      if (ackNote) ackNote.textContent = "Official payment confirmation. Laureign Studios thanks you for your business and partnership!";
       if (btnPdfText) btnPdfText.textContent = "📥 Download Official Receipt (PDF)";
       if (btnWaText) btnWaText.textContent = "📲 Send Receipt to Client";
     } else {
@@ -1830,6 +1851,27 @@ document.addEventListener("DOMContentLoaded", () => {
       if (sealBot) sealBot.textContent = "2026 OFFICIAL";
       if (termsTitle) termsTitle.textContent = "Official Payment & M-Pesa Instructions";
       if (termsNote) termsNote.textContent = "* A booking commitment deposit locks your date on our production calendar. RAW unedited proofs available at KSh 150 per image. The remaining balance is payable upon delivery of your master high-resolution gallery and deliverables.";
+      const termsCardTitle = document.getElementById("invTermsCardTitle");
+      const termsCardList = document.getElementById("invTermsCardList");
+      const ackNote = document.getElementById("invAckNote");
+      if (termsCardTitle) termsCardTitle.textContent = "PRODUCTION POLICIES & USAGE RIGHTS";
+      if (termsCardList) {
+        termsCardList.innerHTML = `
+          <div class="inv-term-item">
+            <span class="inv-term-bullet">▪</span>
+            <span><b>Usage &amp; Licensing:</b> Delivered master files grant perpetual personal, family &amp; social media distribution rights. Commercial advertising/broadcast usage quoted upon request. Studio retains artistic copyright.</span>
+          </div>
+          <div class="inv-term-item">
+            <span class="inv-term-bullet">▪</span>
+            <span><b>Turnaround &amp; Cloud Delivery:</b> Private online gallery preview ready within 48–72h. Master retouched deliverables completed within 5–7 business days.</span>
+          </div>
+          <div class="inv-term-item">
+            <span class="inv-term-bullet">▪</span>
+            <span><b>Rescheduling &amp; Deposit:</b> Dates may be rescheduled once with 48h prior notice. Calendar reservation deposits are non-refundable to secure crew &amp; studio time exclusively.</span>
+          </div>
+        `;
+      }
+      if (ackNote) ackNote.textContent = "Payment of booking deposit signifies client acceptance of this quotation and standard production policies. Thank you for choosing Laureign Studios!";
       if (btnPdfText) btnPdfText.textContent = "📥 Download Official PDF";
       if (btnWaText) btnWaText.textContent = "📲 Send PDF via WhatsApp";
     }
@@ -2799,6 +2841,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addCustomLineItem = addCustomLineItem;
   window.removeCustomLineItem = removeCustomLineItem;
   window.onCustomItemChange = onCustomItemChange;
+  window.prepareInvoiceForExport = prepareInvoiceForExport;
   window.downloadInvoicePdf = downloadInvoicePdf;
   window.shareInvoicePdfWhatsApp = shareInvoicePdfWhatsApp;
   window.sendInvoiceWhatsApp = sendInvoiceWhatsApp;
