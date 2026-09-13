@@ -50,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalAddReelCheckbox = document.getElementById("modalAddReelCheckbox");
   const modalDateInput = document.getElementById("modalDateInput");
   const modalNameInput = document.getElementById("modalNameInput");
+  const modalPhoneInput = document.getElementById("modalPhoneInput");
+  const modalEmailInput = document.getElementById("modalEmailInput");
   const modalLocationSelect = document.getElementById("modalLocationSelect");
   const modalWaPreview = document.getElementById("modalWaPreview");
   const modalLaunchWaBtn = document.getElementById("modalLaunchWaBtn");
@@ -1275,7 +1277,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  [modalDateInput, modalNameInput, modalLocationSelect, modalAddReelCheckbox].forEach(input => {
+  [modalDateInput, modalNameInput, modalPhoneInput, modalEmailInput, modalLocationSelect, modalAddReelCheckbox].forEach(input => {
     if (input) {
       input.addEventListener("input", updateModalPreview);
       input.addEventListener("change", updateModalPreview);
@@ -1285,6 +1287,19 @@ document.addEventListener("DOMContentLoaded", () => {
   if (modalLaunchWaBtn) {
     modalLaunchWaBtn.addEventListener("click", () => {
       const msg = buildWhatsAppMessage(modalState.pkgId, modalState.optionIndex);
+      const pkg = PACKAGES_DATA.find(p => p.id === modalState.pkgId);
+      const opt = pkg ? pkg.options[modalState.optionIndex] : null;
+
+      saveClientLead({
+        name: modalNameInput ? modalNameInput.value.trim() : "",
+        phone: modalPhoneInput ? modalPhoneInput.value.trim() : "",
+        email: modalEmailInput ? modalEmailInput.value.trim() : "",
+        date: modalDateInput ? modalDateInput.value : "",
+        location: modalLocationSelect ? modalLocationSelect.value : "",
+        package: pkg && opt ? `${pkg.title} (${opt.name})` : "Studio Session",
+        source: "Booking Modal (WhatsApp)"
+      });
+
       window.open(`https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
       closeModal();
     });
@@ -1713,8 +1728,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================
 
   const invoiceModal = document.getElementById("invoiceModal");
-  const invPackageSelect = document.getElementById("invPackageSelect");
-  const invTierSelect = document.getElementById("invTierSelect");
   const invClientInput = document.getElementById("invClientInput");
   const invPhoneInput = document.getElementById("invPhoneInput");
   const invEmailInput = document.getElementById("invEmailInput");
@@ -1725,14 +1738,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const invDepositPercent = document.getElementById("invDepositPercent");
   const invDiscountInput = document.getElementById("invDiscountInput");
   const invNotesInput = document.getElementById("invNotesInput");
-  const invAddonsPills = document.getElementById("invAddonsPills");
-  const invCustomItemsList = document.getElementById("invCustomItemsList");
 
   let invoiceMode = "quotation"; // "quotation" | "receipt"
   let currentInvoiceRef = "";
   let invoiceDateIssued = "";
   let invoiceValidity = "";
-  let customLineItems = [];
+  let invoiceSessions = []; // [{ id, pkgId, title, tierIdx, tierName, spec, rate, qty }]
+  let invoiceAddons = [];   // [{ id, name, spec, price }]
+
+  function escapeHtml(str) {
+    if (str == null) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 
   function showInvoiceToast(msg) {
     const toast = document.getElementById("invToastNotice");
@@ -1746,23 +1768,28 @@ document.addEventListener("DOMContentLoaded", () => {
   function normalizeKenyanPhone(raw) {
     if (!raw) return "";
     let clean = String(raw).replace(/\D/g, "");
-    // If 07... or 01... (10 digits)
     if (clean.length === 10 && clean.startsWith("0")) {
       return "254" + clean.slice(1);
     }
-    // If 7... or 1... (9 digits)
     if (clean.length === 9 && (clean.startsWith("7") || clean.startsWith("1"))) {
       return "254" + clean;
     }
-    // If already 254... (12 digits)
     if (clean.length === 12 && clean.startsWith("254")) {
       return clean;
     }
-    // Fallback if international length
     if (clean.length >= 9) {
       return clean;
     }
     return "";
+  }
+
+  // Live formatted date for authentic SVG studio rubber stamp (e.g. "DATE: 13 SEP 2026")
+  function getFormattedStampDate(d = new Date()) {
+    const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    const day = String(d.getDate()).padStart(2, "0");
+    const mon = months[d.getMonth()];
+    const yr = d.getFullYear();
+    return `DATE: ${day} ${mon} ${yr}`;
   }
 
   // Switch between Online Quotation mode and Walk-in / Official Receipt mode
@@ -1777,8 +1804,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const validityItem = document.getElementById("invValidityMetaItem");
     const verifiedBanner = document.getElementById("invReceiptVerifiedBanner");
     const sealStamp = document.getElementById("invSealStamp");
-    const sealMid = document.getElementById("invSealMid");
-    const sealBot = document.getElementById("invSealBot");
     const termsTitle = document.getElementById("invTermsTitle");
     const termsNote = document.getElementById("invTermsNote");
     const btnPdfText = document.getElementById("btnDownloadPdfText");
@@ -1789,7 +1814,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (btnReceipt) btnReceipt.classList.add("active");
       if (receiptSettings) receiptSettings.style.display = "block";
 
-      // Flip reference prefix to LS-REC-
       if (currentInvoiceRef.startsWith("LS-QUO-")) {
         currentInvoiceRef = currentInvoiceRef.replace("LS-QUO-", "LS-REC-");
       } else if (!currentInvoiceRef.startsWith("LS-REC-")) {
@@ -1802,8 +1826,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (validityItem) validityItem.style.display = "none";
       if (verifiedBanner) verifiedBanner.style.display = "flex";
       if (sealStamp) sealStamp.classList.add("paid-stamp");
-      if (sealMid) sealMid.textContent = "✓ OFFICIAL PAYMENT";
-      if (sealBot) sealBot.textContent = "PAID & CONFIRMED";
+
       if (termsTitle) termsTitle.textContent = "Payment Verification & Delivery Terms";
       if (termsNote) termsNote.textContent = "* Official payment confirmed with thanks. Digital master files will be delivered within agreed timelines via high-speed cloud gallery and direct WhatsApp link. Thank you for choosing Laureign Studios!";
       const termsCardTitle = document.getElementById("invTermsCardTitle");
@@ -1834,7 +1857,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (btnQuote) btnQuote.classList.add("active", "mode-quote");
       if (receiptSettings) receiptSettings.style.display = "none";
 
-      // Flip reference prefix to LS-QUO-
       if (currentInvoiceRef.startsWith("LS-REC-")) {
         currentInvoiceRef = currentInvoiceRef.replace("LS-REC-", "LS-QUO-");
       } else if (!currentInvoiceRef.startsWith("LS-QUO-")) {
@@ -1847,8 +1869,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (validityItem) validityItem.style.display = "flex";
       if (verifiedBanner) verifiedBanner.style.display = "none";
       if (sealStamp) sealStamp.classList.remove("paid-stamp");
-      if (sealMid) sealMid.textContent = "VERIFIED & APPROVED";
-      if (sealBot) sealBot.textContent = "2026 OFFICIAL";
+
       if (termsTitle) termsTitle.textContent = "Official Payment & M-Pesa Instructions";
       if (termsNote) termsNote.textContent = "* A booking commitment deposit locks your date on our production calendar. RAW unedited proofs available at KSh 150 per image. The remaining balance is payable upon delivery of your master high-resolution gallery and deliverables.";
       const termsCardTitle = document.getElementById("invTermsCardTitle");
@@ -1863,7 +1884,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <div class="inv-term-item">
             <span class="inv-term-bullet">▪</span>
-            <span><b>Turnaround &amp; Cloud Delivery:</b> Private online gallery preview ready within 48–72h. Master retouched deliverables completed within 5–7 business days.</span>
+            <span><b>Turnaround &amp; Cloud Delivery:</b> Private online gallery preview ready within 48–72h. Master retouched deliverables completed within 2–5 business days.</span>
           </div>
           <div class="inv-term-item">
             <span class="inv-term-bullet">▪</span>
@@ -1890,7 +1911,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const todayStr = `${yyyy}-${mm}-${dd}`;
 
     if (invDateInput) invDateInput.value = todayStr;
-    if (invTimeInput) invTimeInput.value = "Walk-in Studio Session (Completed)";
+    if (invTimeInput) invTimeInput.value = "Walk-in Instant Studio Shoot (Completed)";
     if (invLocationInput) invLocationInput.value = "Laureign Studios (In-Studio, Kakamega)";
     if (invCrewInput) invCrewInput.value = "Studio Lead Photographer + Lighting Assistant";
 
@@ -1900,7 +1921,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const payMethodSelect = document.getElementById("invPaymentMethodSelect");
-    if (payMethodSelect) payMethodSelect.value = "M-Pesa Buy Goods Till (0790048905)";
+    if (payMethodSelect) payMethodSelect.value = "M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)";
 
     const payRefInput = document.getElementById("invPaymentRefInput");
     if (payRefInput && (!payRefInput.value.trim() || payRefInput.value === "M-Pesa Verified")) {
@@ -1916,6 +1937,11 @@ document.addEventListener("DOMContentLoaded", () => {
       invNotesInput.value = status === "deposit"
         ? "Walk-in studio shoot. 50% deposit received via M-Pesa. Master retouched gallery ready in 24–48 hours; final balance due on delivery."
         : "Walk-in studio shoot completed at Laureign Studios. Master retouched photos deliverable within 24–48 hours via secure Google Drive & WhatsApp link.";
+    }
+
+    // Ensure session exists
+    if (invoiceSessions.length === 0) {
+      addInvoiceSession("shirt-shoot", 0, false);
     }
 
     updateInvoiceDisplay();
@@ -1989,50 +2015,11 @@ document.addEventListener("DOMContentLoaded", () => {
     showInvoiceToast("✓ Production scope template inserted!");
   }
 
-  function initInvoice() {
-    if (!invPackageSelect) return;
-
-    // Populate packages dropdown
-    invPackageSelect.innerHTML = PACKAGES_DATA.map((pkg, idx) =>
-      `<option value="${pkg.id}">${pkg.title}</option>`
-    ).join("");
-
-    // Populate Add-on pills with checkboxes
-    if (invAddonsPills) {
-      invAddonsPills.innerHTML = ADD_ONS_LIST.filter(a => a.price > 0).map(addon => `
-        <label class="inv-addon-pill-lbl">
-          <input type="checkbox" class="inv-addon-checkbox" value="${addon.id}" data-price="${addon.price}" data-name="${addon.name}" onchange="updateInvoiceDisplay()">
-          <span>+${addon.name} (KSh ${addon.price.toLocaleString()})</span>
-        </label>
-      `).join("");
-    }
-
-    // Set Ref number & dates
-    const randNum = Math.floor(1000 + Math.random() * 9000);
-    currentInvoiceRef = `LS-QUO-2026-${randNum}`;
-
-    const today = new Date();
-    const options = { day: '2-digit', month: 'short', year: 'numeric' };
-    invoiceDateIssued = today.toLocaleDateString('en-GB', options);
-
-    const validDate = new Date();
-    validDate.setDate(today.getDate() + 14);
-    invoiceValidity = `${validDate.toLocaleDateString('en-GB', options)} (14 Days)`;
-
-    // Handle package change to update tiers and auto-fill defaults
-    onInvoicePackageChange();
-  }
-
   // Auto-fill assignment details whenever a package is selected
-  function onInvoicePackageChange(forceAutofill = false) {
-    if (!invPackageSelect || !invTierSelect) return;
-    const pkgId = invPackageSelect.value;
-    const pkg = PACKAGES_DATA.find(p => p.id === pkgId) || PACKAGES_DATA[0];
+  function autoFillLogisticsFromPackage(pkgId, forceAutofill = false) {
+    if (pkgId === "custom") return;
+    const pkg = PACKAGES_DATA.find(p => p.id === pkgId);
     if (!pkg) return;
-
-    invTierSelect.innerHTML = pkg.options.map((opt, idx) =>
-      `<option value="${idx}">${opt.name} — KSh ${opt.price.toLocaleString()}</option>`
-    ).join("");
 
     const isReceipt = invoiceMode === "receipt";
     const today = new Date();
@@ -2040,12 +2027,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const mm = String(today.getMonth() + 1).padStart(2, "0");
     const dd = String(today.getDate()).padStart(2, "0");
 
-    // Auto-fill Date if empty or in receipt mode
     if (invDateInput && (!invDateInput.value || isReceipt || forceAutofill)) {
       invDateInput.value = `${yyyy}-${mm}-${dd}`;
     }
 
-    // Auto-fill Location based on package pathway
     if (invLocationInput) {
       const curLoc = invLocationInput.value.trim();
       if (!curLoc || forceAutofill || curLoc === "Nairobi / In-Studio" || curLoc.startsWith("Laureign Studios") || curLoc.startsWith("Kakamega")) {
@@ -2061,12 +2046,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Auto-fill Timing based on package pathway
     if (invTimeInput) {
       const curTime = invTimeInput.value.trim();
       if (!curTime || forceAutofill || curTime === "Standard Coverage Session" || curTime.includes("Session")) {
         if (isReceipt) {
-          invTimeInput.value = "Walk-in Studio Session (Completed)";
+          invTimeInput.value = "Walk-in Instant Studio Shoot (Completed)";
         } else if (pkg.pathway === "studio") {
           invTimeInput.value = "Standard Studio Session (45–60 mins)";
         } else if (pkg.pathway === "outdoor") {
@@ -2079,7 +2063,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Auto-fill Crew based on package pathway
     if (invCrewInput) {
       const curCrew = invCrewInput.value.trim();
       if (!curCrew || forceAutofill || curCrew.includes("Lead Production")) {
@@ -2095,7 +2078,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Auto-fill Delivery remarks / Notes
     if (invNotesInput) {
       const curNotes = invNotesInput.value.trim();
       if (!curNotes || forceAutofill || curNotes.includes("Includes high-end") || curNotes.includes("Walk-in studio shoot")) {
@@ -2106,72 +2088,337 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
-
-    updateInvoiceDisplay();
   }
 
-  function onInvoiceTierChange() {
-    updateInvoiceDisplay();
-  }
-
-  // Custom Line Items Management with 1-click upgrade presets
-  function addCustomLineItem(presetName, presetSpec, presetRate) {
-    const newItem = {
-      id: "cli_" + Date.now() + "_" + Math.floor(Math.random() * 1000),
-      name: presetName || "Additional Service / Special Equipment",
-      spec: presetSpec || "Custom on-demand requirement",
-      rate: typeof presetRate === "number" ? presetRate : 0
-    };
-    customLineItems.push(newItem);
-    renderCustomLineItems();
-    updateInvoiceDisplay();
-    if (presetName) {
-      showInvoiceToast(`✓ Added "${presetName}" (+KSh ${(presetRate || 0).toLocaleString()})`);
-    }
-  }
-
-  function removeCustomLineItem(id) {
-    customLineItems = customLineItems.filter(item => item.id !== id);
-    renderCustomLineItems();
-    updateInvoiceDisplay();
-  }
-
-  function onCustomItemChange(id, field, value) {
-    const item = customLineItems.find(it => it.id === id);
-    if (!item) return;
-    if (field === "rate") {
-      item.rate = parseInt(value, 10) || 0;
+  // ============================================================
+  // MULTI-SESSION / SHOOT BUILDER (Dropdown + Manual Typing Everywhere)
+  // ============================================================
+  function addInvoiceSession(pkgId = "graduation", optIdx = 0, notify = true) {
+    let newSess;
+    if (pkgId === "custom") {
+      newSess = {
+        id: "sess_" + Date.now() + "_" + Math.floor(Math.random() * 10000),
+        pkgId: "custom",
+        title: "Custom Studio Shoot",
+        tierIdx: -1,
+        tierName: "Tailored Package",
+        spec: "Custom photography coverage, professional lighting, editorial skin retouching & high-resolution digital master gallery.",
+        rate: 4500,
+        qty: 1
+      };
     } else {
-      item[field] = value;
+      const pkg = PACKAGES_DATA.find(p => p.id === pkgId) || PACKAGES_DATA[0];
+      const opt = (pkg && pkg.options && pkg.options[optIdx]) ? pkg.options[optIdx] : (pkg ? pkg.options[0] : { name: "Standard", price: 3500 });
+      const inclusionsText = (opt.inclusions && opt.inclusions.length)
+        ? opt.inclusions.join(" • ")
+        : (opt.summary || (pkg ? pkg.tagline : "") || "Professional photography session & master deliverables.");
+
+      newSess = {
+        id: "sess_" + Date.now() + "_" + Math.floor(Math.random() * 10000),
+        pkgId: pkg ? pkg.id : "custom",
+        title: pkg ? pkg.title : "Studio Photography Session",
+        tierIdx: typeof optIdx === "number" ? optIdx : 0,
+        tierName: opt.name,
+        spec: inclusionsText,
+        rate: opt.price || 0,
+        qty: 1
+      };
     }
+
+    invoiceSessions.push(newSess);
+
+    if (invoiceSessions.length === 1) {
+      autoFillLogisticsFromPackage(newSess.pkgId);
+    }
+
+    renderInvoiceSessions();
+    updateInvoiceDisplay();
+
+    if (notify) {
+      showInvoiceToast(`➕ Added Shoot: ${newSess.title}`);
+    }
+  }
+
+  function removeInvoiceSession(id) {
+    invoiceSessions = invoiceSessions.filter(s => s.id !== id);
+    if (invoiceSessions.length === 0) {
+      addInvoiceSession("graduation", 0, false);
+    } else {
+      renderInvoiceSessions();
+    }
+    updateInvoiceDisplay();
+    showInvoiceToast("Shoot session removed");
+  }
+
+  function onSessionPkgChange(id, pkgId, optIdx = 0) {
+    const session = invoiceSessions.find(s => s.id === id);
+    if (!session) return;
+
+    if (pkgId === "custom") {
+      session.pkgId = "custom";
+      session.title = "Custom Studio / On-Location Shoot";
+      session.tierIdx = -1;
+      session.tierName = "Tailored Scope";
+      session.spec = "Tailored photography session, custom lighting setup, high-end skin retouching and cloud delivery.";
+      session.rate = 4500;
+    } else {
+      const pkg = PACKAGES_DATA.find(p => p.id === pkgId) || PACKAGES_DATA[0];
+      session.pkgId = pkg.id;
+      session.title = pkg.title;
+      const opt = pkg.options[optIdx] || pkg.options[0];
+      session.tierIdx = optIdx;
+      session.tierName = opt.name;
+      session.spec = (opt.inclusions && opt.inclusions.length)
+        ? opt.inclusions.join(" • ")
+        : (opt.summary || pkg.tagline || "Professional photography deliverables");
+      session.rate = opt.price || 0;
+    }
+
+    if (invoiceSessions[0] && invoiceSessions[0].id === id) {
+      autoFillLogisticsFromPackage(session.pkgId);
+    }
+
+    renderInvoiceSessions();
     updateInvoiceDisplay();
   }
 
-  function renderCustomLineItems() {
-    if (!invCustomItemsList) return;
-    if (customLineItems.length === 0) {
-      invCustomItemsList.innerHTML = `<div style="font-size:12px; color:rgba(255,255,255,0.4); font-style:italic; padding:4px 0;">No custom services added yet. Click above to add drone coverage, expedited editing, studio hire or travel logistics.</div>`;
+  function onSessionTierChange(id, tierVal) {
+    const session = invoiceSessions.find(s => s.id === id);
+    if (!session) return;
+
+    if (tierVal === "custom") {
+      session.tierIdx = -1;
+      session.tierName = "Custom Scope";
+    } else {
+      const optIdx = parseInt(tierVal, 10) || 0;
+      const pkg = PACKAGES_DATA.find(p => p.id === session.pkgId);
+      if (pkg && pkg.options && pkg.options[optIdx]) {
+        const opt = pkg.options[optIdx];
+        session.tierIdx = optIdx;
+        session.tierName = opt.name;
+        session.spec = (opt.inclusions && opt.inclusions.length)
+          ? opt.inclusions.join(" • ")
+          : (opt.summary || pkg.tagline || "");
+        session.rate = opt.price || 0;
+      }
+    }
+
+    renderInvoiceSessions();
+    updateInvoiceDisplay();
+  }
+
+  function onSessionFieldChange(id, field, value) {
+    const session = invoiceSessions.find(s => s.id === id);
+    if (!session) return;
+
+    if (field === "rate") {
+      session.rate = parseInt(value, 10) || 0;
+    } else if (field === "qty") {
+      session.qty = Math.max(1, parseInt(value, 10) || 1);
+    } else {
+      session[field] = value;
+    }
+
+    const card = document.querySelector(`.inv-session-card[data-session-id="${id}"]`);
+    if (card && field === "title") {
+      const badge = card.querySelector(".inv-session-badge");
+      if (badge) {
+        const idx = invoiceSessions.indexOf(session) + 1;
+        badge.innerHTML = `📸 Shoot #${idx}: ${escapeHtml(session.title || "Custom Shoot")}`;
+      }
+    }
+
+    updateInvoiceDisplay();
+  }
+
+  function renderInvoiceSessions() {
+    const container = document.getElementById("invSessionsContainer");
+    if (!container) return;
+
+    if (invoiceSessions.length === 0) {
+      container.innerHTML = `<div style="font-size:12px; color:#94a3b8; font-style:italic; padding:6px 0;">No sessions added. Click "➕ Add Another Session" to add a shoot.</div>`;
       return;
     }
 
-    invCustomItemsList.innerHTML = customLineItems.map((item, idx) => `
-      <div class="inv-custom-item-row" style="display:grid; grid-template-columns: 2fr 2fr 1.2fr 34px; gap:8px; align-items:center; margin-bottom:8px; background:rgba(255,255,255,0.06); padding:8px; border-radius:8px; border:1px solid rgba(255,255,255,0.12);">
-        <input type="text" class="inv-input" style="padding:6px 10px; font-size:12px;" placeholder="Service Name (e.g. Drone Pilot)" value="${item.name}" oninput="onCustomItemChange('${item.id}', 'name', this.value)">
-        <input type="text" class="inv-input" style="padding:6px 10px; font-size:12px;" placeholder="Deliverable / Scope" value="${item.spec}" oninput="onCustomItemChange('${item.id}', 'spec', this.value)">
-        <input type="number" class="inv-input" style="padding:6px 10px; font-size:12px;" placeholder="Rate (KSh)" value="${item.rate || ''}" oninput="onCustomItemChange('${item.id}', 'rate', this.value)">
-        <button type="button" onclick="removeCustomLineItem('${item.id}')" title="Delete" style="background:#ef4444; color:#ffffff; border:none; border-radius:6px; height:32px; width:34px; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center;">✕</button>
+    const studioPkgs = PACKAGES_DATA.filter(p => p.pathway === "studio");
+    const outdoorPkgs = PACKAGES_DATA.filter(p => p.pathway === "outdoor");
+    const eventPkgs = PACKAGES_DATA.filter(p => p.pathway === "events");
+    const commercialPkgs = PACKAGES_DATA.filter(p => p.pathway === "commercial");
+
+    const html = invoiceSessions.map((s, idx) => {
+      const currentPkg = PACKAGES_DATA.find(p => p.id === s.pkgId);
+
+      const pkgOptionsHtml = `
+        <option value="custom" ${s.pkgId === "custom" ? "selected" : ""}>-- ✏️ Custom / Tailored Shoot (Manual Type) --</option>
+        <optgroup label="📸 Studio &amp; Portrait Sessions">
+          ${studioPkgs.map(p => `<option value="${p.id}" ${s.pkgId === p.id ? "selected" : ""}>${escapeHtml(p.title)}</option>`).join("")}
+        </optgroup>
+        <optgroup label="🌿 Outdoor Sessions">
+          ${outdoorPkgs.map(p => `<option value="${p.id}" ${s.pkgId === p.id ? "selected" : ""}>${escapeHtml(p.title)}</option>`).join("")}
+        </optgroup>
+        <optgroup label="💍 Events &amp; Weddings">
+          ${eventPkgs.map(p => `<option value="${p.id}" ${s.pkgId === p.id ? "selected" : ""}>${escapeHtml(p.title)}</option>`).join("")}
+        </optgroup>
+        <optgroup label="🏢 Commercial &amp; Brand">
+          ${commercialPkgs.map(p => `<option value="${p.id}" ${s.pkgId === p.id ? "selected" : ""}>${escapeHtml(p.title)}</option>`).join("")}
+        </optgroup>
+      `;
+
+      let tierOptionsHtml = "";
+      if (currentPkg && currentPkg.options) {
+        tierOptionsHtml = currentPkg.options.map((opt, oIdx) => `
+          <option value="${oIdx}" ${s.tierIdx === oIdx ? "selected" : ""}>
+            ${escapeHtml(opt.name)} — KSh ${opt.price.toLocaleString()}
+          </option>
+        `).join("") + `<option value="custom" ${s.tierIdx === -1 ? "selected" : ""}>-- ✏️ Custom Tier / Scope (Manual Type) --</option>`;
+      } else {
+        tierOptionsHtml = `<option value="custom" selected>-- ✏️ Custom Tier / Scope (Manual Type) --</option>`;
+      }
+
+      return `
+        <div class="inv-session-card" data-session-id="${s.id}">
+          <div class="inv-session-header">
+            <span class="inv-session-badge">📸 Shoot #${idx + 1}: ${escapeHtml(s.title || "Custom Shoot")}</span>
+            ${invoiceSessions.length > 1 ? `<button type="button" class="inv-btn-del-line" onclick="removeInvoiceSession('${s.id}')" title="Remove this session">✕ Remove Shoot</button>` : ''}
+          </div>
+
+          <div class="inv-tools-grid">
+            <div class="inv-tool-group">
+              <div class="inv-label-row">
+                <label>Shoot Type Preset:</label>
+                <span class="inv-helper-hint">Dropdown</span>
+              </div>
+              <select class="inv-select inv-session-pkg-select" onchange="onSessionPkgChange('${s.id}', this.value)">
+                ${pkgOptionsHtml}
+              </select>
+            </div>
+            <div class="inv-tool-group">
+              <div class="inv-label-row">
+                <label>Shoot Title (Editable):</label>
+                <span class="inv-helper-hint">Type freely</span>
+              </div>
+              <input type="text" class="inv-input" placeholder="e.g. Graduation Milestone Shoot" value="${escapeHtml(s.title)}" oninput="onSessionFieldChange('${s.id}', 'title', this.value)">
+            </div>
+          </div>
+
+          <div class="inv-tools-grid" style="margin-top:2px;">
+            <div class="inv-tool-group">
+              <div class="inv-label-row">
+                <label>Tier / Package Preset:</label>
+                <span class="inv-helper-hint">Select option</span>
+              </div>
+              <select class="inv-select inv-session-tier-select" onchange="onSessionTierChange('${s.id}', this.value)">
+                ${tierOptionsHtml}
+              </select>
+            </div>
+            <div class="inv-tool-group">
+              <div class="inv-label-row">
+                <label>Tier Name (Editable):</label>
+                <span class="inv-helper-hint">Type freely</span>
+              </div>
+              <input type="text" class="inv-input" placeholder="e.g. Solo Gold / Executive" value="${escapeHtml(s.tierName)}" oninput="onSessionFieldChange('${s.id}', 'tierName', this.value)">
+            </div>
+          </div>
+
+          <div class="inv-tool-group" style="margin-top:2px;">
+            <div class="inv-label-row">
+              <label>Deliverables &amp; Inclusions Scope (Editable):</label>
+              <span class="inv-helper-hint">Type or edit deliverables</span>
+            </div>
+            <textarea class="inv-input" rows="2" placeholder="e.g. 15 retouched images, 2 outfit changes, studio lighting &amp; gown props..." oninput="onSessionFieldChange('${s.id}', 'spec', this.value)">${escapeHtml(s.spec)}</textarea>
+          </div>
+
+          <div class="inv-tools-grid" style="grid-template-columns: 2fr 1fr; margin-top:2px;">
+            <div class="inv-tool-group">
+              <div class="inv-label-row">
+                <label>Investment Rate (KSh):</label>
+                <span class="inv-helper-hint">Editable rate</span>
+              </div>
+              <input type="number" class="inv-input" placeholder="e.g. 5500" value="${s.rate || ''}" oninput="onSessionFieldChange('${s.id}', 'rate', this.value)">
+            </div>
+            <div class="inv-tool-group">
+              <div class="inv-label-row">
+                <label>Sessions / Qty:</label>
+              </div>
+              <input type="number" min="1" class="inv-input" value="${s.qty || 1}" oninput="onSessionFieldChange('${s.id}', 'qty', this.value)">
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    container.innerHTML = html;
+  }
+
+  // ============================================================
+  // DYNAMIC ADD-ONS & ENHANCEMENTS BUILDER (Unlimited & Flexible)
+  // ============================================================
+  function addInvoiceAddon(presetName, presetSpec, presetPrice) {
+    const newAddon = {
+      id: "addon_" + Date.now() + "_" + Math.floor(Math.random() * 10000),
+      name: presetName || "Custom Studio Add-On",
+      spec: presetSpec || "Deliverable enhancement upgrade agreed with studio",
+      price: typeof presetPrice === "number" ? presetPrice : (parseInt(presetPrice, 10) || 0)
+    };
+    invoiceAddons.push(newAddon);
+    renderInvoiceAddons();
+    updateInvoiceDisplay();
+    if (presetName) {
+      showInvoiceToast(`✓ Added "${presetName}" (+KSh ${(newAddon.price || 0).toLocaleString()})`);
+    } else {
+      showInvoiceToast("➕ Added custom add-on row");
+    }
+  }
+
+  function removeInvoiceAddon(id) {
+    invoiceAddons = invoiceAddons.filter(a => a.id !== id);
+    renderInvoiceAddons();
+    updateInvoiceDisplay();
+    showInvoiceToast("Add-on removed");
+  }
+
+  function onAddonFieldChange(id, field, value) {
+    const addon = invoiceAddons.find(a => a.id === id);
+    if (!addon) return;
+    if (field === "price") {
+      addon.price = parseInt(value, 10) || 0;
+    } else {
+      addon[field] = value;
+    }
+    updateInvoiceDisplay();
+  }
+
+  function renderInvoiceAddons() {
+    const container = document.getElementById("invAddonsContainer");
+    if (!container) return;
+
+    if (invoiceAddons.length === 0) {
+      container.innerHTML = `<div style="font-size:11.5px; color:#94a3b8; font-style:italic; padding:6px 0;">No add-ons selected yet. Click the 1-click upgrade chips above (🎬 Reel, 💄 Makeup, 🛸 Drone, etc.) or click "➕ Add Custom Add-On / Reel" to type your own!</div>`;
+      return;
+    }
+
+    container.innerHTML = invoiceAddons.map(a => `
+      <div class="inv-addon-row" data-addon-id="${a.id}">
+        <div>
+          <input type="text" class="inv-input" style="padding:6px 10px; font-size:12px;" placeholder="Add-on / Service Name" value="${escapeHtml(a.name)}" oninput="onAddonFieldChange('${a.id}', 'name', this.value)">
+        </div>
+        <div>
+          <input type="text" class="inv-input" style="padding:6px 10px; font-size:12px;" placeholder="Deliverable / Scope" value="${escapeHtml(a.spec)}" oninput="onAddonFieldChange('${a.id}', 'spec', this.value)">
+        </div>
+        <div>
+          <input type="number" class="inv-input" style="padding:6px 10px; font-size:12px;" placeholder="Price (KSh)" value="${a.price || ''}" oninput="onAddonFieldChange('${a.id}', 'price', this.value)">
+        </div>
+        <div>
+          <button type="button" class="inv-btn-del-line" onclick="removeInvoiceAddon('${a.id}')" title="Delete" style="height:32px; width:32px; display:flex; align-items:center; justify-content:center; padding:0; font-size:13px;">✕</button>
+        </div>
       </div>
     `).join("");
   }
 
+  // ============================================================
+  // LIVE A4 INVOICE SHEET DISPLAY UPDATES & TOTALS
+  // ============================================================
   function updateInvoiceDisplay() {
-    if (!invPackageSelect || !invTierSelect) return;
-    const pkgId = invPackageSelect.value;
-    const pkg = PACKAGES_DATA.find(p => p.id === pkgId) || PACKAGES_DATA[0];
-    if (!pkg) return;
-    const optIdx = parseInt(invTierSelect.value, 10) || 0;
-    const opt = pkg.options[optIdx] || pkg.options[0];
-
     // Meta displays
     const elRef = document.getElementById("invDisplayRef");
     const elDate = document.getElementById("invDisplayDateIssued");
@@ -2213,78 +2460,73 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elLoc) elLoc.textContent = locVal;
     if (elCrew) elCrew.textContent = crewVal;
 
-    // Selected Add-ons
-    const checkedAddons = [];
-    document.querySelectorAll(".inv-addon-checkbox:checked").forEach(cb => {
-      checkedAddons.push({
-        id: cb.value,
-        name: cb.dataset.name,
-        price: parseInt(cb.dataset.price, 10) || 0
-      });
-    });
-
-    const addonsTotal = checkedAddons.reduce((sum, a) => sum + a.price, 0);
-    const customTotal = customLineItems.reduce((sum, item) => sum + (parseInt(item.rate, 10) || 0), 0);
-    const basePrice = opt.price || 0;
+    // Financial calculations
+    const basePrice = invoiceSessions.reduce((sum, s) => sum + ((s.rate || 0) * (s.qty || 1)), 0);
+    const addonsTotal = invoiceAddons.reduce((sum, a) => sum + (a.price || 0), 0);
     const discount = parseInt(invDiscountInput ? invDiscountInput.value : 0, 10) || 0;
-    const grandTotal = Math.max(0, basePrice + addonsTotal + customTotal - discount);
+    const grandTotal = Math.max(0, basePrice + addonsTotal - discount);
 
-    // Deposit calculation
     const depPercent = parseInt(invDepositPercent ? invDepositPercent.value : 40, 10) || 40;
     const deposit = Math.round(grandTotal * (depPercent / 100));
     const balance = Math.max(0, grandTotal - deposit);
 
-    // Render Table Rows
+    // Render Table Rows in Live Sheet
     const tbody = document.getElementById("invTableBody");
     if (tbody) {
-      let rowsHtml = `
-        <tr>
-          <td>
-            <div class="inv-item-title">${pkg.title} — ${opt.name}</div>
-            <div class="inv-item-sub">${opt.summary || pkg.tagline}</div>
-          </td>
-          <td>
-            <ul class="inv-inclusions-list">
-              ${(opt.inclusions || []).map(inc => `<li>${inc}</li>`).join("")}
-            </ul>
-          </td>
-          <td style="text-align:right; font-weight:600;">KSh ${basePrice.toLocaleString()}</td>
-          <td style="text-align:right; font-weight:700;">KSh ${basePrice.toLocaleString()}</td>
-        </tr>
-      `;
+      let rowsHtml = "";
 
-      checkedAddons.forEach(a => {
+      invoiceSessions.forEach((s, idx) => {
+        const qty = s.qty || 1;
+        const rate = s.rate || 0;
+        const lineTotal = rate * qty;
+
+        let specHtml = "";
+        if (s.spec) {
+          const parts = s.spec.split(/[•\n]/).map(p => p.trim()).filter(Boolean);
+          if (parts.length > 1) {
+            specHtml = `<ul class="inv-inclusions-list">${parts.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul>`;
+          } else {
+            specHtml = `<div style="font-size:11.5px; color:#475569; line-height:1.4;">${escapeHtml(s.spec)}</div>`;
+          }
+        } else {
+          specHtml = `<div style="font-size:11.5px; color:#475569;">Standard studio photography session &amp; digital master deliverables.</div>`;
+        }
+
         rowsHtml += `
           <tr>
             <td>
-              <div class="inv-item-title">Add-On: ${a.name}</div>
+              <div class="inv-item-title">${escapeHtml(s.title || "Studio Session")}</div>
+              <div class="inv-item-sub">${escapeHtml(s.tierName || "Selected Package Tier")}${qty > 1 ? ` (×${qty} Sessions)` : ""}</div>
+            </td>
+            <td>
+              ${specHtml}
+            </td>
+            <td style="text-align:right; font-weight:600;">KSh ${rate.toLocaleString()}</td>
+            <td style="text-align:right; font-weight:700;">KSh ${lineTotal.toLocaleString()}</td>
+          </tr>
+        `;
+      });
+
+      invoiceAddons.forEach(a => {
+        const price = a.price || 0;
+        rowsHtml += `
+          <tr>
+            <td>
+              <div class="inv-item-title">Add-On: ${escapeHtml(a.name || "Creative Enhancement")}</div>
               <div class="inv-item-sub">Selected Enhancement Upgrade</div>
             </td>
             <td>
-              <div style="font-size:11.5px; color:#475569;">Optional session / event deliverable enhancement.</div>
+              <div style="font-size:11.5px; color:#475569; line-height:1.4;">${escapeHtml(a.spec || "Optional session / event deliverable enhancement.")}</div>
             </td>
-            <td style="text-align:right; font-weight:600;">KSh ${a.price.toLocaleString()}</td>
-            <td style="text-align:right; font-weight:700;">KSh ${a.price.toLocaleString()}</td>
+            <td style="text-align:right; font-weight:600;">KSh ${price.toLocaleString()}</td>
+            <td style="text-align:right; font-weight:700;">KSh ${price.toLocaleString()}</td>
           </tr>
         `;
       });
 
-      customLineItems.forEach(item => {
-        const itemRate = parseInt(item.rate, 10) || 0;
-        rowsHtml += `
-          <tr>
-            <td>
-              <div class="inv-item-title">Custom Item: ${item.name || "Special Service"}</div>
-              <div class="inv-item-sub">Client Tailored Production Item</div>
-            </td>
-            <td>
-              <div style="font-size:11.5px; color:#475569;">${item.spec || "Custom scope item agreed with studio."}</div>
-            </td>
-            <td style="text-align:right; font-weight:600;">KSh ${itemRate.toLocaleString()}</td>
-            <td style="text-align:right; font-weight:700;">KSh ${itemRate.toLocaleString()}</td>
-          </tr>
-        `;
-      });
+      if (invoiceSessions.length === 0 && invoiceAddons.length === 0) {
+        rowsHtml = `<tr><td colspan="4" style="text-align:center; padding:20px; color:#64748b;">No shoot sessions or add-ons configured yet.</td></tr>`;
+      }
 
       tbody.innerHTML = rowsHtml;
     }
@@ -2320,7 +2562,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const elGrandLbl = document.getElementById("invGrandTotalLabel");
 
     if (elBase) elBase.textContent = `KSh ${basePrice.toLocaleString()}`;
-    if (elAddons) elAddons.textContent = `KSh ${(addonsTotal + customTotal).toLocaleString()}`;
+    if (elAddons) elAddons.textContent = `KSh ${addonsTotal.toLocaleString()}`;
     if (elGrand) elGrand.textContent = `KSh ${grandTotal.toLocaleString()}`;
     if (elGrandLbl) elGrandLbl.textContent = invoiceMode === "receipt" ? "TOTAL SHOOT INVESTMENT:" : "TOTAL PROJECT INVESTMENT:";
 
@@ -2330,8 +2572,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const payMethodSelect = document.getElementById("invPaymentMethodSelect");
     const payRefInput = document.getElementById("invPaymentRefInput");
 
-    const paymentStatus = payStatusSelect ? payStatusSelect.value : "full"; // "full" or "deposit"
-    const paymentMethod = payMethodSelect ? payMethodSelect.value : "M-Pesa Buy Goods Till (0790048905)";
+    const paymentStatus = payStatusSelect ? payStatusSelect.value : "full";
+    const paymentMethod = payMethodSelect ? payMethodSelect.value : "M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)";
     const paymentRef = (payRefInput && payRefInput.value.trim()) || "M-Pesa Verified";
 
     const elStatusPill = document.getElementById("invDisplayStatusPill");
@@ -2349,6 +2591,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const elPayTillLine = document.getElementById("invPayTillLine");
     const elPayAccountLine = document.getElementById("invPayAccountLine");
     const elPayRefLine = document.getElementById("invPayRefLine");
+    const elTermsNote = document.getElementById("invTermsNote");
 
     if (isReceipt) {
       if (paymentStatus === "full") {
@@ -2372,7 +2615,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       } else {
-        // Partial deposit received
         if (elStatusPill) {
           elStatusPill.className = "val status-deposit";
           elStatusPill.textContent = "✓ DEPOSIT RECEIVED";
@@ -2394,11 +2636,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // Update payment box details to reflect verified payment
-      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Payment Channel:</b> <span style="font-weight:700; color:#15803d;">${paymentMethod}</span>`;
-      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Payment Ref / Code:</b> <span class="till-num" style="background:#dcfce7; color:#15803d; border-color:#86efac;">${paymentRef}</span>`;
-      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Verified:</b> Laureign Studios (Till: 0790048905)`;
-      if (elPayRefLine) elPayRefLine.innerHTML = `<b>Receipt Clearance:</b> <span style="font-weight:700; color:#15803d;">✓ Validated &amp; Logged by Studio Reception</span>`;
+      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Payment Channel:</b> <span style="font-weight:700; color:#15803d;">${escapeHtml(paymentMethod)}</span>`;
+      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Payment Ref / Code:</b> <span class="till-num" style="background:#dcfce7; color:#15803d; border-color:#86efac;">${escapeHtml(paymentRef)}</span> &nbsp;<b>Bank:</b> I&amp;M Bank`;
+      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name Verified:</b> <span style="font-weight:700; color:#0f766e;">JANE AKOTH</span> (Acc: 486197)`;
+      if (elPayRefLine) elPayRefLine.innerHTML = `<b>Receipt Clearance:</b> <span style="font-weight:700; color:#15803d;">✓ Validated &amp; Logged by Studio Reception (Strictly Cashless)</span>`;
+      if (elTermsNote) elTermsNote.textContent = "* Official studio receipt. Cashless payment verified. High-resolution master files and deliverables are processed per the agreed production timeline.";
     } else {
       // Quotation mode
       if (elStatusPill) {
@@ -2421,25 +2663,122 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Payment Method:</b> <span id="invPayChannelVal">M-Pesa Buy Goods Till / Phone</span>`;
-      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Till / Phone Number:</b> <span class="till-num">0790048905</span>`;
-      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name:</b> Laureign Studios`;
-      if (elPayRefLine) elPayRefLine.innerHTML = `<b>Account Reference:</b> <span id="invPayRef">${clientVal ? `LS-${clientVal.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(0, 8)}` : "LS-BOOKING"}</span>`;
+      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Bank &amp; Channel:</b> <span id="invPayChannelVal">I&amp;M Bank · M-Pesa Paybill</span>`;
+      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Paybill Number:</b> <span class="till-num">542542</span> &nbsp;<b>Account No:</b> <span class="till-num">486197</span>`;
+      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name to Verify:</b> <span style="font-weight:700; color:#0f766e;">JANE AKOTH</span> (Laureign Studios)`;
+      if (elPayRefLine) elPayRefLine.innerHTML = `<b>Strict Studio Policy:</b> <span style="color:#b91c1c; font-weight:700;">🚫 Strictly No Cash Accepted · Official Paybill Only</span>`;
+      if (elTermsNote) elTermsNote.textContent = "* A booking commitment deposit locks your date on our production calendar. Strictly no cash accepted. The remaining balance is payable upon delivery of your master high-resolution gallery and deliverables.";
     }
+
+    // Dynamic Rubber Stamp Content & Live Up-To-Date Dates
+    const elStampDate = document.getElementById("stampSvgDate");
+    if (elStampDate) {
+      elStampDate.textContent = getFormattedStampDate(new Date());
+    }
+    const elStampRef = document.getElementById("stampSvgRef");
+    if (elStampRef) {
+      elStampRef.textContent = `REF: ${currentInvoiceRef}`;
+    }
+    const elStampTitle = document.getElementById("stampSvgTitle");
+    if (elStampTitle) {
+      if (isReceipt) {
+        elStampTitle.textContent = paymentStatus === "deposit" ? "DEPOSIT CONFIRMED" : "PAID & CONFIRMED";
+      } else {
+        elStampTitle.textContent = "OFFICIAL QUOTATION";
+      }
+    }
+  }
+
+  // App-Like Mobile / Desktop Tab Switcher
+  function switchInvoiceTab(tab) {
+    const btnEdit = document.getElementById("tabBtnEdit");
+    const btnPrev = document.getElementById("tabBtnPreview");
+    const paneEdit = document.getElementById("invEditorPane");
+    const panePrev = document.getElementById("invPreviewPane");
+
+    if (tab === "preview") {
+      if (btnPrev) btnPrev.classList.add("active");
+      if (btnEdit) btnEdit.classList.remove("active");
+      if (paneEdit) paneEdit.classList.add("hide-mobile");
+      if (panePrev) panePrev.classList.remove("hide-mobile");
+    } else {
+      if (btnEdit) btnEdit.classList.add("active");
+      if (btnPrev) btnPrev.classList.remove("active");
+      if (paneEdit) paneEdit.classList.remove("hide-mobile");
+      if (panePrev) panePrev.classList.add("hide-mobile");
+    }
+  }
+
+  // Staff Portal & Protected Internal Tools Control
+  function applyStaffModeVisibility(visible) {
+    const headerStaff = document.getElementById("headerStaffTools");
+    const drawerStaff = document.getElementById("drawerStaffTools");
+    if (headerStaff) headerStaff.style.display = visible ? "flex" : "none";
+    if (drawerStaff) drawerStaff.style.display = visible ? "block" : "none";
+  }
+
+  function initStaffMode() {
+    const isStaffUrl = new URLSearchParams(window.location.search).get("staff") === "true";
+    const isStaffStorage = localStorage.getItem("laureign_staff_mode") === "true";
+    const isStaff = isStaffUrl || isStaffStorage;
+    applyStaffModeVisibility(isStaff);
+  }
+
+  function toggleStaffMode() {
+    const current = localStorage.getItem("laureign_staff_mode") === "true";
+    if (current) {
+      localStorage.removeItem("laureign_staff_mode");
+      applyStaffModeVisibility(false);
+      showInvoiceToast("🔒 Staff Portal locked. Internal desk tools hidden.");
+    } else {
+      const pin = prompt("Enter Studio Staff PIN to unlock internal desk tools:");
+      if (pin === "2026" || pin === "admin") {
+        localStorage.setItem("laureign_staff_mode", "true");
+        applyStaffModeVisibility(true);
+        showInvoiceToast("🔓 Staff Mode unlocked! Walk-in Desk and Leads CRM are now accessible.");
+      } else if (pin !== null) {
+        alert("Incorrect Staff PIN.");
+      }
+    }
+  }
+
+  function initInvoice() {
+    const randNum = Math.floor(1000 + Math.random() * 9000);
+    currentInvoiceRef = `LS-QUO-2026-${randNum}`;
+
+    const today = new Date();
+    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+    invoiceDateIssued = today.toLocaleDateString('en-GB', options);
+
+    const validDate = new Date();
+    validDate.setDate(today.getDate() + 14);
+    invoiceValidity = `${validDate.toLocaleDateString('en-GB', options)} (14 Days)`;
+
+    if (invoiceSessions.length === 0) {
+      addInvoiceSession("graduation", 0, false);
+    } else {
+      renderInvoiceSessions();
+    }
+
+    renderInvoiceAddons();
+    updateInvoiceDisplay();
   }
 
   function openInvoiceModal(pkgId, optIdx) {
     if (!invoiceModal) return;
-    if (pkgId && invPackageSelect) {
-      invPackageSelect.value = pkgId;
-      onInvoicePackageChange();
-      if (typeof optIdx === "number" && invTierSelect) {
-        invTierSelect.value = optIdx;
-        updateInvoiceDisplay();
+
+    if (pkgId) {
+      if (invoiceSessions.length === 0) {
+        addInvoiceSession(pkgId, typeof optIdx === "number" ? optIdx : 0, false);
+      } else {
+        const s = invoiceSessions[0];
+        onSessionPkgChange(s.id, pkgId, typeof optIdx === "number" ? optIdx : 0);
       }
-    } else {
-      updateInvoiceDisplay();
+    } else if (invoiceSessions.length === 0) {
+      addInvoiceSession("graduation", 0, false);
     }
+
+    updateInvoiceDisplay();
     invoiceModal.classList.add("open");
     invoiceModal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -2622,10 +2961,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Builds formatted message and opens WhatsApp chat (Direct to client if phone is provided)
   function sendInvoiceWhatsApp(pdfDownloaded = false) {
     const isReceipt = invoiceMode === "receipt";
-    const pkgId = invPackageSelect ? invPackageSelect.value : "";
-    const pkg = PACKAGES_DATA.find(p => p.id === pkgId) || PACKAGES_DATA[0];
-    const optIdx = invTierSelect ? parseInt(invTierSelect.value, 10) || 0 : 0;
-    const opt = pkg.options[optIdx] || pkg.options[0];
 
     const clientVal = (invClientInput && invClientInput.value.trim()) || "Valued Client";
     const rawPhone = (invPhoneInput && invPhoneInput.value.trim()) || "";
@@ -2636,19 +2971,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const crewVal = (invCrewInput && invCrewInput.value.trim()) || "Studio Lead Team";
     const notesVal = (invNotesInput && invNotesInput.value.trim()) || "";
 
-    const checkedAddons = [];
-    document.querySelectorAll(".inv-addon-checkbox:checked").forEach(cb => {
-      checkedAddons.push({
-        name: cb.dataset.name,
-        price: parseInt(cb.dataset.price, 10) || 0
-      });
-    });
-
-    const basePrice = opt.price || 0;
-    const addonsTotal = checkedAddons.reduce((sum, a) => sum + a.price, 0);
-    const customTotal = customLineItems.reduce((sum, item) => sum + (parseInt(item.rate, 10) || 0), 0);
+    const basePrice = invoiceSessions.reduce((sum, s) => sum + ((s.rate || 0) * (s.qty || 1)), 0);
+    const addonsTotal = invoiceAddons.reduce((sum, a) => sum + (a.price || 0), 0);
     const discount = parseInt(invDiscountInput ? invDiscountInput.value : 0, 10) || 0;
-    const grandTotal = Math.max(0, basePrice + addonsTotal + customTotal - discount);
+    const grandTotal = Math.max(0, basePrice + addonsTotal - discount);
 
     const depPercent = parseInt(invDepositPercent ? invDepositPercent.value : 40, 10) || 40;
     const deposit = Math.round(grandTotal * (depPercent / 100));
@@ -2659,10 +2985,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const payRefInput = document.getElementById("invPaymentRefInput");
 
     const paymentStatus = payStatusSelect ? payStatusSelect.value : "full";
-    const paymentMethod = payMethodSelect ? payMethodSelect.value : "M-Pesa Buy Goods Till (0790048905)";
+    const paymentMethod = payMethodSelect ? payMethodSelect.value : "M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)";
     const paymentRef = (payRefInput && payRefInput.value.trim()) || "SLD8927K";
 
-    // Determine target WhatsApp number: Route directly to client if provided!
     const clientPhone = normalizeKenyanPhone(rawPhone);
     const targetPhone = clientPhone || "254790048905";
 
@@ -2680,21 +3005,22 @@ document.addEventListener("DOMContentLoaded", () => {
       msg += `📍 *Location:* ${locVal}\n`;
       msg += `🎥 *Assigned Crew:* ${crewVal}\n\n`;
 
-      msg += `*SERVICE & DELIVERABLES:*\n`;
-      msg += `📸 *${pkg.title}* — ${opt.name}\n`;
-      msg += `💰 *Base Investment:* KSh ${basePrice.toLocaleString()}\n`;
+      msg += `*SHOOTS & SESSIONS COMPLETED:*\n`;
+      invoiceSessions.forEach((s, idx) => {
+        const qty = s.qty || 1;
+        const rate = s.rate || 0;
+        msg += `📸 *Shoot #${idx + 1}: ${s.title}* (${s.tierName})${qty > 1 ? ` ×${qty}` : ""}\n`;
+        msg += `   💰 Amount: KSh ${(rate * qty).toLocaleString()}\n`;
+        if (s.spec) {
+          msg += `   📋 Inclusions: ${s.spec.replace(/\n+/g, " • ")}\n`;
+        }
+      });
 
-      if (checkedAddons.length > 0) {
-        msg += `\n*SELECTED ADD-ONS:*\n`;
-        checkedAddons.forEach(a => {
-          msg += `• ${a.name} (+KSh ${a.price.toLocaleString()})\n`;
-        });
-      }
-
-      if (customLineItems.length > 0) {
-        msg += `\n*CUSTOM SERVICES:*\n`;
-        customLineItems.forEach(item => {
-          msg += `• ${item.name}: KSh ${(parseInt(item.rate, 10) || 0).toLocaleString()}\n`;
+      if (invoiceAddons.length > 0) {
+        msg += `\n*SELECTED ADD-ONS & REELS:*\n`;
+        invoiceAddons.forEach(a => {
+          msg += `• ${a.name} (+KSh ${(a.price || 0).toLocaleString()})\n`;
+          if (a.spec) msg += `  _${a.spec}_\n`;
         });
       }
 
@@ -2702,18 +3028,20 @@ document.addEventListener("DOMContentLoaded", () => {
         msg += `\n🎁 *Special Discount:* - KSh ${discount.toLocaleString()}\n`;
       }
 
-      msg += `\n*PAYMENT VERIFICATION:*\n`;
+      msg += `\n*PAYMENT VERIFICATION (CASHLESS RECEIPT):*\n`;
       msg += `💵 *Total Shoot Investment:* KSh ${grandTotal.toLocaleString()}\n`;
 
       if (paymentStatus === "full") {
         msg += `✅ *Amount Received:* KSh ${grandTotal.toLocaleString()} *(PAID IN FULL)*\n`;
-        msg += `💳 *Payment Method:* ${paymentMethod}\n`;
+        msg += `💳 *Payment Channel:* ${paymentMethod}\n`;
         msg += `🏷️ *Transaction Code / Ref:* *${paymentRef}*\n`;
+        msg += `🏦 *Bank / Account:* I&M Bank · Paybill 542542 (Acc: 486197 - JANE AKOTH)\n`;
         msg += `🎉 *Balance Remaining:* *KSh 0 (CLEARED)*\n\n`;
       } else {
         msg += `✅ *Deposit Received:* KSh ${deposit.toLocaleString()} *(${depPercent}% PAID)*\n`;
-        msg += `💳 *Payment Method:* ${paymentMethod}\n`;
+        msg += `💳 *Payment Channel:* ${paymentMethod}\n`;
         msg += `🏷️ *Transaction Code / Ref:* *${paymentRef}*\n`;
+        msg += `🏦 *Bank / Account:* I&M Bank · Paybill 542542 (Acc: 486197 - JANE AKOTH)\n`;
         msg += `💳 *Balance Due on Delivery:* *KSh ${balance.toLocaleString()}*\n\n`;
       }
 
@@ -2739,21 +3067,22 @@ document.addEventListener("DOMContentLoaded", () => {
       msg += `📍 *Venue / Location:* ${locVal}\n`;
       msg += `🎥 *Assigned Crew:* ${crewVal}\n\n`;
 
-      msg += `*CORE PACKAGE DELIVERABLE:*\n`;
-      msg += `📸 *${pkg.title}* — ${opt.name}\n`;
-      msg += `💰 *Base Investment:* KSh ${basePrice.toLocaleString()}\n`;
+      msg += `*SHOOTS & SESSIONS PROPOSED:*\n`;
+      invoiceSessions.forEach((s, idx) => {
+        const qty = s.qty || 1;
+        const rate = s.rate || 0;
+        msg += `📸 *Shoot #${idx + 1}: ${s.title}* (${s.tierName})${qty > 1 ? ` ×${qty}` : ""}\n`;
+        msg += `   💰 Amount: KSh ${(rate * qty).toLocaleString()}\n`;
+        if (s.spec) {
+          msg += `   📋 Scope: ${s.spec.replace(/\n+/g, " • ")}\n`;
+        }
+      });
 
-      if (checkedAddons.length > 0) {
-        msg += `\n*SELECTED STUDIO ADD-ONS:*\n`;
-        checkedAddons.forEach(a => {
-          msg += `• ${a.name} (+KSh ${a.price.toLocaleString()})\n`;
-        });
-      }
-
-      if (customLineItems.length > 0) {
-        msg += `\n*CUSTOM PRODUCTION ITEMS:*\n`;
-        customLineItems.forEach(item => {
-          msg += `• ${item.name}: KSh ${(parseInt(item.rate, 10) || 0).toLocaleString()} (${item.spec})\n`;
+      if (invoiceAddons.length > 0) {
+        msg += `\n*SELECTED ADD-ONS & REELS:*\n`;
+        invoiceAddons.forEach(a => {
+          msg += `• ${a.name} (+KSh ${(a.price || 0).toLocaleString()})\n`;
+          if (a.spec) msg += `  _${a.spec}_\n`;
         });
       }
 
@@ -2770,9 +3099,12 @@ document.addEventListener("DOMContentLoaded", () => {
       msg += `🔒 *Required Booking Deposit (${depPercent}%):* KSh ${deposit.toLocaleString()}\n`;
       msg += `💳 *Balance Due on Master Delivery:* KSh ${balance.toLocaleString()}\n\n`;
 
-      msg += `*OFFICIAL PAYMENT TILL:*\n`;
-      msg += `M-Pesa Buy Goods Till / Phone: *0790048905*\n`;
-      msg += `Account Ref: *LS-${clientVal.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(0, 8) || "BOOKING"}*\n\n`;
+      msg += `*OFFICIAL PAYMENT INSTRUCTIONS (NO CASH ACCEPTED):*\n`;
+      msg += `🏦 *Bank:* I&M Bank\n`;
+      msg += `📲 *M-Pesa Paybill:* *542542*\n`;
+      msg += `🔢 *Account No:* *486197*\n`;
+      msg += `👤 *Account Name on M-Pesa:* *JANE AKOTH*\n`;
+      msg += `⚠️ *Studio Notice:* Strictly cashless desk. Please forward your M-Pesa transaction confirmation to lock your reservation.\n\n`;
 
       if (pdfDownloaded) {
         msg += `📥 *Official PDF Quotation Generated & Saved.* Please see attached PDF document.\n\n`;
@@ -2787,10 +3119,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function copyInvoiceText() {
     const isReceipt = invoiceMode === "receipt";
-    const pkgId = invPackageSelect ? invPackageSelect.value : "";
-    const pkg = PACKAGES_DATA.find(p => p.id === pkgId) || PACKAGES_DATA[0];
-    const optIdx = invTierSelect ? parseInt(invTierSelect.value, 10) || 0 : 0;
-    const opt = pkg.options[optIdx] || pkg.options[0];
 
     const clientVal = (invClientInput && invClientInput.value.trim()) || "Client";
     const phoneVal = (invPhoneInput && invPhoneInput.value.trim()) || "Not specified";
@@ -2799,19 +3127,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const timeVal = (invTimeInput && invTimeInput.value.trim()) || "Standard Session";
     const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (In-Studio, Kakamega)";
 
-    const checkedAddons = [];
-    document.querySelectorAll(".inv-addon-checkbox:checked").forEach(cb => {
-      checkedAddons.push({
-        name: cb.dataset.name,
-        price: parseInt(cb.dataset.price, 10) || 0
-      });
-    });
-
-    const basePrice = opt.price || 0;
-    const addonsTotal = checkedAddons.reduce((sum, a) => sum + a.price, 0);
-    const customTotal = customLineItems.reduce((sum, item) => sum + (parseInt(item.rate, 10) || 0), 0);
+    const basePrice = invoiceSessions.reduce((sum, s) => sum + ((s.rate || 0) * (s.qty || 1)), 0);
+    const addonsTotal = invoiceAddons.reduce((sum, a) => sum + (a.price || 0), 0);
     const discount = parseInt(invDiscountInput ? invDiscountInput.value : 0, 10) || 0;
-    const grandTotal = Math.max(0, basePrice + addonsTotal + customTotal - discount);
+    const grandTotal = Math.max(0, basePrice + addonsTotal - discount);
 
     const depPercent = parseInt(invDepositPercent ? invDepositPercent.value : 40, 10) || 40;
     const deposit = Math.round(grandTotal * (depPercent / 100));
@@ -2825,34 +3144,32 @@ document.addEventListener("DOMContentLoaded", () => {
     text += `Client: ${clientVal}\nPhone: ${phoneVal}\n`;
     if (emailVal) text += `Email: ${emailVal}\n`;
     text += `Shoot Date: ${dateVal} (${timeVal})\nLocation: ${locVal}\n\n`;
-    text += `Package: ${pkg.title} — ${opt.name}\n`;
-    text += `Base Rate: KSh ${basePrice.toLocaleString()}\n`;
 
-    if (checkedAddons.length > 0) {
-      text += `Add-Ons:\n`;
-      checkedAddons.forEach(a => {
-        text += `- ${a.name} (KSh ${a.price.toLocaleString()})\n`;
-      });
-    }
+    text += `SHOOTS & SESSIONS:\n`;
+    invoiceSessions.forEach((s, idx) => {
+      const qty = s.qty || 1;
+      const rate = s.rate || 0;
+      text += `${idx + 1}. ${s.title} — ${s.tierName}${qty > 1 ? ` (×${qty})` : ""}: KSh ${(rate * qty).toLocaleString()}\n`;
+    });
 
-    if (customLineItems.length > 0) {
-      text += `Custom Services:\n`;
-      customLineItems.forEach(item => {
-        text += `- ${item.name}: KSh ${(parseInt(item.rate, 10) || 0).toLocaleString()} (${item.spec})\n`;
+    if (invoiceAddons.length > 0) {
+      text += `\nADD-ONS:\n`;
+      invoiceAddons.forEach(a => {
+        text += `- ${a.name}: KSh ${(a.price || 0).toLocaleString()}\n`;
       });
     }
 
     if (discount > 0) {
-      text += `Special Discount: - KSh ${discount.toLocaleString()}\n`;
+      text += `\nSpecial Discount: - KSh ${discount.toLocaleString()}\n`;
     }
 
     text += `\nTotal: KSh ${grandTotal.toLocaleString()}\n`;
     if (isReceipt) {
       text += `Amount Received: KSh ${grandTotal.toLocaleString()} (PAID IN FULL)\nBalance: KSh 0 (CLEARED)\n\n`;
-      text += `Payment Channel: M-Pesa Buy Goods Till 0790048905\nStudio: Laureign Studios (Official Receipt)`;
+      text += `Payment Channel: I&M Bank · M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)\nReceipt Ref: ${paymentRef}\nStrict Policy: Cashless Verified · Laureign Studios`;
     } else {
       text += `Deposit Required (${depPercent}%): KSh ${deposit.toLocaleString()}\nBalance Due: KSh ${balance.toLocaleString()}\n\n`;
-      text += `M-Pesa Payment: 0790048905\nAccount Ref: LS-${clientVal.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(0, 8) || "BOOKING"}`;
+      text += `PAYMENT INSTRUCTIONS (STRICTLY NO CASH):\nBank: I&M Bank\nM-Pesa Paybill: 542542\nAccount No: 486197\nAccount Name: JANE AKOTH\nStudio Phone / WhatsApp: 0790048905`;
     }
 
     navigator.clipboard.writeText(text).then(() => {
@@ -2865,37 +3182,421 @@ document.addEventListener("DOMContentLoaded", () => {
   function openInvoiceFromBookingModal() {
     const reelChecked = modalAddReelCheckbox && modalAddReelCheckbox.checked;
     const clientName = modalNameInput ? modalNameInput.value.trim() : "";
+    const clientPhone = modalPhoneInput ? modalPhoneInput.value.trim() : "";
+    const clientEmail = modalEmailInput ? modalEmailInput.value.trim() : "";
     const shootDate = modalDateInput ? modalDateInput.value : "";
     const loc = modalLocationSelect ? modalLocationSelect.value : "";
 
+    const pkg = PACKAGES_DATA.find(p => p.id === modalState.pkgId);
+    const opt = pkg ? pkg.options[modalState.optionIndex] : null;
+
+    saveClientLead({
+      name: clientName,
+      phone: clientPhone,
+      email: clientEmail,
+      date: shootDate,
+      location: loc,
+      package: pkg && opt ? `${pkg.title} (${opt.name})` : "Studio Session",
+      source: "Booking Modal (Quote Request)"
+    });
+
     closeModal();
-    openInvoiceModal(modalState.pkgId, modalState.optionIndex);
+
+    // Reset sessions and add this selected package as Session #1
+    invoiceSessions = [];
+    addInvoiceSession(modalState.pkgId, modalState.optionIndex, false);
+
+    if (reelChecked) {
+      addInvoiceAddon("🎬 4K Vertical Video Reel", "Trending 45s-60s 4K vertical video cut to viral TikTok & IG audio", 1500);
+    }
+
+    openInvoiceModal();
 
     if (clientName && invClientInput) invClientInput.value = clientName;
+    if (clientPhone && invPhoneInput) invPhoneInput.value = clientPhone;
+    if (clientEmail && invEmailInput) invEmailInput.value = clientEmail;
     if (shootDate && invDateInput) invDateInput.value = shootDate;
     if (loc && invLocationInput) invLocationInput.value = loc;
 
-    if (reelChecked) {
-      const invCb = document.querySelector(`.inv-addon-checkbox[value="cinematic-reel"]`);
-      if (invCb) invCb.checked = true;
-    }
     updateInvoiceDisplay();
   }
 
   function openInvoiceFromSamplesModal() {
     closeSamplesModal();
-    openInvoiceModal(currentSamplesPkgId, 0);
+    invoiceSessions = [];
+    addInvoiceSession(currentSamplesPkgId, 0, false);
+    openInvoiceModal();
   }
 
   function openInvoiceModalFromCalc() {
     openInvoiceModal();
-    // Pre-check any add-ons currently selected in calculator
     document.querySelectorAll(".addon-checkbox:checked").forEach(cb => {
       const addonId = cb.dataset.addonId;
-      const invCb = document.querySelector(`.inv-addon-checkbox[value="${addonId}"]`);
-      if (invCb) invCb.checked = true;
+      const foundAddon = ADD_ONS_LIST.find(a => a.id === addonId);
+      if (foundAddon && !invoiceAddons.some(a => a.name === foundAddon.name)) {
+        addInvoiceAddon(foundAddon.name, foundAddon.desc || "Deliverable enhancement", foundAddon.price);
+      }
     });
     updateInvoiceDisplay();
+  }
+
+  // ============================================================
+  // CLIENT LEADS CRM, EMAIL VAULT & MARKETING SUITE
+  // ============================================================
+  const LEADS_STORAGE_KEY = "laureign_studio_client_leads";
+
+  function getClientLeads() {
+    try {
+      const raw = localStorage.getItem(LEADS_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveClientLead(lead) {
+    if (!lead) return;
+    const name = (lead.name || "").trim();
+    const cleanEmail = (lead.email || "").trim().toLowerCase();
+    const cleanPhone = (lead.phone || "").trim().replace(/[^\d+]/g, "");
+
+    // Require at least name, email, or phone
+    if (!cleanEmail && !cleanPhone && !name) return;
+
+    const leads = getClientLeads();
+    const existingIdx = leads.findIndex(l => {
+      const lEmail = (l.email || "").trim().toLowerCase();
+      const lPhone = (l.phone || "").trim().replace(/[^\d+]/g, "");
+      return (cleanEmail && lEmail === cleanEmail) || (cleanPhone && lPhone === cleanPhone);
+    });
+
+    const newLeadObj = {
+      id: "lead_" + Date.now(),
+      name: name || "Valued Client",
+      email: cleanEmail,
+      phone: cleanPhone || (lead.phone || "").trim(),
+      package: lead.package || "Studio Session Inquiry",
+      location: lead.location || "Kakamega Studio",
+      date: lead.date || new Date().toISOString().split("T")[0],
+      source: lead.source || "Website Booking",
+      capturedAt: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+    };
+
+    if (existingIdx >= 0) {
+      leads[existingIdx] = {
+        ...leads[existingIdx],
+        ...newLeadObj,
+        id: leads[existingIdx].id,
+        capturedAt: leads[existingIdx].capturedAt || newLeadObj.capturedAt
+      };
+    } else {
+      leads.unshift(newLeadObj);
+    }
+
+    try {
+      localStorage.setItem(LEADS_STORAGE_KEY, JSON.stringify(leads));
+    } catch (e) {}
+
+    updateLeadsBadge();
+  }
+
+  function updateLeadsBadge() {
+    const leads = getClientLeads();
+    const count = leads.length;
+    const badge = document.getElementById("leadsCountBadge");
+    const drawerBadge = document.getElementById("drawerLeadsCountBadge");
+    if (badge) badge.textContent = count;
+    if (drawerBadge) drawerBadge.textContent = count;
+  }
+
+  function openLeadsModal() {
+    const modal = document.getElementById("leadsModal");
+    if (!modal) return;
+    renderLeadsTable();
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLeadsModal() {
+    const modal = document.getElementById("leadsModal");
+    if (!modal) return;
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  function renderLeadsTable(searchQuery = "") {
+    const leads = getClientLeads();
+    const tbody = document.getElementById("leadsTableBody");
+    const emptyBox = document.getElementById("leadsEmptyNotice");
+    const statTotal = document.getElementById("statTotalContacts");
+    const statEmails = document.getElementById("statValidEmails");
+    const statPhones = document.getElementById("statWhatsAppPhones");
+    const statVip = document.getElementById("statVipMembers");
+
+    const validEmails = leads.filter(l => l.email && l.email.includes("@"));
+    const validPhones = leads.filter(l => l.phone && l.phone.length >= 8);
+    const vipLeads = leads.filter(l => (l.source && l.source.includes("VIP")) || (l.package && l.package.includes("VIP")));
+
+    if (statTotal) statTotal.textContent = leads.length;
+    if (statEmails) statEmails.textContent = validEmails.length;
+    if (statPhones) statPhones.textContent = validPhones.length;
+    if (statVip) statVip.textContent = vipLeads.length;
+
+    if (!tbody) return;
+
+    let filtered = leads;
+    if (searchQuery && searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      filtered = leads.filter(l =>
+        (l.name && l.name.toLowerCase().includes(q)) ||
+        (l.email && l.email.toLowerCase().includes(q)) ||
+        (l.phone && l.phone.toLowerCase().includes(q)) ||
+        (l.package && l.package.toLowerCase().includes(q))
+      );
+    }
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = "";
+      if (emptyBox) emptyBox.style.display = "block";
+      return;
+    }
+
+    if (emptyBox) emptyBox.style.display = "none";
+
+    tbody.innerHTML = filtered.map(lead => {
+      const waLink = lead.phone ? `https://wa.me/${lead.phone.replace(/[^\d]/g, "")}?text=Hello%20${encodeURIComponent(lead.name)}%2C%20thank%20you%20for%20contacting%20Laureign%20Studios%21` : null;
+      return `
+        <tr>
+          <td><b>${lead.name}</b></td>
+          <td>${lead.email ? `<a href="mailto:${lead.email}" style="color:#38bdf8;text-decoration:none;">${lead.email}</a>` : `<span style="color:var(--muted);">—</span>`}</td>
+          <td>${lead.phone ? `<code>${lead.phone}</code>` : `<span style="color:var(--muted);">—</span>`}</td>
+          <td>${lead.package}</td>
+          <td><span class="leads-source-pill">${lead.source}</span></td>
+          <td><span style="font-size:12px; color:var(--muted);">${lead.capturedAt}</span></td>
+          <td style="white-space:nowrap;">
+            ${waLink ? `<a href="${waLink}" target="_blank" rel="noopener" class="leads-action-btn copy" style="padding:4px 10px; font-size:11px; text-decoration:none; margin-right:4px;">💬 Chat</a>` : ""}
+            <button type="button" onclick="deleteLead('${lead.id}')" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:15px; padding:2px 6px;" title="Delete Lead">&times;</button>
+          </td>
+        </tr>
+      `;
+    }).join("");
+  }
+
+  function filterLeadsTable(query) {
+    renderLeadsTable(query);
+  }
+
+  function deleteLead(id) {
+    if (!confirm("Are you sure you want to remove this client contact?")) return;
+    let leads = getClientLeads();
+    leads = leads.filter(l => l.id !== id);
+    try {
+      localStorage.setItem(LEADS_STORAGE_KEY, JSON.stringify(leads));
+    } catch (e) {}
+    renderLeadsTable(document.getElementById("leadsSearchInput")?.value || "");
+    updateLeadsBadge();
+  }
+
+  function clearLeadsDatabase() {
+    if (!confirm("WARNING: Are you sure you want to clear all stored client leads? This cannot be undone.")) return;
+    try {
+      localStorage.removeItem(LEADS_STORAGE_KEY);
+    } catch (e) {}
+    renderLeadsTable();
+    updateLeadsBadge();
+  }
+
+  function exportLeadsCSV() {
+    const leads = getClientLeads();
+    if (leads.length === 0) {
+      alert("No client leads captured yet! Add a demo lead or book a package to generate contacts.");
+      return;
+    }
+    const headers = ["Full Name", "Email Address", "Phone / WhatsApp", "Package Interest", "Location", "Preferred Date", "Lead Source", "Date Captured"];
+    const rows = leads.map(l => [
+      `"${(l.name || "").replace(/"/g, '""')}"`,
+      `"${(l.email || "").replace(/"/g, '""')}"`,
+      `"${(l.phone || "").replace(/"/g, '""')}"`,
+      `"${(l.package || "").replace(/"/g, '""')}"`,
+      `"${(l.location || "").replace(/"/g, '""')}"`,
+      `"${(l.date || "").replace(/"/g, '""')}"`,
+      `"${(l.source || "").replace(/"/g, '""')}"`,
+      `"${(l.capturedAt || "").replace(/"/g, '""')}"`
+    ]);
+
+    const csvContent = "\uFEFF" + [headers.join(","), ...rows.map(r => r.join(","))].join("\r\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `laureign_client_leads_${new Date().toISOString().split("T")[0]}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function copyAllEmailsBcc() {
+    const leads = getClientLeads();
+    const emails = leads.map(l => (l.email || "").trim()).filter(e => e && e.includes("@"));
+    if (emails.length === 0) {
+      alert("No client email addresses found in CRM yet.");
+      return;
+    }
+    const unique = Array.from(new Set(emails));
+    const text = unique.join(", ");
+    navigator.clipboard.writeText(text).then(() => {
+      alert(`✓ Copied ${unique.length} client email(s)!\n\nOpen Gmail, paste into the 'BCC' field, and send your offer update.`);
+    }).catch(() => {
+      prompt("Copy emails below:", text);
+    });
+  }
+
+  function copyAllPhonesWa() {
+    const leads = getClientLeads();
+    const phones = leads.map(l => (l.phone || "").trim()).filter(p => p.length >= 8);
+    if (phones.length === 0) {
+      alert("No phone numbers found in CRM yet.");
+      return;
+    }
+    const unique = Array.from(new Set(phones));
+    const text = unique.join(", ");
+    navigator.clipboard.writeText(text).then(() => {
+      alert(`✓ Copied ${unique.length} phone number(s) for WhatsApp broadcast list!`);
+    }).catch(() => {
+      prompt("Copy phone numbers below:", text);
+    });
+  }
+
+  function seedSampleLeads() {
+    const sampleList = [
+      { name: "Dr. Evelyn Mwangi", email: "evelyn.mwangi@gmail.com", phone: "+254712345678", package: "Executive Headshots (Platinum)", source: "Quotation Engine", location: "Kakamega Studio", date: "2026-09-20" },
+      { name: "Grace Wanjiku", email: "grace.wanjiku@yahoo.com", phone: "+254722987654", package: "Traditional Cultural Shoot", source: "VIP Offers Club", location: "Nairobi Studio", date: "2026-09-25" },
+      { name: "Brian Otieno & Brenda", email: "otieno.brian@outlook.com", phone: "+254733456789", package: "Wedding Matrimony (Grand Platinum)", source: "Booking Modal (WhatsApp)", location: "Eldoret", date: "2026-10-15" },
+      { name: "Faith Chebet", email: "faith.chebet@gmail.com", phone: "+254790112233", package: "Graduation Milestone Shoot", source: "Walk-in Reception", location: "Kakamega Studio", date: "2026-09-18" }
+    ];
+    sampleList.forEach(lead => saveClientLead(lead));
+    renderLeadsTable();
+  }
+
+  // Handle VIP Club Form Submission
+  function handleVipClubSubmit(event) {
+    event.preventDefault();
+    const nameInput = document.getElementById("vipNameInput");
+    const emailInput = document.getElementById("vipEmailInput");
+    const phoneInput = document.getElementById("vipPhoneInput");
+    const feedback = document.getElementById("vipClubFeedback");
+
+    const name = nameInput ? nameInput.value.trim() : "Valued Creator";
+    const email = emailInput ? emailInput.value.trim() : "";
+    const phone = phoneInput ? phoneInput.value.trim() : "";
+
+    if (!email || !email.includes("@")) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    saveClientLead({
+      name: name,
+      email: email,
+      phone: phone,
+      package: "VIP Club Member (Promo: LAUREIGN500)",
+      source: "VIP Offers Club"
+    });
+
+    if (feedback) {
+      feedback.style.display = "block";
+      feedback.innerHTML = `
+        🎉 <b>Welcome to the Laureign VIP Club, ${name}!</b><br>
+        Your exclusive voucher code is: <code style="background:#064e3b; color:#34d399; padding:3px 8px; border-radius:6px; font-weight:800; font-size:15px;">LAUREIGN500</code> (KSh 500 Off Any Package).<br>
+        We have logged your email (<b>${email}</b>) for upcoming flash sales, graduation mini-sessions, and holiday discounts!
+      `;
+    }
+
+    if (nameInput) nameInput.value = "";
+    if (emailInput) emailInput.value = "";
+    if (phoneInput) phoneInput.value = "";
+  }
+
+  // Send Quotation or Receipt via Email
+  function sendInvoiceEmail() {
+    const emailInput = document.getElementById("invEmailInput");
+    const clientEmail = emailInput ? emailInput.value.trim() : "";
+    const clientVal = (invClientInput && invClientInput.value.trim()) || "Valued Client";
+    const isReceipt = invoiceMode === "receipt";
+
+    const basePrice = invoiceSessions.reduce((sum, s) => sum + ((s.rate || 0) * (s.qty || 1)), 0);
+    const addonsTotal = invoiceAddons.reduce((sum, a) => sum + (a.price || 0), 0);
+    const discount = parseInt(invDiscountInput ? invDiscountInput.value : 0, 10) || 0;
+    const grandTotal = Math.max(0, basePrice + addonsTotal - discount);
+
+    const subject = isReceipt
+      ? `Official Payment Receipt — Laureign Studios (${currentInvoiceRef})`
+      : `Official Photography Quotation & Proposal — Laureign Studios (${currentInvoiceRef})`;
+
+    let body = isReceipt
+      ? `Dear ${clientVal},\n\nThank you for choosing Laureign Studios! Here is your official payment receipt for your recent shoot.\n\n`
+      : `Dear ${clientVal},\n\nThank you for reaching out to Laureign Studios! Below is your official quotation and booking proposal.\n\n`;
+
+    body += `==========================================\n`;
+    body += `DOCUMENT REF: ${currentInvoiceRef}\n`;
+    body += `DATE: ${invoiceDateIssued}\n`;
+    body += `CLIENT: ${clientVal}\n`;
+    body += `==========================================\n\n`;
+
+    body += `SHOOTS & DELIVERABLES:\n`;
+    invoiceSessions.forEach((s, idx) => {
+      const qty = s.qty || 1;
+      const rate = s.rate || 0;
+      body += `${idx + 1}. ${s.title} (${s.tierName})${qty > 1 ? ` ×${qty}` : ""}: KSh ${(rate * qty).toLocaleString()}\n`;
+      if (s.spec) body += `   Scope: ${s.spec}\n`;
+    });
+
+    if (invoiceAddons.length > 0) {
+      body += `\nADD-ONS & ENHANCEMENTS:\n`;
+      invoiceAddons.forEach(a => {
+        body += `- ${a.name}: KSh ${(a.price || 0).toLocaleString()}\n`;
+      });
+    }
+
+    if (discount > 0) {
+      body += `\nSpecial Discount: - KSh ${discount.toLocaleString()}\n`;
+    }
+
+    body += `\nTOTAL INVESTMENT: KSh ${grandTotal.toLocaleString()}\n\n`;
+
+    if (isReceipt) {
+      body += `PAYMENT VERIFICATION (CASHLESS RECEIPT):\n`;
+      body += `Channel: I&M Bank · M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)\n`;
+      body += `Status: PAID & VERIFIED BY STUDIO DESK\n`;
+      body += `Deliverables: Master retouched photographs deliverable via private cloud link.\n\n`;
+    } else {
+      body += `OFFICIAL PAYMENT INSTRUCTIONS (STRICTLY NO CASH):\n`;
+      body += `Bank: I&M Bank\n`;
+      body += `M-Pesa Paybill: 542542\n`;
+      body += `Account No: 486197\n`;
+      body += `Account Name on M-Pesa: JANE AKOTH\n\n`;
+      body += `* To secure your slot on our production calendar, kindly remit your booking deposit via the Paybill above and reply with the M-Pesa confirmation message.*\n\n`;
+    }
+
+    body += `Studio Phone / WhatsApp: 0790 048 905\n`;
+    body += `Location: Kakamega Studio · Nairobi · Eldoret · Across Kenya\n`;
+    body += `Laureign Studios — Luxury Photography & Cinematography\n`;
+
+    // Save lead
+    saveClientLead({
+      name: clientVal,
+      email: clientEmail,
+      phone: (invPhoneInput && invPhoneInput.value) || "",
+      package: invoiceSessions.map(s => s.title).join(" + ") || "Studio Session",
+      source: isReceipt ? "Receipt Emailed" : "Quotation Emailed"
+    });
+
+    const mailtoUrl = `mailto:${clientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoUrl;
+    showInvoiceToast(`✓ Opening email draft for ${clientEmail || clientVal}...`);
   }
 
   // Expose globally to window
@@ -2904,26 +3605,67 @@ document.addEventListener("DOMContentLoaded", () => {
   window.setInvoiceMode = setInvoiceMode;
   window.applyWalkinPreset = applyWalkinPreset;
   window.normalizeKenyanPhone = normalizeKenyanPhone;
-  window.onInvoicePackageChange = onInvoicePackageChange;
-  window.onInvoiceTierChange = onInvoiceTierChange;
   window.updateInvoiceDisplay = updateInvoiceDisplay;
-  window.addCustomLineItem = addCustomLineItem;
-  window.removeCustomLineItem = removeCustomLineItem;
-  window.onCustomItemChange = onCustomItemChange;
+
+  // Multi-Session & Dynamic Add-Ons
+  window.addInvoiceSession = addInvoiceSession;
+  window.removeInvoiceSession = removeInvoiceSession;
+  window.onSessionPkgChange = onSessionPkgChange;
+  window.onSessionTierChange = onSessionTierChange;
+  window.onSessionFieldChange = onSessionFieldChange;
+  window.renderInvoiceSessions = renderInvoiceSessions;
+
+  window.addInvoiceAddon = addInvoiceAddon;
+  window.removeInvoiceAddon = removeInvoiceAddon;
+  window.onAddonFieldChange = onAddonFieldChange;
+  window.renderInvoiceAddons = renderInvoiceAddons;
+
+  // Tab & Staff Mode
+  window.switchInvoiceTab = switchInvoiceTab;
+  window.toggleStaffMode = toggleStaffMode;
+  window.initStaffMode = initStaffMode;
+
+  // Export & Utilities
   window.prepareInvoiceForExport = prepareInvoiceForExport;
   window.downloadInvoicePdf = downloadInvoicePdf;
   window.shareInvoicePdfWhatsApp = shareInvoicePdfWhatsApp;
   window.sendInvoiceWhatsApp = sendInvoiceWhatsApp;
   window.copyInvoiceText = copyInvoiceText;
+  window.sendInvoiceEmail = sendInvoiceEmail;
   window.openInvoiceFromBookingModal = openInvoiceFromBookingModal;
   window.openInvoiceFromSamplesModal = openInvoiceFromSamplesModal;
   window.openInvoiceModalFromCalc = openInvoiceModalFromCalc;
+  window.openBookingModal = openBookingModal;
   window.showInvoiceToast = showInvoiceToast;
   window.applyFieldPrediction = applyFieldPrediction;
   window.setQuickDate = setQuickDate;
   window.applyNoteTemplate = applyNoteTemplate;
 
+  // CRM Exports
+  window.saveClientLead = saveClientLead;
+  window.getClientLeads = getClientLeads;
+  window.openLeadsModal = openLeadsModal;
+  window.closeLeadsModal = closeLeadsModal;
+  window.renderLeadsTable = renderLeadsTable;
+  window.filterLeadsTable = filterLeadsTable;
+  window.deleteLead = deleteLead;
+  window.clearLeadsDatabase = clearLeadsDatabase;
+  window.exportLeadsCSV = exportLeadsCSV;
+  window.copyAllEmailsBcc = copyAllEmailsBcc;
+  window.copyAllPhonesWa = copyAllPhonesWa;
+  window.seedSampleLeads = seedSampleLeads;
+  window.handleVipClubSubmit = handleVipClubSubmit;
 
-    initInvoice();
+  initInvoice();
   renderFaqs();
+  updateLeadsBadge();
+  initStaffMode();
+
+  // Handle direct navigation to quotation (?quote=open or #quotation)
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("quote") === "open" || urlParams.get("quotation") === "open" || window.location.hash === "#quotation") {
+    setTimeout(() => {
+      openInvoiceModal();
+    }, 250);
+  }
 });

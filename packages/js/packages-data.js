@@ -24,10 +24,10 @@ const PATHWAYS = [
     subcategories: [
       { id: "all", name: "🌟 All Studio Sessions" },
       { id: "graduation", name: "🎓 Graduation Shoots" },
-      { id: "portraits", name: "👔 Headshots (Executive & Model)" },
+      { id: "portraits", name: "👔 Executive Headshots" },
       { id: "white-shirt", name: "👔 Crisp White Shirt" },
       { id: "silk-wrap", name: "✨ Luxury Silk Wrap" },
-      { id: "traditional", name: "👑 Traditional & Creative" },
+      { id: "traditional", name: "👑 Traditional Cultural Shoot" },
       { id: "maternity-kids", name: "🍼 Maternity, Kids & Birthdays" },
       { id: "couples-family", name: "👨‍👩‍👧 Couples & Family Studio" }
     ]
@@ -216,8 +216,8 @@ const PACKAGES_DATA = [
     id: "indoor-headshots",
     pathway: "studio",
     subcat: "portraits",
-    catLabel: "Headshots & Portfolios",
-    title: "Executive & Commercial Headshots",
+    catLabel: "Executive Headshots",
+    title: "Executive Headshots",
     tagline: "High-impact headshots for LinkedIn, corporate bios, modeling comp cards & casting calls",
     image: "samples/01-indoor-headshots/cover.jpg",
     badge: "💼 Executive & Model Casting",
@@ -549,14 +549,14 @@ const PACKAGES_DATA = [
     ]
   },
 
-  // 6. TRADITIONAL & CREATIVE SHOOT
+  // 6. TRADITIONAL CULTURAL SHOOT
   {
     id: "traditional-creative",
     pathway: "studio",
     subcat: "traditional",
-    catLabel: "Traditional & Creative",
-    title: "Portrait & Traditional Creative Shoot",
-    tagline: "Celebrate African heritage, traditional cultural attire, and creative fine-art portraiture",
+    catLabel: "Traditional Cultural",
+    title: "Traditional Cultural Shoot",
+    tagline: "Celebrate African heritage, traditional cultural regalia, and authentic tribal styling",
     image: "samples/07-traditional-creative/cover.jpg",
     badge: "👑 Cultural Heritage",
     turnaround: "2–3 Business Days",
@@ -574,7 +574,7 @@ const PACKAGES_DATA = [
     options: [
       {
         id: "single-photo",
-        name: "Single Image (Solo Traditional & Creative · Dressing Included)",
+        name: "Single Image (Solo Cultural Attire · Dressing Included)",
         price: 350,
         deposit: 200,
         summary: "1 Masterpiece Retouched Photo with Traditional Dressing & Cultural Styling",

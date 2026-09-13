@@ -58,13 +58,16 @@
             </span>
           </span>
         </button>
-        <button type="button" class="btn-open-invoice" onclick="openInvoiceModal()" title="Generate Official Proforma Invoice">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-          <span>Quotation / Invoice</span>
-        </button>
-        <button type="button" class="btn-open-walkin" onclick="openInvoiceModal(); applyWalkinPreset();" title="Quick Walk-in Client Desk (Today's Shoot)">
-          <span>⚡ Walk-in Desk</span>
-        </button>
+        <!-- Staff Only Desk & CRM Tools (Protected from public client view; activated via Staff Portal or ?staff=true) -->
+        <div class="staff-tools-cluster" id="headerStaffTools" style="display:none; align-items:center; gap:8px;">
+          <button type="button" class="btn-open-walkin" onclick="openInvoiceModal(); applyWalkinPreset();" title="Quick Walk-in Client Desk (Today's Shoot)">
+            <span>⚡ Walk-in Desk</span>
+          </button>
+          <button type="button" class="btn-open-leads" onclick="openLeadsModal()" title="View &amp; Export Collected Client Emails &amp; CRM Contacts">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>Leads CRM (<span id="leadsCountBadge" class="leads-badge-count">0</span>)</span>
+          </button>
+        </div>
         <a href="#packagesBrowse" class="header-cta-cal">
           <span>Book on Calendar</span>
         </a>
@@ -103,19 +106,26 @@
         <a href="#packagesBrowse" class="drawer-link" style="justify-content:center; background:rgba(255,255,255,0.08); color:#ffffff; font-weight:600; font-size:12px; border-radius:999px; padding:8px 10px; border:1px solid rgba(255,255,255,0.15);">📅 Book on Calendar</a>
         <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20your%20packages%20%F0%9F%93%B8" target="_blank" rel="noopener" class="drawer-link" style="justify-content:center; background:#25D366; color:#000000 !important; font-weight:700; font-size:12px; border-radius:999px; padding:8px 10px;">💬 WhatsApp</a>
       </div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:4px 8px 10px;">
-        <a href="javascript:void(0)" onclick="openInvoiceModal(); toggleDrawer ? toggleDrawer(false) : togglePackagesDrawer(false);" class="drawer-link" style="background:rgba(234,179,8,0.12); border:1px solid rgba(234,179,8,0.3); color:var(--gold-soft); font-weight:700; border-radius:8px; padding:9px 10px; justify-content:center; font-size:11.5px;">📄 PDF Quotation</a>
-        <a href="javascript:void(0)" onclick="openInvoiceModal(); applyWalkinPreset(); toggleDrawer ? toggleDrawer(false) : togglePackagesDrawer(false);" class="drawer-link" style="background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.35); color:#4ade80; font-weight:700; border-radius:8px; padding:9px 10px; justify-content:center; font-size:11.5px;">⚡ Walk-in Receipt</a>
+      <!-- Featured Hamburger Action: Instant Studio Quotation & Estimate Generator -->
+      <div style="margin:4px 8px 10px;">
+        <a href="javascript:void(0)" onclick="openInvoiceModal(); typeof togglePackagesDrawer === 'function' ? togglePackagesDrawer(false) : (typeof toggleDrawer === 'function' ? toggleDrawer(false) : null);" class="drawer-link drawer-quote-btn" style="display:flex; align-items:center; justify-content:center; gap:8px; background:linear-gradient(135deg, rgba(234,179,8,0.22) 0%, rgba(202,138,4,0.16) 100%); border:1px solid rgba(234,179,8,0.5); color:var(--gold-soft); font-weight:700; border-radius:10px; padding:11px 14px; font-size:13px; text-decoration:none; box-shadow:0 4px 14px rgba(234,179,8,0.15);">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          <span>📄 Instant Studio Quotation / Proposal</span>
+        </a>
+      </div>
+      <div id="drawerStaffTools" style="display:none; margin:0 8px 10px;">
+        <a href="javascript:void(0)" onclick="openInvoiceModal(); applyWalkinPreset(); toggleDrawer ? toggleDrawer(false) : togglePackagesDrawer(false);" class="drawer-link" style="background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.35); color:#4ade80; font-weight:700; border-radius:8px; padding:9px 10px; justify-content:center; font-size:11.5px; margin-bottom:6px;">⚡ Walk-in Receipt Desk</a>
+        <a href="javascript:void(0)" onclick="closeDrawer(); openLeadsModal();" class="drawer-link" style="background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.35); color:#a5b4fc; font-weight:700; border-radius:8px; padding:9px 10px; justify-content:center; font-size:11.5px;">📊 Studio Leads CRM</a>
       </div>
       <a href="index.html" class="drawer-link" style="color:var(--gold-soft);font-weight:700;">← Back to All Packages (Rate Card)</a>
       <!-- 1. STUDIO SESSIONS (11 Packages) -->
       <div style="padding:6px 18px 2px; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--gold-soft); font-weight:700;">📸 Studio &amp; Portrait Sessions</div>
       <a href="graduation-shoot.html" class="drawer-link">🎓 Graduation Milestone Shoot</a>
-      <a href="headshots.html" class="drawer-link">💼 Executive &amp; Model Headshots</a>
+      <a href="headshots.html" class="drawer-link">💼 Executive Headshots</a>
       <a href="shirt-shoot.html" class="drawer-link">👔 Crisp White Shirt Shoot (Studio)</a>
       <a href="shirt-shoot.html" class="drawer-link">🎬 White Shirt Video Reels</a>
       <a href="wrap-shoot.html" class="drawer-link">✨ Luxury Silk Wrap Shoot</a>
-      <a href="portrait-shoot.html" class="drawer-link">🎨 Portrait &amp; Traditional Creative Shoot</a>
+      <a href="portrait-shoot.html" class="drawer-link">👑 Traditional Cultural Shoot</a>
       <a href="maternity-shoot.html" class="drawer-link">🍼 Maternity &amp; Baby Bump Shoot (Studio)</a>
       <a href="birthday-shoots.html" class="drawer-link">🎂 Birthday Studio Glamour Shoot</a>
       <a href="kids-shoot.html" class="drawer-link">🎈 Kids &amp; Infant Studio Shoot</a>
@@ -157,6 +167,10 @@
       <a href="commercial-branding.html" class="drawer-link">🎨 Graphic Design Starter Package</a>
       <a href="commercial-branding.html" class="drawer-link">📈 Graphic Design Growth Package</a>
       <a href="https://wa.me/254790048905" target="_blank" rel="noopener" class="drawer-link" style="color:var(--accent-soft);">💬 WhatsApp Studio: 0790048905</a>
+      <button type="button" onclick="closeDrawer(); openLeadsModal();" class="drawer-link" style="text-align:left; background:rgba(67, 56, 202, 0.15); border:1px solid rgba(129, 140, 248, 0.3); border-radius:10px; margin:4px 14px; width:calc(100% - 28px); cursor:pointer; color:#818cf8; font-weight:700; display:flex; align-items:center; justify-content:space-between; padding:10px 14px;">
+        <span>👥 Client Leads &amp; Email CRM</span>
+        <span id="drawerLeadsCountBadge" style="background:#4338ca; color:#ffffff; padding:2px 8px; border-radius:980px; font-size:11px;">0</span>
+      </button>
       <div style="margin:14px 14px 8px; padding:12px 14px; background:rgba(34, 197, 94, 0.12); border:1px solid rgba(74, 222, 128, 0.3); border-radius:12px;">
         <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#4ade80; margin-bottom:4px;">⚡ For Creators &amp; Studios</div>
         <div style="font-size:11.5px; color:#ffffff; line-height:1.4; margin-bottom:8px;">Want an interactive package website like this for your studio?</div>
@@ -767,7 +781,7 @@
           <div class="payment-trust-content">
             <h4>Official Studio Payment &amp; Deposit Protection</h4>
             <p>
-              Lock your calendar date safely. Send official commitment deposits via M-PESA to Studio Booking Line <b>0790048905</b> (Laureign Studios). Instant verified digital receipts issued immediately upon reservation.
+              Lock your date safely. Send official booking deposits via <b>M-PESA Paybill: 542542 (I&amp;M Bank)</b> · Account No: <b>486197</b>. Confirmed Account Name: <b>JANE AKOTH</b>. <i>(Strictly No Cash Accepted · Cashless Studio Desk)</i>. Instant verified digital receipts issued upon payment.
             </p>
           </div>
         </div>
@@ -888,6 +902,30 @@
     </div>
   </section>
 
+  <!-- VIP CREATORS & CLIENT OFFERS CLUB (EMAIL & WHATSAPP LEADS) -->
+  <section class="vip-club-section" id="vipClub">
+    <div class="wrap">
+      <div class="vip-club-card">
+        <div class="vip-club-badge">🎁 VIP Studio Club · Exclusive Client Perks</div>
+        <h3 class="vip-club-title">Get KSh 500 Off Your First Shoot &amp; VIP Flash Offers</h3>
+        <p class="vip-club-desc">
+          Join the Laureign Studios client roster. Get instant seasonal promo codes, graduation mini-session priority dates, holiday discounts, and private model call alerts delivered directly to your inbox &amp; WhatsApp.
+        </p>
+        <form class="vip-club-form" id="vipClubForm" onsubmit="handleVipClubSubmit(event)">
+          <input type="text" id="vipNameInput" class="vip-club-input" placeholder="Your Full Name" required>
+          <input type="email" id="vipEmailInput" class="vip-club-input" placeholder="Your Email Address" required>
+          <input type="tel" id="vipPhoneInput" class="vip-club-input" placeholder="WhatsApp / Phone (Optional)">
+          <button type="submit" class="vip-club-btn">
+            <span>Claim KSh 500 Voucher</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-7.85-1.42 1.42L16.86 11H5v2z"/></svg>
+          </button>
+        </form>
+        <div class="vip-club-feedback" id="vipClubFeedback" style="display:none;"></div>
+        <div class="vip-club-guarantee">🔒 We respect your privacy. Zero spam — only verified discounts and private studio updates.</div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQS -->
   <section class="faqs-section">
     <div class="wrap">
@@ -902,6 +940,31 @@
       </div>
     </div>
   </section>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer" style="background:#07100c; border-top:1px solid rgba(255,255,255,0.08); padding:40px 0 24px; color:#94a3b8; font-size:12px;">
+    <div class="wrap" style="display:flex; flex-direction:column; gap:20px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="images/logo.png" alt="Laureign Studios" style="height:38px; width:auto;">
+          <div>
+            <div style="font-weight:700; color:#ffffff; font-size:14px;">Laureign Studios</div>
+            <div style="font-size:11px; color:#64748b;">Luxury Photography &amp; Cinematography · Kenya</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
+          <a href="#packagesBrowse" style="color:#cbd5e1; text-decoration:none;">Rate Card</a>
+          <a href="javascript:void(0)" onclick="openInvoiceModal()" style="color:#cbd5e1; text-decoration:none;">Instant Quotation</a>
+          <a href="https://wa.me/254790048905" target="_blank" rel="noopener" style="color:#4ade80; text-decoration:none; font-weight:600;">WhatsApp Support</a>
+          <a href="javascript:void(0)" onclick="toggleStaffMode()" style="color:#64748b; text-decoration:none; font-size:11px; padding:4px 8px; border:1px solid rgba(255,255,255,0.1); border-radius:6px;" title="Unlock Staff Tools (PIN: 2026)">🔑 Staff Portal</a>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:11px; color:#64748b;">
+        <div>© 2026 Laureign Studios. All rights reserved. Kakamega Studio · Nairobi · Across Kenya.</div>
+        <div>Strictly Cashless Studio · Paybill 542542 (Acc: 486197)</div>
+      </div>
+    </div>
+  </footer>
 
   <!-- NATIVE BOOKING MODAL -->
   <div class="modal-overlay" id="bookingModal" aria-hidden="true" role="dialog">
@@ -951,6 +1014,16 @@
       <div class="form-field">
         <label class="form-label" for="modalNameInput">Your Name (Optional)</label>
         <input type="text" id="modalNameInput" class="form-input" placeholder="e.g. Grace Wanjiku">
+      </div>
+
+      <div class="form-field">
+        <label class="form-label" for="modalPhoneInput">WhatsApp / Phone Number</label>
+        <input type="tel" id="modalPhoneInput" class="form-input" placeholder="e.g. 0712 345 678">
+      </div>
+
+      <div class="form-field">
+        <label class="form-label" for="modalEmailInput">Email Address (For Quote Delivery &amp; Cloud Gallery Links)</label>
+        <input type="email" id="modalEmailInput" class="form-input" placeholder="e.g. grace@example.com">
       </div>
 
       <label class="form-label">WhatsApp Message Preview</label>
@@ -1023,17 +1096,27 @@
       <!-- Top Action Strip (Screen Only) -->
       <div class="invoice-modal-topbar">
         <div class="inv-topbar-left">
-          <span class="inv-topbar-tag">📄 Official Studio Quotation Engine</span>
-          <h3 class="inv-topbar-title">Proforma Invoice &amp; Agreement Generator</h3>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="inv-topbar-tag">📄 Studio Proposal Workstation</span>
+            <div class="inv-tab-switcher" id="invTabSwitcher">
+              <button type="button" class="inv-tab-btn active" id="tabBtnEdit" onclick="switchInvoiceTab('edit')">
+                ✏️ Edit Shoot &amp; Add-Ons
+              </button>
+              <button type="button" class="inv-tab-btn" id="tabBtnPreview" onclick="switchInvoiceTab('preview')">
+                📄 View Quotation Sheet
+              </button>
+            </div>
+          </div>
+          <h3 class="inv-topbar-title">Interactive Quotation &amp; Agreement Generator</h3>
         </div>
         <div class="inv-topbar-actions">
           <button type="button" class="inv-btn-action pdf-btn" id="invTopDownloadBtn" onclick="downloadInvoicePdf()">
             <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            <span id="invTopDownloadText">📥 Download Official PDF</span>
+            <span id="invTopDownloadText">📥 Download PDF</span>
           </button>
           <button type="button" class="inv-btn-action wa-btn" id="invTopWaBtn" onclick="shareInvoicePdfWhatsApp()">
             <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
-            <span id="invTopWaText">📲 Send to Client on WhatsApp</span>
+            <span id="invTopWaText">📲 WhatsApp</span>
           </button>
           <button type="button" class="inv-btn-action print-btn" onclick="window.print()">
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
@@ -1043,462 +1126,489 @@
         </div>
       </div>
 
-      <!-- Interactive Customizer Toolbar (Screen Only - Hides on Print) -->
-      <div class="invoice-customizer-toolbar">
+      <!-- App-Like Split Workspace -->
+      <div class="inv-workspace-body" id="invWorkspaceBody">
         
-        <!-- Dedicated Walk-in Quick Bar -->
-        <div class="inv-walkin-quickbar">
-          <div style="display:flex; align-items:center; gap:10px;">
-            <span style="font-size:22px;">⚡</span>
-            <div>
-              <div style="font-size:12.5px; font-weight:800; color:#4ade80; letter-spacing:0.5px;">STUDIO WALK-IN CLIENT DESK</div>
-              <div style="font-size:11px; color:#cbd5e1;">Handling a walk-in client right now? 1-click sets today's date, session info &amp; official receipt:</div>
-            </div>
-          </div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button type="button" onclick="applyWalkinPreset('full')" style="background:#22c55e; color:#000000; border:none; border-radius:8px; padding:6px 14px; font-size:11.5px; font-weight:800; cursor:pointer;">
-              🧾 Walk-in Receipt (100% Paid)
-            </button>
-            <button type="button" onclick="applyWalkinPreset('deposit')" style="background:rgba(234,179,8,0.2); color:#fde047; border:1px solid rgba(234,179,8,0.4); border-radius:8px; padding:6px 12px; font-size:11.5px; font-weight:700; cursor:pointer;">
-              🔒 Walk-in Deposit (Partial)
-            </button>
-          </div>
-        </div>
-
-        <!-- Mode Switcher: Quotation vs Official Receipt -->
-        <div class="inv-mode-card" style="grid-column: 1 / -1;">
-          <div class="inv-mode-left">
-            <span class="inv-mode-title">Document Purpose:</span>
-            <div class="inv-mode-pill-group">
-              <button type="button" class="inv-mode-pill active mode-quote" id="btnModeQuotation" onclick="setInvoiceMode('quotation')">
-                <span>📄 Online / Quotation (Estimate)</span>
-              </button>
-              <button type="button" class="inv-mode-pill" id="btnModeReceipt" onclick="setInvoiceMode('receipt')">
-                <span>🧾 Walk-in / Official Receipt (Paid)</span>
+        <!-- LEFT PANE: Interactive Studio Configurator (Scrollable) -->
+        <div class="inv-editor-pane" id="invEditorPane">
+          
+          <!-- Card 0: Mode & Walkin Desk -->
+          <div class="inv-card-section">
+            <div class="inv-mode-row">
+              <div>
+                <span class="inv-card-label">Document Purpose:</span>
+                <div class="inv-mode-pill-group">
+                  <button type="button" class="inv-mode-pill active mode-quote" id="btnModeQuotation" onclick="setInvoiceMode('quotation')">
+                    <span>📄 Quotation (Estimate)</span>
+                  </button>
+                  <button type="button" class="inv-mode-pill" id="btnModeReceipt" onclick="setInvoiceMode('receipt')">
+                    <span>🧾 Official Receipt (Paid)</span>
+                  </button>
+                </div>
+              </div>
+              <button type="button" class="btn-walkin-preset" onclick="applyWalkinPreset()" title="Auto-fill today's walk-in client details">
+                <span>⚡ Today's Walk-in Shoot</span>
               </button>
             </div>
-          </div>
-          <button type="button" class="btn-walkin-preset" onclick="applyWalkinPreset()" title="Auto-fill today's walk-in client details">
-            <span>⚡ Today's Walk-in Shoot</span>
-          </button>
-        </div>
 
-        <!-- Section 1: Client & Assignment Info with Predictive Autocomplete -->
-        <div class="inv-customizer-section-title">👤 Client &amp; Assignment Details</div>
-        <div class="inv-tools-grid">
-          
-          <div class="inv-tool-group">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <label for="invClientInput">Client / Organization Name:</label>
-              <span style="font-size:10.5px; color:#a1a1aa;">Predictive title helpers:</span>
-            </div>
-            <input type="text" id="invClientInput" list="invClientSuggestions" class="inv-input" placeholder="e.g. Grace Wanjiku / Kenya Airways" oninput="updateInvoiceDisplay()">
-            <datalist id="invClientSuggestions">
-              <option value="Dr. "></option>
-              <option value="Eng. "></option>
-              <option value="Pastor "></option>
-              <option value="Hon. "></option>
-              <option value="Mr. &amp; Mrs. "></option>
-              <option value="Family of "></option>
-              <option value="Studio Walk-in Guest"></option>
-            </datalist>
-            <div class="inv-predictive-chips">
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Dr. ', true)">+ Dr.</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Eng. ', true)">+ Eng.</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Pastor ', true)">+ Pastor</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Hon. ', true)">+ Hon.</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Mr. &amp; Mrs. ', true)">+ Mr. &amp; Mrs.</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Studio Walk-in Guest')">⚡ Walk-in Guest</span>
-            </div>
-          </div>
-
-          <div class="inv-tool-group">
-            <label for="invPhoneInput">WhatsApp / Phone Number (For Direct PDF Send):</label>
-            <input type="text" id="invPhoneInput" class="inv-input" placeholder="e.g. 0712 345 678" oninput="updateInvoiceDisplay()">
-          </div>
-
-          <div class="inv-tool-group">
-            <label for="invEmailInput">Client Email Address (Optional):</label>
-            <input type="email" id="invEmailInput" class="inv-input" placeholder="e.g. client@company.com" oninput="updateInvoiceDisplay()">
-          </div>
-
-          <div class="inv-tool-group">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <label for="invDateInput">Target Event / Shoot Date:</label>
-              <span style="font-size:10.5px; color:#a1a1aa;">Quick date:</span>
-            </div>
-            <input type="date" id="invDateInput" class="inv-input" oninput="updateInvoiceDisplay()">
-            <div class="inv-predictive-chips">
-              <span class="inv-predict-chip" onclick="setQuickDate(0)">⚡ Today</span>
-              <span class="inv-predict-chip" onclick="setQuickDate(1)">Tomorrow</span>
-              <span class="inv-predict-chip" onclick="setQuickDate(7)">Next Week</span>
-              <span class="inv-predict-chip" onclick="setQuickDate(30)">Next Month</span>
-            </div>
-          </div>
-
-          <div class="inv-tool-group">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <label for="invTimeInput">Coverage Timing &amp; Duration:</label>
-              <span style="font-size:10.5px; color:#a1a1aa;">Click to predict:</span>
-            </div>
-            <input type="text" id="invTimeInput" list="invTimeSuggestions" class="inv-input" placeholder="e.g. Standard Studio Session" oninput="updateInvoiceDisplay()">
-            <datalist id="invTimeSuggestions">
-              <option value="1 Hour Studio Portrait Session"></option>
-              <option value="2 Hours In-Studio &amp; Outdoor"></option>
-              <option value="Half-Day Production (4 Hours)"></option>
-              <option value="Full-Day Event Coverage (8 Hours)"></option>
-              <option value="Morning Golden Hour (7:00 AM – 10:00 AM)"></option>
-              <option value="Evening Sunset Session (4:00 PM – 6:30 PM)"></option>
-              <option value="Walk-in Instant Studio Shoot (Completed)"></option>
-            </datalist>
-            <div class="inv-predictive-chips">
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', '1 Hour Studio Portrait Session')">⏱️ 1h Studio</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', '2 Hours In-Studio &amp; Outdoor')">⏱️ 2h Studio+Out</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', 'Half-Day Production (4 Hours)')">⏱️ Half-Day (4h)</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', 'Full-Day Event Coverage (8 Hours)')">⏱️ Full-Day (8h)</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', 'Morning Golden Hour (7:00 AM – 10:00 AM)')">🌅 Golden Hour</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', 'Walk-in Instant Studio Shoot (Completed)')">⚡ Walk-in Done</span>
-            </div>
-          </div>
-
-          <div class="inv-tool-group">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <label for="invLocationInput">Event Venue &amp; City:</label>
-              <span style="font-size:10.5px; color:#a1a1aa;">Click to insert:</span>
-            </div>
-            <input type="text" id="invLocationInput" list="invLocationSuggestions" class="inv-input" placeholder="e.g. Laureign Studios (In-Studio, Kakamega)" oninput="updateInvoiceDisplay()">
-            <datalist id="invLocationSuggestions">
-              <option value="Laureign Studios (In-Studio, Kakamega)"></option>
-              <option value="Laureign Studios (Nairobi Branch)"></option>
-              <option value="Rupa Mall / Eldoret"></option>
-              <option value="Ciala Resort, Kisumu"></option>
-              <option value="Client Private Residence"></option>
-              <option value="Golf Hotel Kakamega"></option>
-              <option value="Karura Forest, Nairobi"></option>
-              <option value="Two Rivers Mall / Rosslyn"></option>
-              <option value="Safari Park Hotel, Nairobi"></option>
-            </datalist>
-            <div class="inv-predictive-chips">
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Laureign Studios (In-Studio, Kakamega)')">📍 Kakamega Studio</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Laureign Studios (Nairobi Branch)')">📍 Nairobi Studio</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Rupa Mall / Eldoret')">📍 Eldoret</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Ciala Resort, Kisumu')">📍 Kisumu</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Client Private Residence')">📍 Client Residence</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Karura Forest, Nairobi')">📍 Karura Forest</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Section: Receipt & Payment Confirmation Details (Visible in Receipt mode) -->
-        <div class="inv-receipt-settings" id="invReceiptSettings" style="grid-column: 1 / -1; display:none;">
-          <div class="inv-receipt-settings-header">
-            <span class="receipt-badge">🧾 Payment Verification</span>
-            <span style="font-size:12px; color:#4ade80; font-weight:700;">Official Payment Confirmation &amp; M-Pesa Record</span>
-          </div>
-          <div class="inv-tools-grid">
-            <div class="inv-tool-group">
-              <label for="invPaymentStatusSelect">Payment Status Received:</label>
-              <select id="invPaymentStatusSelect" class="inv-select" onchange="updateInvoiceDisplay()">
-                <option value="full" selected>✓ Full Payment Received (100% Paid · Zero Balance)</option>
-                <option value="deposit">✓ Deposit Received (Balance Due on Delivery)</option>
-              </select>
-            </div>
-            <div class="inv-tool-group">
-              <label for="invPaymentMethodSelect">Payment Channel:</label>
-              <select id="invPaymentMethodSelect" class="inv-select" onchange="updateInvoiceDisplay()">
-                <option value="M-Pesa Buy Goods Till (0790048905)" selected>M-Pesa Buy Goods Till (0790048905)</option>
-                <option value="Cash at Studio Reception">Cash at Studio Reception</option>
-                <option value="M-Pesa Send Money (0790048905)">M-Pesa Send Money (0790048905)</option>
-                <option value="Bank Transfer / Card">Bank Transfer / Card</option>
-              </select>
-            </div>
-            <div class="inv-tool-group">
-              <label for="invPaymentRefInput">M-Pesa Code / Receipt Ref:</label>
-              <input type="text" id="invPaymentRefInput" class="inv-input" placeholder="e.g. SLD8927K / Cash" oninput="updateInvoiceDisplay()">
-            </div>
-          </div>
-        </div>
-
-        <!-- Section 2: Core Package, Crew & Booking Terms -->
-        <div class="inv-customizer-section-title" style="margin-top:12px;">📸 Core Package, Crew &amp; Booking Terms</div>
-        <div class="inv-tools-grid">
-          <div class="inv-tool-group">
-            <label for="invPackageSelect">Select Shoot / Event Category:</label>
-            <select id="invPackageSelect" class="inv-select" onchange="onInvoicePackageChange()"></select>
-          </div>
-          <div class="inv-tool-group">
-            <label for="invTierSelect">Package Tier:</label>
-            <select id="invTierSelect" class="inv-select" onchange="onInvoiceTierChange()"></select>
-          </div>
-          <div class="inv-tool-group">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <label for="invCrewInput">Crew Allocation Note:</label>
-              <span style="font-size:10.5px; color:#a1a1aa;">Crew presets:</span>
-            </div>
-            <input type="text" id="invCrewInput" list="invCrewSuggestions" class="inv-input" placeholder="e.g. 2 Photographers + 1 Cinematographer" oninput="updateInvoiceDisplay()">
-            <datalist id="invCrewSuggestions">
-              <option value="Studio Lead Photographer + Lighting Assistant"></option>
-              <option value="Lead Cinematographer &amp; 4K Cinema Camera"></option>
-              <option value="2 Senior Photographers + Studio Lighting Assistant"></option>
-              <option value="Drone Pilot &amp; 4K Aerial Cinema Unit"></option>
-              <option value="Full Commercial Production Crew + Audio Engineer"></option>
-              <option value="Solo Studio Portrait Specialist"></option>
-            </datalist>
-            <div class="inv-predictive-chips">
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invCrewInput', 'Studio Lead Photographer + Lighting Assistant')">📸 Studio Lead + Assist</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invCrewInput', 'Lead Cinematographer & 4K Cinema Camera')">🎥 4K Cinema Unit</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invCrewInput', '2 Senior Photographers + Studio Lighting Assistant')">👥 2 Pro Photographers</span>
-              <span class="inv-predict-chip" onclick="applyFieldPrediction('invCrewInput', 'Drone Pilot & 4K Aerial Cinema Unit')">🛸 Drone Aerial Unit</span>
-            </div>
-          </div>
-          <div class="inv-tool-group">
-            <label for="invDepositPercent">Booking Deposit %:</label>
-            <select id="invDepositPercent" class="inv-select" onchange="updateInvoiceDisplay()">
-              <option value="40" selected>40% Booking Deposit (Recommended)</option>
-              <option value="30">30% Booking Deposit (Flexible)</option>
-              <option value="50">50% Booking Deposit (Half Advance)</option>
-              <option value="80">80% Booking Deposit (High Season Lock)</option>
-              <option value="100">100% Full Payment (Zero Balance)</option>
-            </select>
-          </div>
-          <div class="inv-tool-group">
-            <label for="invDiscountInput">Special Client Discount (KSh, Optional):</label>
-            <input type="number" id="invDiscountInput" class="inv-input" placeholder="e.g. 2000" oninput="updateInvoiceDisplay()">
-          </div>
-        </div>
-
-        <!-- Section 3: Custom Line Items Builder with 1-Click Fast Adders -->
-        <div class="inv-custom-items-section" style="margin-top:14px; background:rgba(0,0,0,0.25); border:1px dashed rgba(255,255,255,0.18); border-radius:12px; padding:12px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
-            <div>
-              <span style="font-size:12px; font-weight:700; color:var(--gold-soft);">➕ Custom Fees &amp; Production Enhancements:</span>
-              <span style="font-size:11px; color:#94a3b8; display:block;">Click a 1-click upgrade chip below or add a custom line:</span>
-            </div>
-            <button type="button" onclick="addCustomLineItem()" style="background:#22c55e; color:#000000; border:none; border-radius:999px; padding:5px 14px; font-size:12px; font-weight:700; cursor:pointer;">
-              + Add Blank Service
-            </button>
-          </div>
-          
-          <!-- Predictive 1-Click Fast Adders -->
-          <div class="inv-predictive-chips" style="margin-bottom:10px;">
-            <span class="inv-predict-chip" style="background:rgba(34,197,94,0.15); border-color:#22c55e; color:#86efac;" onclick="addCustomLineItem('Extra 10 Retouched Photos', 'High-end frequency separation skin retouching', 1500)">+ 10 Retouched Photos (KSh 1,500)</span>
-            <span class="inv-predict-chip" style="background:rgba(234,179,8,0.15); border-color:#eab308; color:#fde047;" onclick="addCustomLineItem('24h Rush Priority Turnaround', 'Expedited master gallery delivery within 24h', 3000)">+ 24h Rush Turnaround (KSh 3,000)</span>
-            <span class="inv-predict-chip" style="background:rgba(56,189,248,0.15); border-color:#38bdf8; color:#bae6fd;" onclick="addCustomLineItem('Drone 4K Aerial Coverage', 'Full aerial cinema session with licensed drone pilot', 6000)">+ 4K Drone Aerial (KSh 6,000)</span>
-            <span class="inv-predict-chip" style="background:rgba(168,85,247,0.15); border-color:#a855f7; color:#e9d5ff;" onclick="addCustomLineItem('Hardcover Photobook Album', '30-page luxury lay-flat metallic photo album', 7500)">+ Photobook 30-Page (KSh 7,500)</span>
-            <span class="inv-predict-chip" style="background:rgba(244,63,94,0.15); border-color:#f43f5e; color:#fecdd3;" onclick="addCustomLineItem('Extra Outfit Change (Studio)', 'Additional background &amp; wardrobe styling session', 1000)">+ Extra Outfit Change (KSh 1,000)</span>
-            <span class="inv-predict-chip" style="background:rgba(249,115,22,0.15); border-color:#f97316; color:#fed7aa;" onclick="addCustomLineItem('A2 Framed Canvas Print', '16x24 inch museum-grade matte canvas with wooden frame', 4500)">+ A2 Framed Canvas (KSh 4,500)</span>
-          </div>
-
-          <div id="invCustomItemsList"></div>
-        </div>
-
-        <!-- Section 4: Special Production Notes with 1-Click Template Inserts -->
-        <div class="inv-tool-group" style="margin-top:12px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:4px;">
-            <label for="invNotesInput" style="font-weight:700; color:var(--gold-soft);">Special Scope of Work &amp; Assignment Notes (Prints on Invoice):</label>
-            <span style="font-size:11px; color:#a1a1aa;">✨ Click any predictive template below to insert:</span>
-          </div>
-          <textarea id="invNotesInput" class="inv-input" rows="2" placeholder="e.g. Includes 2 outfit changes, studio backdrop selection, skin retouching &amp; high-res cloud gallery download." oninput="updateInvoiceDisplay()"></textarea>
-          
-          <div class="inv-predictive-chips" style="margin-top:8px;">
-            <span class="inv-predict-chip" style="border-color:#ca8a04; color:#fde047;" onclick="applyNoteTemplate('studio')">📝 + Standard Studio Scope</span>
-            <span class="inv-predict-chip" style="border-color:#22c55e; color:#86efac;" onclick="applyNoteTemplate('rush')">⚡ + 24h Rush Turnaround</span>
-            <span class="inv-predict-chip" style="border-color:#38bdf8; color:#bae6fd;" onclick="applyNoteTemplate('wedding')">💍 + Full-Day Wedding Scope</span>
-            <span class="inv-predict-chip" style="border-color:#f43f5e; color:#fecdd3;" onclick="applyNoteTemplate('graduation')">🎓 + Graduation Family Scope</span>
-            <span class="inv-predict-chip" style="border-color:#a855f7; color:#e9d5ff;" onclick="applyNoteTemplate('travel')">🚗 + Travel &amp; Logistics Note</span>
-            <span class="inv-predict-chip" style="border-color:#f97316; color:#fed7aa;" onclick="applyNoteTemplate('clear')">✕ Clear Notes</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- THE PRINTABLE PROFORMA INVOICE SHEET (Prints crisp on A4 & exports to clean PDF) -->
-      <div class="invoice-printable-sheet" id="invoicePrintableSheet">
-        
-        <!-- Header: Studio Branding & Quote Meta -->
-        <div class="inv-sheet-header">
-          <div class="inv-brand-col">
-            <div class="inv-brand-badge" id="invDisplayDocType">PROFORMA INVOICE &amp; QUOTATION</div>
-            <h1 class="inv-brand-name">LAUREIGN STUDIOS</h1>
-            <p class="inv-brand-tagline">Visual Masterpieces · Luxury Photography &amp; Cinematography</p>
-            <div class="inv-contact-mini">
-              <span>📍 Nairobi · Kakamega · Eldoret · Across Kenya</span>
-              <span>📞 +254 790 048 905</span>
-              <span>✉️ laureignstudios@gmail.com</span>
-            </div>
-          </div>
-          <div class="inv-meta-col">
-            <div class="inv-ref-pill">
-              <span class="inv-ref-label" id="invDisplayRefLabel">QUOTATION REF:</span>
-              <span class="inv-ref-val" id="invDisplayRef">LS-QUO-2026-7841</span>
-            </div>
-            <div class="inv-meta-item">
-              <span class="lbl" id="invDisplayDateLabel">Date Issued:</span>
-              <span class="val" id="invDisplayDateIssued">10 Sep 2026</span>
-            </div>
-            <div class="inv-meta-item" id="invValidityMetaItem">
-              <span class="lbl">Validity:</span>
-              <span class="val" id="invDisplayValidity">14 Calendar Days</span>
-            </div>
-            <div class="inv-meta-item">
-              <span class="lbl">Payment Status:</span>
-              <span class="val status-proforma" id="invDisplayStatusPill">PROFORMA / UNPAID</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Verified Receipt Banner (Shows in receipt mode) -->
-        <div class="inv-receipt-verified-banner" id="invReceiptVerifiedBanner" style="display:none;">
-          <span>🧾 OFFICIAL PAYMENT CONFIRMATION &amp; RECEIPT · LAUREIGN STUDIOS · ACCOUNT RECORD VERIFIED</span>
-        </div>
-
-        <div class="inv-divider"></div>
-
-        <!-- Billed To / Assignment Specifications (4-column grid) -->
-        <div class="inv-specs-grid" style="grid-template-columns: repeat(4, 1fr);">
-          <div class="inv-spec-box">
-            <span class="spec-label">CLIENT / BILLED TO:</span>
-            <div class="spec-value highlight" id="invSheetClient">Valued Client</div>
-            <div class="spec-sub" id="invSheetPhone">Phone: Not Specified</div>
-            <div class="spec-sub" id="invSheetEmail" style="display:none;"></div>
-          </div>
-          <div class="inv-spec-box">
-            <span class="spec-label">TARGET DATE &amp; TIMING:</span>
-            <div class="spec-value" id="invSheetDate">To Be Scheduled</div>
-            <div class="spec-sub" id="invSheetTime">Full Day Session</div>
-          </div>
-          <div class="inv-spec-box">
-            <span class="spec-label">LOCATION &amp; VENUE:</span>
-            <div class="spec-value" id="invSheetLocation">Nairobi / In-Studio</div>
-            <div class="spec-sub">On-location crew allocation</div>
-          </div>
-          <div class="inv-spec-box">
-            <span class="spec-label">ASSIGNED CREW &amp; GEAR:</span>
-            <div class="spec-value" id="invSheetCrew">Lead Production Team</div>
-            <div class="spec-sub">High-Speed 4K Cinema Bodies</div>
-          </div>
-        </div>
-
-        <!-- Itemized Deliverables Table -->
-        <div class="inv-table-wrap">
-          <table class="inv-table">
-            <thead>
-              <tr>
-                <th style="width:36%;">Service / Deliverable Description</th>
-                <th style="width:36%;">Scope &amp; Included Specifications</th>
-                <th style="width:14%; text-align:right;">Rate (KSh)</th>
-                <th style="width:14%; text-align:right;">Amount (KSh)</th>
-              </tr>
-            </thead>
-            <tbody id="invTableBody">
-              <!-- Dynamically rendered -->
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Interactive Add-On Toggles in Invoice (Screen Only) -->
-        <div class="inv-addons-selector-box">
-          <div class="inv-addons-header">
-            <span>✨ Optional Studio Add-On Enhancements (Click to Add / Remove):</span>
-          </div>
-          <div class="inv-addons-pills" id="invAddonsPills">
-            <!-- Dynamically populated add-on pills with checkboxes -->
-          </div>
-        </div>
-
-        <!-- Special Assignment Notes (Prints on invoice) -->
-        <div class="inv-notes-box" id="invDisplayNotesBox" style="display:none;">
-          <b>Special Assignment Scope &amp; Deliverable Terms:</b>
-          <div id="invDisplayNotesText" style="margin-top:4px;"></div>
-        </div>
-
-        <!-- Financial Summary Grid -->
-        <div class="inv-financials-row">
-          <div class="inv-payment-terms-col" id="invPayTermsCol">
-            <div class="inv-terms-title" id="invTermsTitle">Official Payment &amp; M-Pesa Instructions</div>
-            <div class="inv-pay-box" id="invPayBox">
-              <div class="pay-line" id="invPayChannelLine"><b>Payment Method:</b> <span id="invPayChannelVal">M-Pesa Buy Goods Till / Phone</span></div>
-              <div class="pay-line" id="invPayTillLine"><b>Till / Phone Number:</b> <span class="till-num">0790048905</span></div>
-              <div class="pay-line" id="invPayAccountLine"><b>Account Name:</b> Laureign Studios</div>
-              <div class="pay-line" id="invPayRefLine"><b>Account Reference:</b> <span id="invPayRef">LS-BOOKING</span></div>
-            </div>
-            <p class="inv-terms-note" id="invTermsNote">
-              * A booking commitment deposit locks your date on our production calendar. RAW unedited proofs available at KSh 150 per image. The remaining balance is payable upon delivery of your master high-resolution gallery and deliverables.
-            </p>
-            <!-- Professional Photography Terms & Licensing (Scribd Industry Standard) -->
-            <div class="inv-terms-card" id="invTermsCard">
-              <div class="inv-terms-card-title" id="invTermsCardTitle">PRODUCTION POLICIES &amp; USAGE RIGHTS</div>
-              <div class="inv-terms-card-list" id="invTermsCardList">
-                <div class="inv-term-item">
-                  <span class="inv-term-bullet">▪</span>
-                  <span><b>Usage &amp; Licensing:</b> Delivered master files grant perpetual personal, family &amp; social media distribution rights. Commercial advertising/broadcast usage quoted upon request. Studio retains artistic copyright.</span>
+            <!-- Receipt & Payment Verification (Receipt Mode only) -->
+            <div class="inv-receipt-settings" id="invReceiptSettings" style="display:none; margin-top:8px;">
+              <div style="font-size:11.5px; font-weight:700; color:#4ade80; margin-bottom:6px;">🧾 Official Cashless Receipt Verification</div>
+              <div class="inv-tools-grid">
+                <div class="inv-tool-group">
+                  <label for="invPaymentStatusSelect">Payment Status Received:</label>
+                  <select id="invPaymentStatusSelect" class="inv-select" onchange="updateInvoiceDisplay()">
+                    <option value="full" selected>✓ 100% Paid in Full (Zero Balance)</option>
+                    <option value="deposit">✓ Deposit Received (Balance on Delivery)</option>
+                  </select>
                 </div>
-                <div class="inv-term-item">
-                  <span class="inv-term-bullet">▪</span>
-                  <span><b>Turnaround &amp; Cloud Delivery:</b> Private online gallery preview ready within 48–72h. Master retouched deliverables completed within 5–7 business days.</span>
+                <div class="inv-tool-group">
+                  <label for="invPaymentMethodSelect">Payment Channel:</label>
+                  <select id="invPaymentMethodSelect" class="inv-select" onchange="updateInvoiceDisplay()">
+                    <option value="M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)" selected>M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)</option>
+                    <option value="I&amp;M Bank Direct Transfer (Acc: 486197 - JANE AKOTH)">I&amp;M Bank Direct Transfer (Acc: 486197 - JANE AKOTH)</option>
+                    <option value="M-Pesa Send Money (0790048905)">M-Pesa Send Money (0790048905 - Studio Desk)</option>
+                  </select>
                 </div>
-                <div class="inv-term-item">
-                  <span class="inv-term-bullet">▪</span>
-                  <span><b>Rescheduling &amp; Deposit:</b> Dates may be rescheduled once with 48h prior notice. Calendar reservation deposits are non-refundable to secure crew &amp; studio time exclusively.</span>
+                <div class="inv-tool-group">
+                  <label for="invPaymentRefInput">M-Pesa Code / Receipt Ref:</label>
+                  <input type="text" id="invPaymentRefInput" class="inv-input" placeholder="e.g. SLD8927K" oninput="updateInvoiceDisplay()">
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="inv-totals-col">
-            <div class="inv-tot-line">
-              <span>Package Base Investment:</span>
-              <span id="invBaseAmt">KSh 0</span>
-            </div>
-            <div class="inv-tot-line">
-              <span>Selected Add-Ons &amp; Services:</span>
-              <span id="invAddonsAmt">KSh 0</span>
-            </div>
-            <div class="inv-tot-line" id="invDiscountRow" style="display:none; color:#16a34a;">
-              <span>Special Client Discount:</span>
-              <span id="invDiscountAmt">- KSh 0</span>
-            </div>
+          <!-- Card 1: Client & Assignment Logistics (Dropdowns + Manual Typing everywhere) -->
+          <div class="inv-card-section">
+            <div class="inv-card-title">👤 Client &amp; Assignment Logistics</div>
+            <div class="inv-tools-grid">
+              
+              <div class="inv-tool-group">
+                <div class="inv-label-row">
+                  <label for="invClientInput">Client / Organization Name:</label>
+                  <span class="inv-helper-hint">Predictive helpers:</span>
+                </div>
+                <input type="text" id="invClientInput" list="invClientSuggestions" class="inv-input" placeholder="e.g. Grace Wanjiku / Kenya Airways" oninput="updateInvoiceDisplay()">
+                <datalist id="invClientSuggestions">
+                  <option value="Dr. "></option>
+                  <option value="Eng. "></option>
+                  <option value="Pastor "></option>
+                  <option value="Hon. "></option>
+                  <option value="Mr. &amp; Mrs. "></option>
+                  <option value="Family of "></option>
+                  <option value="Studio Walk-in Guest"></option>
+                </datalist>
+                <div class="inv-predictive-chips">
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Dr. ', true)">+ Dr.</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Eng. ', true)">+ Eng.</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Hon. ', true)">+ Hon.</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Mr. &amp; Mrs. ', true)">+ Mr. &amp; Mrs.</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Studio Walk-in Guest')">⚡ Walk-in</span>
+                </div>
+              </div>
 
-            <div class="inv-tot-line">
-              <span>Applicable Taxes &amp; VAT:</span>
-              <span>Inclusive (0%)</span>
-            </div>
-            <div class="inv-tot-line grand-total">
-              <span id="invGrandTotalLabel">TOTAL PROJECT INVESTMENT:</span>
-              <span id="invGrandTotal">KSh 0</span>
-            </div>
-            <!-- Receipt Mode Specific Paid Row -->
-            <div class="inv-tot-line inv-paid-row" id="invPaidRow" style="display:none;">
-              <span id="invPaidLabel">AMOUNT RECEIVED IN FULL:</span>
-              <span id="invPaidAmt">KSh 0</span>
-            </div>
-            <!-- Quotation Deposit Row -->
-            <div class="inv-tot-line deposit-required" id="invDepositRow">
-              <span id="invDepositLabel">REQUIRED BOOKING DEPOSIT (40%):</span>
-              <span id="invDepositRequired">KSh 0</span>
-            </div>
-            <!-- Balance Due Row -->
-            <div class="inv-tot-line balance-due" id="invBalanceRow">
-              <span id="invBalanceLabel">BALANCE DUE ON MASTER DELIVERY:</span>
-              <span id="invBalanceDue">KSh 0</span>
+              <div class="inv-tool-group">
+                <label for="invPhoneInput">WhatsApp / Phone Number (PDF Direct):</label>
+                <input type="text" id="invPhoneInput" class="inv-input" placeholder="e.g. 0790 048 905" oninput="updateInvoiceDisplay()">
+              </div>
+
+              <div class="inv-tool-group">
+                <label for="invEmailInput">Client Email Address (Optional):</label>
+                <input type="email" id="invEmailInput" class="inv-input" placeholder="e.g. client@company.com" oninput="updateInvoiceDisplay()">
+              </div>
+
+              <div class="inv-tool-group">
+                <div class="inv-label-row">
+                  <label for="invDateInput">Target Shoot / Event Date:</label>
+                  <span class="inv-helper-hint">Quick date:</span>
+                </div>
+                <input type="date" id="invDateInput" class="inv-input" oninput="updateInvoiceDisplay()">
+                <div class="inv-predictive-chips">
+                  <span class="inv-predict-chip" onclick="setQuickDate(0)">⚡ Today</span>
+                  <span class="inv-predict-chip" onclick="setQuickDate(1)">Tomorrow</span>
+                  <span class="inv-predict-chip" onclick="setQuickDate(7)">Next Week</span>
+                  <span class="inv-predict-chip" onclick="setQuickDate(30)">Next Month</span>
+                </div>
+              </div>
+
+              <div class="inv-tool-group">
+                <div class="inv-label-row">
+                  <label for="invTimeInput">Coverage Timing &amp; Duration:</label>
+                  <span class="inv-helper-hint">Select or type:</span>
+                </div>
+                <input type="text" id="invTimeInput" list="invTimeSuggestions" class="inv-input" placeholder="e.g. Standard Studio Session (1hr)" oninput="updateInvoiceDisplay()">
+                <datalist id="invTimeSuggestions">
+                  <option value="1 Hour Studio Portrait Session"></option>
+                  <option value="2 Hours In-Studio &amp; Outdoor"></option>
+                  <option value="Half-Day Production (4 Hours)"></option>
+                  <option value="Full-Day Event Coverage (8 Hours)"></option>
+                  <option value="Morning Golden Hour (7:00 AM – 10:00 AM)"></option>
+                  <option value="Evening Sunset Session (4:00 PM – 6:30 PM)"></option>
+                  <option value="Walk-in Instant Studio Shoot (Completed)"></option>
+                </datalist>
+                <div class="inv-predictive-chips">
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', '1 Hour Studio Portrait Session')">⏱️ 1h Studio</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', '2 Hours In-Studio &amp; Outdoor')">⏱️ 2h Studio+Out</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', 'Half-Day Production (4 Hours)')">⏱️ Half-Day</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', 'Full-Day Event Coverage (8 Hours)')">⏱️ Full-Day</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', 'Walk-in Instant Studio Shoot (Completed)')">⚡ Walk-in</span>
+                </div>
+              </div>
+
+              <div class="inv-tool-group">
+                <div class="inv-label-row">
+                  <label for="invLocationInput">Shoot Venue &amp; City:</label>
+                  <span class="inv-helper-hint">Select or type:</span>
+                </div>
+                <input type="text" id="invLocationInput" list="invLocationSuggestions" class="inv-input" placeholder="e.g. Laureign Studios (In-Studio, Kakamega)" oninput="updateInvoiceDisplay()">
+                <datalist id="invLocationSuggestions">
+                  <option value="Laureign Studios (In-Studio, Kakamega)"></option>
+                  <option value="Laureign Studios (Nairobi Branch)"></option>
+                  <option value="Rupa Mall / Eldoret"></option>
+                  <option value="Ciala Resort, Kisumu"></option>
+                  <option value="Client Private Residence"></option>
+                  <option value="Karura Forest, Nairobi"></option>
+                  <option value="Golf Hotel Kakamega"></option>
+                </datalist>
+                <div class="inv-predictive-chips">
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Laureign Studios (In-Studio, Kakamega)')">📍 Kakamega</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Laureign Studios (Nairobi Branch)')">📍 Nairobi</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Rupa Mall / Eldoret')">📍 Eldoret</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Ciala Resort, Kisumu')">📍 Kisumu</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Client Private Residence')">📍 Residence</span>
+                </div>
+              </div>
+
+              <div class="inv-tool-group" style="grid-column: 1 / -1;">
+                <div class="inv-label-row">
+                  <label for="invCrewInput">Assigned Production Crew:</label>
+                  <span class="inv-helper-hint">Select or type:</span>
+                </div>
+                <input type="text" id="invCrewInput" list="invCrewSuggestions" class="inv-input" placeholder="e.g. Studio Lead Photographer + Lighting Assistant" oninput="updateInvoiceDisplay()">
+                <datalist id="invCrewSuggestions">
+                  <option value="Studio Lead Photographer + Lighting Assistant"></option>
+                  <option value="Lead Cinematographer &amp; 4K Cinema Camera"></option>
+                  <option value="2 Senior Photographers + Studio Lighting Assistant"></option>
+                  <option value="Drone Pilot &amp; 4K Aerial Cinema Unit"></option>
+                  <option value="Full Commercial Production Crew + Audio Engineer"></option>
+                  <option value="Solo Studio Portrait Specialist"></option>
+                </datalist>
+                <div class="inv-predictive-chips">
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invCrewInput', 'Studio Lead Photographer + Lighting Assistant')">📸 Studio Lead + Assist</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invCrewInput', 'Lead Cinematographer &amp; 4K Cinema Camera')">🎥 4K Cinema Unit</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invCrewInput', '2 Senior Photographers + Studio Lighting Assistant')">👥 2 Photographers</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invCrewInput', 'Drone Pilot &amp; 4K Aerial Cinema Unit')">🛸 Drone Pilot</span>
+                </div>
+              </div>
+
             </div>
           </div>
+
+          <!-- Card 2: DYNAMIC MULTI-SESSION / PACKAGE BUILDER -->
+          <div class="inv-card-section">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div>
+                <div class="inv-card-title" style="margin:0;">📸 Shoots &amp; Session Packages</div>
+                <span class="inv-card-subtitle">Choose from catalog presets OR type custom shoot titles manually. Add multiple sessions if client combines shoots!</span>
+              </div>
+              <button type="button" class="inv-btn-add-line" onclick="addInvoiceSession()">
+                ➕ Add Another Session
+              </button>
+            </div>
+
+            <!-- List of Dynamic Sessions -->
+            <div id="invSessionsContainer" class="inv-sessions-container">
+              <!-- Rendered dynamically by packages.js -->
+            </div>
+          </div>
+
+          <!-- Card 3: DYNAMIC ADD-ONS & ENHANCEMENTS BUILDER -->
+          <div class="inv-card-section">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div>
+                <div class="inv-card-title" style="margin:0;">✨ Add-Ons &amp; Creative Enhancements</div>
+                <span class="inv-card-subtitle">Click 1-click upgrades below or add custom add-ons (reels, mounts, rush turnaround, makeup, etc.):</span>
+              </div>
+              <button type="button" class="inv-btn-add-line" style="background:#0284c7;" onclick="addInvoiceAddon()">
+                ➕ Add Custom Add-On / Reel
+              </button>
+            </div>
+
+            <!-- Systematic 1-Click Upgrade Chips -->
+            <div class="inv-predictive-chips" style="margin-bottom:10px;">
+              <span class="inv-predict-chip" style="background:rgba(234,179,8,0.15); border-color:#eab308; color:#fde047;" onclick="addInvoiceAddon('🎬 4K Vertical Video Reel', 'Trending 45s-60s 4K vertical video cut to viral TikTok &amp; IG audio', 1500)">+ 🎬 4K Video Reel (KSh 1,500)</span>
+              <span class="inv-predict-chip" style="background:rgba(34,197,94,0.15); border-color:#22c55e; color:#86efac;" onclick="addInvoiceAddon('Extra 10 Retouched Photos', 'Magazine-grade high-end frequency separation skin retouching', 1500)">+ 📸 10 Retouched Photos (KSh 1,500)</span>
+              <span class="inv-predict-chip" style="background:rgba(168,85,247,0.15); border-color:#a855f7; color:#e9d5ff;" onclick="addInvoiceAddon('Full Studio Glam Makeup', 'Full facial contour, luxury eyeshadow &amp; mink lashes by studio MUA', 2500)">+ 💄 Full Glam Makeup (KSh 2,500)</span>
+              <span class="inv-predict-chip" style="background:rgba(244,63,94,0.15); border-color:#f43f5e; color:#fecdd3;" onclick="addInvoiceAddon('Studio Silk Wrap Session', '6-meter luxury satin wrap styling &amp; artistic draping during shoot', 800)">+ 👗 Silk Wrap Session (KSh 800)</span>
+              <span class="inv-predict-chip" style="background:rgba(56,189,248,0.15); border-color:#38bdf8; color:#bae6fd;" onclick="addInvoiceAddon('Studio Crisp White Shirt Look', 'Tailored boyfriend white shirt styling &amp; backdrop swap', 500)">+ 👔 White Shirt Look (KSh 500)</span>
+              <span class="inv-predict-chip" style="background:rgba(56,189,248,0.15); border-color:#38bdf8; color:#bae6fd;" onclick="addInvoiceAddon('4K Aerial Drone Coverage', 'Full aerial cinema coverage with licensed drone pilot', 8000)">+ 🛸 4K Drone Coverage (KSh 8,000)</span>
+              <span class="inv-predict-chip" style="background:rgba(168,85,247,0.15); border-color:#a855f7; color:#e9d5ff;" onclick="addInvoiceAddon('Luxury 30-Page Photobook', 'Lay-flat metallic lustre luxury hardcover album', 8000)">+ 📖 Photobook 30-Page (KSh 8,000)</span>
+              <span class="inv-predict-chip" style="background:rgba(249,115,22,0.15); border-color:#f97316; color:#fed7aa;" onclick="addInvoiceAddon('A2 Grand Photo Mount (42x60cm)', 'Solid wood finished centerpiece gallery wall mount', 4000)">+ 🖼️ A2 Photo Mount (KSh 4,000)</span>
+              <span class="inv-predict-chip" style="background:rgba(234,179,8,0.15); border-color:#eab308; color:#fde047;" onclick="addInvoiceAddon('Express 24-Hour Rush Turnaround', 'Jump editing queue; master retouched gallery delivered within 24 hours', 3000)">+ ⚡ 24h Rush Turnaround (KSh 3,000)</span>
+              <span class="inv-predict-chip" style="background:rgba(148,163,184,0.15); border-color:#94a3b8; color:#e2e8f0;" onclick="addInvoiceAddon('RAW Unedited Proofs Soft Copies', 'Complete set of original unedited high-res camera soft copies', 1500)">+ 💾 RAW Soft Copies (KSh 1,500)</span>
+            </div>
+
+            <!-- List of Dynamic Add-Ons -->
+            <div id="invAddonsContainer" class="inv-addons-container">
+              <!-- Rendered dynamically by packages.js -->
+            </div>
+          </div>
+
+          <!-- Card 4: Special Scope Notes -->
+          <div class="inv-card-section">
+            <div class="inv-label-row">
+              <div class="inv-card-title" style="margin:0;">📝 Special Scope of Work &amp; Assignment Notes</div>
+              <span class="inv-helper-hint">Click a template below:</span>
+            </div>
+            <textarea id="invNotesInput" class="inv-input" rows="2" placeholder="e.g. Includes 2 outfit changes, studio backdrop selection, skin retouching &amp; high-res cloud gallery download." oninput="updateInvoiceDisplay()" style="margin-top:6px;"></textarea>
+            <div class="inv-predictive-chips" style="margin-top:8px;">
+              <span class="inv-predict-chip" style="border-color:#ca8a04; color:#fde047;" onclick="applyNoteTemplate('studio')">📝 + Studio Scope</span>
+              <span class="inv-predict-chip" style="border-color:#22c55e; color:#86efac;" onclick="applyNoteTemplate('rush')">⚡ + 24h Rush Turnaround</span>
+              <span class="inv-predict-chip" style="border-color:#38bdf8; color:#bae6fd;" onclick="applyNoteTemplate('wedding')">💍 + Full-Day Wedding</span>
+              <span class="inv-predict-chip" style="border-color:#f43f5e; color:#fecdd3;" onclick="applyNoteTemplate('graduation')">🎓 + Graduation Family</span>
+              <span class="inv-predict-chip" style="border-color:#a855f7; color:#e9d5ff;" onclick="applyNoteTemplate('travel')">🚗 + Travel Logistics</span>
+              <span class="inv-predict-chip" style="border-color:#f97316; color:#fed7aa;" onclick="applyNoteTemplate('clear')">✕ Clear Notes</span>
+            </div>
+          </div>
+
+          <!-- Card 5: Financial Discounts & Policies -->
+          <div class="inv-card-section">
+            <div class="inv-card-title">💰 Financial Policies &amp; Discounts</div>
+            <div class="inv-tools-grid">
+              <div class="inv-tool-group">
+                <label for="invDepositPercent">Booking Deposit % to Lock Slot:</label>
+                <select id="invDepositPercent" class="inv-select" onchange="updateInvoiceDisplay()">
+                  <option value="40" selected>40% Booking Deposit (Recommended)</option>
+                  <option value="30">30% Booking Deposit (Flexible)</option>
+                  <option value="50">50% Booking Deposit (Half Advance)</option>
+                  <option value="80">80% Booking Deposit (Peak Season Lock)</option>
+                  <option value="100">100% Full Payment (Zero Balance)</option>
+                </select>
+              </div>
+              <div class="inv-tool-group">
+                <label for="invDiscountInput">Special Client Discount (KSh, Optional):</label>
+                <input type="number" id="invDiscountInput" class="inv-input" placeholder="e.g. 1000" oninput="updateInvoiceDisplay()">
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Official Seal & Authorization Footer -->
-        <div class="inv-sheet-footer">
-          <div class="inv-sign-col">
-            <div class="inv-sign-line">Authorized Studio Representative</div>
-            <div class="inv-sign-role">Laureign Studios Creative Productions · Kenya</div>
-            <div class="inv-ack-note" id="invAckNote">Payment of booking deposit signifies client acceptance of this quotation and standard production policies. Thank you for choosing Laureign Studios!</div>
-          </div>
-          <div class="inv-seal-col">
-            <div class="inv-seal-stamp" id="invSealStamp">
-              <span class="seal-top">LAUREIGN STUDIOS</span><br>
-              <span class="seal-mid" id="invSealMid">VERIFIED &amp; APPROVED</span><br>
-              <span class="seal-bot" id="invSealBot">2026 OFFICIAL</span>
+        <!-- RIGHT PANE: Live Studio Quotation Document Sheet (A4 Preview) -->
+        <div class="inv-preview-pane" id="invPreviewPane">
+          <div class="invoice-printable-sheet" id="invoicePrintableSheet">
+            
+            <!-- Header: Studio Branding & Quote Meta -->
+            <div class="inv-sheet-header">
+              <div class="inv-brand-col">
+                <div class="inv-brand-header-flex">
+                  <img src="images/logo.png" alt="Laureign Studios" class="inv-sheet-logo">
+                  <div>
+                    <div class="inv-brand-badge" id="invDisplayDocType">PROFORMA INVOICE &amp; QUOTATION</div>
+                    <h1 class="inv-brand-name">LAUREIGN STUDIOS</h1>
+                    <p class="inv-brand-tagline">Visual Masterpieces · Luxury Photography &amp; Cinematography</p>
+                  </div>
+                </div>
+                <div class="inv-contact-mini">
+                  <span>📍 Kakamega Studio · Nairobi · Eldoret · Kisumu · Across Kenya</span>
+                  <span>📞 +254 790 048 905 &nbsp;|&nbsp; ✉️ laureignstudios@gmail.com</span>
+                </div>
+              </div>
+              <div class="inv-meta-col">
+                <div class="inv-ref-pill">
+                  <span class="inv-ref-label" id="invDisplayRefLabel">QUOTATION REF:</span>
+                  <span class="inv-ref-val" id="invDisplayRef">LS-QUO-2026-7841</span>
+                </div>
+                <div class="inv-meta-item">
+                  <span class="lbl" id="invDisplayDateLabel">Date Issued:</span>
+                  <span class="val" id="invDisplayDateIssued">13 Sep 2026</span>
+                </div>
+                <div class="inv-meta-item" id="invValidityMetaItem">
+                  <span class="lbl">Validity:</span>
+                  <span class="val" id="invDisplayValidity">14 Calendar Days</span>
+                </div>
+                <div class="inv-meta-item">
+                  <span class="lbl">Status:</span>
+                  <span class="val status-proforma" id="invDisplayStatusPill">PROFORMA / UNPAID</span>
+                </div>
+              </div>
             </div>
+
+            <!-- Verified Receipt Banner (Shows in receipt mode) -->
+            <div class="inv-receipt-verified-banner" id="invReceiptVerifiedBanner" style="display:none; margin-top:14px; background:#dcfce7; border:1px solid #86efac; color:#15803d; padding:7px 12px; border-radius:6px; font-weight:800; font-size:11px; text-align:center;">
+              <span>🧾 OFFICIAL PAYMENT CONFIRMATION &amp; RECEIPT · LAUREIGN STUDIOS · ACCOUNT RECORD VERIFIED</span>
+            </div>
+
+            <div class="inv-divider"></div>
+
+            <!-- Billed To / Assignment Specifications (4-column grid) -->
+            <div class="inv-specs-grid">
+              <div class="inv-spec-box">
+                <span class="spec-label">CLIENT / BILLED TO:</span>
+                <div class="spec-value highlight" id="invSheetClient">Valued Client</div>
+                <div class="spec-sub" id="invSheetPhone">Phone: Not Specified</div>
+                <div class="spec-sub" id="invSheetEmail" style="display:none;"></div>
+              </div>
+              <div class="inv-spec-box">
+                <span class="spec-label">TARGET DATE &amp; TIMING:</span>
+                <div class="spec-value" id="invSheetDate">To Be Scheduled</div>
+                <div class="spec-sub" id="invSheetTime">Standard Coverage Session</div>
+              </div>
+              <div class="inv-spec-box">
+                <span class="spec-label">VENUE &amp; CITY:</span>
+                <div class="spec-value" id="invSheetLocation">Laureign Studios (Kakamega)</div>
+                <div class="spec-sub">Studio / On-Location</div>
+              </div>
+              <div class="inv-spec-box">
+                <span class="spec-label">ASSIGNED CREW &amp; GEAR:</span>
+                <div class="spec-value" id="invSheetCrew">Lead Production Team</div>
+                <div class="spec-sub">High-Speed 4K Cinema Bodies</div>
+              </div>
+            </div>
+
+            <!-- Itemized Deliverables Table -->
+            <div class="inv-table-wrap">
+              <table class="inv-table">
+                <thead>
+                  <tr>
+                    <th style="width:38%;">Service / Deliverable Description</th>
+                    <th style="width:38%;">Scope &amp; Included Specifications</th>
+                    <th style="width:12%; text-align:right;">Rate (KSh)</th>
+                    <th style="width:12%; text-align:right;">Amount (KSh)</th>
+                  </tr>
+                </thead>
+                <tbody id="invTableBody">
+                  <!-- Dynamically rendered -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Special Assignment Notes (Prints on invoice) -->
+            <div class="inv-notes-box" id="invDisplayNotesBox" style="display:none;">
+              <b>Special Assignment Scope &amp; Deliverable Terms:</b>
+              <div id="invDisplayNotesText" style="margin-top:4px;"></div>
+            </div>
+
+            <!-- Financial Summary Grid -->
+            <div class="inv-financials-row">
+              <div class="inv-payment-terms-col" id="invPayTermsCol">
+                <div class="inv-terms-title" id="invTermsTitle">Official Payment &amp; M-Pesa Instructions</div>
+                <div class="inv-pay-box" id="invPayBox">
+                  <div class="pay-line" id="invPayChannelLine"><b>Bank &amp; Channel:</b> <span id="invPayChannelVal">I&amp;M Bank · M-Pesa Paybill</span></div>
+                  <div class="pay-line" id="invPayTillLine"><b>Paybill Number:</b> <span class="till-num">542542</span> &nbsp;<b>Account No:</b> <span class="till-num">486197</span></div>
+                  <div class="pay-line" id="invPayAccountLine"><b>Account Name to Verify:</b> <span style="font-weight:700; color:#047857;">JANE AKOTH</span> (Laureign Studios)</div>
+                  <div class="pay-line" id="invPayRefLine"><b>Strict Studio Policy:</b> <span style="color:#b91c1c; font-weight:700;">🚫 Strictly Cashless · Official Paybill Only</span></div>
+                </div>
+                <p class="inv-terms-note" id="invTermsNote">
+                  * A booking commitment deposit locks your date on our production calendar. Strictly no cash accepted. The remaining balance is payable upon delivery of your master high-resolution gallery and deliverables.
+                </p>
+                <!-- Professional Photography Terms & Licensing (Scribd Industry Standard) -->
+                <div class="inv-terms-card" id="invTermsCard">
+                  <div class="inv-terms-card-title" id="invTermsCardTitle">PRODUCTION POLICIES &amp; USAGE RIGHTS</div>
+                  <div class="inv-terms-card-list" id="invTermsCardList">
+                    <div class="inv-term-item">
+                      <span class="inv-term-bullet">▪</span>
+                      <span><b>Usage &amp; Licensing:</b> Delivered master files grant perpetual personal, family &amp; social media reproduction rights. Studio retains artistic copyright.</span>
+                    </div>
+                    <div class="inv-term-item">
+                      <span class="inv-term-bullet">▪</span>
+                      <span><b>Turnaround &amp; Cloud Delivery:</b> Private online gallery preview ready within 48–72h. Master retouched deliverables completed within 2–5 business days.</span>
+                    </div>
+                    <div class="inv-term-item">
+                      <span class="inv-term-bullet">▪</span>
+                      <span><b>Rescheduling &amp; Deposit:</b> Dates may be rescheduled once with 48h prior notice. Calendar reservation deposits lock studio time exclusively.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="inv-totals-col">
+                <div class="inv-tot-line">
+                  <span>Base Shoots / Sessions:</span>
+                  <span id="invBaseAmt">KSh 0</span>
+                </div>
+                <div class="inv-tot-line">
+                  <span>Selected Add-Ons &amp; Reels:</span>
+                  <span id="invAddonsAmt">KSh 0</span>
+                </div>
+                <div class="inv-tot-line" id="invDiscountRow" style="display:none; color:#15803d; font-weight:700;">
+                  <span>Special Client Discount:</span>
+                  <span id="invDiscountAmt">- KSh 0</span>
+                </div>
+
+                <div class="inv-tot-line">
+                  <span>Applicable Taxes &amp; VAT:</span>
+                  <span>Inclusive (0%)</span>
+                </div>
+                <div class="inv-tot-line grand-total">
+                  <span id="invGrandTotalLabel">TOTAL PROJECT INVESTMENT:</span>
+                  <span id="invGrandTotal">KSh 0</span>
+                </div>
+                <!-- Receipt Mode Specific Paid Row -->
+                <div class="inv-tot-line inv-paid-row" id="invPaidRow" style="display:none;">
+                  <span id="invPaidLabel">AMOUNT RECEIVED IN FULL:</span>
+                  <span id="invPaidAmt">KSh 0</span>
+                </div>
+                <!-- Quotation Deposit Row -->
+                <div class="inv-tot-line deposit-required" id="invDepositRow">
+                  <span id="invDepositLabel">REQUIRED BOOKING DEPOSIT (40%):</span>
+                  <span id="invDepositRequired">KSh 0</span>
+                </div>
+                <!-- Balance Due Row -->
+                <div class="inv-tot-line balance-due" id="invBalanceRow">
+                  <span id="invBalanceLabel">BALANCE DUE ON MASTER DELIVERY:</span>
+                  <span id="invBalanceDue">KSh 0</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Official Seal & Authorization Footer with REALISTIC SVG RUBBER STAMP -->
+            <div class="inv-sheet-footer">
+              <div class="inv-sign-col">
+                <div class="inv-sign-line">Authorized Studio Representative</div>
+                <div class="inv-sign-role">Laureign Studios Creative Productions · Kenya</div>
+                <div class="inv-ack-note" id="invAckNote">Payment of booking deposit signifies client acceptance of this quotation and standard production policies. Thank you for choosing Laureign Studios!</div>
+              </div>
+              <div class="inv-seal-col">
+                <!-- REALISTIC VECTOR RUBBER STAMP WITH DYNAMIC DATES -->
+                <div class="inv-seal-stamp" id="invSealStamp" title="Official Studio Verified Seal">
+                  <svg class="official-studio-stamp-svg" viewBox="0 0 200 200" width="130" height="130">
+                    <defs>
+                      <path id="stampTopArc" d="M 28,100 A 72,72 0 1,1 172,100" fill="none"/>
+                      <path id="stampBottomArc" d="M 172,100 A 72,72 0 0,1 28,100" fill="none"/>
+                    </defs>
+                    <!-- Outer double ring border -->
+                    <circle cx="100" cy="100" r="95" fill="none" stroke="#047857" stroke-width="2.5" stroke-dasharray="8,3"/>
+                    <circle cx="100" cy="100" r="88" fill="none" stroke="#047857" stroke-width="1.2"/>
+                    <!-- Inner circle border -->
+                    <circle cx="100" cy="100" r="62" fill="none" stroke="#047857" stroke-width="1.6"/>
+                    <!-- Top curved text -->
+                    <text font-family="'Jost', -apple-system, sans-serif" font-size="11" font-weight="800" fill="#047857" letter-spacing="2.2">
+                      <textPath href="#stampTopArc" startOffset="50%" text-anchor="middle">
+                        ★ LAUREIGN STUDIOS KENYA ★
+                      </textPath>
+                    </text>
+                    <!-- Bottom curved text -->
+                    <text font-family="'Jost', -apple-system, sans-serif" font-size="9" font-weight="700" fill="#047857" letter-spacing="1.8">
+                      <textPath href="#stampBottomArc" startOffset="50%" text-anchor="middle">
+                        • OFFICIAL VERIFIED SEAL •
+                      </textPath>
+                    </text>
+                    <!-- Center emblem & dynamic date -->
+                    <g text-anchor="middle" font-family="'Jost', -apple-system, sans-serif">
+                      <text x="100" y="78" font-size="10" fill="#047857" font-weight="900">★ ★ ★</text>
+                      <text x="100" y="93" font-size="8.8" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgTitle">OFFICIAL QUOTATION</text>
+                      <line x1="52" y1="99" x2="148" y2="99" stroke="#047857" stroke-width="1"/>
+                      <text x="100" y="111" font-size="9.5" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgDate">DATE: 13 SEP 2026</text>
+                      <line x1="52" y1="116" x2="148" y2="116" stroke="#047857" stroke-width="1"/>
+                      <text x="100" y="127" font-size="7.5" font-weight="800" fill="#047857" letter-spacing="0.6" id="stampSvgRef">REF: LS-QUO-2026</text>
+                      <text x="100" y="137" font-size="7" font-weight="800" fill="#047857" letter-spacing="1">AUTHENTICATED</text>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -1506,11 +1616,14 @@
 
       <!-- Bottom Floating Dock (Screen Only) -->
       <div class="invoice-bottom-dock">
-        <button type="button" class="inv-dock-btn" id="btnDownloadPdf" style="background:#0284c7; color:#ffffff;" onclick="downloadInvoicePdf()">
+        <button type="button" class="inv-dock-btn" id="btnDownloadPdf" style="background:#059669; color:#ffffff;" onclick="downloadInvoicePdf()">
           <span id="btnDownloadPdfText">📥 Download Official PDF</span>
         </button>
         <button type="button" class="inv-dock-btn wa" id="btnSendWa" onclick="shareInvoicePdfWhatsApp()">
           <span id="btnSendWaText">📲 Send via WhatsApp</span>
+        </button>
+        <button type="button" class="inv-dock-btn email" id="btnSendEmail" onclick="sendInvoiceEmail()" title="Compose quotation or receipt email to client">
+          <span>📧 Email to Client</span>
         </button>
         <button type="button" class="inv-dock-btn print" onclick="window.print()">
           <span>🖨️ Print / A4</span>
@@ -1603,6 +1716,108 @@
       </div>
     </div>
   </footer>
+
+  <!-- CLIENT LEADS CRM & EMAIL DATABASE MODAL -->
+  <div class="leads-modal-overlay" id="leadsModal" aria-hidden="true" role="dialog">
+    <div class="leads-modal-container">
+      <div class="leads-modal-header">
+        <div class="leads-header-info">
+          <h3>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#10b981" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            Studio Client Database &amp; Email CRM
+          </h3>
+          <p>Real-time client contacts captured from bookings, proforma quotations, walk-in reception &amp; VIP offer club.</p>
+        </div>
+        <button type="button" class="leads-close-btn" onclick="closeLeadsModal()" aria-label="Close Leads CRM">&times;</button>
+      </div>
+
+      <div class="leads-modal-body">
+        <!-- Stats Row -->
+        <div class="leads-stats-row">
+          <div class="leads-stat-card">
+            <span class="leads-stat-val" id="statTotalContacts">0</span>
+            <span class="leads-stat-label">Total Contacts</span>
+          </div>
+          <div class="leads-stat-card">
+            <span class="leads-stat-val" id="statValidEmails">0</span>
+            <span class="leads-stat-label">Valid Emails</span>
+          </div>
+          <div class="leads-stat-card">
+            <span class="leads-stat-val" id="statWhatsAppPhones">0</span>
+            <span class="leads-stat-label">WhatsApp Numbers</span>
+          </div>
+          <div class="leads-stat-card">
+            <span class="leads-stat-val" id="statVipMembers">0</span>
+            <span class="leads-stat-label">VIP Club Leads</span>
+          </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="leads-toolbar">
+          <div class="leads-toolbar-left">
+            <button type="button" class="leads-action-btn csv" onclick="exportLeadsCSV()">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+              <span>Download CSV (Excel / Sheets)</span>
+            </button>
+            <button type="button" class="leads-action-btn copy" onclick="copyAllEmailsBcc()">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>Copy Emails (Gmail BCC)</span>
+            </button>
+            <button type="button" class="leads-action-btn copy" style="background:#0f766e;" onclick="copyAllPhonesWa()">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20z"/></svg>
+              <span>Copy WhatsApp List</span>
+            </button>
+            <button type="button" class="leads-action-btn clear" onclick="clearLeadsDatabase()">
+              <span>Clear CRM</span>
+            </button>
+          </div>
+          <div>
+            <input type="text" id="leadsSearchInput" class="leads-search-input" placeholder="🔍 Search contacts..." oninput="filterLeadsTable(this.value)">
+          </div>
+        </div>
+
+        <!-- Leads Table -->
+        <div class="leads-table-container">
+          <table class="leads-table">
+            <thead>
+              <tr>
+                <th>Client Name</th>
+                <th>Email Address</th>
+                <th>Phone / WhatsApp</th>
+                <th>Package Interest</th>
+                <th>Source</th>
+                <th>Date Captured</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+          <div class="leads-empty-box" id="leadsEmptyNotice" style="display:none;">
+            No client contacts in database yet. New leads will automatically appear here when clients book, request quotes, or join the VIP Club.
+            <div style="margin-top:10px;">
+              <button type="button" class="leads-action-btn copy" onclick="seedSampleLeads()">+ Add Demo Client Leads</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Sheets & Marketing Strategy Card -->
+        <div class="leads-webhook-card">
+          <div class="leads-webhook-title">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            How to Send Marketing Updates &amp; Sync to Google Sheets
+          </div>
+          <div>
+            <b>1. Email Campaigns via Gmail (Free):</b> Click <i>"Copy Emails (Gmail BCC)"</i>, open Gmail, compose an email with your new package discount or holiday offer, paste the emails into the <b>BCC field</b>, and hit Send.<br>
+            <b>2. Mailchimp / Brevo (Automated Newsletters):</b> Click <i>"Download CSV"</i> and import the file directly into Mailchimp or Brevo to send automated luxury newsletters.<br>
+            <b>3. Live Google Sheets Auto-Sync:</b> Every booking and quote captures client email and phone into your browser's persistent database. You can also connect a free Google Apps Script Webhook by pasting the URL into your studio config.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="js/html2pdf.bundle.min.js"></script>
