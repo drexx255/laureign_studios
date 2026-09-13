@@ -6324,11 +6324,16 @@ h2.serif,
   gap: 16px;
   margin-bottom: 8px;
 }
+.inv-brand-titles-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .inv-sheet-logo {
-  height: 60px;
+  height: 66px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.06));
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
 }
 .inv-brand-badge {
   display: inline-block;
@@ -6337,32 +6342,51 @@ h2.serif,
   background: #ecfdf5;
   color: #047857;
   border: 1px solid #a7f3d0;
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 800;
-  letter-spacing: 1px;
-  margin-bottom: 4px;
+  letter-spacing: 1.2px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
 }
 .inv-brand-name {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 30px;
-  font-weight: 700;
-  color: #0f172a;
-  letter-spacing: 0.5px;
-  margin: 0;
-  line-height: 1.1;
+  font-family: 'Jost', 'Playfair Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 900 !important;
+  color: #000000 !important;
+  letter-spacing: 2px !important;
+  margin: 0 !important;
+  line-height: 1.1 !important;
+  text-transform: uppercase !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
 }
 .inv-brand-tagline {
-  font-size: 11.5px;
-  color: #475569;
-  margin: 3px 0 0;
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: #047857 !important;
+  letter-spacing: 1.6px !important;
+  text-transform: uppercase !important;
+  margin: 4px 0 0 !important;
+  line-height: 1.35 !important;
+  opacity: 1 !important;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
 }
 .inv-contact-mini {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  font-size: 11px;
-  color: #64748b;
-  margin-top: 4px;
+  gap: 3px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+.inv-contact-mini span {
+  color: #1e293b;
 }
 
 .inv-meta-col {
@@ -6987,6 +7011,30 @@ h2.serif,
     height: auto !important;
     width: 100% !important;
     box-sizing: border-box !important;
+  }
+  .inv-brand-name {
+    color: #000000 !important;
+    font-size: 26pt !important;
+    font-weight: 900 !important;
+    letter-spacing: 2px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .inv-brand-tagline {
+    color: #047857 !important;
+    font-size: 11pt !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.5px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .inv-contact-mini,
+  .inv-contact-mini span {
+    color: #0f172a !important;
+    font-size: 9.5pt !important;
+    font-weight: 600 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
 
