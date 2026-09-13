@@ -2082,7 +2082,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (promiseEl) {
         promiseEl.innerHTML = `
           <div class="promise-title">✨ LAUREIGN STUDIOS OFFICIAL PROMISE</div>
-          <p class="promise-text">Every milestone is captured with precision, emotional resonance, and timeless luxury. Master high-resolution galleries, bespoke color grading, and archival print albums are delivered with uncompromising excellence.</p>
+          <p class="promise-text">Every milestone. Captured with precision. Curated, museum-grade photography &amp; bespoke cinematography by Laureign Studios.</p>
         `;
       }
       const ackNote = document.getElementById("invAckNote");
