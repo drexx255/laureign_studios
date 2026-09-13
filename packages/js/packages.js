@@ -2347,80 +2347,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Prepare a dedicated, clean A4 sandbox container for 100% crisp, non-blank PDF rendering
-  function prepareInvoicePdfSandbox() {
+  // Prepare the live invoice sheet for 100% crisp, non-blank PDF rendering
+  function prepareInvoiceForExport() {
     const sourceSheet = document.getElementById("invoicePrintableSheet");
     if (!sourceSheet) return null;
 
-    // Clone the printable sheet deeply
-    const clone = sourceSheet.cloneNode(true);
-    clone.id = "invoicePrintableSheet_PdfSandboxClone";
-
-    // Strip interactive screen-only elements that should not print on official document
-    clone.querySelectorAll(".inv-addons-selector-box, button, .inv-btn-action, .screen-only").forEach(el => el.remove());
-
-    // Create an isolated sandbox container attached to body with fixed positioning at top:0
-    // Using z-index 9999999 and full opacity ensures html2canvas renders the sheet without blank/negative-layer issues
-    const sandbox = document.createElement("div");
-    sandbox.id = "invoice-pdf-sandbox-container";
-    sandbox.style.cssText = `
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 794px;
-      min-height: 1123px;
-      background: #ffffff;
-      color: #0f172a;
-      padding: 32px 36px;
-      box-sizing: border-box;
-      z-index: 9999999;
-      opacity: 1;
-      visibility: visible;
-      overflow: visible;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    `;
-
-    // Ensure clone has no scroll, flex height restrictions, or dark borders
-    clone.style.cssText = `
-      width: 100%;
-      height: auto;
-      max-height: none;
-      overflow: visible;
-      background: #ffffff;
-      color: #0f172a;
-      padding: 0;
-      margin: 0;
-    `;
-
-    // Ensure table wrap is expanded and table takes full width
-    clone.querySelectorAll(".inv-table-wrap").forEach(w => {
-      w.style.overflow = "visible";
-      w.style.width = "100%";
-      w.style.maxHeight = "none";
-    });
-    clone.querySelectorAll(".inv-table").forEach(t => {
-      t.style.width = "100%";
-      t.style.borderCollapse = "collapse";
-    });
-    clone.querySelectorAll(".inv-specs-grid").forEach(g => {
-      g.style.display = "grid";
-      g.style.gridTemplateColumns = "repeat(4, 1fr)";
-      g.style.gap = "12px";
-      g.style.background = "#f8fafc";
-      g.style.borderColor = "#e2e8f0";
-    });
-    clone.querySelectorAll(".inv-financials-row").forEach(f => {
-      f.style.display = "grid";
-      f.style.gridTemplateColumns = "1.1fr 0.9fr";
-      f.style.gap = "20px";
+    const screenOnly = Array.from(sourceSheet.querySelectorAll(".inv-addons-selector-box, button, .inv-btn-action, .screen-only"));
+    screenOnly.forEach(el => {
+      el.dataset.origDisplay = el.style.display;
+      el.style.display = "none";
     });
 
-    sandbox.appendChild(clone);
-    document.body.appendChild(sandbox);
-    return sandbox;
+    const origStyles = {
+      overflow: sourceSheet.style.overflow,
+      maxHeight: sourceSheet.style.maxHeight,
+      height: sourceSheet.style.height,
+      padding: sourceSheet.style.padding,
+      background: sourceSheet.style.background
+    };
+
+    sourceSheet.style.overflow = "visible";
+    sourceSheet.style.maxHeight = "none";
+    sourceSheet.style.height = "auto";
+    sourceSheet.style.padding = "32px 36px";
+    sourceSheet.style.background = "#ffffff";
+
+    return {
+      element: sourceSheet,
+      cleanup: () => {
+        sourceSheet.style.overflow = origStyles.overflow;
+        sourceSheet.style.maxHeight = origStyles.maxHeight;
+        sourceSheet.style.height = origStyles.height;
+        sourceSheet.style.padding = origStyles.padding;
+        sourceSheet.style.background = origStyles.background;
+        screenOnly.forEach(el => {
+          el.style.display = el.dataset.origDisplay || "";
+          delete el.dataset.origDisplay;
+        });
+      }
+    };
   }
 
-  // Generate Official PDF with html2pdf
+  // Generate Official PDF with html2pdf (Crisp, 100% Non-Blank Direct Rendering)
   function downloadInvoicePdf() {
     if (typeof html2pdf === "undefined") {
       showInvoiceToast("Printing document format...");
@@ -2428,8 +2396,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const sandbox = prepareInvoicePdfSandbox();
-    if (!sandbox) return;
+    const exportContext = prepareInvoiceForExport();
+    if (!exportContext) return;
 
     const isReceipt = invoiceMode === "receipt";
     const docName = isReceipt ? "Receipt" : "Quotation";
@@ -2450,18 +2418,17 @@ document.addEventListener("DOMContentLoaded", () => {
         logging: false,
         scrollX: 0,
         scrollY: 0,
-        windowWidth: 820,
         backgroundColor: '#ffffff'
       },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
       pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     };
 
-    html2pdf().set(opt).from(sandbox).save().then(() => {
-      if (sandbox && sandbox.parentNode) sandbox.parentNode.removeChild(sandbox);
+    html2pdf().set(opt).from(exportContext.element).save().then(() => {
+      exportContext.cleanup();
       showInvoiceToast(`✓ Official PDF ${docName} downloaded successfully!`);
     }).catch(err => {
-      if (sandbox && sandbox.parentNode) sandbox.parentNode.removeChild(sandbox);
+      exportContext.cleanup();
       console.error("PDF generation failed:", err);
       showInvoiceToast("Falling back to print dialog...");
       window.print();
@@ -2475,8 +2442,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const sandbox = prepareInvoicePdfSandbox();
-    if (!sandbox) return;
+    const exportContext = prepareInvoiceForExport();
+    if (!exportContext) return;
 
     const isReceipt = invoiceMode === "receipt";
     const docName = isReceipt ? "Receipt" : "Quotation";
@@ -2497,7 +2464,6 @@ document.addEventListener("DOMContentLoaded", () => {
         logging: false,
         scrollX: 0,
         scrollY: 0,
-        windowWidth: 820,
         backgroundColor: '#ffffff'
       },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
@@ -2505,9 +2471,10 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      const pdfWorker = html2pdf().set(opt).from(sandbox);
+      const pdfWorker = html2pdf().set(opt).from(exportContext.element);
       const pdfBlob = await pdfWorker.outputPdf('blob');
-      if (sandbox && sandbox.parentNode) sandbox.parentNode.removeChild(sandbox);
+      exportContext.cleanup();
+
       const pdfFile = new File([pdfBlob], filename, { type: 'application/pdf' });
 
       // If browser supports sharing files directly (iOS Safari, Android Chrome, mobile apps)
@@ -2535,7 +2502,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1000);
       }
     } catch (err) {
-      if (sandbox && sandbox.parentNode) sandbox.parentNode.removeChild(sandbox);
+      exportContext.cleanup();
       console.warn("Share fallback:", err);
       sendInvoiceWhatsApp(true);
     }
