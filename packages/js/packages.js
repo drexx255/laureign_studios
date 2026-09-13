@@ -1788,36 +1788,41 @@ document.addEventListener("DOMContentLoaded", () => {
     studio: {
       id: "studio",
       name: "STUDIO & PORTRAIT SESSIONS",
-      badge: "📸 STUDIO & PORTRAIT SESSIONS",
-      scope: "In-Studio Controlled Lighting · High-End Retouching · Master High-Resolution Gallery",
+      quoteTitle: "STUDIO SESSION QUOTATION",
+      receiptTitle: "OFFICIAL STUDIO SESSION RECEIPT",
+      scope: "IN-STUDIO PRODUCTION",
       defaultLoc: "Laureign Studios (In-Studio, Kakamega)"
     },
     weddings: {
       id: "weddings",
       name: "WEDDINGS & MATRIMONY COVERAGE",
-      badge: "💍 WEDDINGS & MATRIMONY COVERAGE",
-      scope: "Full-Day Matrimony · 4K Cinema Cinematography · 4K Drone Aerials · Luxury Photobook",
+      quoteTitle: "WEDDING & MATRIMONY QUOTATION",
+      receiptTitle: "OFFICIAL WEDDING PRODUCTION RECEIPT",
+      scope: "MATRIMONY CINEMA & PHOTO",
       defaultLoc: "Windsor Golf Hotel & Country Club / Nairobi"
     },
     events: {
       id: "events",
       name: "CORPORATE SUMMITS, GALAS & EVENTS",
-      badge: "🏢 CORPORATE SUMMITS, GALAS & EVENTS",
-      scope: "On-Location Multi-Camera Coverage · Keynote Documentation · Rapid Press Deliverables",
+      quoteTitle: "EVENT & SUMMIT COVERAGE QUOTATION",
+      receiptTitle: "OFFICIAL EVENT MEDIA RECEIPT",
+      scope: "CONFERENCE & GALA MEDIA",
       defaultLoc: "Radisson Blu / Villa Rosa Kempinski / Nairobi"
     },
     outdoor: {
       id: "outdoor",
       name: "OUTDOOR & NATURAL LIGHT SESSIONS",
-      badge: "🌿 OUTDOOR & LIFESTYLE SESSIONS",
-      scope: "Golden Hour Natural Light · Park & Garden Lifestyle · Editorial Color Grade",
+      quoteTitle: "OUTDOOR LIFESTYLE QUOTATION",
+      receiptTitle: "OFFICIAL OUTDOOR SESSION RECEIPT",
+      scope: "NATURAL LIGHT LIFESTYLE",
       defaultLoc: "Karura Forest / Botanical Gardens / On-Location"
     },
     commercial: {
       id: "commercial",
       name: "COMMERCIAL & BRAND PRODUCTION",
-      badge: "🚀 COMMERCIAL & BRAND PRODUCTION",
-      scope: "E-Commerce Product Lighting · Hospitality Showcase · High-Impact Brand Assets",
+      quoteTitle: "COMMERCIAL BRAND PRODUCTION QUOTATION",
+      receiptTitle: "OFFICIAL COMMERCIAL PRODUCTION RECEIPT",
+      scope: "BRAND & COMMERCIAL ASSETS",
       defaultLoc: "Client Facility / Commercial Studio Setup"
     }
   };
@@ -1990,70 +1995,11 @@ document.addEventListener("DOMContentLoaded", () => {
     showInvoiceToast(`✓ Milestone Title set to "${title}"`);
   }
 
-  // Generates warm, heartfelt luxury welcome message making client feel seen and cherished
-  function getPersonalizedWelcomeNote(clientRaw, occTitle) {
-    const isReceipt = invoiceMode === "receipt";
-    const firstName = getClientFirstName(clientRaw);
-    const salutation = firstName ? `Dear ${firstName}` : "Dear Valued Client";
-
-    if (isReceipt) {
-      return `${salutation}, your booking is officially confirmed and locked on our production calendar with sincere gratitude. Our creative team is eagerly preparing your studio lighting setup and artistic direction to ensure your shoot is a seamless, unforgettable celebration.`;
-    }
-
-    if (currentInvoiceCategory === "weddings") {
-      return `${salutation}, congratulations on your upcoming wedding! It is our highest privilege to document your once-in-a-lifetime matrimony with timeless cinematography and museum-grade photography that you and your family will treasure for generations.`;
-    }
-    if (currentInvoiceCategory === "events") {
-      return `${salutation}, thank you for choosing Laureign Studios for your organization's milestone event. We are committed to delivering world-class keynote coverage and rapid-turnaround executive media assets that elevate your brand.`;
-    }
-    if (currentInvoiceCategory === "outdoor") {
-      return `${salutation}, every milestone tells a story. Our team is dedicated to giving you an effortless, confidence-filled outdoor session in natural golden-hour light where you feel celebrated, radiant, and completely at home.`;
-    }
-    if (currentInvoiceCategory === "commercial") {
-      return `${salutation}, thank you for partnering with Laureign Studios. We are dedicated to translating your brand identity into museum-grade commercial visuals that drive prestige and market impact.`;
-    }
-
-    return `${salutation}, every milestone you celebrate holds a distinct story, and we are truly honored to craft this visual legacy with you. Our studio is dedicated to providing you with a relaxed, empowering experience where you feel celebrated, radiant, and completely at home from the very first frame.`;
+  function getPersonalizedWelcomeNote() {
+    return "";
   }
 
-  function applyWelcomeTemplate(templateKey) {
-    const welcomeInput = document.getElementById("invWelcomeNoteInput");
-    if (!welcomeInput) return;
-
-    const clientRaw = invClientInput ? invClientInput.value.trim() : "";
-    const firstName = getClientFirstName(clientRaw);
-    const salutation = firstName ? `Dear ${firstName}` : "Dear Valued Client";
-
-    if (templateKey === "auto") {
-      welcomeInput.value = "";
-      updateInvoiceDisplay();
-      showInvoiceToast("✓ Auto-personalized welcome note restored");
-      return;
-    }
-
-    let msg = "";
-    switch (templateKey) {
-      case "milestone":
-        msg = `${salutation}, every milestone you celebrate holds a distinct story, and we are truly honored to craft this visual legacy with you. Our studio is dedicated to providing you with a relaxed, empowering experience where you feel celebrated, radiant, and completely at home from the very first frame.`;
-        break;
-      case "wedding":
-        msg = `${salutation}, congratulations on your upcoming wedding celebration! It is our highest privilege to document your once-in-a-lifetime matrimony with timeless cinematography and museum-grade photography that you and your family will treasure forever.`;
-        break;
-      case "graduation":
-        msg = `${salutation}, congratulations on this monumental academic achievement! We look forward to capturing your hard work, joy, and family pride with timeless, executive-grade graduation portraits.`;
-        break;
-      case "empowerment":
-        msg = `${salutation}, our studio is a space designed for you to shine with effortless grace. From tailored lighting to bespoke posing direction, we ensure you feel confident, radiant, and completely celebrated in every frame.`;
-        break;
-      case "corporate":
-        msg = `${salutation}, thank you for choosing Laureign Studios for your organization's milestone event. We are committed to delivering world-class keynote coverage and rapid-turnaround executive media assets that elevate your brand.`;
-        break;
-    }
-
-    welcomeInput.value = msg;
-    updateInvoiceDisplay();
-    showInvoiceToast("✓ Personal welcome note updated!");
-  }
+  function applyWelcomeTemplate() {}
 
   // Live formatted date for authentic SVG studio rubber stamp (e.g. "DATE: 13 SEP 2026")
   function getFormattedStampDate(d = new Date()) {
@@ -2835,45 +2781,41 @@ document.addEventListener("DOMContentLoaded", () => {
     const crewVal = (invCrewInput && invCrewInput.value.trim()) || "Studio Lead Photographer + Lighting Assistant";
     const notesVal = (invNotesInput && invNotesInput.value.trim()) || "";
 
-    // Main Production Category Data & Badges
+    // Main Production Category Document Title & Scope
+    const isReceipt = invoiceMode === "receipt";
     const cat = INVOICE_CATEGORIES[currentInvoiceCategory] || INVOICE_CATEGORIES["studio"];
     const elCatSelect = document.getElementById("invCategorySelect");
     if (elCatSelect && elCatSelect.value !== cat.id) {
       elCatSelect.value = cat.id;
     }
-    const elCatPill = document.getElementById("invDisplayCategoryPill");
-    const elCatScope = document.getElementById("invDisplayCategoryScope");
+
+    const elCatMainTitle = document.getElementById("invDisplayCategoryTitle");
+    const elScopePill = document.getElementById("invDisplayScopePill");
     const elSheetCatVal = document.getElementById("invSheetCategoryVal");
-    if (elCatPill) elCatPill.textContent = cat.badge;
-    if (elCatScope) elCatScope.textContent = cat.scope;
-    if (elSheetCatVal) elSheetCatVal.textContent = cat.name;
-
-    // Bespoke Milestone / Occasion Title honoring the client
-    const occInput = document.getElementById("invOccasionTitleInput");
-    let occTitle = (occInput && occInput.value.trim()) || "";
-    if (!occTitle) {
-      const poss = getClientPossessive(clientVal);
-      occTitle = poss ? `${poss} ${cat.name}` : `Bespoke ${cat.name}`;
-    }
-    const elProdTitle = document.getElementById("invDisplayProductionTitle");
-    if (elProdTitle) elProdTitle.textContent = occTitle.toUpperCase();
-
-    // Client Honor Banner
-    const elHonorBadge = document.getElementById("invDisplayHonorBadge");
     const elHonorName = document.getElementById("invDisplayHonorName");
-    if (elHonorBadge) {
-      elHonorBadge.textContent = invoiceMode === "receipt" ? "✓ OFFICIALLY ISSUED TO" : "✨ PREPARED SPECIALLY FOR";
+    const elTargetDate = document.getElementById("invDisplayTargetDate");
+
+    if (elCatMainTitle) {
+      elCatMainTitle.textContent = isReceipt ? cat.receiptTitle : cat.quoteTitle;
+    }
+    if (elScopePill) {
+      elScopePill.textContent = cat.scope;
+    }
+    if (elSheetCatVal) {
+      elSheetCatVal.textContent = cat.name;
     }
     if (elHonorName) {
       elHonorName.textContent = (clientVal && clientVal !== "Valued Client") ? clientVal.toUpperCase() : "VALUED CLIENT";
     }
+    if (elTargetDate) {
+      elTargetDate.textContent = dateVal;
+    }
 
-    // Warm Client Creative Vision & Welcome Note
-    const welcomeInput = document.getElementById("invWelcomeNoteInput");
-    const welcomeMsg = (welcomeInput && welcomeInput.value.trim()) || getPersonalizedWelcomeNote(clientVal, occTitle);
-    const elWelcomeText = document.getElementById("invDisplayWelcomeText");
-    if (elWelcomeText) {
-      elWelcomeText.textContent = `"${welcomeMsg}"`;
+    // Occasion / Event Title for specifications box
+    const occInput = document.getElementById("invOccasionTitleInput");
+    let occTitle = (occInput && occInput.value.trim()) || "";
+    if (!occTitle) {
+      occTitle = invoiceSessions.length > 0 ? invoiceSessions.map(s => s.title).join(" + ") : cat.name;
     }
 
     const elClient = document.getElementById("invSheetClient");
@@ -3014,7 +2956,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elGrandLbl) elGrandLbl.textContent = invoiceMode === "receipt" ? "TOTAL SHOOT INVESTMENT:" : "TOTAL PROJECT INVESTMENT:";
 
     // Mode-Specific Financial Breakdown
-    const isReceipt = invoiceMode === "receipt";
     const payStatusSelect = document.getElementById("invPaymentStatusSelect");
     const payMethodSelect = document.getElementById("invPaymentMethodSelect");
     const payRefInput = document.getElementById("invPaymentRefInput");
@@ -3422,8 +3363,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const catData = INVOICE_CATEGORIES[currentInvoiceCategory] || INVOICE_CATEGORIES["studio"];
     const occInput = document.getElementById("invOccasionTitleInput");
     const occTitle = (occInput && occInput.value.trim()) || (getClientPossessive(clientVal) ? `${getClientPossessive(clientVal)} ${catData.name}` : `Bespoke ${catData.name}`);
-    const welcomeInput = document.getElementById("invWelcomeNoteInput");
-    const welcomeMsg = (welcomeInput && welcomeInput.value.trim()) || getPersonalizedWelcomeNote(clientVal, occTitle);
 
     const basePrice = invoiceSessions.reduce((sum, s) => sum + ((s.rate || 0) * (s.qty || 1)), 0);
     const addonsTotal = invoiceAddons.reduce((sum, a) => sum + (a.price || 0), 0);
@@ -3448,15 +3387,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let msg = "";
 
     if (isReceipt) {
-      msg += `*LAUREIGN STUDIOS — OFFICIAL PAYMENT RECEIPT*\n`;
-      msg += `🧾 *Receipt Ref:* ${currentInvoiceRef}\n`;
+      msg += `*LAUREIGN STUDIOS*\n`;
+      msg += `🧾 *${catData.receiptTitle}*\n`;
+      msg += `🔖 *Receipt Ref:* ${currentInvoiceRef}\n`;
       msg += `📅 *Date:* ${invoiceDateIssued}\n\n`;
 
-      msg += `👑 *OFFICIALLY ISSUED TO:* *${clientVal}*\n`;
-      msg += `🎯 *PRODUCTION OCCASION:* *${occTitle}*\n`;
-      msg += `🏷️ *MAIN PRODUCTION CATEGORY:* *${catData.name}*\n\n`;
-
-      msg += `💬 _"${welcomeMsg}"_\n\n`;
+      msg += `👤 *Client / Invoiced To:* *${clientVal}*\n`;
+      msg += `🎯 *Occasion / Session:* *${occTitle}*\n`;
+      msg += `🏷️ *Production Scope:* *${catData.scope}*\n\n`;
 
       if (rawPhone) msg += `📞 *Phone / WhatsApp:* ${rawPhone}\n`;
       if (emailVal) msg += `✉️ *Email:* ${emailVal}\n`;
@@ -3516,15 +3454,13 @@ document.addEventListener("DOMContentLoaded", () => {
       msg += `📞 Studio Contact: 0790 048 905`;
     } else {
       msg += `*LAUREIGN STUDIOS*\n`;
-      msg += `✨ *Official Client Quotation & Production Scope*\n`;
-      msg += `📄 *Invoice Ref:* ${currentInvoiceRef}\n`;
+      msg += `✨ *${catData.quoteTitle}*\n`;
+      msg += `📄 *Quotation Ref:* ${currentInvoiceRef}\n`;
       msg += `📅 *Issued:* ${invoiceDateIssued} (Valid 14 Days)\n\n`;
 
-      msg += `👑 *PREPARED SPECIALLY FOR:* *${clientVal}*\n`;
-      msg += `🎯 *PRODUCTION OCCASION:* *${occTitle}*\n`;
-      msg += `🏷️ *MAIN PRODUCTION CATEGORY:* *${catData.name}*\n\n`;
-
-      msg += `💬 _"${welcomeMsg}"_\n\n`;
+      msg += `👤 *Prepared For:* *${clientVal}*\n`;
+      msg += `🎯 *Occasion / Session:* *${occTitle}*\n`;
+      msg += `🏷️ *Production Scope:* *${catData.scope}*\n\n`;
 
       if (rawPhone) msg += `📞 *Phone / WhatsApp:* ${rawPhone}\n`;
       if (emailVal) msg += `✉️ *Email:* ${emailVal}\n`;
@@ -3595,8 +3531,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const catData = INVOICE_CATEGORIES[currentInvoiceCategory] || INVOICE_CATEGORIES["studio"];
     const occInput = document.getElementById("invOccasionTitleInput");
     const occTitle = (occInput && occInput.value.trim()) || (getClientPossessive(clientVal) ? `${getClientPossessive(clientVal)} ${catData.name}` : `Bespoke ${catData.name}`);
-    const welcomeInput = document.getElementById("invWelcomeNoteInput");
-    const welcomeMsg = (welcomeInput && welcomeInput.value.trim()) || getPersonalizedWelcomeNote(clientVal, occTitle);
 
     const payRefInput = document.getElementById("invPaymentRefInput");
     const paymentRef = (payRefInput && payRefInput.value.trim()) || currentInvoiceRef;
@@ -3611,14 +3545,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const balance = Math.max(0, grandTotal - deposit);
 
     let text = isReceipt
-      ? `LAUREIGN STUDIOS — OFFICIAL PAYMENT RECEIPT\n`
-      : `LAUREIGN STUDIOS — OFFICIAL CLIENT QUOTATION\n`;
-    text += `Invoice Ref: ${currentInvoiceRef}\n`;
+      ? `LAUREIGN STUDIOS — ${catData.receiptTitle}\n`
+      : `LAUREIGN STUDIOS — ${catData.quoteTitle}\n`;
+    text += `Quotation Ref: ${currentInvoiceRef}\n`;
     text += `Date: ${invoiceDateIssued}${isReceipt ? "" : " (Valid 14 Days)"}\n\n`;
-    text += `PREPARED SPECIALLY FOR: ${clientVal}\n`;
-    text += `PRODUCTION OCCASION: ${occTitle}\n`;
-    text += `MAIN PRODUCTION CATEGORY: ${catData.name}\n\n`;
-    text += `NOTE: "${welcomeMsg}"\n\n`;
+    text += `PREPARED FOR: ${clientVal}\n`;
+    text += `OCCASION / SESSION: ${occTitle}\n`;
+    text += `PRODUCTION CATEGORY: ${catData.name} (${catData.scope})\n\n`;
     text += `Phone: ${phoneVal}\n`;
     if (emailVal) text += `Email: ${emailVal}\n`;
     text += `Shoot Date: ${dateVal} (${timeVal})\nLocation: ${locVal}\n\n`;
