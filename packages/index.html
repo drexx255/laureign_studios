@@ -1422,38 +1422,57 @@
         <div class="inv-preview-pane" id="invPreviewPane">
           <div class="invoice-printable-sheet" id="invoicePrintableSheet">
             
-            <!-- Header: Studio Branding & Quote Meta -->
-            <div class="inv-sheet-header">
+            <!-- Executive Header Tile: Studio Branding & Document Dossier -->
+            <div class="inv-sheet-header-tile" id="invSheetHeaderTile">
               <div class="inv-brand-col">
                 <div class="inv-brand-header-flex">
-                  <img src="images/logo.png" alt="Laureign Studios" class="inv-sheet-logo">
+                  <div class="inv-logo-wrap">
+                    <img src="images/logo.png" alt="Laureign Studios" class="inv-sheet-logo">
+                  </div>
                   <div class="inv-brand-titles-wrap">
+                    <div class="inv-brand-eyebrow">HAUTE VISUAL PRODUCTIONS · ATELIER KENYA</div>
                     <h1 class="inv-brand-name">LAUREIGN STUDIOS</h1>
                     <p class="inv-brand-tagline">Visual Masterpieces · Luxury Photography &amp; Cinematography</p>
-                    <div class="inv-brand-badge" id="invDisplayDocType" style="margin-top:6px;">PROFORMA INVOICE &amp; CLIENT QUOTATION</div>
+                    <div class="inv-brand-badge" id="invDisplayDocType">PROFORMA INVOICE &amp; CLIENT QUOTATION</div>
                   </div>
                 </div>
+
+                <!-- Studio Location & Direct Contact Ribbon -->
                 <div class="inv-contact-mini">
-                  <span>📍 Kakamega Studio (Town Center) · Nairobi · Eldoret · Kisumu · Nationwide Across Kenya</span>
-                  <span>📞 +254 790 048 905 &nbsp;|&nbsp; ✉️ laureignstudios@gmail.com &nbsp;|&nbsp; 🌐 laureignstudios.co.ke</span>
+                  <div class="inv-reach-row">
+                    <span class="reach-icon">📍</span>
+                    <span class="reach-text"><b>Kakamega Studio (Town Center)</b> · Nairobi · Eldoret · Kisumu · Nationwide Across Kenya</span>
+                  </div>
+                  <div class="inv-contact-row">
+                    <span><span class="contact-icon">📞</span> <b>+254 790 048 905</b></span>
+                    <span class="contact-sep">|</span>
+                    <span><span class="contact-icon">✉️</span> <b>laureignstudios@gmail.com</b></span>
+                    <span class="contact-sep">|</span>
+                    <span><span class="contact-icon">🌐</span> <b>laureignstudios.co.ke</b></span>
+                  </div>
                 </div>
               </div>
+
+              <!-- Executive Document Dossier Vault Card (Top Right) -->
               <div class="inv-meta-col">
-                <div class="inv-ref-pill">
-                  <span class="inv-ref-label" id="invDisplayRefLabel">INVOICE REF:</span>
-                  <span class="inv-ref-val" id="invDisplayRef">LS-QUO-2026-7841</span>
-                </div>
-                <div class="inv-meta-item">
-                  <span class="lbl" id="invDisplayDateLabel">Date Issued:</span>
-                  <span class="val" id="invDisplayDateIssued">13 Sep 2026</span>
-                </div>
-                <div class="inv-meta-item" id="invValidityMetaItem">
-                  <span class="lbl">Validity:</span>
-                  <span class="val" id="invDisplayValidity">14 Calendar Days</span>
-                </div>
-                <div class="inv-meta-item">
-                  <span class="lbl">Status:</span>
-                  <span class="val status-proforma" id="invDisplayStatusPill">PROFORMA / PENDING CONFIRMATION</span>
+                <div class="inv-vault-card" id="invVaultCard">
+                  <div class="inv-vault-ref-row">
+                    <span class="inv-ref-label" id="invDisplayRefLabel">INVOICE REF:</span>
+                    <span class="inv-ref-val" id="invDisplayRef">LS-QUO-2026-9051</span>
+                  </div>
+                  <div class="inv-vault-divider"></div>
+                  <div class="inv-meta-item">
+                    <span class="lbl" id="invDisplayDateLabel">Date Issued:</span>
+                    <span class="val" id="invDisplayDateIssued">13 Sept 2026</span>
+                  </div>
+                  <div class="inv-meta-item" id="invValidityMetaItem">
+                    <span class="lbl">Validity:</span>
+                    <span class="val" id="invDisplayValidity">27 Sept 2026 (14 Days)</span>
+                  </div>
+                  <div class="inv-meta-item inv-meta-status-row">
+                    <span class="lbl">Status:</span>
+                    <span class="val status-proforma" id="invDisplayStatusPill">PROFORMA / UNPAID</span>
+                  </div>
                 </div>
               </div>
             </div>

@@ -3140,17 +3140,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function formatExecutiveDate(d) {
+    const day = String(d.getDate()).padStart(2, '0');
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    const month = months[d.getMonth()];
+    const year = d.getFullYear();
+    return `${day} ${month} ${year}`;
+  }
+
   function initInvoice() {
     const randNum = Math.floor(1000 + Math.random() * 9000);
     currentInvoiceRef = `LS-QUO-2026-${randNum}`;
 
     const today = new Date();
-    const options = { day: '2-digit', month: 'short', year: 'numeric' };
-    invoiceDateIssued = today.toLocaleDateString('en-GB', options);
+    invoiceDateIssued = formatExecutiveDate(today);
 
     const validDate = new Date();
     validDate.setDate(today.getDate() + 14);
-    invoiceValidity = `${validDate.toLocaleDateString('en-GB', options)} (14 Days)`;
+    invoiceValidity = `${formatExecutiveDate(validDate)} (14 Days)`;
 
     if (invoiceSessions.length === 0) {
       addInvoiceSession("graduation", 0, false);
