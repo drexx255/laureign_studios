@@ -1132,7 +1132,7 @@
         <!-- LEFT PANE: Interactive Studio Configurator (Scrollable) -->
         <div class="inv-editor-pane" id="invEditorPane">
           
-          <!-- Card 0: Mode & Walkin Desk -->
+          <!-- Card 0: Mode & Fast Event Presets -->
           <div class="inv-card-section">
             <div class="inv-mode-row">
               <div>
@@ -1146,9 +1146,31 @@
                   </button>
                 </div>
               </div>
-              <button type="button" class="btn-walkin-preset" onclick="applyWalkinPreset()" title="Auto-fill today's walk-in client details">
-                <span>⚡ Today's Walk-in Shoot</span>
-              </button>
+            </div>
+
+            <!-- 1-Click Fast Presets (Weddings, Events, Corporate, Milestones) -->
+            <div class="inv-preset-toolbar">
+              <span class="inv-preset-label">⚡ 1-Click Event &amp; Milestone Presets:</span>
+              <div class="inv-preset-pills">
+                <button type="button" class="inv-preset-pill" onclick="applyQuotationPreset('wedding-gold')" title="Load Full-Day Gold Wedding with 4K Cinema & Drone (KSh 75,000)">
+                  <span>💍 Wedding Gold (75k)</span>
+                </button>
+                <button type="button" class="inv-preset-pill" onclick="applyQuotationPreset('wedding-platinum')" title="Load Royal VIP Platinum Wedding (KSh 90,000)">
+                  <span>👑 Royal VIP Wedding (90k)</span>
+                </button>
+                <button type="button" class="inv-preset-pill" onclick="applyQuotationPreset('wedding-traditional')" title="Load Traditional Wedding / Ruracio (KSh 75,000)">
+                  <span>🥂 Traditional Ruracio (75k)</span>
+                </button>
+                <button type="button" class="inv-preset-pill" onclick="applyQuotationPreset('corporate-summit')" title="Load Corporate Summit & Gala (KSh 35,000)">
+                  <span>🏢 Corporate Summit (35k)</span>
+                </button>
+                <button type="button" class="inv-preset-pill" onclick="applyQuotationPreset('graduation-vip')" title="Load Graduation Milestone + A3 Wall Mount">
+                  <span>🎓 Graduation Milestone</span>
+                </button>
+                <button type="button" class="inv-preset-pill" onclick="applyQuotationPreset('walkin-today')" title="Auto-fill today's studio walk-in client">
+                  <span>⚡ Walk-in Shoot</span>
+                </button>
+              </div>
             </div>
 
             <!-- Receipt & Payment Verification (Receipt Mode only) -->
@@ -1185,24 +1207,25 @@
               
               <div class="inv-tool-group">
                 <div class="inv-label-row">
-                  <label for="invClientInput">Client / Organization Name:</label>
+                  <label for="invClientInput">Client / Organization / Couple Name:</label>
                   <span class="inv-helper-hint">Predictive helpers:</span>
                 </div>
-                <input type="text" id="invClientInput" list="invClientSuggestions" class="inv-input" placeholder="e.g. Grace Wanjiku / Kenya Airways" oninput="updateInvoiceDisplay()">
+                <input type="text" id="invClientInput" list="invClientSuggestions" class="inv-input" placeholder="e.g. Kevin &amp; Sandra Wedding / Safaricom PLC" oninput="updateInvoiceDisplay()">
                 <datalist id="invClientSuggestions">
+                  <option value="Mr. &amp; Mrs. "></option>
+                  <option value="Wedding of "></option>
+                  <option value="Family of "></option>
                   <option value="Dr. "></option>
                   <option value="Eng. "></option>
-                  <option value="Pastor "></option>
                   <option value="Hon. "></option>
-                  <option value="Mr. &amp; Mrs. "></option>
-                  <option value="Family of "></option>
+                  <option value="Pastor "></option>
                   <option value="Studio Walk-in Guest"></option>
                 </datalist>
                 <div class="inv-predictive-chips">
-                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Dr. ', true)">+ Dr.</span>
-                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Eng. ', true)">+ Eng.</span>
-                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Hon. ', true)">+ Hon.</span>
                   <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Mr. &amp; Mrs. ', true)">+ Mr. &amp; Mrs.</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Wedding of ', true)">+ Wedding of</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Dr. ', true)">+ Dr.</span>
+                  <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Hon. ', true)">+ Hon.</span>
                   <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Studio Walk-in Guest')">⚡ Walk-in</span>
                 </div>
               </div>
@@ -1404,19 +1427,19 @@
                 <div class="inv-brand-header-flex">
                   <img src="images/logo.png" alt="Laureign Studios" class="inv-sheet-logo">
                   <div>
-                    <div class="inv-brand-badge" id="invDisplayDocType">PROFORMA INVOICE &amp; QUOTATION</div>
+                    <div class="inv-brand-badge" id="invDisplayDocType">PROFORMA INVOICE &amp; CLIENT QUOTATION</div>
                     <h1 class="inv-brand-name">LAUREIGN STUDIOS</h1>
                     <p class="inv-brand-tagline">Visual Masterpieces · Luxury Photography &amp; Cinematography</p>
                   </div>
                 </div>
                 <div class="inv-contact-mini">
-                  <span>📍 Kakamega Studio · Nairobi · Eldoret · Kisumu · Across Kenya</span>
-                  <span>📞 +254 790 048 905 &nbsp;|&nbsp; ✉️ laureignstudios@gmail.com</span>
+                  <span>📍 Kakamega Studio (Town Center) · Nairobi · Eldoret · Kisumu · Nationwide Across Kenya</span>
+                  <span>📞 +254 790 048 905 &nbsp;|&nbsp; ✉️ laureignstudios@gmail.com &nbsp;|&nbsp; 🌐 laureignstudios.co.ke</span>
                 </div>
               </div>
               <div class="inv-meta-col">
                 <div class="inv-ref-pill">
-                  <span class="inv-ref-label" id="invDisplayRefLabel">QUOTATION REF:</span>
+                  <span class="inv-ref-label" id="invDisplayRefLabel">INVOICE REF:</span>
                   <span class="inv-ref-val" id="invDisplayRef">LS-QUO-2026-7841</span>
                 </div>
                 <div class="inv-meta-item">
@@ -1429,7 +1452,7 @@
                 </div>
                 <div class="inv-meta-item">
                   <span class="lbl">Status:</span>
-                  <span class="val status-proforma" id="invDisplayStatusPill">PROFORMA / UNPAID</span>
+                  <span class="val status-proforma" id="invDisplayStatusPill">PROFORMA / PENDING CONFIRMATION</span>
                 </div>
               </div>
             </div>
@@ -1441,28 +1464,21 @@
 
             <div class="inv-divider"></div>
 
-            <!-- Billed To / Assignment Specifications (4-column grid) -->
+            <!-- Billed To & Event Specifications (Executive 2-Column Invoicing Layout) -->
             <div class="inv-specs-grid">
-              <div class="inv-spec-box">
-                <span class="spec-label">CLIENT / BILLED TO:</span>
+              <div class="inv-client-box">
+                <span class="spec-label">INVOICE TO / CLIENT:</span>
                 <div class="spec-value highlight" id="invSheetClient">Valued Client</div>
-                <div class="spec-sub" id="invSheetPhone">Phone: Not Specified</div>
+                <div class="spec-sub" id="invSheetPhone">📞 Phone: Not Specified</div>
                 <div class="spec-sub" id="invSheetEmail" style="display:none;"></div>
+                <div class="spec-sub" id="invSheetBillingLoc">📍 Destination: Kakamega / Nairobi / Destination</div>
               </div>
-              <div class="inv-spec-box">
-                <span class="spec-label">TARGET DATE &amp; TIMING:</span>
-                <div class="spec-value" id="invSheetDate">To Be Scheduled</div>
-                <div class="spec-sub" id="invSheetTime">Standard Coverage Session</div>
-              </div>
-              <div class="inv-spec-box">
-                <span class="spec-label">VENUE &amp; CITY:</span>
-                <div class="spec-value" id="invSheetLocation">Laureign Studios (Kakamega)</div>
-                <div class="spec-sub">Studio / On-Location</div>
-              </div>
-              <div class="inv-spec-box">
-                <span class="spec-label">ASSIGNED CREW &amp; GEAR:</span>
-                <div class="spec-value" id="invSheetCrew">Lead Production Team</div>
-                <div class="spec-sub">High-Speed 4K Cinema Bodies</div>
+              <div class="inv-event-box">
+                <span class="spec-label">EVENT &amp; PRODUCTION SPECIFICATIONS:</span>
+                <div class="spec-value" id="invSheetEventTitle">Full-Day Wedding &amp; Event Production</div>
+                <div class="spec-sub" id="invSheetScheduleRow">🗓️ <b>Date &amp; Hours:</b> <span id="invSheetDate">To Be Scheduled</span> &nbsp;(<span id="invSheetTime">Standard Coverage Session</span>)</div>
+                <div class="spec-sub" id="invSheetVenueRow">📍 <b>Venue / Location:</b> <span id="invSheetLocation">Laureign Studios (Kakamega)</span></div>
+                <div class="spec-sub" id="invSheetCrewRow">🎥 <b>Assigned Crew:</b> <span id="invSheetCrew">Lead Production Team</span></div>
               </div>
             </div>
 
@@ -1485,50 +1501,36 @@
 
             <!-- Special Assignment Notes (Prints on invoice) -->
             <div class="inv-notes-box" id="invDisplayNotesBox" style="display:none;">
-              <b>Special Assignment Scope &amp; Deliverable Terms:</b>
+              <b>Assignment Scope &amp; Production Deliverables:</b>
               <div id="invDisplayNotesText" style="margin-top:4px;"></div>
             </div>
 
             <!-- Financial Summary Grid -->
             <div class="inv-financials-row">
               <div class="inv-payment-terms-col" id="invPayTermsCol">
-                <div class="inv-terms-title" id="invTermsTitle">Official Payment &amp; M-Pesa Instructions</div>
+                <div class="inv-terms-title" id="invTermsTitle">Official Payment &amp; Remittance Details</div>
                 <div class="inv-pay-box" id="invPayBox">
-                  <div class="pay-line" id="invPayChannelLine"><b>Bank &amp; Channel:</b> <span id="invPayChannelVal">I&amp;M Bank · M-Pesa Paybill</span></div>
-                  <div class="pay-line" id="invPayTillLine"><b>Paybill Number:</b> <span class="till-num">542542</span> &nbsp;<b>Account No:</b> <span class="till-num">486197</span></div>
+                  <div class="pay-line" id="invPayChannelLine"><b>Remittance Channel:</b> <span id="invPayChannelVal">M-Pesa Paybill &amp; Direct Bank Transfer</span></div>
+                  <div class="pay-line" id="invPayTillLine"><b>Paybill Number:</b> <span class="till-num">542542</span> &nbsp;&nbsp;<b>Account No:</b> <span class="till-num">486197</span></div>
                   <div class="pay-line" id="invPayAccountLine"><b>Account Name to Verify:</b> <span style="font-weight:700; color:#047857;">JANE AKOTH</span> (Laureign Studios)</div>
-                  <div class="pay-line" id="invPayRefLine"><b>Strict Studio Policy:</b> <span style="color:#b91c1c; font-weight:700;">🚫 Strictly Cashless · Official Paybill Only</span></div>
+                  <div class="pay-line" id="invPayBankLine"><b>Direct Bank Remittance:</b> <span>I&amp;M Bank Kenya · Account No: <b>486197</b></span></div>
                 </div>
                 <p class="inv-terms-note" id="invTermsNote">
-                  * A booking commitment deposit locks your date on our production calendar. Strictly no cash accepted. The remaining balance is payable upon delivery of your master high-resolution gallery and deliverables.
+                  * A 40% commitment deposit confirms your booking and reserves our creative crew on your event date. The remaining balance is payable upon delivery of your master high-resolution deliverables.
                 </p>
-                <!-- Professional Photography Terms & Licensing (Scribd Industry Standard) -->
-                <div class="inv-terms-card" id="invTermsCard">
-                  <div class="inv-terms-card-title" id="invTermsCardTitle">PRODUCTION POLICIES &amp; USAGE RIGHTS</div>
-                  <div class="inv-terms-card-list" id="invTermsCardList">
-                    <div class="inv-term-item">
-                      <span class="inv-term-bullet">▪</span>
-                      <span><b>Usage &amp; Licensing:</b> Delivered master files grant perpetual personal, family &amp; social media reproduction rights. Studio retains artistic copyright.</span>
-                    </div>
-                    <div class="inv-term-item">
-                      <span class="inv-term-bullet">▪</span>
-                      <span><b>Turnaround &amp; Cloud Delivery:</b> Private online gallery preview ready within 48–72h. Master retouched deliverables completed within 2–5 business days.</span>
-                    </div>
-                    <div class="inv-term-item">
-                      <span class="inv-term-bullet">▪</span>
-                      <span><b>Rescheduling &amp; Deposit:</b> Dates may be rescheduled once with 48h prior notice. Calendar reservation deposits lock studio time exclusively.</span>
-                    </div>
-                  </div>
+                <div class="inv-brand-promise" id="invBrandPromise">
+                  <div class="promise-title">✨ LAUREIGN STUDIOS &amp; DAVILLE PICTURES PROMISE</div>
+                  <p class="promise-text">Every milestone is captured with precision, emotional resonance, and timeless luxury. Master high-resolution galleries, bespoke color grading, and archival print albums are delivered with uncompromising excellence.</p>
                 </div>
               </div>
 
               <div class="inv-totals-col">
                 <div class="inv-tot-line">
-                  <span>Base Shoots / Sessions:</span>
+                  <span>Base Production / Sessions:</span>
                   <span id="invBaseAmt">KSh 0</span>
                 </div>
                 <div class="inv-tot-line">
-                  <span>Selected Add-Ons &amp; Reels:</span>
+                  <span>Selected Add-Ons &amp; Enhancements:</span>
                   <span id="invAddonsAmt">KSh 0</span>
                 </div>
                 <div class="inv-tot-line" id="invDiscountRow" style="display:none; color:#15803d; font-weight:700;">
@@ -1566,8 +1568,8 @@
             <div class="inv-sheet-footer">
               <div class="inv-sign-col">
                 <div class="inv-sign-line">Authorized Studio Representative</div>
-                <div class="inv-sign-role">Laureign Studios Creative Productions · Kenya</div>
-                <div class="inv-ack-note" id="invAckNote">Payment of booking deposit signifies client acceptance of this quotation and standard production policies. Thank you for choosing Laureign Studios!</div>
+                <div class="inv-sign-role">Laureign Studios &amp; Daville Pictures · Creative Productions Kenya</div>
+                <div class="inv-ack-note" id="invAckNote">Official client invoice. Payment of commitment deposit signifies reservation of date and crew. Thank you for choosing Laureign Studios!</div>
               </div>
               <div class="inv-seal-col">
                 <!-- REALISTIC VECTOR RUBBER STAMP WITH DYNAMIC DATES -->
@@ -1597,7 +1599,7 @@
                     <!-- Center emblem & dynamic date -->
                     <g text-anchor="middle" font-family="'Jost', -apple-system, sans-serif">
                       <text x="100" y="78" font-size="10" fill="#047857" font-weight="900">★ ★ ★</text>
-                      <text x="100" y="93" font-size="8.8" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgTitle">OFFICIAL QUOTATION</text>
+                      <text x="100" y="93" font-size="8.8" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgTitle">OFFICIAL INVOICE</text>
                       <line x1="52" y1="99" x2="148" y2="99" stroke="#047857" stroke-width="1"/>
                       <text x="100" y="111" font-size="9.5" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgDate">DATE: 13 SEP 2026</text>
                       <line x1="52" y1="116" x2="148" y2="116" stroke="#047857" stroke-width="1"/>

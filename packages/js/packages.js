@@ -1827,29 +1827,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (verifiedBanner) verifiedBanner.style.display = "flex";
       if (sealStamp) sealStamp.classList.add("paid-stamp");
 
-      if (termsTitle) termsTitle.textContent = "Payment Verification & Delivery Terms";
-      if (termsNote) termsNote.textContent = "* Official payment confirmed with thanks. Digital master files will be delivered within agreed timelines via high-speed cloud gallery and direct WhatsApp link. Thank you for choosing Laureign Studios!";
-      const termsCardTitle = document.getElementById("invTermsCardTitle");
-      const termsCardList = document.getElementById("invTermsCardList");
-      const ackNote = document.getElementById("invAckNote");
-      if (termsCardTitle) termsCardTitle.textContent = "PRODUCTION CLEARANCE & USAGE RIGHTS";
-      if (termsCardList) {
-        termsCardList.innerHTML = `
-          <div class="inv-term-item">
-            <span class="inv-term-bullet">▪</span>
-            <span><b>Official Clearance:</b> Payment received and authenticated. Master production and editorial retouching are in active queue.</span>
-          </div>
-          <div class="inv-term-item">
-            <span class="inv-term-bullet">▪</span>
-            <span><b>Usage Rights Granted:</b> Client is granted non-exclusive personal reproduction, printing &amp; social media distribution rights for all delivered assets.</span>
-          </div>
-          <div class="inv-term-item">
-            <span class="inv-term-bullet">▪</span>
-            <span><b>Delivery Guarantee:</b> Private cloud gallery download and direct WhatsApp link delivered within committed studio timeline.</span>
-          </div>
+      if (termsTitle) termsTitle.textContent = "Official Payment Confirmation & Record";
+      if (termsNote) termsNote.textContent = "* Official payment confirmed with thanks. Digital master deliverables are processed per agreed timeline and delivered via private cloud gallery and WhatsApp download link.";
+      const promiseEl = document.getElementById("invBrandPromise");
+      if (promiseEl) {
+        promiseEl.innerHTML = `
+          <div class="promise-title">✨ PAYMENT AUTHENTICATED · PRODUCTION IN PROGRESS</div>
+          <p class="promise-text">Master color grading, skin frequency retouching, and bespoke cinematography are in active queue. Private gallery preview will be shared per committed studio timeline.</p>
         `;
       }
-      if (ackNote) ackNote.textContent = "Official payment confirmation. Laureign Studios thanks you for your business and partnership!";
+      const ackNote = document.getElementById("invAckNote");
+      if (ackNote) ackNote.textContent = "Official payment confirmation. Laureign Studios & Daville Pictures thank you for your partnership!";
       if (btnPdfText) btnPdfText.textContent = "📥 Download Official Receipt (PDF)";
       if (btnWaText) btnWaText.textContent = "📲 Send Receipt to Client";
     } else {
@@ -1864,35 +1852,23 @@ document.addEventListener("DOMContentLoaded", () => {
         currentInvoiceRef = `LS-QUO-2026-${randNum}`;
       }
 
-      if (docBadge) docBadge.textContent = "PROFORMA INVOICE & QUOTATION";
-      if (refLabel) refLabel.textContent = "QUOTATION REF:";
+      if (docBadge) docBadge.textContent = "PROFORMA INVOICE & CLIENT QUOTATION";
+      if (refLabel) refLabel.textContent = "INVOICE REF:";
       if (validityItem) validityItem.style.display = "flex";
       if (verifiedBanner) verifiedBanner.style.display = "none";
       if (sealStamp) sealStamp.classList.remove("paid-stamp");
 
-      if (termsTitle) termsTitle.textContent = "Official Payment & M-Pesa Instructions";
-      if (termsNote) termsNote.textContent = "* A booking commitment deposit locks your date on our production calendar. RAW unedited proofs available at KSh 150 per image. The remaining balance is payable upon delivery of your master high-resolution gallery and deliverables.";
-      const termsCardTitle = document.getElementById("invTermsCardTitle");
-      const termsCardList = document.getElementById("invTermsCardList");
-      const ackNote = document.getElementById("invAckNote");
-      if (termsCardTitle) termsCardTitle.textContent = "PRODUCTION POLICIES & USAGE RIGHTS";
-      if (termsCardList) {
-        termsCardList.innerHTML = `
-          <div class="inv-term-item">
-            <span class="inv-term-bullet">▪</span>
-            <span><b>Usage &amp; Licensing:</b> Delivered master files grant perpetual personal, family &amp; social media distribution rights. Commercial advertising/broadcast usage quoted upon request. Studio retains artistic copyright.</span>
-          </div>
-          <div class="inv-term-item">
-            <span class="inv-term-bullet">▪</span>
-            <span><b>Turnaround &amp; Cloud Delivery:</b> Private online gallery preview ready within 48–72h. Master retouched deliverables completed within 2–5 business days.</span>
-          </div>
-          <div class="inv-term-item">
-            <span class="inv-term-bullet">▪</span>
-            <span><b>Rescheduling &amp; Deposit:</b> Dates may be rescheduled once with 48h prior notice. Calendar reservation deposits are non-refundable to secure crew &amp; studio time exclusively.</span>
-          </div>
+      if (termsTitle) termsTitle.textContent = "Official Payment & Remittance Details";
+      if (termsNote) termsNote.textContent = "* A 40% commitment deposit confirms your booking and reserves our creative crew on your event date. The remaining balance is payable upon delivery of your master high-resolution deliverables.";
+      const promiseEl = document.getElementById("invBrandPromise");
+      if (promiseEl) {
+        promiseEl.innerHTML = `
+          <div class="promise-title">✨ LAUREIGN STUDIOS &amp; DAVILLE PICTURES PROMISE</div>
+          <p class="promise-text">Every milestone is captured with precision, emotional resonance, and timeless luxury. Master high-resolution galleries, bespoke color grading, and archival print albums are delivered with uncompromising excellence.</p>
         `;
       }
-      if (ackNote) ackNote.textContent = "Payment of booking deposit signifies client acceptance of this quotation and standard production policies. Thank you for choosing Laureign Studios!";
+      const ackNote = document.getElementById("invAckNote");
+      if (ackNote) ackNote.textContent = "Official client invoice. Payment of commitment deposit signifies reservation of date and crew. Thank you for choosing Laureign Studios!";
       if (btnPdfText) btnPdfText.textContent = "📥 Download Official PDF";
       if (btnWaText) btnWaText.textContent = "📲 Send PDF via WhatsApp";
     }
@@ -1941,7 +1917,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Ensure session exists
     if (invoiceSessions.length === 0) {
-      addInvoiceSession("shirt-shoot", 0, false);
+      addInvoiceSession("indoor-shirt-shoot", 0, false);
     }
 
     updateInvoiceDisplay();
@@ -1951,6 +1927,136 @@ document.addEventListener("DOMContentLoaded", () => {
       invClientInput.focus();
       if (invClientInput.value === "Valued Client") invClientInput.value = "";
     }
+  }
+
+  // 1-Click Event & Milestone Quotation Presets (Weddings, Events, Summits, Milestones)
+  function applyQuotationPreset(presetKey) {
+    if (presetKey === "walkin-today") {
+      applyWalkinPreset("full");
+      return;
+    }
+
+    setInvoiceMode("quotation");
+
+    // Clear existing sessions & custom add-ons
+    invoiceSessions = [];
+    invoiceAddons = [];
+
+    const today = new Date();
+    const targetDate = new Date();
+
+    if (presetKey === "wedding-gold") {
+      targetDate.setDate(today.getDate() + 30);
+      const yyyy = targetDate.getFullYear();
+      const mm = String(targetDate.getMonth() + 1).padStart(2, "0");
+      const dd = String(targetDate.getDate()).padStart(2, "0");
+
+      if (invClientInput) invClientInput.value = "Mr. & Mrs. (Wedding Couple)";
+      if (invDateInput) invDateInput.value = `${yyyy}-${mm}-${dd}`;
+      if (invTimeInput) invTimeInput.value = "Full-Day Wedding Coverage (7:00 AM – 8:00 PM)";
+      if (invLocationInput) invLocationInput.value = "Windsor Golf Hotel & Country Club / Nairobi";
+      if (invCrewInput) invCrewInput.value = "2 Senior Photographers, 1 Master Cinematographer, 4K Aerial Drone Unit";
+      if (invNotesInput) {
+        invNotesInput.value = "💍 Gold Wedding Production: Morning bridal & groom prep, church solemnization, creative bridal party location session, and evening reception coverage.\n• Deliverables: 400 retouched high-res master images, 4K cinematic film highlights (3–5 mins), 4K drone aerials, luxury layflat photobook album (30 pages), branded wooden flash drive & private cloud gallery.\n• All unedited high-resolution RAW camera proofs included.";
+      }
+
+      addInvoiceSession("wedding-coverage", 2, false); // Gold (75,000)
+      if (invDepositPercent) invDepositPercent.value = "40";
+      showInvoiceToast("💍 Full-Day Wedding Gold Collection applied (KSh 75,000)!");
+    }
+    else if (presetKey === "wedding-platinum") {
+      targetDate.setDate(today.getDate() + 45);
+      const yyyy = targetDate.getFullYear();
+      const mm = String(targetDate.getMonth() + 1).padStart(2, "0");
+      const dd = String(targetDate.getDate()).padStart(2, "0");
+
+      if (invClientInput) invClientInput.value = "Bride & Groom (Royal VIP Matrimony)";
+      if (invDateInput) invDateInput.value = `${yyyy}-${mm}-${dd}`;
+      if (invTimeInput) invTimeInput.value = "Multi-Location VIP Wedding Coverage (Full Day)";
+      if (invLocationInput) invLocationInput.value = "Safari Park Hotel / Ciala Resort / Client Estate";
+      if (invCrewInput) invCrewInput.value = "3 Senior Photographers, 2 Master Cinematographers, 4K Drone Aerial Pilot";
+      if (invNotesInput) {
+        invNotesInput.value = "👑 Royal VIP Platinum Matrimony: Complimentary pre-wedding love story session, multi-camera 4K cinematography, drone aerials, full ceremony documentation & cinematic documentary film (15–20 mins).\n• Deliverables: 600+ retouched master photographs, 1 Luxury 30-Page Master Photobook, 2 Parent Albums, A2 living room canvas mount & luxury wooden USB gift box.";
+      }
+
+      addInvoiceSession("wedding-coverage", 3, false); // Platinum (90,000)
+      if (invDepositPercent) invDepositPercent.value = "40";
+      showInvoiceToast("👑 Royal VIP Platinum Wedding applied (KSh 90,000)!");
+    }
+    else if (presetKey === "wedding-traditional") {
+      targetDate.setDate(today.getDate() + 21);
+      const yyyy = targetDate.getFullYear();
+      const mm = String(targetDate.getMonth() + 1).padStart(2, "0");
+      const dd = String(targetDate.getDate()).padStart(2, "0");
+
+      if (invClientInput) invClientInput.value = "Family & Couple (Traditional Wedding / Ruracio)";
+      if (invDateInput) invDateInput.value = `${yyyy}-${mm}-${dd}`;
+      if (invTimeInput) invTimeInput.value = "Full-Day Cultural Matrimony (8:00 AM – 6:00 PM)";
+      if (invLocationInput) invLocationInput.value = "Family Country Estate / On-Location Grounds";
+      if (invCrewInput) invCrewInput.value = "2 Senior Photographers + Master 4K Cinema Camera Unit";
+      if (invNotesInput) {
+        invNotesInput.value = "🥂 Traditional Matrimony (Ruracio / Dowry Celebration): Complete coverage of family negotiations, bridal entrance, elder blessings, gift presentation & cultural reception.\n• Deliverables: 350+ retouched high-resolution images, 4K cinematic video highlights, 4K drone aerials, luxury photobook album & all unedited original camera proofs.";
+      }
+
+      addInvoiceSession("traditional-wedding", 2, false); // Gold (75,000)
+      if (invDepositPercent) invDepositPercent.value = "40";
+      showInvoiceToast("🥂 Traditional Ruracio Collection applied (KSh 75,000)!");
+    }
+    else if (presetKey === "corporate-summit") {
+      targetDate.setDate(today.getDate() + 14);
+      const yyyy = targetDate.getFullYear();
+      const mm = String(targetDate.getMonth() + 1).padStart(2, "0");
+      const dd = String(targetDate.getDate()).padStart(2, "0");
+
+      if (invClientInput) invClientInput.value = "Corporate Organization / Summit Secretariat";
+      if (invDateInput) invDateInput.value = `${yyyy}-${mm}-${dd}`;
+      if (invTimeInput) invTimeInput.value = "Full-Day Conference & Evening Gala Dinner (8:00 AM – 9:00 PM)";
+      if (invLocationInput) invLocationInput.value = "Radisson Blu / Villa Rosa Kempinski / Nairobi";
+      if (invCrewInput) invCrewInput.value = "2 Commercial Photographers + 4K Cinema Documentarian";
+      if (invNotesInput) {
+        invNotesInput.value = "🏢 Full Corporate Summit & Gala: Keynote speakers, panel sessions, attendee networking, stage awards ceremony, executive team portraits, same-day digital PR press selects & complete corporate media repository.";
+      }
+
+      addInvoiceSession("corporate-event", 1, false); // Gold (35,000)
+      invoiceAddons.push({
+        id: "addon_summit_reel",
+        name: "4K Executive Event Highlights Reel",
+        spec: "60-second fast-paced corporate social media highlight cut for LinkedIn & Twitter",
+        price: 3000
+      });
+      renderInvoiceAddons();
+      if (invDepositPercent) invDepositPercent.value = "50";
+      showInvoiceToast("🏢 Corporate Summit & Gala applied (KSh 38,000)!");
+    }
+    else if (presetKey === "graduation-vip") {
+      targetDate.setDate(today.getDate() + 7);
+      const yyyy = targetDate.getFullYear();
+      const mm = String(targetDate.getMonth() + 1).padStart(2, "0");
+      const dd = String(targetDate.getDate()).padStart(2, "0");
+
+      if (invClientInput) invClientInput.value = "Graduate & Proud Family";
+      if (invDateInput) invDateInput.value = `${yyyy}-${mm}-${dd}`;
+      if (invTimeInput) invTimeInput.value = "Studio Regalia Session + Campus Location (2 Hours)";
+      if (invLocationInput) invLocationInput.value = "Laureign Studios (Kakamega Studio) / Campus";
+      if (invCrewInput) invCrewInput.value = "Studio Lead Photographer + Lighting Assistant";
+      if (invNotesInput) {
+        invNotesInput.value = "🎓 Graduation Milestone VIP: Solo academic regalia portraits, degree scroll, academic hood, cap toss, family and parents combination portraits.\n• Includes magazine-grade skin retouching, living room wooden A3 photo mount & complete high-speed cloud download.";
+      }
+
+      addInvoiceSession("graduation-shoot", 2, false); // Gold (3,500)
+      invoiceAddons.push({
+        id: "addon_a3_mount",
+        name: "A3 Statement Photo Mount (30×42cm)",
+        spec: "Solid MDF wooden living room wall mount, laminated print, ready to hang",
+        price: 2300
+      });
+      renderInvoiceAddons();
+      if (invDepositPercent) invDepositPercent.value = "40";
+      showInvoiceToast("🎓 Graduation Milestone + Wall Mount applied (KSh 5,800)!");
+    }
+
+    updateInvoiceDisplay();
+    if (invClientInput) invClientInput.focus();
   }
 
   // Smart Autocomplete & Predictive Helpers
@@ -2444,15 +2550,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const elSTime = document.getElementById("invSheetTime");
     const elLoc = document.getElementById("invSheetLocation");
     const elCrew = document.getElementById("invSheetCrew");
+    const elBillingLoc = document.getElementById("invSheetBillingLoc");
+    const elEventTitle = document.getElementById("invSheetEventTitle");
 
     if (elClient) elClient.textContent = clientVal;
-    if (elPhone) elPhone.textContent = phoneVal ? `Phone: ${phoneVal}` : "Phone: Not Specified";
+    if (elPhone) elPhone.textContent = phoneVal ? `📞 Phone: ${phoneVal}` : "📞 Phone: Not Specified";
     if (elEmail) {
       if (emailVal) {
-        elEmail.textContent = `Email: ${emailVal}`;
+        elEmail.textContent = `✉️ Email: ${emailVal}`;
         elEmail.style.display = "block";
       } else {
         elEmail.style.display = "none";
+      }
+    }
+    if (elBillingLoc) {
+      elBillingLoc.textContent = `📍 Destination: ${locVal || "Studio / On-Location"}`;
+    }
+    if (elEventTitle) {
+      if (invoiceSessions.length > 0) {
+        elEventTitle.textContent = invoiceSessions.map(s => s.title).join(" + ");
+      } else {
+        elEventTitle.textContent = "Executive Photography & Cinematography";
       }
     }
     if (elSDate) elSDate.textContent = dateVal;
@@ -2663,11 +2781,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Bank &amp; Channel:</b> <span id="invPayChannelVal">I&amp;M Bank · M-Pesa Paybill</span>`;
-      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Paybill Number:</b> <span class="till-num">542542</span> &nbsp;<b>Account No:</b> <span class="till-num">486197</span>`;
-      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name to Verify:</b> <span style="font-weight:700; color:#0f766e;">JANE AKOTH</span> (Laureign Studios)`;
-      if (elPayRefLine) elPayRefLine.innerHTML = `<b>Strict Studio Policy:</b> <span style="color:#b91c1c; font-weight:700;">🚫 Strictly No Cash Accepted · Official Paybill Only</span>`;
-      if (elTermsNote) elTermsNote.textContent = "* A booking commitment deposit locks your date on our production calendar. Strictly no cash accepted. The remaining balance is payable upon delivery of your master high-resolution gallery and deliverables.";
+      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Remittance Channel:</b> <span id="invPayChannelVal">M-Pesa Paybill &amp; Direct Bank Transfer</span>`;
+      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Paybill Number:</b> <span class="till-num">542542</span> &nbsp;&nbsp;<b>Account No:</b> <span class="till-num">486197</span>`;
+      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name to Verify:</b> <span style="font-weight:700; color:#047857;">JANE AKOTH</span> (Laureign Studios)`;
+      const elBankLine = document.getElementById("invPayBankLine");
+      if (elBankLine) elBankLine.innerHTML = `<b>Direct Bank Remittance:</b> <span>I&amp;M Bank Kenya · Account No: <b>486197</b></span>`;
+      if (elTermsNote) elTermsNote.textContent = `* A ${depPercent}% commitment deposit confirms your booking and reserves our creative crew on your event date. The remaining balance is payable upon delivery of your master high-resolution deliverables.`;
     }
 
     // Dynamic Rubber Stamp Content & Live Up-To-Date Dates
@@ -2684,7 +2803,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (isReceipt) {
         elStampTitle.textContent = paymentStatus === "deposit" ? "DEPOSIT CONFIRMED" : "PAID & CONFIRMED";
       } else {
-        elStampTitle.textContent = "OFFICIAL QUOTATION";
+        elStampTitle.textContent = "OFFICIAL INVOICE";
       }
     }
   }
@@ -3053,33 +3172,34 @@ document.addEventListener("DOMContentLoaded", () => {
         msg += `📥 *Official PDF Receipt Generated & Saved.* Please see attached PDF document.\n\n`;
       }
 
-      msg += `✨ *Thank you for creating memories with Laureign Studios! Your master high-definition photographs will be delivered via private gallery link.* ✨\n`;
+      msg += `✨ *Thank you for choosing Laureign Studios & Daville Pictures! Your master high-definition photographs will be delivered via private gallery link.* ✨\n`;
       msg += `📞 Studio Contact: 0790 048 905`;
     } else {
-      msg += `*LAUREIGN STUDIOS — OFFICIAL PROFORMA INVOICE & QUOTATION*\n`;
-      msg += `📄 *Quotation Ref:* ${currentInvoiceRef}\n`;
+      msg += `*LAUREIGN STUDIOS & DAVILLE PICTURES*\n`;
+      msg += `✨ *Official Client Quotation & Production Scope*\n`;
+      msg += `📄 *Invoice Ref:* ${currentInvoiceRef}\n`;
       msg += `📅 *Issued:* ${invoiceDateIssued} (Valid 14 Days)\n\n`;
 
-      msg += `👤 *Client / Org:* ${clientVal}\n`;
+      msg += `👤 *Client / Invoiced To:* ${clientVal}\n`;
       if (rawPhone) msg += `📞 *Phone / WhatsApp:* ${rawPhone}\n`;
       if (emailVal) msg += `✉️ *Email:* ${emailVal}\n`;
-      msg += `🗓️ *Target Date:* ${dateVal} (${timeVal})\n`;
-      msg += `📍 *Venue / Location:* ${locVal}\n`;
-      msg += `🎥 *Assigned Crew:* ${crewVal}\n\n`;
+      msg += `🗓️ *Event / Shoot Date:* ${dateVal} (${timeVal})\n`;
+      msg += `📍 *Venue / Destination:* ${locVal}\n`;
+      msg += `🎥 *Assigned Production Unit:* ${crewVal}\n\n`;
 
-      msg += `*SHOOTS & SESSIONS PROPOSED:*\n`;
+      msg += `*PRODUCTION DELIVERABLES & SERVICES:*\n`;
       invoiceSessions.forEach((s, idx) => {
         const qty = s.qty || 1;
         const rate = s.rate || 0;
-        msg += `📸 *Shoot #${idx + 1}: ${s.title}* (${s.tierName})${qty > 1 ? ` ×${qty}` : ""}\n`;
+        msg += `📸 *${s.title}* (${s.tierName})${qty > 1 ? ` ×${qty}` : ""}\n`;
         msg += `   💰 Amount: KSh ${(rate * qty).toLocaleString()}\n`;
         if (s.spec) {
-          msg += `   📋 Scope: ${s.spec.replace(/\n+/g, " • ")}\n`;
+          msg += `   📋 Inclusions: ${s.spec.replace(/\n+/g, " • ")}\n`;
         }
       });
 
       if (invoiceAddons.length > 0) {
-        msg += `\n*SELECTED ADD-ONS & REELS:*\n`;
+        msg += `\n*SELECTED ENHANCEMENTS & ADD-ONS:*\n`;
         invoiceAddons.forEach(a => {
           msg += `• ${a.name} (+KSh ${(a.price || 0).toLocaleString()})\n`;
           if (a.spec) msg += `  _${a.spec}_\n`;
@@ -3087,30 +3207,30 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (discount > 0) {
-        msg += `\n🎁 *Special Client Discount:* - KSh ${discount.toLocaleString()}\n`;
+        msg += `\n🎁 *Special Client Courtesy Discount:* - KSh ${discount.toLocaleString()}\n`;
       }
 
       if (notesVal) {
-        msg += `\n📝 *Production Scope Notes:*\n_${notesVal}_\n`;
+        msg += `\n📝 *Production Scope & Details:*\n_${notesVal}_\n`;
       }
 
-      msg += `\n*FINANCIAL SUMMARY:*\n`;
+      msg += `\n*FINANCIAL SUMMARY & BOOKING:*\n`;
       msg += `💵 *Total Project Investment:* KSh ${grandTotal.toLocaleString()}\n`;
-      msg += `🔒 *Required Booking Deposit (${depPercent}%):* KSh ${deposit.toLocaleString()}\n`;
+      msg += `🔒 *Commitment Deposit to Lock Date (${depPercent}%):* KSh ${deposit.toLocaleString()}\n`;
       msg += `💳 *Balance Due on Master Delivery:* KSh ${balance.toLocaleString()}\n\n`;
 
-      msg += `*OFFICIAL PAYMENT INSTRUCTIONS (NO CASH ACCEPTED):*\n`;
-      msg += `🏦 *Bank:* I&M Bank\n`;
+      msg += `*OFFICIAL REMITTANCE DETAILS:*\n`;
       msg += `📲 *M-Pesa Paybill:* *542542*\n`;
-      msg += `🔢 *Account No:* *486197*\n`;
-      msg += `👤 *Account Name on M-Pesa:* *JANE AKOTH*\n`;
-      msg += `⚠️ *Studio Notice:* Strictly cashless desk. Please forward your M-Pesa transaction confirmation to lock your reservation.\n\n`;
+      msg += `🔢 *Account Number:* *486197*\n`;
+      msg += `👤 *Account Name to Verify:* *JANE AKOTH* (Laureign Studios)\n`;
+      msg += `🏦 *Direct Bank Transfer:* I&M Bank Kenya (Acc: 486197)\n\n`;
 
       if (pdfDownloaded) {
         msg += `📥 *Official PDF Quotation Generated & Saved.* Please see attached PDF document.\n\n`;
       }
 
-      msg += `_Please confirm date availability and issue deposit receipt to reserve your slot._`;
+      msg += `_To confirm booking and lock your date on our production calendar, please remit the commitment deposit and share confirmation._\n`;
+      msg += `✨ *Laureign Studios & Daville Pictures · Kakamega · Nairobi · Nationwide Kenya*`;
     }
 
     const waUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`;
@@ -3120,12 +3240,15 @@ document.addEventListener("DOMContentLoaded", () => {
   function copyInvoiceText() {
     const isReceipt = invoiceMode === "receipt";
 
-    const clientVal = (invClientInput && invClientInput.value.trim()) || "Client";
+    const clientVal = (invClientInput && invClientInput.value.trim()) || "Valued Client";
     const phoneVal = (invPhoneInput && invPhoneInput.value.trim()) || "Not specified";
     const emailVal = (invEmailInput && invEmailInput.value.trim()) || "";
-    const dateVal = (invDateInput && invDateInput.value) || "TBD";
+    const dateVal = (invDateInput && invDateInput.value) || "To Be Scheduled";
     const timeVal = (invTimeInput && invTimeInput.value.trim()) || "Standard Session";
-    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (In-Studio, Kakamega)";
+    const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (Kakamega)";
+
+    const payRefInput = document.getElementById("invPaymentRefInput");
+    const paymentRef = (payRefInput && payRefInput.value.trim()) || currentInvoiceRef;
 
     const basePrice = invoiceSessions.reduce((sum, s) => sum + ((s.rate || 0) * (s.qty || 1)), 0);
     const addonsTotal = invoiceAddons.reduce((sum, a) => sum + (a.price || 0), 0);
@@ -3137,15 +3260,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const balance = Math.max(0, grandTotal - deposit);
 
     let text = isReceipt
-      ? `LAUREIGN STUDIOS — OFFICIAL PAYMENT RECEIPT\n`
-      : `LAUREIGN STUDIOS — OFFICIAL PROFORMA INVOICE\n`;
-    text += `Ref: ${currentInvoiceRef}\n`;
+      ? `LAUREIGN STUDIOS & DAVILLE PICTURES — OFFICIAL PAYMENT RECEIPT\n`
+      : `LAUREIGN STUDIOS & DAVILLE PICTURES — OFFICIAL PROFORMA INVOICE\n`;
+    text += `Invoice Ref: ${currentInvoiceRef}\n`;
     text += `Date: ${invoiceDateIssued}${isReceipt ? "" : " (Valid 14 Days)"}\n\n`;
-    text += `Client: ${clientVal}\nPhone: ${phoneVal}\n`;
+    text += `Client / Invoiced To: ${clientVal}\nPhone: ${phoneVal}\n`;
     if (emailVal) text += `Email: ${emailVal}\n`;
     text += `Shoot Date: ${dateVal} (${timeVal})\nLocation: ${locVal}\n\n`;
 
-    text += `SHOOTS & SESSIONS:\n`;
+    text += `PRODUCTION DELIVERABLES:\n`;
     invoiceSessions.forEach((s, idx) => {
       const qty = s.qty || 1;
       const rate = s.rate || 0;
@@ -3153,23 +3276,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (invoiceAddons.length > 0) {
-      text += `\nADD-ONS:\n`;
+      text += `\nADD-ONS & ENHANCEMENTS:\n`;
       invoiceAddons.forEach(a => {
         text += `- ${a.name}: KSh ${(a.price || 0).toLocaleString()}\n`;
       });
     }
 
     if (discount > 0) {
-      text += `\nSpecial Discount: - KSh ${discount.toLocaleString()}\n`;
+      text += `\nSpecial Client Discount: - KSh ${discount.toLocaleString()}\n`;
     }
 
-    text += `\nTotal: KSh ${grandTotal.toLocaleString()}\n`;
+    text += `\nTotal Project Investment: KSh ${grandTotal.toLocaleString()}\n`;
     if (isReceipt) {
       text += `Amount Received: KSh ${grandTotal.toLocaleString()} (PAID IN FULL)\nBalance: KSh 0 (CLEARED)\n\n`;
-      text += `Payment Channel: I&M Bank · M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)\nReceipt Ref: ${paymentRef}\nStrict Policy: Cashless Verified · Laureign Studios`;
+      text += `Payment Channel: I&M Bank · M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)\nReceipt Ref: ${paymentRef}\nStatus: Cashless Verified · Laureign Studios`;
     } else {
-      text += `Deposit Required (${depPercent}%): KSh ${deposit.toLocaleString()}\nBalance Due: KSh ${balance.toLocaleString()}\n\n`;
-      text += `PAYMENT INSTRUCTIONS (STRICTLY NO CASH):\nBank: I&M Bank\nM-Pesa Paybill: 542542\nAccount No: 486197\nAccount Name: JANE AKOTH\nStudio Phone / WhatsApp: 0790048905`;
+      text += `Commitment Deposit Required (${depPercent}%): KSh ${deposit.toLocaleString()}\nBalance Due on Delivery: KSh ${balance.toLocaleString()}\n\n`;
+      text += `OFFICIAL REMITTANCE:\nBank: I&M Bank Kenya (Acc: 486197)\nM-Pesa Paybill: 542542\nAccount No: 486197\nAccount Name: JANE AKOTH (Laureign Studios)\nStudio Direct Line: +254 790 048 905`;
     }
 
     navigator.clipboard.writeText(text).then(() => {
@@ -3604,6 +3727,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.closeInvoiceModal = closeInvoiceModal;
   window.setInvoiceMode = setInvoiceMode;
   window.applyWalkinPreset = applyWalkinPreset;
+  window.applyQuotationPreset = applyQuotationPreset;
   window.normalizeKenyanPhone = normalizeKenyanPhone;
   window.updateInvoiceDisplay = updateInvoiceDisplay;
 
