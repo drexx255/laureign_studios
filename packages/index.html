@@ -62,6 +62,9 @@
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
           <span>Quotation / Invoice</span>
         </button>
+        <button type="button" class="btn-open-walkin" onclick="openInvoiceModal(); applyWalkinPreset();" title="Quick Walk-in Client Desk (Today's Shoot)">
+          <span>⚡ Walk-in Desk</span>
+        </button>
         <a href="#packagesBrowse" class="header-cta-cal">
           <span>Book on Calendar</span>
         </a>
@@ -96,11 +99,14 @@
           </span>
         </button>
       </div>
-            <div class="drawer-action-strip" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:2px 8px 10px; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:8px;">
+      <div class="drawer-action-strip" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:2px 8px 10px; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:8px;">
         <a href="#packagesBrowse" class="drawer-link" style="justify-content:center; background:rgba(255,255,255,0.08); color:#ffffff; font-weight:600; font-size:12px; border-radius:999px; padding:8px 10px; border:1px solid rgba(255,255,255,0.15);">📅 Book on Calendar</a>
         <a href="https://wa.me/254790048905?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20your%20packages%20%F0%9F%93%B8" target="_blank" rel="noopener" class="drawer-link" style="justify-content:center; background:#25D366; color:#000000 !important; font-weight:700; font-size:12px; border-radius:999px; padding:8px 10px;">💬 WhatsApp</a>
       </div>
-<a href="javascript:void(0)" onclick="openInvoiceModal(); toggleDrawer ? toggleDrawer(false) : togglePackagesDrawer(false);" class="drawer-link" style="background:rgba(234,179,8,0.12); border:1px solid rgba(234,179,8,0.3); color:var(--gold-soft); font-weight:700; margin:4px 8px 10px; border-radius:8px; padding:9px 12px; justify-content:center;">📄 Generate Proforma Invoice / Quote</a>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:4px 8px 10px;">
+        <a href="javascript:void(0)" onclick="openInvoiceModal(); toggleDrawer ? toggleDrawer(false) : togglePackagesDrawer(false);" class="drawer-link" style="background:rgba(234,179,8,0.12); border:1px solid rgba(234,179,8,0.3); color:var(--gold-soft); font-weight:700; border-radius:8px; padding:9px 10px; justify-content:center; font-size:11.5px;">📄 PDF Quotation</a>
+        <a href="javascript:void(0)" onclick="openInvoiceModal(); applyWalkinPreset(); toggleDrawer ? toggleDrawer(false) : togglePackagesDrawer(false);" class="drawer-link" style="background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.35); color:#4ade80; font-weight:700; border-radius:8px; padding:9px 10px; justify-content:center; font-size:11.5px;">⚡ Walk-in Receipt</a>
+      </div>
       <a href="index.html" class="drawer-link" style="color:var(--gold-soft);font-weight:700;">← Back to All Packages (Rate Card)</a>
       <!-- 1. STUDIO SESSIONS (11 Packages) -->
       <div style="padding:6px 18px 2px; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--gold-soft); font-weight:700;">📸 Studio &amp; Portrait Sessions</div>
@@ -950,17 +956,20 @@
       <label class="form-label">WhatsApp Message Preview</label>
       <div class="wa-preview-box" id="modalWaPreview"></div>
 
-      <button type="button" id="modalLaunchWaBtn" class="modal-btn-launch-wa">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-          <path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/>
-        </svg>
-        <span>Open in WhatsApp (0790048905)</span>
-      </button>
-
-      <div style="margin-top:14px; margin-bottom:8px; text-align:center;">
-        <button type="button" onclick="openInvoiceFromBookingModal()" style="background:none; border:none; color:var(--gold-soft); font-size:12.5px; cursor:pointer; text-decoration:underline; font-weight:600;">
-          📄 Need an Official Proforma Invoice / PDF Quotation? Click here
+      <div class="booking-modal-actions-grid">
+        <button type="button" id="modalLaunchWaBtn" class="modal-btn-launch-wa" style="margin-top:0; padding:12px 14px; font-size:13px; font-weight:700;">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/>
+          </svg>
+          <span>1. Book on WhatsApp</span>
         </button>
+        <button type="button" class="modal-btn-instant-quote" onclick="openInvoiceFromBookingModal()" title="Instantly convert this booking into a formal PDF quotation">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          <span>2. Generate PDF Quote</span>
+        </button>
+      </div>
+      <div style="margin-top:10px; margin-bottom:4px; text-align:center; font-size:11px; color:var(--muted);">
+        💡 Need to show a client, partner, or sponsor? Click <b>"Generate PDF Quote"</b> to export an official branded proposal.
       </div>
       <div class="modal-quick-skip">
         In a rush? <a id="modalQuickSkip">Skip form &amp; launch WhatsApp directly →</a>
@@ -1037,6 +1046,25 @@
       <!-- Interactive Customizer Toolbar (Screen Only - Hides on Print) -->
       <div class="invoice-customizer-toolbar">
         
+        <!-- Dedicated Walk-in Quick Bar -->
+        <div class="inv-walkin-quickbar">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:22px;">⚡</span>
+            <div>
+              <div style="font-size:12.5px; font-weight:800; color:#4ade80; letter-spacing:0.5px;">STUDIO WALK-IN CLIENT DESK</div>
+              <div style="font-size:11px; color:#cbd5e1;">Handling a walk-in client right now? 1-click sets today's date, session info &amp; official receipt:</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button type="button" onclick="applyWalkinPreset('full')" style="background:#22c55e; color:#000000; border:none; border-radius:8px; padding:6px 14px; font-size:11.5px; font-weight:800; cursor:pointer;">
+              🧾 Walk-in Receipt (100% Paid)
+            </button>
+            <button type="button" onclick="applyWalkinPreset('deposit')" style="background:rgba(234,179,8,0.2); color:#fde047; border:1px solid rgba(234,179,8,0.4); border-radius:8px; padding:6px 12px; font-size:11.5px; font-weight:700; cursor:pointer;">
+              🔒 Walk-in Deposit (Partial)
+            </button>
+          </div>
+        </div>
+
         <!-- Mode Switcher: Quotation vs Official Receipt -->
         <div class="inv-mode-card" style="grid-column: 1 / -1;">
           <div class="inv-mode-left">
@@ -1055,33 +1083,111 @@
           </button>
         </div>
 
-        <!-- Section 1: Client & Assignment Info -->
+        <!-- Section 1: Client & Assignment Info with Predictive Autocomplete -->
         <div class="inv-customizer-section-title">👤 Client &amp; Assignment Details</div>
         <div class="inv-tools-grid">
+          
           <div class="inv-tool-group">
-            <label for="invClientInput">Client / Organization Name:</label>
-            <input type="text" id="invClientInput" class="inv-input" placeholder="e.g. Grace Wanjiku / Kenya Airways" oninput="updateInvoiceDisplay()">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="invClientInput">Client / Organization Name:</label>
+              <span style="font-size:10.5px; color:#a1a1aa;">Predictive title helpers:</span>
+            </div>
+            <input type="text" id="invClientInput" list="invClientSuggestions" class="inv-input" placeholder="e.g. Grace Wanjiku / Kenya Airways" oninput="updateInvoiceDisplay()">
+            <datalist id="invClientSuggestions">
+              <option value="Dr. "></option>
+              <option value="Eng. "></option>
+              <option value="Pastor "></option>
+              <option value="Hon. "></option>
+              <option value="Mr. &amp; Mrs. "></option>
+              <option value="Family of "></option>
+              <option value="Studio Walk-in Guest"></option>
+            </datalist>
+            <div class="inv-predictive-chips">
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Dr. ', true)">+ Dr.</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Eng. ', true)">+ Eng.</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Pastor ', true)">+ Pastor</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Hon. ', true)">+ Hon.</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Mr. &amp; Mrs. ', true)">+ Mr. &amp; Mrs.</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Studio Walk-in Guest')">⚡ Walk-in Guest</span>
+            </div>
           </div>
+
           <div class="inv-tool-group">
             <label for="invPhoneInput">WhatsApp / Phone Number (For Direct PDF Send):</label>
             <input type="text" id="invPhoneInput" class="inv-input" placeholder="e.g. 0712 345 678" oninput="updateInvoiceDisplay()">
           </div>
+
           <div class="inv-tool-group">
             <label for="invEmailInput">Client Email Address (Optional):</label>
             <input type="email" id="invEmailInput" class="inv-input" placeholder="e.g. client@company.com" oninput="updateInvoiceDisplay()">
           </div>
+
           <div class="inv-tool-group">
-            <label for="invDateInput">Target Event / Shoot Date:</label>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="invDateInput">Target Event / Shoot Date:</label>
+              <span style="font-size:10.5px; color:#a1a1aa;">Quick date:</span>
+            </div>
             <input type="date" id="invDateInput" class="inv-input" oninput="updateInvoiceDisplay()">
+            <div class="inv-predictive-chips">
+              <span class="inv-predict-chip" onclick="setQuickDate(0)">⚡ Today</span>
+              <span class="inv-predict-chip" onclick="setQuickDate(1)">Tomorrow</span>
+              <span class="inv-predict-chip" onclick="setQuickDate(7)">Next Week</span>
+              <span class="inv-predict-chip" onclick="setQuickDate(30)">Next Month</span>
+            </div>
           </div>
+
           <div class="inv-tool-group">
-            <label for="invTimeInput">Coverage Timing &amp; Duration:</label>
-            <input type="text" id="invTimeInput" class="inv-input" placeholder="e.g. Standard Studio Session" oninput="updateInvoiceDisplay()">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="invTimeInput">Coverage Timing &amp; Duration:</label>
+              <span style="font-size:10.5px; color:#a1a1aa;">Click to predict:</span>
+            </div>
+            <input type="text" id="invTimeInput" list="invTimeSuggestions" class="inv-input" placeholder="e.g. Standard Studio Session" oninput="updateInvoiceDisplay()">
+            <datalist id="invTimeSuggestions">
+              <option value="1 Hour Studio Portrait Session"></option>
+              <option value="2 Hours In-Studio &amp; Outdoor"></option>
+              <option value="Half-Day Production (4 Hours)"></option>
+              <option value="Full-Day Event Coverage (8 Hours)"></option>
+              <option value="Morning Golden Hour (7:00 AM – 10:00 AM)"></option>
+              <option value="Evening Sunset Session (4:00 PM – 6:30 PM)"></option>
+              <option value="Walk-in Instant Studio Shoot (Completed)"></option>
+            </datalist>
+            <div class="inv-predictive-chips">
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', '1 Hour Studio Portrait Session')">⏱️ 1h Studio</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', '2 Hours In-Studio &amp; Outdoor')">⏱️ 2h Studio+Out</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', 'Half-Day Production (4 Hours)')">⏱️ Half-Day (4h)</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', 'Full-Day Event Coverage (8 Hours)')">⏱️ Full-Day (8h)</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', 'Morning Golden Hour (7:00 AM – 10:00 AM)')">🌅 Golden Hour</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invTimeInput', 'Walk-in Instant Studio Shoot (Completed)')">⚡ Walk-in Done</span>
+            </div>
           </div>
+
           <div class="inv-tool-group">
-            <label for="invLocationInput">Event Venue &amp; City:</label>
-            <input type="text" id="invLocationInput" class="inv-input" placeholder="e.g. Laureign Studios (In-Studio, Kakamega)" oninput="updateInvoiceDisplay()">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="invLocationInput">Event Venue &amp; City:</label>
+              <span style="font-size:10.5px; color:#a1a1aa;">Click to insert:</span>
+            </div>
+            <input type="text" id="invLocationInput" list="invLocationSuggestions" class="inv-input" placeholder="e.g. Laureign Studios (In-Studio, Kakamega)" oninput="updateInvoiceDisplay()">
+            <datalist id="invLocationSuggestions">
+              <option value="Laureign Studios (In-Studio, Kakamega)"></option>
+              <option value="Laureign Studios (Nairobi Branch)"></option>
+              <option value="Rupa Mall / Eldoret"></option>
+              <option value="Ciala Resort, Kisumu"></option>
+              <option value="Client Private Residence"></option>
+              <option value="Golf Hotel Kakamega"></option>
+              <option value="Karura Forest, Nairobi"></option>
+              <option value="Two Rivers Mall / Rosslyn"></option>
+              <option value="Safari Park Hotel, Nairobi"></option>
+            </datalist>
+            <div class="inv-predictive-chips">
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Laureign Studios (In-Studio, Kakamega)')">📍 Kakamega Studio</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Laureign Studios (Nairobi Branch)')">📍 Nairobi Studio</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Rupa Mall / Eldoret')">📍 Eldoret</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Ciala Resort, Kisumu')">📍 Kisumu</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Client Private Residence')">📍 Client Residence</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invLocationInput', 'Karura Forest, Nairobi')">📍 Karura Forest</span>
+            </div>
           </div>
+
         </div>
 
         <!-- Section: Receipt & Payment Confirmation Details (Visible in Receipt mode) -->
@@ -1114,7 +1220,7 @@
           </div>
         </div>
 
-        <!-- Section 2: Core Package, Tier & Terms -->
+        <!-- Section 2: Core Package, Crew & Booking Terms -->
         <div class="inv-customizer-section-title" style="margin-top:12px;">📸 Core Package, Crew &amp; Booking Terms</div>
         <div class="inv-tools-grid">
           <div class="inv-tool-group">
@@ -1126,8 +1232,25 @@
             <select id="invTierSelect" class="inv-select" onchange="onInvoiceTierChange()"></select>
           </div>
           <div class="inv-tool-group">
-            <label for="invCrewInput">Crew Allocation Note:</label>
-            <input type="text" id="invCrewInput" class="inv-input" placeholder="e.g. 2 Photographers + 1 Cinematographer" oninput="updateInvoiceDisplay()">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label for="invCrewInput">Crew Allocation Note:</label>
+              <span style="font-size:10.5px; color:#a1a1aa;">Crew presets:</span>
+            </div>
+            <input type="text" id="invCrewInput" list="invCrewSuggestions" class="inv-input" placeholder="e.g. 2 Photographers + 1 Cinematographer" oninput="updateInvoiceDisplay()">
+            <datalist id="invCrewSuggestions">
+              <option value="Studio Lead Photographer + Lighting Assistant"></option>
+              <option value="Lead Cinematographer &amp; 4K Cinema Camera"></option>
+              <option value="2 Senior Photographers + Studio Lighting Assistant"></option>
+              <option value="Drone Pilot &amp; 4K Aerial Cinema Unit"></option>
+              <option value="Full Commercial Production Crew + Audio Engineer"></option>
+              <option value="Solo Studio Portrait Specialist"></option>
+            </datalist>
+            <div class="inv-predictive-chips">
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invCrewInput', 'Studio Lead Photographer + Lighting Assistant')">📸 Studio Lead + Assist</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invCrewInput', 'Lead Cinematographer & 4K Cinema Camera')">🎥 4K Cinema Unit</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invCrewInput', '2 Senior Photographers + Studio Lighting Assistant')">👥 2 Pro Photographers</span>
+              <span class="inv-predict-chip" onclick="applyFieldPrediction('invCrewInput', 'Drone Pilot & 4K Aerial Cinema Unit')">🛸 Drone Aerial Unit</span>
+            </div>
           </div>
           <div class="inv-tool-group">
             <label for="invDepositPercent">Booking Deposit %:</label>
@@ -1145,21 +1268,47 @@
           </div>
         </div>
 
-        <!-- Section 3: Custom Line Items Builder (Add Any Custom Service / Fee!) -->
+        <!-- Section 3: Custom Line Items Builder with 1-Click Fast Adders -->
         <div class="inv-custom-items-section" style="margin-top:14px; background:rgba(0,0,0,0.25); border:1px dashed rgba(255,255,255,0.18); border-radius:12px; padding:12px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:8px;">
-            <span style="font-size:12px; font-weight:700; color:var(--gold-soft);">➕ Custom Fees / Additional Services (Optional):</span>
+            <div>
+              <span style="font-size:12px; font-weight:700; color:var(--gold-soft);">➕ Custom Fees &amp; Production Enhancements:</span>
+              <span style="font-size:11px; color:#94a3b8; display:block;">Click a 1-click upgrade chip below or add a custom line:</span>
+            </div>
             <button type="button" onclick="addCustomLineItem()" style="background:#22c55e; color:#000000; border:none; border-radius:999px; padding:5px 14px; font-size:12px; font-weight:700; cursor:pointer;">
-              + Add Custom Service
+              + Add Blank Service
             </button>
           </div>
+          
+          <!-- Predictive 1-Click Fast Adders -->
+          <div class="inv-predictive-chips" style="margin-bottom:10px;">
+            <span class="inv-predict-chip" style="background:rgba(34,197,94,0.15); border-color:#22c55e; color:#86efac;" onclick="addCustomLineItem('Extra 10 Retouched Photos', 'High-end frequency separation skin retouching', 1500)">+ 10 Retouched Photos (KSh 1,500)</span>
+            <span class="inv-predict-chip" style="background:rgba(234,179,8,0.15); border-color:#eab308; color:#fde047;" onclick="addCustomLineItem('24h Rush Priority Turnaround', 'Expedited master gallery delivery within 24h', 3000)">+ 24h Rush Turnaround (KSh 3,000)</span>
+            <span class="inv-predict-chip" style="background:rgba(56,189,248,0.15); border-color:#38bdf8; color:#bae6fd;" onclick="addCustomLineItem('Drone 4K Aerial Coverage', 'Full aerial cinema session with licensed drone pilot', 6000)">+ 4K Drone Aerial (KSh 6,000)</span>
+            <span class="inv-predict-chip" style="background:rgba(168,85,247,0.15); border-color:#a855f7; color:#e9d5ff;" onclick="addCustomLineItem('Hardcover Photobook Album', '30-page luxury lay-flat metallic photo album', 7500)">+ Photobook 30-Page (KSh 7,500)</span>
+            <span class="inv-predict-chip" style="background:rgba(244,63,94,0.15); border-color:#f43f5e; color:#fecdd3;" onclick="addCustomLineItem('Extra Outfit Change (Studio)', 'Additional background &amp; wardrobe styling session', 1000)">+ Extra Outfit Change (KSh 1,000)</span>
+            <span class="inv-predict-chip" style="background:rgba(249,115,22,0.15); border-color:#f97316; color:#fed7aa;" onclick="addCustomLineItem('A2 Framed Canvas Print', '16x24 inch museum-grade matte canvas with wooden frame', 4500)">+ A2 Framed Canvas (KSh 4,500)</span>
+          </div>
+
           <div id="invCustomItemsList"></div>
         </div>
 
-        <!-- Section 4: Special Production Notes -->
+        <!-- Section 4: Special Production Notes with 1-Click Template Inserts -->
         <div class="inv-tool-group" style="margin-top:12px;">
-          <label for="invNotesInput">Special Scope of Work &amp; Assignment Notes (Prints on Invoice):</label>
-          <textarea id="invNotesInput" class="inv-input" rows="2" placeholder="e.g. Priority 24hr teaser pack for press releases. Lapel microphone speech recording included. Venue drone clearance arranged by client." oninput="updateInvoiceDisplay()"></textarea>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; flex-wrap:wrap; gap:4px;">
+            <label for="invNotesInput" style="font-weight:700; color:var(--gold-soft);">Special Scope of Work &amp; Assignment Notes (Prints on Invoice):</label>
+            <span style="font-size:11px; color:#a1a1aa;">✨ Click any predictive template below to insert:</span>
+          </div>
+          <textarea id="invNotesInput" class="inv-input" rows="2" placeholder="e.g. Includes 2 outfit changes, studio backdrop selection, skin retouching &amp; high-res cloud gallery download." oninput="updateInvoiceDisplay()"></textarea>
+          
+          <div class="inv-predictive-chips" style="margin-top:8px;">
+            <span class="inv-predict-chip" style="border-color:#ca8a04; color:#fde047;" onclick="applyNoteTemplate('studio')">📝 + Standard Studio Scope</span>
+            <span class="inv-predict-chip" style="border-color:#22c55e; color:#86efac;" onclick="applyNoteTemplate('rush')">⚡ + 24h Rush Turnaround</span>
+            <span class="inv-predict-chip" style="border-color:#38bdf8; color:#bae6fd;" onclick="applyNoteTemplate('wedding')">💍 + Full-Day Wedding Scope</span>
+            <span class="inv-predict-chip" style="border-color:#f43f5e; color:#fecdd3;" onclick="applyNoteTemplate('graduation')">🎓 + Graduation Family Scope</span>
+            <span class="inv-predict-chip" style="border-color:#a855f7; color:#e9d5ff;" onclick="applyNoteTemplate('travel')">🚗 + Travel &amp; Logistics Note</span>
+            <span class="inv-predict-chip" style="border-color:#f97316; color:#fed7aa;" onclick="applyNoteTemplate('clear')">✕ Clear Notes</span>
+          </div>
         </div>
 
       </div>

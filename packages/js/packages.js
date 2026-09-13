@@ -1880,7 +1880,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 1-Click Preset for Studio Walk-in Clients (auto-fills today's shoot details)
-  function applyWalkinPreset() {
+  function applyWalkinPreset(status = "full") {
     setInvoiceMode("receipt");
 
     const today = new Date();
@@ -1895,13 +1895,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (invCrewInput) invCrewInput.value = "Studio Lead Photographer + Lighting Assistant";
 
     const payStatusSelect = document.getElementById("invPaymentStatusSelect");
-    if (payStatusSelect) payStatusSelect.value = "full";
+    if (payStatusSelect) {
+      payStatusSelect.value = status === "deposit" ? "deposit" : "full";
+    }
 
     const payMethodSelect = document.getElementById("invPaymentMethodSelect");
     if (payMethodSelect) payMethodSelect.value = "M-Pesa Buy Goods Till (0790048905)";
 
     const payRefInput = document.getElementById("invPaymentRefInput");
-    if (payRefInput && !payRefInput.value.trim()) {
+    if (payRefInput && (!payRefInput.value.trim() || payRefInput.value === "M-Pesa Verified")) {
       const mpesaChars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
       let code = "SL";
       for (let i = 0; i < 6; i++) {
@@ -1910,17 +1912,81 @@ document.addEventListener("DOMContentLoaded", () => {
       payRefInput.value = code;
     }
 
-    if (invNotesInput && (!invNotesInput.value.trim() || invNotesInput.value.includes("Includes high-end"))) {
-      invNotesInput.value = "Walk-in studio shoot completed at Laureign Studios. Master retouched photos deliverable within 24–48 hours via secure Google Drive & WhatsApp link.";
+    if (invNotesInput && (!invNotesInput.value.trim() || invNotesInput.value.includes("Includes high-end") || invNotesInput.value.includes("Walk-in studio shoot"))) {
+      invNotesInput.value = status === "deposit"
+        ? "Walk-in studio shoot. 50% deposit received via M-Pesa. Master retouched gallery ready in 24–48 hours; final balance due on delivery."
+        : "Walk-in studio shoot completed at Laureign Studios. Master retouched photos deliverable within 24–48 hours via secure Google Drive & WhatsApp link.";
     }
 
     updateInvoiceDisplay();
-    showInvoiceToast("⚡ Walk-in session preset applied! Ready to print or send.");
+    showInvoiceToast(`⚡ Walk-in session applied (${status === "deposit" ? "Deposit" : "100% Paid"})!`);
 
     if (invClientInput) {
       invClientInput.focus();
       if (invClientInput.value === "Valued Client") invClientInput.value = "";
     }
+  }
+
+  // Smart Autocomplete & Predictive Helpers
+  function applyFieldPrediction(inputId, textValue, append = false) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    if (append) {
+      const current = input.value.trim();
+      if (!current) {
+        input.value = textValue;
+      } else if (!current.toLowerCase().includes(textValue.toLowerCase().trim())) {
+        input.value = textValue + current;
+      }
+    } else {
+      input.value = textValue;
+    }
+    updateInvoiceDisplay();
+    input.focus();
+    showInvoiceToast(`✓ Inserted "${textValue.trim()}"`);
+  }
+
+  function setQuickDate(daysAhead = 0) {
+    if (!invDateInput) return;
+    const target = new Date();
+    target.setDate(target.getDate() + daysAhead);
+    const yyyy = target.getFullYear();
+    const mm = String(target.getMonth() + 1).padStart(2, "0");
+    const dd = String(target.getDate()).padStart(2, "0");
+    invDateInput.value = `${yyyy}-${mm}-${dd}`;
+    updateInvoiceDisplay();
+    const labels = { 0: "Today", 1: "Tomorrow", 7: "Next Week", 30: "Next Month" };
+    showInvoiceToast(`📅 Date set to ${labels[daysAhead] || `${daysAhead} days ahead`}`);
+  }
+
+  function applyNoteTemplate(type) {
+    if (!invNotesInput) return;
+    const templates = {
+      studio: "Includes 2 outfit changes, professional studio lighting & backdrop setup, high-end skin frequency separation retouching, and secure private cloud gallery download.",
+      rush: "⚡ Priority 24-Hour Expedited Turnaround: color-graded high-resolution master gallery delivered within 24 hours of session wrap.",
+      wedding: "💍 Full-day coverage: morning bridal preparations, church ceremony, creative couple & bridal party location session, and evening reception coverage.",
+      graduation: "🎓 Graduation milestone session: includes graduate solo portraits, ceremonial gown & hood props, parents, and extended family group combinations.",
+      travel: "🚗 Local transport within town limits covered. Client facilitates venue entrance access, entry tickets, and photography clearances if required.",
+      clear: ""
+    };
+
+    if (type === "clear") {
+      invNotesInput.value = "";
+      updateInvoiceDisplay();
+      showInvoiceToast("Scope notes cleared.");
+      return;
+    }
+
+    const tpl = templates[type];
+    if (!tpl) return;
+
+    if (!invNotesInput.value.trim()) {
+      invNotesInput.value = tpl;
+    } else {
+      invNotesInput.value = invNotesInput.value.trim() + "\n" + tpl;
+    }
+    updateInvoiceDisplay();
+    showInvoiceToast("✓ Production scope template inserted!");
   }
 
   function initInvoice() {
@@ -2048,17 +2114,20 @@ document.addEventListener("DOMContentLoaded", () => {
     updateInvoiceDisplay();
   }
 
-  // Custom Line Items Management
-  function addCustomLineItem() {
+  // Custom Line Items Management with 1-click upgrade presets
+  function addCustomLineItem(presetName, presetSpec, presetRate) {
     const newItem = {
-      id: "cli_" + Date.now(),
-      name: "Additional Service / Special Equipment",
-      spec: "Custom on-demand requirement",
-      rate: 0
+      id: "cli_" + Date.now() + "_" + Math.floor(Math.random() * 1000),
+      name: presetName || "Additional Service / Special Equipment",
+      spec: presetSpec || "Custom on-demand requirement",
+      rate: typeof presetRate === "number" ? presetRate : 0
     };
     customLineItems.push(newItem);
     renderCustomLineItems();
     updateInvoiceDisplay();
+    if (presetName) {
+      showInvoiceToast(`✓ Added "${presetName}" (+KSh ${(presetRate || 0).toLocaleString()})`);
+    }
   }
 
   function removeCustomLineItem(id) {
@@ -2850,6 +2919,9 @@ document.addEventListener("DOMContentLoaded", () => {
   window.openInvoiceFromSamplesModal = openInvoiceFromSamplesModal;
   window.openInvoiceModalFromCalc = openInvoiceModalFromCalc;
   window.showInvoiceToast = showInvoiceToast;
+  window.applyFieldPrediction = applyFieldPrediction;
+  window.setQuickDate = setQuickDate;
+  window.applyNoteTemplate = applyNoteTemplate;
 
 
     initInvoice();
