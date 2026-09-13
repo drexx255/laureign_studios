@@ -5160,7 +5160,10 @@ body {
 }
 
 /* Text Hierarchy */
-h1, h2, h3, h4,
+h1:not(.invoice-printable-sheet *),
+h2:not(.invoice-printable-sheet *),
+h3:not(.invoice-printable-sheet *),
+h4:not(.invoice-printable-sheet *),
 .hero-title,
 .showcase-title,
 .pathway-card-title,
@@ -5173,7 +5176,10 @@ h1, h2, h3, h4,
   letter-spacing: -0.022em !important;
 }
 
-h1 span, h1 i, h2 span, h2 i,
+h1:not(.invoice-printable-sheet *) span,
+h1:not(.invoice-printable-sheet *) i,
+h2:not(.invoice-printable-sheet *) span,
+h2:not(.invoice-printable-sheet *) i,
 .showcase-title i,
 .pkg-price-val,
 .pathway-starting-tag,
@@ -5183,7 +5189,7 @@ h1 span, h1 i, h2 span, h2 i,
   font-style: normal !important;
 }
 
-p,
+p:not(.invoice-printable-sheet *),
 .hero-desc,
 .showcase-desc,
 .pathway-card-desc,
@@ -6607,13 +6613,22 @@ h2.serif,
 
 /* Special Notes Box */
 .inv-notes-box {
-  background: #f8fafc;
-  border-left: 3px solid #047857;
-  border-radius: 0 6px 6px 0;
-  padding: 10px 14px;
-  font-size: 11.5px;
-  color: #334155;
-  margin-bottom: 18px;
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  border-left: 3.5px solid #047857 !important;
+  border-radius: 6px !important;
+  padding: 10px 14px !important;
+  font-size: 11.5px !important;
+  color: #0f172a !important;
+  margin-bottom: 18px !important;
+}
+.inv-notes-box b {
+  color: #047857 !important;
+  font-weight: 800 !important;
+}
+.inv-notes-box #invDisplayNotesText {
+  color: #1e293b !important;
+  font-weight: 500 !important;
 }
 
 /* Financials Row */
@@ -6652,33 +6667,43 @@ h2.serif,
   padding: 1px 6px;
   border-radius: 4px;
 }
-.inv-terms-note {
-  font-size: 10px;
-  color: #64748b;
-  line-height: 1.4;
-  margin-bottom: 10px;
+.inv-terms-note,
+.invoice-printable-sheet .inv-terms-note {
+  font-size: 11px !important;
+  color: #334155 !important;
+  line-height: 1.45 !important;
+  margin-bottom: 10px !important;
+  font-weight: 500 !important;
 }
 
 /* Executive Brand Promise Card */
-.inv-brand-promise {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 8px;
-  padding: 11px 14px;
-  margin-top: 4px;
+.inv-brand-promise,
+.invoice-printable-sheet .inv-brand-promise {
+  background: #f0fdf4 !important;
+  border: 1px solid #86efac !important;
+  border-left: 3.5px solid #047857 !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  margin-top: 8px !important;
 }
-.promise-title {
-  font-size: 10px;
-  font-weight: 800;
-  color: #166534;
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
+.promise-title,
+.invoice-printable-sheet .promise-title {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #047857 !important;
+  letter-spacing: 0.8px !important;
+  margin-bottom: 5px !important;
+  text-transform: uppercase !important;
+  display: block !important;
 }
-.promise-text {
-  font-size: 10.5px;
-  color: #15803d;
-  line-height: 1.4;
-  margin: 0;
+.promise-text,
+.inv-brand-promise p,
+.invoice-printable-sheet .promise-text {
+  font-size: 12px !important;
+  color: #0f172a !important; /* Pure high-contrast solid dark slate - 100% visible on white sheet! */
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  font-weight: 600 !important;
 }
 
 /* Totals Column */
@@ -6752,10 +6777,11 @@ h2.serif,
   margin-top: 2px;
 }
 .inv-ack-note {
-  font-size: 10px;
-  color: #94a3b8;
-  margin-top: 6px;
-  line-height: 1.35;
+  font-size: 10.5px !important;
+  color: #475569 !important;
+  margin-top: 6px !important;
+  line-height: 1.4 !important;
+  font-weight: 500 !important;
 }
 
 .inv-seal-col {
@@ -6807,6 +6833,60 @@ h2.serif,
 }
 .inv-dock-btn:hover {
   transform: translateY(-1px);
+}
+
+/* ============================================================
+   BULLETPROOF HIGH-CONTRAST TEXT SAFEGUARD FOR PRINTABLE SHEET
+   (Guarantees zero faint/white text on pure white sheet)
+   ============================================================ */
+.invoice-printable-sheet {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.invoice-printable-sheet p,
+.invoice-printable-sheet span,
+.invoice-printable-sheet div,
+.invoice-printable-sheet td,
+.invoice-printable-sheet th,
+.invoice-printable-sheet label,
+.invoice-printable-sheet li,
+.invoice-printable-sheet b,
+.invoice-printable-sheet strong {
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+.invoice-printable-sheet p:not(.inv-brand-promise p):not(.promise-text):not(.inv-terms-note):not(.inv-ack-note) {
+  color: #1e293b !important;
+}
+
+.invoice-printable-sheet .inv-brand-promise {
+  background: #f0fdf4 !important;
+  border: 1px solid #86efac !important;
+  border-left: 4px solid #047857 !important;
+}
+
+.invoice-printable-sheet .promise-title {
+  color: #047857 !important;
+  font-weight: 800 !important;
+  font-size: 11px !important;
+  display: block !important;
+}
+
+.invoice-printable-sheet .promise-text,
+.invoice-printable-sheet p.promise-text,
+.invoice-printable-sheet .inv-brand-promise p {
+  color: #0f172a !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+}
+
+.invoice-printable-sheet .inv-terms-note {
+  color: #334155 !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
 }
 
 /* Media Queries for Responsive Workstation */
