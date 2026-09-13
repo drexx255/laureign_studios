@@ -1783,6 +1783,278 @@ document.addEventListener("DOMContentLoaded", () => {
     return "";
   }
 
+  // Primary Production Categories Architecture
+  const INVOICE_CATEGORIES = {
+    studio: {
+      id: "studio",
+      name: "STUDIO & PORTRAIT SESSIONS",
+      badge: "📸 STUDIO & PORTRAIT SESSIONS",
+      scope: "In-Studio Controlled Lighting · High-End Retouching · Master High-Resolution Gallery",
+      defaultLoc: "Laureign Studios (In-Studio, Kakamega)"
+    },
+    weddings: {
+      id: "weddings",
+      name: "WEDDINGS & MATRIMONY COVERAGE",
+      badge: "💍 WEDDINGS & MATRIMONY COVERAGE",
+      scope: "Full-Day Matrimony · 4K Cinema Cinematography · 4K Drone Aerials · Luxury Photobook",
+      defaultLoc: "Windsor Golf Hotel & Country Club / Nairobi"
+    },
+    events: {
+      id: "events",
+      name: "CORPORATE SUMMITS, GALAS & EVENTS",
+      badge: "🏢 CORPORATE SUMMITS, GALAS & EVENTS",
+      scope: "On-Location Multi-Camera Coverage · Keynote Documentation · Rapid Press Deliverables",
+      defaultLoc: "Radisson Blu / Villa Rosa Kempinski / Nairobi"
+    },
+    outdoor: {
+      id: "outdoor",
+      name: "OUTDOOR & NATURAL LIGHT SESSIONS",
+      badge: "🌿 OUTDOOR & LIFESTYLE SESSIONS",
+      scope: "Golden Hour Natural Light · Park & Garden Lifestyle · Editorial Color Grade",
+      defaultLoc: "Karura Forest / Botanical Gardens / On-Location"
+    },
+    commercial: {
+      id: "commercial",
+      name: "COMMERCIAL & BRAND PRODUCTION",
+      badge: "🚀 COMMERCIAL & BRAND PRODUCTION",
+      scope: "E-Commerce Product Lighting · Hospitality Showcase · High-Impact Brand Assets",
+      defaultLoc: "Client Facility / Commercial Studio Setup"
+    }
+  };
+
+  let currentInvoiceCategory = "studio";
+
+  function setInvoiceCategory(catKey, force = false) {
+    if (!INVOICE_CATEGORIES[catKey]) catKey = "studio";
+    currentInvoiceCategory = catKey;
+
+    const catSelect = document.getElementById("invCategorySelect");
+    if (catSelect && (catSelect.value !== catKey || force)) {
+      catSelect.value = catKey;
+    }
+
+    updateInvoiceDisplay();
+  }
+
+  function onCategorySelectChange() {
+    const catSelect = document.getElementById("invCategorySelect");
+    if (!catSelect) return;
+    setInvoiceCategory(catSelect.value);
+    const cat = INVOICE_CATEGORIES[currentInvoiceCategory];
+    showInvoiceToast(`✓ Main Category set to "${cat.name}"`);
+  }
+
+  function detectCategoryFromPackage(pkgId) {
+    if (!pkgId || pkgId === "custom") return currentInvoiceCategory || "studio";
+    if (pkgId.includes("wedding") || pkgId === "pre-wedding") return "weddings";
+    if (typeof PACKAGES_DATA !== "undefined") {
+      const pkg = PACKAGES_DATA.find(p => p.id === pkgId);
+      if (pkg) {
+        if (pkg.pathway === "events") {
+          if (pkg.id.includes("wedding")) return "weddings";
+          return "events";
+        }
+        if (pkg.pathway === "outdoor") return "outdoor";
+        if (pkg.pathway === "commercial") return "commercial";
+        return "studio";
+      }
+    }
+    return "studio";
+  }
+
+  // Extracts client's first or primary name (stripping honorifics like Dr., Mr., Mrs.)
+  function getClientFirstName(rawName) {
+    const name = (rawName || (invClientInput ? invClientInput.value : "")).trim();
+    if (!name || name.toLowerCase() === "valued client" || name.toLowerCase() === "studio walk-in guest") {
+      return "";
+    }
+    const tokens = name.split(/\s+/).filter(Boolean);
+    if (!tokens.length) return "";
+    let first = tokens[0];
+    if (/^(mr|mrs|ms|miss|dr|eng|hon|pastor|prof|rev|arch|bishop)\.?$/i.test(first)) {
+      if (tokens.length > 1) {
+        first = tokens[1];
+        if (tokens.length > 2 && /^(and|&)$/i.test(tokens[2]) && tokens[3]) {
+          return `${first} & ${tokens[3]}`;
+        }
+      }
+    }
+    if (tokens.length >= 3 && /^(and|&)$/i.test(tokens[1])) {
+      return `${tokens[0]} & ${tokens[2]}`;
+    }
+    return first;
+  }
+
+  function getClientPossessive(rawName) {
+    const first = getClientFirstName(rawName);
+    if (!first) return "";
+    if (first.includes("&")) return `${first}'s`;
+    return (first.endsWith("s") || first.endsWith("S")) ? `${first}'` : `${first}'s`;
+  }
+
+  function onClientNameInput() {
+    autoSuggestOccasionTitle(false);
+    updateInvoiceDisplay();
+  }
+
+  // Generates a tailored, luxury production occasion title honoring the client
+  function autoSuggestOccasionTitle(force = false) {
+    const occInput = document.getElementById("invOccasionTitleInput");
+    if (!occInput) return;
+
+    if (!force && occInput.dataset.userEdited === "true" && occInput.value.trim().length > 0) {
+      updateInvoiceDisplay();
+      return;
+    }
+
+    const clientRaw = invClientInput ? invClientInput.value.trim() : "";
+    const poss = getClientPossessive(clientRaw);
+    const cat = INVOICE_CATEGORIES[currentInvoiceCategory] || INVOICE_CATEGORIES["studio"];
+
+    const firstSession = invoiceSessions[0];
+    const sTitle = firstSession ? firstSession.title.toLowerCase() : "";
+
+    let suggested = "";
+
+    if (currentInvoiceCategory === "weddings") {
+      suggested = poss ? `${poss} Bespoke Wedding Celebration & Matrimony Cinema` : "Bespoke Wedding Celebration & Matrimony Cinema";
+    } else if (currentInvoiceCategory === "events") {
+      suggested = poss ? `${poss} Executive Corporate Summit & Gala Media Coverage` : "Executive Corporate Summit & Event Media Coverage";
+    } else if (currentInvoiceCategory === "outdoor") {
+      suggested = poss ? `${poss} Golden Hour Natural Light & Lifestyle Session` : "Golden Hour Natural Light & Lifestyle Session";
+    } else if (currentInvoiceCategory === "commercial") {
+      suggested = poss ? `${poss} Commercial Brand & High-Impact Visual Production` : "Commercial Brand & Product Visual Production";
+    } else {
+      // Studio category
+      if (sTitle.includes("birthday")) {
+        suggested = poss ? `${poss} Milestone Birthday Studio Portrait Session` : "Milestone Birthday Studio Portrait Session";
+      } else if (sTitle.includes("graduation")) {
+        suggested = poss ? `${poss} Commencement & Graduation Portrait Suite` : "Commencement & Graduation Portrait Suite";
+      } else if (sTitle.includes("silk") || sTitle.includes("wrap")) {
+        suggested = poss ? `${poss} Fine-Art Silk Wrap & Glamour Studio Session` : "Fine-Art Silk Wrap & Glamour Studio Session";
+      } else if (sTitle.includes("white") || sTitle.includes("shirt")) {
+        suggested = poss ? `${poss} Crisp White Shirt Minimalist Portrait Session` : "Crisp White Shirt Minimalist Portrait Session";
+      } else if (sTitle.includes("maternity")) {
+        suggested = poss ? `${poss} Bespoke Maternity & Motherhood Fine-Art Session` : "Bespoke Maternity & Motherhood Fine-Art Session";
+      } else {
+        suggested = poss ? `${poss} Bespoke Studio & Portrait Experience` : "Bespoke Studio & Portrait Experience";
+      }
+    }
+
+    occInput.value = suggested;
+    occInput.dataset.userEdited = "false";
+    updateInvoiceDisplay();
+  }
+
+  function setOccasionPreset(presetKey) {
+    const occInput = document.getElementById("invOccasionTitleInput");
+    if (!occInput) return;
+
+    const clientRaw = invClientInput ? invClientInput.value.trim() : "";
+    const poss = getClientPossessive(clientRaw);
+
+    let title = "";
+    switch (presetKey) {
+      case "birthday":
+        setInvoiceCategory("studio");
+        title = poss ? `${poss} Milestone Birthday Studio Portrait Session` : "Milestone Birthday Studio Portrait Session";
+        break;
+      case "graduation":
+        setInvoiceCategory("studio");
+        title = poss ? `${poss} Commencement & Graduation Portrait Suite` : "Commencement & Graduation Portrait Suite";
+        break;
+      case "wedding":
+        setInvoiceCategory("weddings");
+        title = poss ? `${poss} Royal Wedding Celebration & Matrimony Cinema` : "Royal Wedding Celebration & Matrimony Cinema";
+        break;
+      case "silk":
+        setInvoiceCategory("studio");
+        title = poss ? `${poss} Fine-Art Silk Wrap & Glamour Studio Session` : "Fine-Art Silk Wrap & Glamour Studio Session";
+        break;
+      case "outdoor":
+        setInvoiceCategory("outdoor");
+        title = poss ? `${poss} Golden Hour Natural Light & Lifestyle Session` : "Golden Hour Natural Light & Lifestyle Session";
+        break;
+      case "corporate":
+        setInvoiceCategory("events");
+        title = poss ? `${poss} Executive Corporate Summit & Media Production` : "Executive Corporate Summit & Media Production";
+        break;
+      default:
+        autoSuggestOccasionTitle(true);
+        return;
+    }
+
+    occInput.value = title;
+    occInput.dataset.userEdited = "true";
+    updateInvoiceDisplay();
+    showInvoiceToast(`✓ Milestone Title set to "${title}"`);
+  }
+
+  // Generates warm, heartfelt luxury welcome message making client feel seen and cherished
+  function getPersonalizedWelcomeNote(clientRaw, occTitle) {
+    const isReceipt = invoiceMode === "receipt";
+    const firstName = getClientFirstName(clientRaw);
+    const salutation = firstName ? `Dear ${firstName}` : "Dear Valued Client";
+
+    if (isReceipt) {
+      return `${salutation}, your booking is officially confirmed and locked on our production calendar with sincere gratitude. Our creative team is eagerly preparing your studio lighting setup and artistic direction to ensure your shoot is a seamless, unforgettable celebration.`;
+    }
+
+    if (currentInvoiceCategory === "weddings") {
+      return `${salutation}, congratulations on your upcoming wedding! It is our highest privilege to document your once-in-a-lifetime matrimony with timeless cinematography and museum-grade photography that you and your family will treasure for generations.`;
+    }
+    if (currentInvoiceCategory === "events") {
+      return `${salutation}, thank you for choosing Laureign Studios for your organization's milestone event. We are committed to delivering world-class keynote coverage and rapid-turnaround executive media assets that elevate your brand.`;
+    }
+    if (currentInvoiceCategory === "outdoor") {
+      return `${salutation}, every milestone tells a story. Our team is dedicated to giving you an effortless, confidence-filled outdoor session in natural golden-hour light where you feel celebrated, radiant, and completely at home.`;
+    }
+    if (currentInvoiceCategory === "commercial") {
+      return `${salutation}, thank you for partnering with Laureign Studios. We are dedicated to translating your brand identity into museum-grade commercial visuals that drive prestige and market impact.`;
+    }
+
+    return `${salutation}, every milestone you celebrate holds a distinct story, and we are truly honored to craft this visual legacy with you. Our studio is dedicated to providing you with a relaxed, empowering experience where you feel celebrated, radiant, and completely at home from the very first frame.`;
+  }
+
+  function applyWelcomeTemplate(templateKey) {
+    const welcomeInput = document.getElementById("invWelcomeNoteInput");
+    if (!welcomeInput) return;
+
+    const clientRaw = invClientInput ? invClientInput.value.trim() : "";
+    const firstName = getClientFirstName(clientRaw);
+    const salutation = firstName ? `Dear ${firstName}` : "Dear Valued Client";
+
+    if (templateKey === "auto") {
+      welcomeInput.value = "";
+      updateInvoiceDisplay();
+      showInvoiceToast("✓ Auto-personalized welcome note restored");
+      return;
+    }
+
+    let msg = "";
+    switch (templateKey) {
+      case "milestone":
+        msg = `${salutation}, every milestone you celebrate holds a distinct story, and we are truly honored to craft this visual legacy with you. Our studio is dedicated to providing you with a relaxed, empowering experience where you feel celebrated, radiant, and completely at home from the very first frame.`;
+        break;
+      case "wedding":
+        msg = `${salutation}, congratulations on your upcoming wedding celebration! It is our highest privilege to document your once-in-a-lifetime matrimony with timeless cinematography and museum-grade photography that you and your family will treasure forever.`;
+        break;
+      case "graduation":
+        msg = `${salutation}, congratulations on this monumental academic achievement! We look forward to capturing your hard work, joy, and family pride with timeless, executive-grade graduation portraits.`;
+        break;
+      case "empowerment":
+        msg = `${salutation}, our studio is a space designed for you to shine with effortless grace. From tailored lighting to bespoke posing direction, we ensure you feel confident, radiant, and completely celebrated in every frame.`;
+        break;
+      case "corporate":
+        msg = `${salutation}, thank you for choosing Laureign Studios for your organization's milestone event. We are committed to delivering world-class keynote coverage and rapid-turnaround executive media assets that elevate your brand.`;
+        break;
+    }
+
+    welcomeInput.value = msg;
+    updateInvoiceDisplay();
+    showInvoiceToast("✓ Personal welcome note updated!");
+  }
+
   // Live formatted date for authentic SVG studio rubber stamp (e.g. "DATE: 13 SEP 2026")
   function getFormattedStampDate(d = new Date()) {
     const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -1837,7 +2109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
       }
       const ackNote = document.getElementById("invAckNote");
-      if (ackNote) ackNote.textContent = "Official payment confirmation. Laureign Studios & Daville Pictures thank you for your partnership!";
+      if (ackNote) ackNote.textContent = "Official payment confirmation. Laureign Studios thanks you for your business & partnership!";
       if (btnPdfText) btnPdfText.textContent = "📥 Download Official Receipt (PDF)";
       if (btnWaText) btnWaText.textContent = "📲 Send Receipt to Client";
     } else {
@@ -1863,7 +2135,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const promiseEl = document.getElementById("invBrandPromise");
       if (promiseEl) {
         promiseEl.innerHTML = `
-          <div class="promise-title">✨ LAUREIGN STUDIOS &amp; DAVILLE PICTURES PROMISE</div>
+          <div class="promise-title">✨ LAUREIGN STUDIOS OFFICIAL PROMISE</div>
           <p class="promise-text">Every milestone is captured with precision, emotional resonance, and timeless luxury. Master high-resolution galleries, bespoke color grading, and archival print albums are delivered with uncompromising excellence.</p>
         `;
       }
@@ -1879,6 +2151,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1-Click Preset for Studio Walk-in Clients (auto-fills today's shoot details)
   function applyWalkinPreset(status = "full") {
     setInvoiceMode("receipt");
+    setInvoiceCategory("studio");
 
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -1920,6 +2193,7 @@ document.addEventListener("DOMContentLoaded", () => {
       addInvoiceSession("indoor-shirt-shoot", 0, false);
     }
 
+    autoSuggestOccasionTitle(true);
     updateInvoiceDisplay();
     showInvoiceToast(`⚡ Walk-in session applied (${status === "deposit" ? "Deposit" : "100% Paid"})!`);
 
@@ -1946,6 +2220,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const targetDate = new Date();
 
     if (presetKey === "wedding-gold") {
+      setInvoiceCategory("weddings");
       targetDate.setDate(today.getDate() + 30);
       const yyyy = targetDate.getFullYear();
       const mm = String(targetDate.getMonth() + 1).padStart(2, "0");
@@ -1962,9 +2237,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       addInvoiceSession("wedding-coverage", 2, false); // Gold (75,000)
       if (invDepositPercent) invDepositPercent.value = "40";
+      autoSuggestOccasionTitle(true);
       showInvoiceToast("💍 Full-Day Wedding Gold Collection applied (KSh 75,000)!");
     }
     else if (presetKey === "wedding-platinum") {
+      setInvoiceCategory("weddings");
       targetDate.setDate(today.getDate() + 45);
       const yyyy = targetDate.getFullYear();
       const mm = String(targetDate.getMonth() + 1).padStart(2, "0");
@@ -1981,9 +2258,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       addInvoiceSession("wedding-coverage", 3, false); // Platinum (90,000)
       if (invDepositPercent) invDepositPercent.value = "40";
+      autoSuggestOccasionTitle(true);
       showInvoiceToast("👑 Royal VIP Platinum Wedding applied (KSh 90,000)!");
     }
     else if (presetKey === "wedding-traditional") {
+      setInvoiceCategory("weddings");
       targetDate.setDate(today.getDate() + 21);
       const yyyy = targetDate.getFullYear();
       const mm = String(targetDate.getMonth() + 1).padStart(2, "0");
@@ -2000,9 +2279,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       addInvoiceSession("traditional-wedding", 2, false); // Gold (75,000)
       if (invDepositPercent) invDepositPercent.value = "40";
+      autoSuggestOccasionTitle(true);
       showInvoiceToast("🥂 Traditional Ruracio Collection applied (KSh 75,000)!");
     }
     else if (presetKey === "corporate-summit") {
+      setInvoiceCategory("events");
       targetDate.setDate(today.getDate() + 14);
       const yyyy = targetDate.getFullYear();
       const mm = String(targetDate.getMonth() + 1).padStart(2, "0");
@@ -2026,9 +2307,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       renderInvoiceAddons();
       if (invDepositPercent) invDepositPercent.value = "50";
+      autoSuggestOccasionTitle(true);
       showInvoiceToast("🏢 Corporate Summit & Gala applied (KSh 38,000)!");
     }
     else if (presetKey === "graduation-vip") {
+      setInvoiceCategory("studio");
       targetDate.setDate(today.getDate() + 7);
       const yyyy = targetDate.getFullYear();
       const mm = String(targetDate.getMonth() + 1).padStart(2, "0");
@@ -2052,6 +2335,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       renderInvoiceAddons();
       if (invDepositPercent) invDepositPercent.value = "40";
+      autoSuggestOccasionTitle(true);
       showInvoiceToast("🎓 Graduation Milestone + Wall Mount applied (KSh 5,800)!");
     }
 
@@ -2072,6 +2356,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } else {
       input.value = textValue;
+    }
+    if (inputId === "invClientInput") {
+      autoSuggestOccasionTitle(false);
     }
     updateInvoiceDisplay();
     input.focus();
@@ -2126,6 +2413,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (pkgId === "custom") return;
     const pkg = PACKAGES_DATA.find(p => p.id === pkgId);
     if (!pkg) return;
+
+    // Detect and apply main production category
+    const detectedCat = detectCategoryFromPackage(pkgId);
+    setInvoiceCategory(detectedCat);
+    autoSuggestOccasionTitle(false);
 
     const isReceipt = invoiceMode === "receipt";
     const today = new Date();
@@ -2543,6 +2835,47 @@ document.addEventListener("DOMContentLoaded", () => {
     const crewVal = (invCrewInput && invCrewInput.value.trim()) || "Studio Lead Photographer + Lighting Assistant";
     const notesVal = (invNotesInput && invNotesInput.value.trim()) || "";
 
+    // Main Production Category Data & Badges
+    const cat = INVOICE_CATEGORIES[currentInvoiceCategory] || INVOICE_CATEGORIES["studio"];
+    const elCatSelect = document.getElementById("invCategorySelect");
+    if (elCatSelect && elCatSelect.value !== cat.id) {
+      elCatSelect.value = cat.id;
+    }
+    const elCatPill = document.getElementById("invDisplayCategoryPill");
+    const elCatScope = document.getElementById("invDisplayCategoryScope");
+    const elSheetCatVal = document.getElementById("invSheetCategoryVal");
+    if (elCatPill) elCatPill.textContent = cat.badge;
+    if (elCatScope) elCatScope.textContent = cat.scope;
+    if (elSheetCatVal) elSheetCatVal.textContent = cat.name;
+
+    // Bespoke Milestone / Occasion Title honoring the client
+    const occInput = document.getElementById("invOccasionTitleInput");
+    let occTitle = (occInput && occInput.value.trim()) || "";
+    if (!occTitle) {
+      const poss = getClientPossessive(clientVal);
+      occTitle = poss ? `${poss} ${cat.name}` : `Bespoke ${cat.name}`;
+    }
+    const elProdTitle = document.getElementById("invDisplayProductionTitle");
+    if (elProdTitle) elProdTitle.textContent = occTitle.toUpperCase();
+
+    // Client Honor Banner
+    const elHonorBadge = document.getElementById("invDisplayHonorBadge");
+    const elHonorName = document.getElementById("invDisplayHonorName");
+    if (elHonorBadge) {
+      elHonorBadge.textContent = invoiceMode === "receipt" ? "✓ OFFICIALLY ISSUED TO" : "✨ PREPARED SPECIALLY FOR";
+    }
+    if (elHonorName) {
+      elHonorName.textContent = (clientVal && clientVal !== "Valued Client") ? clientVal.toUpperCase() : "VALUED CLIENT";
+    }
+
+    // Warm Client Creative Vision & Welcome Note
+    const welcomeInput = document.getElementById("invWelcomeNoteInput");
+    const welcomeMsg = (welcomeInput && welcomeInput.value.trim()) || getPersonalizedWelcomeNote(clientVal, occTitle);
+    const elWelcomeText = document.getElementById("invDisplayWelcomeText");
+    if (elWelcomeText) {
+      elWelcomeText.textContent = `"${welcomeMsg}"`;
+    }
+
     const elClient = document.getElementById("invSheetClient");
     const elPhone = document.getElementById("invSheetPhone");
     const elEmail = document.getElementById("invSheetEmail");
@@ -2567,11 +2900,7 @@ document.addEventListener("DOMContentLoaded", () => {
       elBillingLoc.textContent = `📍 Destination: ${locVal || "Studio / On-Location"}`;
     }
     if (elEventTitle) {
-      if (invoiceSessions.length > 0) {
-        elEventTitle.textContent = invoiceSessions.map(s => s.title).join(" + ");
-      } else {
-        elEventTitle.textContent = "Executive Photography & Cinematography";
-      }
+      elEventTitle.textContent = occTitle;
     }
     if (elSDate) elSDate.textContent = dateVal;
     if (elSTime) elSTime.textContent = timeVal;
@@ -3090,6 +3419,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const crewVal = (invCrewInput && invCrewInput.value.trim()) || "Studio Lead Team";
     const notesVal = (invNotesInput && invNotesInput.value.trim()) || "";
 
+    const catData = INVOICE_CATEGORIES[currentInvoiceCategory] || INVOICE_CATEGORIES["studio"];
+    const occInput = document.getElementById("invOccasionTitleInput");
+    const occTitle = (occInput && occInput.value.trim()) || (getClientPossessive(clientVal) ? `${getClientPossessive(clientVal)} ${catData.name}` : `Bespoke ${catData.name}`);
+    const welcomeInput = document.getElementById("invWelcomeNoteInput");
+    const welcomeMsg = (welcomeInput && welcomeInput.value.trim()) || getPersonalizedWelcomeNote(clientVal, occTitle);
+
     const basePrice = invoiceSessions.reduce((sum, s) => sum + ((s.rate || 0) * (s.qty || 1)), 0);
     const addonsTotal = invoiceAddons.reduce((sum, a) => sum + (a.price || 0), 0);
     const discount = parseInt(invDiscountInput ? invDiscountInput.value : 0, 10) || 0;
@@ -3117,7 +3452,12 @@ document.addEventListener("DOMContentLoaded", () => {
       msg += `🧾 *Receipt Ref:* ${currentInvoiceRef}\n`;
       msg += `📅 *Date:* ${invoiceDateIssued}\n\n`;
 
-      msg += `👤 *Client / Customer:* ${clientVal}\n`;
+      msg += `👑 *OFFICIALLY ISSUED TO:* *${clientVal}*\n`;
+      msg += `🎯 *PRODUCTION OCCASION:* *${occTitle}*\n`;
+      msg += `🏷️ *MAIN PRODUCTION CATEGORY:* *${catData.name}*\n\n`;
+
+      msg += `💬 _"${welcomeMsg}"_\n\n`;
+
       if (rawPhone) msg += `📞 *Phone / WhatsApp:* ${rawPhone}\n`;
       if (emailVal) msg += `✉️ *Email:* ${emailVal}\n`;
       msg += `🗓️ *Shoot Date:* ${dateVal} (${timeVal})\n`;
@@ -3172,15 +3512,20 @@ document.addEventListener("DOMContentLoaded", () => {
         msg += `📥 *Official PDF Receipt Generated & Saved.* Please see attached PDF document.\n\n`;
       }
 
-      msg += `✨ *Thank you for choosing Laureign Studios & Daville Pictures! Your master high-definition photographs will be delivered via private gallery link.* ✨\n`;
+      msg += `✨ *Thank you for choosing Laureign Studios! Your master high-definition photographs will be delivered via private gallery link.* ✨\n`;
       msg += `📞 Studio Contact: 0790 048 905`;
     } else {
-      msg += `*LAUREIGN STUDIOS & DAVILLE PICTURES*\n`;
+      msg += `*LAUREIGN STUDIOS*\n`;
       msg += `✨ *Official Client Quotation & Production Scope*\n`;
       msg += `📄 *Invoice Ref:* ${currentInvoiceRef}\n`;
       msg += `📅 *Issued:* ${invoiceDateIssued} (Valid 14 Days)\n\n`;
 
-      msg += `👤 *Client / Invoiced To:* ${clientVal}\n`;
+      msg += `👑 *PREPARED SPECIALLY FOR:* *${clientVal}*\n`;
+      msg += `🎯 *PRODUCTION OCCASION:* *${occTitle}*\n`;
+      msg += `🏷️ *MAIN PRODUCTION CATEGORY:* *${catData.name}*\n\n`;
+
+      msg += `💬 _"${welcomeMsg}"_\n\n`;
+
       if (rawPhone) msg += `📞 *Phone / WhatsApp:* ${rawPhone}\n`;
       if (emailVal) msg += `✉️ *Email:* ${emailVal}\n`;
       msg += `🗓️ *Event / Shoot Date:* ${dateVal} (${timeVal})\n`;
@@ -3230,7 +3575,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       msg += `_To confirm booking and lock your date on our production calendar, please remit the commitment deposit and share confirmation._\n`;
-      msg += `✨ *Laureign Studios & Daville Pictures · Kakamega · Nairobi · Nationwide Kenya*`;
+      msg += `✨ *Laureign Studios · Kakamega · Nairobi · Nationwide Kenya*`;
     }
 
     const waUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`;
@@ -3247,6 +3592,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const timeVal = (invTimeInput && invTimeInput.value.trim()) || "Standard Session";
     const locVal = (invLocationInput && invLocationInput.value.trim()) || "Laureign Studios (Kakamega)";
 
+    const catData = INVOICE_CATEGORIES[currentInvoiceCategory] || INVOICE_CATEGORIES["studio"];
+    const occInput = document.getElementById("invOccasionTitleInput");
+    const occTitle = (occInput && occInput.value.trim()) || (getClientPossessive(clientVal) ? `${getClientPossessive(clientVal)} ${catData.name}` : `Bespoke ${catData.name}`);
+    const welcomeInput = document.getElementById("invWelcomeNoteInput");
+    const welcomeMsg = (welcomeInput && welcomeInput.value.trim()) || getPersonalizedWelcomeNote(clientVal, occTitle);
+
     const payRefInput = document.getElementById("invPaymentRefInput");
     const paymentRef = (payRefInput && payRefInput.value.trim()) || currentInvoiceRef;
 
@@ -3260,11 +3611,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const balance = Math.max(0, grandTotal - deposit);
 
     let text = isReceipt
-      ? `LAUREIGN STUDIOS & DAVILLE PICTURES — OFFICIAL PAYMENT RECEIPT\n`
-      : `LAUREIGN STUDIOS & DAVILLE PICTURES — OFFICIAL PROFORMA INVOICE\n`;
+      ? `LAUREIGN STUDIOS — OFFICIAL PAYMENT RECEIPT\n`
+      : `LAUREIGN STUDIOS — OFFICIAL CLIENT QUOTATION\n`;
     text += `Invoice Ref: ${currentInvoiceRef}\n`;
     text += `Date: ${invoiceDateIssued}${isReceipt ? "" : " (Valid 14 Days)"}\n\n`;
-    text += `Client / Invoiced To: ${clientVal}\nPhone: ${phoneVal}\n`;
+    text += `PREPARED SPECIALLY FOR: ${clientVal}\n`;
+    text += `PRODUCTION OCCASION: ${occTitle}\n`;
+    text += `MAIN PRODUCTION CATEGORY: ${catData.name}\n\n`;
+    text += `NOTE: "${welcomeMsg}"\n\n`;
+    text += `Phone: ${phoneVal}\n`;
     if (emailVal) text += `Email: ${emailVal}\n`;
     text += `Shoot Date: ${dateVal} (${timeVal})\nLocation: ${locVal}\n\n`;
 
@@ -3325,6 +3680,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     closeModal();
 
+    // Auto-detect category & set category from selected package
+    const detectedCat = detectCategoryFromPackage(modalState.pkgId);
+    setInvoiceCategory(detectedCat);
+
     // Reset sessions and add this selected package as Session #1
     invoiceSessions = [];
     addInvoiceSession(modalState.pkgId, modalState.optionIndex, false);
@@ -3341,6 +3700,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (shootDate && invDateInput) invDateInput.value = shootDate;
     if (loc && invLocationInput) invLocationInput.value = loc;
 
+    autoSuggestOccasionTitle(true);
     updateInvoiceDisplay();
   }
 
@@ -3730,6 +4090,15 @@ document.addEventListener("DOMContentLoaded", () => {
   window.applyQuotationPreset = applyQuotationPreset;
   window.normalizeKenyanPhone = normalizeKenyanPhone;
   window.updateInvoiceDisplay = updateInvoiceDisplay;
+
+  // Category & Client Personalization
+  window.setInvoiceCategory = setInvoiceCategory;
+  window.onCategorySelectChange = onCategorySelectChange;
+  window.onClientNameInput = onClientNameInput;
+  window.autoSuggestOccasionTitle = autoSuggestOccasionTitle;
+  window.setOccasionPreset = setOccasionPreset;
+  window.applyWelcomeTemplate = applyWelcomeTemplate;
+  window.getPersonalizedWelcomeNote = getPersonalizedWelcomeNote;
 
   // Multi-Session & Dynamic Add-Ons
   window.addInvoiceSession = addInvoiceSession;

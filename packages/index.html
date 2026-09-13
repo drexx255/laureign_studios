@@ -1205,12 +1205,26 @@
             <div class="inv-card-title">👤 Client &amp; Assignment Logistics</div>
             <div class="inv-tools-grid">
               
+              <div class="inv-tool-group" style="grid-column: 1 / -1;">
+                <div class="inv-label-row">
+                  <label for="invCategorySelect">🏷️ Main Production Category:</label>
+                  <span class="inv-helper-hint">Auto-detected or select:</span>
+                </div>
+                <select id="invCategorySelect" class="inv-select" onchange="onCategorySelectChange()">
+                  <option value="studio" selected>📸 Studio &amp; Portrait Sessions (In-Studio)</option>
+                  <option value="weddings">💍 Weddings &amp; Matrimony Coverage</option>
+                  <option value="events">🏢 Corporate Summits, Galas &amp; Events</option>
+                  <option value="outdoor">🌿 Outdoor &amp; Natural Light Sessions</option>
+                  <option value="commercial">🚀 Commercial &amp; Brand Production</option>
+                </select>
+              </div>
+
               <div class="inv-tool-group">
                 <div class="inv-label-row">
                   <label for="invClientInput">Client / Organization / Couple Name:</label>
                   <span class="inv-helper-hint">Predictive helpers:</span>
                 </div>
-                <input type="text" id="invClientInput" list="invClientSuggestions" class="inv-input" placeholder="e.g. Kevin &amp; Sandra Wedding / Safaricom PLC" oninput="updateInvoiceDisplay()">
+                <input type="text" id="invClientInput" list="invClientSuggestions" class="inv-input" placeholder="e.g. Mary Wanjiku / Kevin &amp; Sandra / Safaricom PLC" oninput="onClientNameInput()">
                 <datalist id="invClientSuggestions">
                   <option value="Mr. &amp; Mrs. "></option>
                   <option value="Wedding of "></option>
@@ -1227,6 +1241,24 @@
                   <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Dr. ', true)">+ Dr.</span>
                   <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Hon. ', true)">+ Hon.</span>
                   <span class="inv-predict-chip" onclick="applyFieldPrediction('invClientInput', 'Studio Walk-in Guest')">⚡ Walk-in</span>
+                </div>
+              </div>
+
+              <!-- Bespoke Personalized Milestone / Occasion Title -->
+              <div class="inv-tool-group" style="grid-column: 1 / -1;">
+                <div class="inv-label-row">
+                  <label for="invOccasionTitleInput">✨ Personalized Production / Milestone Title (Honoring Client):</label>
+                  <span class="inv-helper-hint">Prints prominently at top of quote:</span>
+                </div>
+                <input type="text" id="invOccasionTitleInput" class="inv-input" placeholder="e.g. Mary's Milestone Birthday Studio Portrait Session" oninput="updateInvoiceDisplay()">
+                <div class="inv-predictive-chips" style="margin-top:6px;">
+                  <span class="inv-predict-chip" style="border-color:#ca8a04; color:#fde047;" onclick="setOccasionPreset('birthday')">🎂 Birthday Shoot</span>
+                  <span class="inv-predict-chip" style="border-color:#22c55e; color:#86efac;" onclick="setOccasionPreset('graduation')">🎓 Graduation Suite</span>
+                  <span class="inv-predict-chip" style="border-color:#ec4899; color:#fbcfe8;" onclick="setOccasionPreset('wedding')">💍 Wedding &amp; Matrimony</span>
+                  <span class="inv-predict-chip" style="border-color:#a855f7; color:#e9d5ff;" onclick="setOccasionPreset('silk')">👑 Studio Silk Wrap</span>
+                  <span class="inv-predict-chip" style="border-color:#38bdf8; color:#bae6fd;" onclick="setOccasionPreset('outdoor')">🌿 Outdoor Lifestyle</span>
+                  <span class="inv-predict-chip" style="border-color:#f97316; color:#fed7aa;" onclick="setOccasionPreset('corporate')">🏢 Corporate Summit</span>
+                  <span class="inv-predict-chip" style="border-color:#94a3b8; color:#e2e8f0;" onclick="autoSuggestOccasionTitle()">✨ Auto-Suggest</span>
                 </div>
               </div>
 
@@ -1377,10 +1409,24 @@
             </div>
           </div>
 
-          <!-- Card 4: Special Scope Notes -->
+          <!-- Card 4: Client Welcome Note & Technical Scope -->
           <div class="inv-card-section">
             <div class="inv-label-row">
-              <div class="inv-card-title" style="margin:0;">📝 Special Scope of Work &amp; Assignment Notes</div>
+              <div class="inv-card-title" style="margin:0;">💖 Client Personal Welcome &amp; Creative Vision Note</div>
+              <span class="inv-helper-hint">Makes client feel seen &amp; special:</span>
+            </div>
+            <textarea id="invWelcomeNoteInput" class="inv-input" rows="2" placeholder="Auto-generated personal greeting making client feel seen &amp; celebrated (or type your own custom note)..." oninput="updateInvoiceDisplay()" style="margin-top:6px;"></textarea>
+            <div class="inv-predictive-chips" style="margin-top:8px;">
+              <span class="inv-predict-chip" style="border-color:#eab308; color:#fde047;" onclick="applyWelcomeTemplate('milestone')">✨ Warm Milestone</span>
+              <span class="inv-predict-chip" style="border-color:#ec4899; color:#fbcfe8;" onclick="applyWelcomeTemplate('wedding')">💍 Royal Wedding</span>
+              <span class="inv-predict-chip" style="border-color:#22c55e; color:#86efac;" onclick="applyWelcomeTemplate('graduation')">🎓 Graduation Honor</span>
+              <span class="inv-predict-chip" style="border-color:#a855f7; color:#e9d5ff;" onclick="applyWelcomeTemplate('empowerment')">👑 Glamour &amp; Beauty</span>
+              <span class="inv-predict-chip" style="border-color:#38bdf8; color:#bae6fd;" onclick="applyWelcomeTemplate('corporate')">🏢 Corporate Partner</span>
+              <span class="inv-predict-chip" style="border-color:#94a3b8; color:#e2e8f0;" onclick="applyWelcomeTemplate('auto')">🔄 Reset Auto-Note</span>
+            </div>
+
+            <div class="inv-label-row" style="margin-top:16px;">
+              <div class="inv-card-title" style="margin:0;">📝 Technical Scope of Work &amp; Assignment Deliverables</div>
               <span class="inv-helper-hint">Click a template below:</span>
             </div>
             <textarea id="invNotesInput" class="inv-input" rows="2" placeholder="e.g. Includes 2 outfit changes, studio backdrop selection, skin retouching &amp; high-res cloud gallery download." oninput="updateInvoiceDisplay()" style="margin-top:6px;"></textarea>
@@ -1464,6 +1510,34 @@
 
             <div class="inv-divider"></div>
 
+            <!-- Bespoke Client Honor & Milestone Occasion Banner -->
+            <div class="inv-client-honor-banner" id="invClientHonorBanner">
+              <div class="honor-header-row">
+                <div class="honor-badge-wrap">
+                  <span class="honor-badge" id="invDisplayHonorBadge">✨ PREPARED SPECIALLY FOR</span>
+                  <span class="honor-client-name" id="invDisplayHonorName">VALUED CLIENT</span>
+                </div>
+                <div class="honor-category-pill" id="invDisplayCategoryPill">
+                  📸 STUDIO &amp; PORTRAIT SESSIONS
+                </div>
+              </div>
+              <div class="honor-title-wrap">
+                <div class="honor-production-title" id="invDisplayProductionTitle">BESPOKE STUDIO &amp; PORTRAIT EXPERIENCE</div>
+                <div class="honor-scope-sub" id="invDisplayCategoryScope">In-Studio Controlled Lighting · High-End Retouching · High-Resolution Master Gallery</div>
+              </div>
+            </div>
+
+            <!-- Warm Client Creative Vision & Welcome Note -->
+            <div class="inv-client-welcome-card" id="invClientWelcomeCard">
+              <div class="welcome-card-header">
+                <span class="welcome-icon">✨</span>
+                <span class="welcome-title">A PERSONAL NOTE FROM LAUREIGN STUDIOS</span>
+              </div>
+              <p class="welcome-card-text" id="invDisplayWelcomeText">
+                "Every milestone you celebrate holds a distinct story, and we are truly honored to craft this visual legacy with you. Our studio is dedicated to providing you with a relaxed, empowering experience where you feel celebrated, radiant, and completely at home from the very first frame."
+              </p>
+            </div>
+
             <!-- Billed To & Event Specifications (Executive 2-Column Invoicing Layout) -->
             <div class="inv-specs-grid">
               <div class="inv-client-box">
@@ -1476,6 +1550,7 @@
               <div class="inv-event-box">
                 <span class="spec-label">EVENT &amp; PRODUCTION SPECIFICATIONS:</span>
                 <div class="spec-value" id="invSheetEventTitle">Full-Day Wedding &amp; Event Production</div>
+                <div class="spec-category-tag" id="invSheetCategoryTag" style="font-size:11px; font-weight:700; color:#047857; margin:2px 0;">CATEGORY: <span id="invSheetCategoryVal">STUDIO &amp; PORTRAIT SESSIONS</span></div>
                 <div class="spec-sub" id="invSheetScheduleRow">🗓️ <b>Date &amp; Hours:</b> <span id="invSheetDate">To Be Scheduled</span> &nbsp;(<span id="invSheetTime">Standard Coverage Session</span>)</div>
                 <div class="spec-sub" id="invSheetVenueRow">📍 <b>Venue / Location:</b> <span id="invSheetLocation">Laureign Studios (Kakamega)</span></div>
                 <div class="spec-sub" id="invSheetCrewRow">🎥 <b>Assigned Crew:</b> <span id="invSheetCrew">Lead Production Team</span></div>
@@ -1519,7 +1594,7 @@
                   * A 40% commitment deposit confirms your booking and reserves our creative crew on your event date. The remaining balance is payable upon delivery of your master high-resolution deliverables.
                 </p>
                 <div class="inv-brand-promise" id="invBrandPromise">
-                  <div class="promise-title">✨ LAUREIGN STUDIOS &amp; DAVILLE PICTURES PROMISE</div>
+                  <div class="promise-title">✨ LAUREIGN STUDIOS OFFICIAL PROMISE</div>
                   <p class="promise-text">Every milestone is captured with precision, emotional resonance, and timeless luxury. Master high-resolution galleries, bespoke color grading, and archival print albums are delivered with uncompromising excellence.</p>
                 </div>
               </div>
@@ -1568,7 +1643,7 @@
             <div class="inv-sheet-footer">
               <div class="inv-sign-col">
                 <div class="inv-sign-line">Authorized Studio Representative</div>
-                <div class="inv-sign-role">Laureign Studios &amp; Daville Pictures · Creative Productions Kenya</div>
+                <div class="inv-sign-role">Laureign Studios · Creative Visual Productions Kenya</div>
                 <div class="inv-ack-note" id="invAckNote">Official client invoice. Payment of commitment deposit signifies reservation of date and crew. Thank you for choosing Laureign Studios!</div>
               </div>
               <div class="inv-seal-col">

@@ -1,4 +1,4 @@
-# 📸 Laureign Studios & Daville Pictures
+# 📸 Laureign Studios
 ## Official Rates, Packages & Marketing Poster Copy
 
 > **Studio Tagline:** *Pictures with a language.*  
@@ -623,4 +623,4 @@ Use these pre-written responses on your WhatsApp business account to respond ins
 
 ---
 
-*Document compiled and maintained for Laureign Studios & Daville Pictures · All rights reserved.*
+*Document compiled and maintained for Laureign Studios · All rights reserved.*
