@@ -412,7 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return "graduation-shoot.html";
     }
 
-    const cardsHtml = list.map(pkg => {
+    const cardsHtml = list.map((pkg, idx) => {
       const lowestOpt = pkg.options[0] || {};
       const targetUrl = getPackageShowcaseUrl(pkg);
       const isStudioOrOutdoor = pkg.pathway === "studio" || pkg.pathway === "outdoor";
@@ -424,6 +424,9 @@ document.addEventListener("DOMContentLoaded", () => {
         ? `Hello Laureign Studios! 🎬 I want to book ${pkg.title} WITH the 45s–60s 4K Video Reel (+KSh 1,500). Total: KSh ${formatMoney(currentPrice)} 📸✨`
         : `Hello Laureign Studios! I want to inquire about ${pkg.title} 📸`;
       const waUrl = `https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=${encodeURIComponent(waText)}`;
+
+      const isAboveTheFold = idx < 4;
+      const webpSource = pkg.imageWebp ? `<source srcset="${pkg.imageWebp}" type="image/webp">` : '';
 
       return `
         <article class="pkg-card mount-card ${hasReel ? 'has-reel-selected' : ''}" id="pkg-${pkg.id}">
@@ -440,7 +443,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <!-- Inset Photo Preview Frame with High-Res Zoom Lightbox Trigger -->
           <div class="mount-preview-frame js-card-zoom-trigger" data-pkg-id="${pkg.id}" style="cursor:pointer;" title="Click to enlarge & zoom photo for ${pkg.title}">
-            <img src="${pkg.image}" alt="${pkg.title}" loading="lazy">
+            <picture>
+              ${webpSource}
+              <img src="${pkg.image}" alt="${pkg.title}" loading="${isAboveTheFold ? 'eager' : 'lazy'}" decoding="async" ${isAboveTheFold ? 'fetchpriority="high"' : ''}>
+            </picture>
             <span class="mount-zoom-badge">🔍 Zoom Photo</span>
           </div>
 
@@ -638,7 +644,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.stopPropagation();
         const pkgId = frame.dataset.pkgId;
         const items = currentRenderedPackages.map(p => ({
-          url: p.image,
+          url: p.imageHighRes || p.image,
           title: p.title,
           catLabel: p.catLabel,
           turnaround: p.turnaround,
@@ -788,9 +794,10 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             `;
           }
+          const thumbSrc = s.thumbUrl || s.url.replace(/\.(jpg|jpeg|png)$/i, '_thumb.jpg');
           return `
             <div class="sample-item-card js-lightbox-trigger" data-url="${s.url}">
-              <img src="${s.url}" alt="Photo Sample" class="sample-item-thumb" loading="lazy">
+              <img src="${thumbSrc}" onerror="this.onerror=null;this.src='${s.url}';" alt="${s.title || 'Photo Sample'}" class="sample-item-thumb" loading="lazy" decoding="async">
               <div class="sample-item-zoom-icon">🔍</div>
             </div>
           `;

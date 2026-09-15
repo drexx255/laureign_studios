@@ -31,7 +31,20 @@
     {
       "source": "/packages/js/(.*)",
       "headers": [
-        { "key": "Content-Type", "value": "application/javascript; charset=utf-8" }
+        { "key": "Content-Type", "value": "application/javascript; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/packages/(samples|images|posters|apple)/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/(samples|images|posters|apple)/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, stale-while-revalidate=86400" }
       ]
     }
   ]
