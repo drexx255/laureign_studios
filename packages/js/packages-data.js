@@ -27,8 +27,9 @@ const PATHWAYS = [
       { id: "portraits", name: "👔 Executive Headshots" },
       { id: "white-shirt", name: "👔 Crisp White Shirt" },
       { id: "silk-wrap", name: "✨ Luxury Silk Wrap" },
+      { id: "boudoir", name: "🌹 Luxury Boudoir Shoot" },
       { id: "traditional", name: "👑 Traditional Cultural Shoot" },
-      { id: "maternity-kids", name: "🍼 Maternity, Kids & Birthdays" },
+      { id: "maternity-kids", name: "🍼 Maternity, Newborn & Kids" },
       { id: "couples-family", name: "👨‍👩‍👧 Couples & Family Studio" }
     ]
   },
@@ -58,7 +59,8 @@ const PATHWAYS = [
       { id: "weddings", name: "💍 Weddings & Matrimony" },
       { id: "corporate-events", name: "🏢 Corporate Summits & Galas" },
       { id: "memorials", name: "🕊️ Burial & Memorial Tributes" },
-      { id: "parties-galas", name: "🎉 Birthday & Graduation Events" }
+      { id: "parties-galas", name: "🎉 Birthday & Graduation Events" },
+      { id: "school-club-events", name: "🏫 Schools, Nightlife & Clubs" }
     ]
   },
   {
@@ -2392,6 +2394,417 @@ const PACKAGES_DATA = [
       }
     ]
   }
+,
+
+  // ==========================================================================
+  // NEW PACKAGES: BOUDOIR, NEWBORN, SCHOOL, CLUBS, FUN CLUBS & MODEL PORTFOLIO
+  // ==========================================================================
+
+  // 31. LUXURY STUDIO BOUDOIR & INTIMATE PORTRAIT
+  {
+    id: "boudoir-shoot",
+    pathway: "studio",
+    subcat: "boudoir",
+    catLabel: "Boudoir & Intimate",
+    title: "Luxury Studio Boudoir & Intimate Portrait",
+    tagline: "Empowering, sensual, and tastefully lit private studio session with silk robes & lingerie posing guidance",
+    image: "samples/22-boudoir-shoot/cover_thumb.jpg",
+    imageWebp: "samples/22-boudoir-shoot/cover_thumb.webp",
+    imageHighRes: "samples/22-boudoir-shoot/cover.jpg",
+    badge: "🌹 Private VIP Studio",
+    turnaround: "2–3 Business Days",
+    depositRate: "Booking deposit: KSh 400 to KSh 2,500 (lock your slot)",
+    sampleFolder: "samples/22-boudoir-shoot",
+    samples: [
+      { url: "samples/22-boudoir-shoot/cover.jpg", type: "image", title: "Luxury Boudoir & Intimate Silk Silhouette" }
+    ],
+    options: [
+      {
+        id: "starter",
+        name: "Intimate Starter",
+        price: 1500,
+        deposit: 400,
+        summary: "3 magazine-retouched images, 1 outfit, 30 min session",
+        inclusions: [
+          "3 Magazine-Grade Skin & Tone Retouched Photos",
+          "1 Lingerie / Silk Robe Outfit",
+          "Completely Private, Closed-Door Studio Comfort",
+          "Female Assistant / Posing Direction on Request",
+          "Delivered via Private Password-Protected Cloud Link"
+        ]
+      },
+      {
+        id: "silver",
+        name: "Silver Elegance",
+        price: 3500,
+        deposit: 900,
+        summary: "8 retouched images, 2 outfit changes, 45 min session",
+        inclusions: [
+          "8 High-Fashion Retouched Photos",
+          "2 Outfit Changes (Robes, Silks or Lingerie)",
+          "Creative Rim Lighting & Soft Shadows",
+          "Pose Guidance for Flattering Body Angles",
+          "45 Mins Dedicated Studio Time",
+          "Delivered within 48 Hours via Cloud Gallery"
+        ]
+      },
+      {
+        id: "gold",
+        name: "Gold Allure",
+        popular: true,
+        price: 6000,
+        deposit: 1500,
+        summary: "15 retouched images, 3 outfit changes, 1 hr session, mood lighting",
+        inclusions: [
+          "15 Editorial-Grade Retouched Photos",
+          "3 Wardrobe Changes (Studio Silk Fabrics Included)",
+          "Dramatic Mood & Venetian Blind Light Setups",
+          "1 Hour Dedicated Private Studio Session",
+          "Delivered via Private High-Res Gallery + WhatsApp"
+        ]
+      },
+      {
+        id: "platinum",
+        name: "Royal Boudoir Luxe",
+        price: 10000,
+        deposit: 2500,
+        summary: "25 retouched images, unlimited looks, 90 mins, luxury A4 wooden mount",
+        inclusions: [
+          "25 Master Retouched High-Fashion Images",
+          "Unlimited Outfit / Silk Fabric Transitions",
+          "Includes 1 Solid Wooden A4 Photo Mount (Discreet Packaging)",
+          "Priority 24-Hour Delivery Turnaround",
+          "Complete Privacy Guarantee (Zero Public Posting Without Written Consent)"
+        ]
+      }
+    ]
+  },
+
+  // 32. NEWBORN BABY MILESTONE (0–30 DAYS)
+  {
+    id: "newborn-shoot",
+    pathway: "studio",
+    subcat: "maternity-kids",
+    catLabel: "Newborn Milestones",
+    title: "Newborn Baby Milestone (0–30 Days)",
+    tagline: "Gentle nursery-climate studio photography with sterile organic wraps, nesting baskets & paci breaks",
+    image: "samples/23-newborn-shoot/cover_thumb.jpg",
+    imageWebp: "samples/23-newborn-shoot/cover_thumb.webp",
+    imageHighRes: "samples/23-newborn-shoot/cover.jpg",
+    badge: "🍼 Nursery Climate Controlled",
+    turnaround: "2–3 Business Days",
+    depositRate: "Booking deposit: KSh 600 to KSh 2,000 (lock your slot)",
+    sampleFolder: "samples/23-newborn-shoot",
+    samples: [
+      { url: "samples/23-newborn-shoot/cover.jpg", type: "image", title: "Gentle Newborn Sleeping Milestone" }
+    ],
+    options: [
+      {
+        id: "starter",
+        name: "Cozy Mini",
+        price: 2500,
+        deposit: 600,
+        summary: "5 retouched photos, 1 swaddle setup, 45 min relaxed session",
+        inclusions: [
+          "5 Tender Retouched Newborn Portraits",
+          "1 Organic Wrap / Swaddle Setup",
+          "Warm, Temperature-Controlled Studio Room",
+          "Patience Pacing: Free Feeding & Diaper Break Time",
+          "Delivered via WhatsApp & Cloud"
+        ]
+      },
+      {
+        id: "silver",
+        name: "Nest & Baskets",
+        popular: true,
+        price: 4500,
+        deposit: 1200,
+        summary: "10 retouched photos, 2 prop setups, 1 hr session with parents",
+        inclusions: [
+          "10 Delicate Retouched Newborn Portraits",
+          "2 Creative Setups (Handmade Baskets, Soft Furs & Headbands)",
+          "Includes Gentle Mother/Father Posing with Baby",
+          "Macro Detail Shots (Tiny Toes, Fingers, Eyelashes)",
+          "60 Mins Dedicated Studio Time"
+        ]
+      },
+      {
+        id: "gold",
+        name: "Heirloom Keepsake",
+        price: 8000,
+        deposit: 2000,
+        summary: "20 retouched photos, 3 setups, family inclusive + A4 wooden mount",
+        inclusions: [
+          "20 Master Retouched Keepsake Portraits",
+          "3 Distinct Thematic Setups (Pastel Wraps, Baskets, Blankets)",
+          "Full Family & Sibling Posing Included",
+          "Includes 1 A4 Solid Wooden Photo Mount Ready to Hang",
+          "Express 48-Hour Delivery Turnaround"
+        ]
+      }
+    ]
+  },
+
+  // 33. SCHOOL & INSTITUTIONAL EVENTS COVERAGE
+  {
+    id: "school-events",
+    pathway: "events",
+    subcat: "school-club-events",
+    catLabel: "School Events",
+    title: "School & Institutional Events Coverage",
+    tagline: "Comprehensive documentary photography & cinema reels for prize givings, sports days, graduations & proms",
+    image: "samples/24-school-events/cover_thumb.jpg",
+    imageWebp: "samples/24-school-events/cover_thumb.webp",
+    imageHighRes: "samples/24-school-events/cover.jpg",
+    badge: "🏫 Institutional & Academic",
+    turnaround: "3–5 Business Days",
+    depositRate: "Booking deposit: KSh 8,000 to KSh 20,000 (locks crew & gear)",
+    sampleFolder: "samples/24-school-events",
+    samples: [
+      { url: "samples/24-school-events/cover.jpg", type: "image", title: "School Convocation & Academic Campus Assembly" }
+    ],
+    options: [
+      {
+        id: "half-day",
+        name: "Half-Day Academic / Sports",
+        price: 20000,
+        deposit: 8000,
+        summary: "Up to 4 hours coverage, 1 lead photographer, 100+ retouched highlights",
+        inclusions: [
+          "Up to 4 Hours High-Speed Event Coverage",
+          "1 Lead Senior Photojournalist",
+          "100+ Color-Graded & Retouched Key Moments",
+          "All RAW Proofs Provided via Cloud Link for School Archives",
+          "Turnaround: 3 Business Days"
+        ]
+      },
+      {
+        id: "full-day",
+        name: "Full-Day Gala & Sports Day",
+        popular: true,
+        price: 35000,
+        deposit: 14000,
+        summary: "Up to 8 hours, 2 camera angles (photo + reel highlights), 250+ images",
+        inclusions: [
+          "Up to 8 Hours Comprehensive Coverage",
+          "2-Person Professional Media Crew",
+          "250+ High-Resolution Master Images",
+          "1 x 60s Dynamic Highlight Video Reel for School Social Media",
+          "Permanent Cloud Download Link for Parents & Administration"
+        ]
+      },
+      {
+        id: "festival-2day",
+        name: "2-Day Tournament / Graduation Festival",
+        price: 55000,
+        deposit: 22000,
+        summary: "2 Full Days coverage, drone aerial views, 2 photographers + videographer",
+        inclusions: [
+          "2 Consecutive Full Days Coverage",
+          "3-Person Cinema & Photo Crew",
+          "4K Aerial Drone Coverage of Campus & Grounds",
+          "500+ Retouched Photos + 3-5 Min Official Highlight Film",
+          "Same-Day Teaser Pack for Immediate Press & Social Release"
+        ]
+      }
+    ]
+  },
+
+  // 34. CLUB & NIGHTLIFE EVENT COVERAGE
+  {
+    id: "club-events",
+    pathway: "events",
+    subcat: "school-club-events",
+    catLabel: "Nightlife & Clubs",
+    title: "Club & Nightlife Event Coverage",
+    tagline: "Low-light cinema prime lenses, synchronized flash & high-energy crowd portraits for DJs, lounges & VIP parties",
+    image: "samples/25-club-events/cover_thumb.jpg",
+    imageWebp: "samples/25-club-events/cover_thumb.webp",
+    imageHighRes: "samples/25-club-events/cover.jpg",
+    badge: "🎧 DJ Sets & VIP Nightlife",
+    turnaround: "24–48 Hours",
+    depositRate: "Booking deposit: KSh 6,000 to KSh 18,000 (locks crew)",
+    sampleFolder: "samples/25-club-events",
+    samples: [
+      { url: "samples/25-club-events/cover.jpg", type: "image", title: "High-Energy Nightlife & Crowd Celebration" }
+    ],
+    options: [
+      {
+        id: "teaser",
+        name: "Party Teaser (3 Hours)",
+        price: 15000,
+        deposit: 6000,
+        summary: "3 hours coverage, off-camera flash, 60+ vibrant party shots",
+        inclusions: [
+          "3 Hours Dedicated Nightlife Coverage",
+          "1 Senior Nightlife Specialist Photographer",
+          "60+ Color-Graded Vibrant Party & Guest Portraits",
+          "DJ Booth, VIP Table & Bar Ambience Shots",
+          "Express 24-Hour Delivery for Social Hype"
+        ]
+      },
+      {
+        id: "all-night",
+        name: "All-Night Club Gig",
+        popular: true,
+        price: 28000,
+        deposit: 12000,
+        summary: "Full night coverage (up to 6 hrs), 150+ photos + 45s hype video reel",
+        inclusions: [
+          "Up to 6 Hours Full Night Event Coverage",
+          "1 Photographer + 1 Vertical Video Reel Creator",
+          "150+ High-Contrast Magazine Party Photos",
+          "1 x 45s Viral Nightlife Video Reel for TikTok / Instagram",
+          "Delivered Next Day by 2:00 PM for Weekend Promo"
+        ]
+      },
+      {
+        id: "vip-festival",
+        name: "VIP Festival / Brand Night",
+        price: 45000,
+        deposit: 18000,
+        summary: "Full night multi-angle team, VIP red carpet backdrop, full recap film",
+        inclusions: [
+          "Full Event Duration (8 Hours Coverage)",
+          "2 Photographers + 1 4K Gimbal Videographer",
+          "Red Carpet / Step-and-Repeat Photo Station",
+          "300+ Retouched Photos + 2-Minute Cinematic Aftermovie",
+          "Live Same-Night Airdrop / WhatsApp Transfer for Influencers & VIPs"
+        ]
+      }
+    ]
+  },
+
+  // 35. FUN CLUB, BIKERS & COMMUNITY MEETUPS
+  {
+    id: "fun-club-events",
+    pathway: "events",
+    subcat: "school-club-events",
+    catLabel: "Club & Rally Events",
+    title: "Fun Club, Bikers & Community Meetups",
+    tagline: "High-shutter tracking shots, convoy rolling photography & outdoor expedition coverage for enthusiast groups",
+    image: "samples/26-fun-club-events/cover_thumb.jpg",
+    imageWebp: "samples/26-fun-club-events/cover_thumb.webp",
+    imageHighRes: "samples/26-fun-club-events/cover.jpg",
+    badge: "🏍️ Convoys & Adventures",
+    turnaround: "2–3 Business Days",
+    depositRate: "Booking deposit: KSh 7,000 to KSh 24,000 (locks crew)",
+    sampleFolder: "samples/26-fun-club-events",
+    samples: [
+      { url: "samples/26-fun-club-events/cover.jpg", type: "image", title: "Enthusiast Community Rally & Convoy Meetup" }
+    ],
+    options: [
+      {
+        id: "half-day-meet",
+        name: "Half-Day Meet / Ride-Out",
+        price: 18000,
+        deposit: 7000,
+        summary: "Up to 4 hours, static vehicle/member shots, rolling pass shots",
+        inclusions: [
+          "Up to 4 Hours Meetup & Ride Coverage",
+          "Static Lineup Individual & Group Portraits",
+          "Highway Rolling & Cornering Action Photography",
+          "80+ Color-Graded High-Res Deliverables",
+          "All RAW Files Included for Club Archives"
+        ]
+      },
+      {
+        id: "full-day-rally",
+        name: "Full-Day Rally / Excursion",
+        popular: true,
+        price: 32000,
+        deposit: 13000,
+        summary: "Full day excursion coverage, 200+ action photos + 60s rally reel",
+        inclusions: [
+          "Full Day Tracking & Destination Coverage (Up to 8 Hours)",
+          "1 Action Photographer + 1 Drone / Reel Creator",
+          "200+ Dynamic Action & Campfire/Lunch Gathering Photos",
+          "1 x 60s Cinematic Drone & Ground Highlight Video",
+          "Cloud Storage Shared with Entire Club Membership"
+        ]
+      },
+      {
+        id: "multi-day-camp",
+        name: "Multi-Day Tour / Camping Expedition",
+        price: 60000,
+        deposit: 24000,
+        summary: "2 Full Days road-trip or camping coverage, full documentary recap",
+        inclusions: [
+          "2 Consecutive Days Complete Expedition Coverage",
+          "Dedicated Chase Vehicle Accommodation for Media Crew",
+          "4K Aerial Drone Scenics Across Road Trip Routes",
+          "400+ Master Photos + 3-5 Minute Club Documentary Film",
+          "Priority 48-Hour Delivery Turnaround"
+        ]
+      }
+    ]
+  },
+
+  // 36. MODEL PORTFOLIO & AGENCY Z-CARD
+  {
+    id: "model-portfolio",
+    pathway: "outdoor",
+    subcat: "outdoor-headshots",
+    catLabel: "Model Portfolio",
+    title: "Model Portfolio & Agency Z-Card Shoot",
+    tagline: "Magazine-standard editorial tests, commercial looks, swimwear/casual & printable composite card layouts",
+    image: "samples/27-model-portfolio/cover_thumb.jpg",
+    imageWebp: "samples/27-model-portfolio/cover_thumb.webp",
+    imageHighRes: "samples/27-model-portfolio/cover.jpg",
+    badge: "🌟 Comp Card & Editorial",
+    turnaround: "2–3 Business Days",
+    depositRate: "Booking deposit: KSh 600 to KSh 2,500 (lock your slot)",
+    sampleFolder: "samples/27-model-portfolio",
+    samples: [
+      { url: "samples/27-model-portfolio/cover.jpg", type: "image", title: "Editorial Fashion Model Portfolio Test" }
+    ],
+    options: [
+      {
+        id: "starter",
+        name: "Portfolio Starter (6 Shots)",
+        price: 2500,
+        deposit: 600,
+        summary: "6 magazine-retouched images, 2 outfit changes, headshot & 3/4 length",
+        inclusions: [
+          "6 High-End Magazine Retouched Images",
+          "2 Outfits (Commercial Smile + Dramatic Editorial)",
+          "Professional Posing Direction & Lighting",
+          "Headshot, 3/4 Profile & Full-Length Poses",
+          "Delivered in High-Res via Cloud"
+        ]
+      },
+      {
+        id: "zcard-pro",
+        name: "Pro Agency Comp-Card (12 Shots)",
+        popular: true,
+        price: 5000,
+        deposit: 1200,
+        summary: "12 retouched images, 3 outfit transitions, printable A5 Comp-Card PDF",
+        inclusions: [
+          "12 High-Fashion & Commercial Retouched Images",
+          "3 Diverse Looks (Casual, High-Fashion, Formal/Swimwear)",
+          "Includes Custom Designed Agency Comp-Card (PDF Ready to Print)",
+          "Natural Golden Hour + Creative Reflector Lighting",
+          "60 Mins Dedicated Session"
+        ]
+      },
+      {
+        id: "agency-elite",
+        name: "Agency Elite Suite (20 Shots + Reel)",
+        price: 9000,
+        deposit: 2200,
+        summary: "20 retouched images, 4 outfits, comp-card layout + 45s runway walk reel",
+        inclusions: [
+          "20 Editorial Master Retouched Deliverables",
+          "4 Wardrobe Transitions with Location Variety",
+          "1 x 45s High-Energy Model Runway & Posing Video Reel",
+          "Printable Comp-Card + Digital Instagram Carousel Assets",
+          "Express 48-Hour Delivery Turnaround"
+        ]
+      }
+    ]
+  }
+
 ];
 
 // Frequently Asked Questions
