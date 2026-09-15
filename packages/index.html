@@ -1421,15 +1421,15 @@
         <div class="inv-preview-pane" id="invPreviewPane">
           <div class="invoice-printable-sheet" id="invoicePrintableSheet">
             
-            <!-- Clean Apple Executive Header: Studio Identity & Document Reference -->
+            <!-- Apple Luxury Executive Header: Studio Identity & Document Wordmark -->
             <div class="inv-sheet-header" id="invSheetHeader">
               <div class="inv-brand-col">
                 <div class="inv-brand-header-flex">
                   <img src="images/logo.png" alt="Laureign Studios" class="inv-sheet-logo">
                   <div class="inv-brand-titles-wrap">
+                    <span class="inv-brand-eyebrow">Visual Masterpieces · Est. 2020</span>
                     <h1 class="inv-brand-name"><span class="brand-part-main">LAUREIGN</span> <span class="brand-part-accent">STUDIOS</span></h1>
-                    <p class="inv-brand-tagline">Visual Masterpieces · Luxury Photography &amp; Cinematography</p>
-                    <div class="inv-brand-badge" id="invDisplayDocType">PROFORMA INVOICE &amp; CLIENT QUOTATION</div>
+                    <p class="inv-brand-tagline">Luxury Photography &amp; Bespoke Cinematography</p>
                   </div>
                 </div>
 
@@ -1446,19 +1446,24 @@
                 </div>
               </div>
 
-              <!-- Document Metadata Column (Top Right) -->
+              <!-- Document Wordmark & Metadata Column (Top Right, Sample 5 Style) -->
               <div class="inv-meta-col">
+                <div class="inv-wordmark-wrap">
+                  <h2 class="inv-doc-wordmark" id="invSheetMainWordmark">QUOTATION</h2>
+                  <div class="inv-brand-badge" id="invDisplayDocType">OFFICIAL PROFORMA RATE CARD</div>
+                </div>
+
                 <div class="inv-ref-pill">
-                  <span class="inv-ref-label" id="invDisplayRefLabel">INVOICE REF:</span>
+                  <span class="inv-ref-label" id="invDisplayRefLabel">REF:</span>
                   <span class="inv-ref-val" id="invDisplayRef">LS-QUO-2026-9051</span>
                 </div>
                 <div class="inv-meta-item">
                   <span class="lbl" id="invDisplayDateLabel">Date Issued:</span>
-                  <span class="val" id="invDisplayDateIssued">13 Sept 2026</span>
+                  <span class="val" id="invDisplayDateIssued">16 Sept 2026</span>
                 </div>
                 <div class="inv-meta-item" id="invValidityMetaItem">
-                  <span class="lbl">Validity:</span>
-                  <span class="val" id="invDisplayValidity">27 Sept 2026 (14 Days)</span>
+                  <span class="lbl">Valid For:</span>
+                  <span class="val" id="invDisplayValidity">14 Days</span>
                 </div>
                 <div class="inv-meta-item">
                   <span class="lbl">Status:</span>
@@ -1468,22 +1473,11 @@
             </div>
 
             <!-- Verified Receipt Banner (Shows in receipt mode) -->
-            <div class="inv-receipt-verified-banner" id="invReceiptVerifiedBanner" style="display:none; margin-bottom:18px;">
+            <div class="inv-receipt-verified-banner" id="invReceiptVerifiedBanner" style="display:none; margin-bottom:14px;">
               <span>🧾 OFFICIAL PAYMENT CONFIRMATION &amp; RECEIPT · LAUREIGN STUDIOS · ACCOUNT RECORD VERIFIED</span>
             </div>
 
-            <!-- Executive Document Main Category Title Header -->
-            <div class="inv-main-category-header" id="invMainCategoryHeader">
-              <div class="inv-cat-title-row">
-                <h2 class="inv-cat-main-title" id="invDisplayCategoryTitle">STUDIO SESSION QUOTATION</h2>
-                <span class="inv-cat-scope-pill" id="invDisplayScopePill">IN-STUDIO PRODUCTION</span>
-              </div>
-              <div class="inv-cat-client-sub" id="invDisplayClientSub">
-                Curated Exclusively For: <b id="invDisplayHonorName">VALUED CLIENT</b> &nbsp;·&nbsp; Shoot Date: <span id="invDisplayTargetDate">To Be Scheduled</span>
-              </div>
-            </div>
-
-            <!-- Billed To & Event Specifications (Executive 2-Column Invoicing Layout) -->
+            <!-- Billed To & Assignment Specifications (Executive 2-Column Grid, Sample 1 & Sample 5) -->
             <div class="inv-specs-grid">
               <div class="inv-client-box">
                 <span class="spec-label">CLIENT COMMISSION &amp; BILLING:</span>
@@ -1493,57 +1487,55 @@
                 <div class="spec-sub" id="invSheetBillingLoc">📍 Destination: Kakamega Town (Mumias Rd) / Nairobi / Nationwide</div>
               </div>
               <div class="inv-event-box">
-                <span class="spec-label">EVENT &amp; PRODUCTION SPECIFICATIONS:</span>
+                <span class="spec-label">ASSIGNMENT &amp; PRODUCTION SPECIFICATIONS:</span>
                 <div class="spec-value" id="invSheetEventTitle">Full-Day Wedding &amp; Event Production</div>
-                <div class="spec-category-tag" id="invSheetCategoryTag" style="font-size:11px; font-weight:700; color:#047857; margin:2px 0;">CATEGORY: <span id="invSheetCategoryVal">STUDIO &amp; PORTRAIT SESSIONS</span></div>
+                <div class="spec-category-tag" id="invSheetCategoryTag">CATEGORY: <span id="invSheetCategoryVal">STUDIO &amp; PORTRAIT SESSIONS</span></div>
                 <div class="spec-sub" id="invSheetScheduleRow">🗓️ <b>Date &amp; Hours:</b> <span id="invSheetDate">To Be Scheduled</span> &nbsp;(<span id="invSheetTime">Standard Coverage Session</span>)</div>
                 <div class="spec-sub" id="invSheetVenueRow">📍 <b>Venue / Location:</b> <span id="invSheetLocation">Laureign Studios (Kakamega Town, Mumias Rd, Opp. Jamia Mosque, Bukura Pharmacy Bldg, 1st Floor)</span></div>
-                <div class="spec-sub" id="invSheetCrewRow">🎥 <b>Assigned Crew:</b> <span id="invSheetCrew">Lead Production Team</span></div>
+                <div class="spec-sub" id="invSheetCrewRow">🎥 <b>Assigned Crew:</b> <span id="invSheetCrew">Studio Lead Photographer + Lighting Assistant</span></div>
               </div>
             </div>
 
-            <!-- Itemized Deliverables Table -->
+            <!-- Itemized Deliverables Table (5-Column Precision Layout, Sample 5 & Sample 4) -->
             <div class="inv-table-wrap">
               <table class="inv-table">
                 <thead>
                   <tr>
-                    <th style="width:38%;">Service / Deliverable Description</th>
-                    <th style="width:38%;">Scope &amp; Included Specifications</th>
-                    <th style="width:12%; text-align:right;">Rate (KSh)</th>
-                    <th style="width:12%; text-align:right;">Amount (KSh)</th>
+                    <th style="width:6%; text-align:center;">#</th>
+                    <th style="width:50%;">Description &amp; Production Deliverables</th>
+                    <th style="width:14%; text-align:center;">Qty / Time</th>
+                    <th style="width:15%; text-align:right;">Rate (KSh)</th>
+                    <th style="width:15%; text-align:right;">Amount (KSh)</th>
                   </tr>
                 </thead>
                 <tbody id="invTableBody">
-                  <!-- Dynamically rendered -->
+                  <!-- Dynamically rendered via JS -->
                 </tbody>
               </table>
             </div>
 
-            <!-- Special Assignment Notes (Prints on invoice) -->
+            <!-- Special Assignment Notes (Prints on invoice if provided) -->
             <div class="inv-notes-box" id="invDisplayNotesBox" style="display:none;">
-              <b>Assignment Scope &amp; Production Deliverables:</b>
+              <b>📝 Assignment Scope &amp; Production Deliverables:</b>
               <div id="invDisplayNotesText" style="margin-top:4px;"></div>
             </div>
 
-            <!-- Financial Summary Grid -->
+            <!-- Split Financials Row: Deposit Highlight (Left) vs Summary Totals (Right, Sample 5) -->
             <div class="inv-financials-row">
-              <div class="inv-payment-terms-col" id="invPayTermsCol">
-                <div class="inv-terms-title" id="invTermsTitle">Official Payment &amp; Remittance Details</div>
-                <div class="inv-pay-box" id="invPayBox">
-                  <div class="pay-line" id="invPayChannelLine"><b>Remittance Channel:</b> <span id="invPayChannelVal">M-Pesa Paybill &amp; Direct Bank Transfer</span></div>
-                  <div class="pay-line" id="invPayTillLine"><b>Paybill Number:</b> <span class="till-num">542542</span> &nbsp;&nbsp;<b>Account No:</b> <span class="till-num">486197</span></div>
-                  <div class="pay-line" id="invPayAccountLine"><b>Account Name to Verify:</b> <span style="font-weight:700; color:#047857;">JANE AKOTH</span> (Laureign Studios)</div>
-                  <div class="pay-line" id="invPayBankLine"><b>Direct Bank Remittance:</b> <span>I&amp;M Bank Kenya · Account No: <b>486197</b></span></div>
+              <!-- Left: Booking Deposit Highlight Card (Sample 5 Style) -->
+              <div class="inv-deposit-highlight-card" id="invDepositHighlightCard">
+                <div class="inv-dep-header-badge" id="invDepHeaderBadge">BOOKING DEPOSIT REQUIRED (80%)</div>
+                <div class="inv-dep-amount" id="invDepDisplayAmt">KSh 0</div>
+                <div class="inv-dep-percent-label" id="invDepPercentLabel">80% commitment required to secure shoot date &amp; creative crew allocation.</div>
+                <div class="inv-dep-balance-sub" id="invDepBalanceSub">
+                  Remaining balance of <b id="invDepBalanceSubAmt">KSh 0</b> payable upon master high-res delivery.
                 </div>
-                <p class="inv-terms-note" id="invTermsNote">
-                  * An 80% commitment deposit confirms your booking and reserves our creative crew on your event date. The remaining 20% balance is payable upon delivery of your master high-resolution deliverables.
-                </p>
-                <div class="inv-brand-promise" id="invBrandPromise">
-                  <div class="promise-title">✨ LAUREIGN STUDIOS OFFICIAL PROMISE</div>
-                  <p class="promise-text">Every milestone. Captured with precision. Curated, museum-grade photography &amp; bespoke cinematography by Laureign Studios.</p>
+                <div class="inv-dep-guarantee-pill">
+                  <span class="inv-dep-star">★</span> 100% Free Unedited RAW Proofs Included With Every Session
                 </div>
               </div>
 
+              <!-- Right: Itemized Summary Totals Column -->
               <div class="inv-totals-col">
                 <div class="inv-tot-line">
                   <span>Base Production / Sessions:</span>
@@ -1557,7 +1549,6 @@
                   <span>Special Client Discount:</span>
                   <span id="invDiscountAmt">- KSh 0</span>
                 </div>
-
                 <div class="inv-tot-line">
                   <span>Applicable Taxes &amp; VAT:</span>
                   <span>Inclusive (0%)</span>
@@ -1584,50 +1575,100 @@
               </div>
             </div>
 
-            <!-- Official Seal & Authorization Footer with REALISTIC SVG RUBBER STAMP -->
-            <div class="inv-sheet-footer">
-              <div class="inv-sign-col">
-                <div class="inv-sign-line">Authorized Studio Representative</div>
-                <div class="inv-sign-role">Laureign Studios · Creative Visual Productions Kenya</div>
-                <div class="inv-ack-note" id="invAckNote">Official client invoice. Payment of commitment deposit signifies reservation of date and crew. Thank you for choosing Laureign Studios!</div>
-              </div>
-              <div class="inv-seal-col">
-                <!-- REALISTIC VECTOR RUBBER STAMP WITH DYNAMIC DATES -->
-                <div class="inv-seal-stamp" id="invSealStamp" title="Official Studio Verified Seal">
-                  <svg class="official-studio-stamp-svg" viewBox="0 0 200 200" width="130" height="130">
-                    <defs>
-                      <path id="stampTopArc" d="M 28,100 A 72,72 0 1,1 172,100" fill="none"/>
-                      <path id="stampBottomArc" d="M 172,100 A 72,72 0 0,1 28,100" fill="none"/>
-                    </defs>
-                    <!-- Outer double ring border -->
-                    <circle cx="100" cy="100" r="95" fill="none" stroke="#047857" stroke-width="2.5" stroke-dasharray="8,3"/>
-                    <circle cx="100" cy="100" r="88" fill="none" stroke="#047857" stroke-width="1.2"/>
-                    <!-- Inner circle border -->
-                    <circle cx="100" cy="100" r="62" fill="none" stroke="#047857" stroke-width="1.6"/>
-                    <!-- Top curved text -->
-                    <text font-family="'Jost', -apple-system, sans-serif" font-size="11" font-weight="800" fill="#047857" letter-spacing="2.2">
-                      <textPath href="#stampTopArc" startOffset="50%" text-anchor="middle">
-                        ★ LAUREIGN STUDIOS KENYA ★
-                      </textPath>
-                    </text>
-                    <!-- Bottom curved text -->
-                    <text font-family="'Jost', -apple-system, sans-serif" font-size="9" font-weight="700" fill="#047857" letter-spacing="1.8">
-                      <textPath href="#stampBottomArc" startOffset="50%" text-anchor="middle">
-                        • OFFICIAL VERIFIED SEAL •
-                      </textPath>
-                    </text>
-                    <!-- Center emblem & dynamic date -->
-                    <g text-anchor="middle" font-family="'Jost', -apple-system, sans-serif">
-                      <text x="100" y="78" font-size="10" fill="#047857" font-weight="900">★ ★ ★</text>
-                      <text x="100" y="93" font-size="8.8" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgTitle">OFFICIAL INVOICE</text>
-                      <line x1="52" y1="99" x2="148" y2="99" stroke="#047857" stroke-width="1"/>
-                      <text x="100" y="111" font-size="9.5" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgDate">DATE: 13 SEP 2026</text>
-                      <line x1="52" y1="116" x2="148" y2="116" stroke="#047857" stroke-width="1"/>
-                      <text x="100" y="127" font-size="7.5" font-weight="800" fill="#047857" letter-spacing="0.6" id="stampSvgRef">REF: LS-QUO-2026</text>
-                      <text x="100" y="137" font-size="7" font-weight="800" fill="#047857" letter-spacing="1">AUTHENTICATED</text>
-                    </g>
-                  </svg>
+            <!-- Two-Column Terms & Verified Remittance Grid (Sample 1 & Sample 5) -->
+            <div class="inv-policies-remittance-grid">
+              <!-- Left Column: Production Policies & Deliverable Terms -->
+              <div class="inv-payment-terms-col" id="invPayTermsCol">
+                <div class="inv-terms-title" id="invTermsTitle">Studio Terms &amp; Production Policies</div>
+                <ul class="inv-policy-bullet-list">
+                  <li><b>Free RAW Soft Copies:</b> Complete archive of unedited high-resolution proof files provided complimentary via private cloud gallery.</li>
+                  <li><b>Booking &amp; Confirmation:</b> An advance commitment deposit confirms your date and reserves lighting kits &amp; creative crew.</li>
+                  <li><b>Master Turnaround:</b> Retouched master deliverables delivered within 48–72 hours (portraits) or 14–21 days (weddings &amp; events).</li>
+                  <li><b>Venue &amp; Entry Permits:</b> Client is responsible for any private location or park photography permit fees where applicable.</li>
+                </ul>
+                <p class="inv-terms-note" id="invTermsNote">
+                  * Official studio quotation. The commitment deposit confirms your reservation. The remaining balance is payable upon master gallery delivery.
+                </p>
+                <div class="inv-brand-promise" id="invBrandPromise">
+                  <div class="promise-title">✨ LAUREIGN STUDIOS OFFICIAL PROMISE</div>
+                  <p class="promise-text">Every milestone. Captured with precision. Museum-grade photography &amp; bespoke cinematography by Laureign Studios.</p>
                 </div>
+              </div>
+
+              <!-- Right Column: Official Payment Channels & Verified Till -->
+              <div class="inv-remittance-col">
+                <div class="inv-terms-title">Official Remittance Details</div>
+                <div class="inv-pay-box" id="invPayBox">
+                  <div class="pay-line" id="invPayChannelLine"><b>Remittance Channel:</b> <span id="invPayChannelVal">M-Pesa Till &amp; Paybill / Direct Bank Transfer</span></div>
+                  <div class="pay-line" id="invPayTillLine"><b>Buy Goods Till:</b> <span class="till-num">0790048905</span> &nbsp;<b>Paybill:</b> <span class="till-num">542542</span> Acc: <span class="till-num">486197</span></div>
+                  <div class="pay-line" id="invPayAccountLine"><b>Account Name to Verify:</b> <span style="font-weight:700; color:#047857;">JANE AKOTH</span> (Laureign Studios)</div>
+                  <div class="pay-line" id="invPayBankLine"><b>Bank Wire Remittance:</b> <span>I&amp;M Bank Kenya · Account No: <b>486197</b></span></div>
+                  <div class="pay-line cashless-warning" id="invPayRefLine" style="font-size:10.5px; color:#64748b; margin-top:6px;">🔒 Cashless accounting. Retain M-Pesa confirmation code for instant verification.</div>
+                </div>
+
+                <!-- Executive Signature & Official Studio Stamp -->
+                <div class="inv-sheet-footer" style="padding-top:12px; margin-top:10px; border-top:1px dashed #e2e8f0;">
+                  <div class="inv-sign-col">
+                    <div class="inv-digital-sig">
+                      <svg class="sig-svg" viewBox="0 0 240 50" width="160" height="38" fill="none" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10,36 C18,32 30,12 42,15 C52,18 36,42 48,38 C58,34 74,18 84,21 C94,24 88,38 100,34 C112,30 128,15 142,19 C152,22 140,40 158,35 C172,31 192,16 210,20" />
+                        <path d="M35,28 C65,26 120,24 175,22" stroke-width="1.2" opacity="0.45" />
+                      </svg>
+                    </div>
+                    <div class="inv-sign-line">Authorized Studio Representative</div>
+                    <div class="inv-sign-role">Laureign Odhiambo · Creative Director</div>
+                    <div class="inv-ack-note" id="invAckNote" style="font-size:10px;">Authenticated Proforma Document. Thank you for choosing Laureign Studios!</div>
+                  </div>
+                  <div class="inv-seal-col">
+                    <!-- Dynamic Authenticated Rubber Stamp -->
+                    <div class="inv-seal-stamp" id="invSealStamp" title="Official Studio Verified Seal">
+                      <svg class="official-studio-stamp-svg" viewBox="0 0 200 200" width="115" height="115">
+                        <defs>
+                          <path id="stampTopArc" d="M 28,100 A 72,72 0 1,1 172,100" fill="none"/>
+                          <path id="stampBottomArc" d="M 172,100 A 72,72 0 0,1 28,100" fill="none"/>
+                        </defs>
+                        <circle cx="100" cy="100" r="95" fill="none" stroke="#047857" stroke-width="2.5" stroke-dasharray="8,3"/>
+                        <circle cx="100" cy="100" r="88" fill="none" stroke="#047857" stroke-width="1.2"/>
+                        <circle cx="100" cy="100" r="62" fill="none" stroke="#047857" stroke-width="1.6"/>
+                        <text font-family="'Jost', -apple-system, sans-serif" font-size="11" font-weight="800" fill="#047857" letter-spacing="2.2">
+                          <textPath href="#stampTopArc" startOffset="50%" text-anchor="middle">
+                            ★ LAUREIGN STUDIOS KENYA ★
+                          </textPath>
+                        </text>
+                        <text font-family="'Jost', -apple-system, sans-serif" font-size="9" font-weight="700" fill="#047857" letter-spacing="1.8">
+                          <textPath href="#stampBottomArc" startOffset="50%" text-anchor="middle">
+                            • OFFICIAL VERIFIED SEAL •
+                          </textPath>
+                        </text>
+                        <g text-anchor="middle" font-family="'Jost', -apple-system, sans-serif">
+                          <text x="100" y="78" font-size="10" fill="#047857" font-weight="900">★ ★ ★</text>
+                          <text x="100" y="93" font-size="8.8" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgTitle">OFFICIAL INVOICE</text>
+                          <line x1="52" y1="99" x2="148" y2="99" stroke="#047857" stroke-width="1"/>
+                          <text x="100" y="111" font-size="9.5" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgDate">DATE: 16 SEP 2026</text>
+                          <line x1="52" y1="116" x2="148" y2="116" stroke="#047857" stroke-width="1"/>
+                          <text x="100" y="127" font-size="7.5" font-weight="800" fill="#047857" letter-spacing="0.6" id="stampSvgRef">REF: LS-QUO-2026</text>
+                          <text x="100" y="137" font-size="7" font-weight="800" fill="#047857" letter-spacing="1">AUTHENTICATED</text>
+                        </g>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Apple Minimalist 3-Column Footer Strip (Exact Sample 5 Aesthetic) -->
+            <div class="inv-document-footer-strip">
+              <div class="inv-footer-strip-col">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span>+254 790 048 905</span>
+              </div>
+              <div class="inv-footer-strip-col">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Kakamega Town (Opp. Jamia Mosque, 1st Flr) · Nairobi</span>
+              </div>
+              <div class="inv-footer-strip-col">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span>info@laureignstudios.co.ke · laureignstudios.co.ke</span>
               </div>
             </div>
 

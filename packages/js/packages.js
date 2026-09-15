@@ -2875,7 +2875,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const deposit = Math.round(grandTotal * (depPercent / 100));
     const balance = Math.max(0, grandTotal - deposit);
 
-    // Render Table Rows in Live Sheet
+    // Render Table Rows in Live Sheet (Sample 5 & Sample 4: 5-Column Precision)
     const tbody = document.getElementById("invTableBody");
     if (tbody) {
       let rowsHtml = "";
@@ -2884,6 +2884,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const qty = s.qty || 1;
         const rate = s.rate || 0;
         const lineTotal = rate * qty;
+        const numStr = String(idx + 1).padStart(2, '0');
 
         let specHtml = "";
         if (s.spec) {
@@ -2891,46 +2892,47 @@ document.addEventListener("DOMContentLoaded", () => {
           if (parts.length > 1) {
             specHtml = `<ul class="inv-inclusions-list">${parts.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul>`;
           } else {
-            specHtml = `<div style="font-size:11.5px; color:#475569; line-height:1.4;">${escapeHtml(s.spec)}</div>`;
+            specHtml = `<div style="font-size:11px; color:#475569; line-height:1.4; margin-top:2px;">${escapeHtml(s.spec)}</div>`;
           }
         } else {
-          specHtml = `<div style="font-size:11.5px; color:#475569;">Standard studio photography session &amp; digital master deliverables.</div>`;
+          specHtml = `<div style="font-size:11px; color:#475569; margin-top:2px;">Standard studio photography session &amp; digital master deliverables.</div>`;
         }
 
         rowsHtml += `
           <tr>
-            <td>
+            <td class="col-num">${numStr}</td>
+            <td class="col-desc">
               <div class="inv-item-title">${escapeHtml(s.title || "Studio Session")}</div>
-              <div class="inv-item-sub">${escapeHtml(s.tierName || "Selected Package Tier")}${qty > 1 ? ` (×${qty} Sessions)` : ""}</div>
-            </td>
-            <td>
+              <div class="inv-item-sub">${escapeHtml(s.tierName || "Selected Package Tier")}</div>
               ${specHtml}
             </td>
-            <td style="text-align:right; font-weight:600;">KSh ${rate.toLocaleString()}</td>
-            <td style="text-align:right; font-weight:700;">KSh ${lineTotal.toLocaleString()}</td>
+            <td class="col-qty">${qty > 1 ? `${qty} Sessions` : "1 Session"}</td>
+            <td class="col-rate">KSh ${rate.toLocaleString()}</td>
+            <td class="col-amount">KSh ${lineTotal.toLocaleString()}</td>
           </tr>
         `;
       });
 
-      invoiceAddons.forEach(a => {
+      invoiceAddons.forEach((a, aIdx) => {
         const price = a.price || 0;
+        const numStr = String(invoiceSessions.length + aIdx + 1).padStart(2, '0');
         rowsHtml += `
           <tr>
-            <td>
+            <td class="col-num">${numStr}</td>
+            <td class="col-desc">
               <div class="inv-item-title">Add-On: ${escapeHtml(a.name || "Creative Enhancement")}</div>
               <div class="inv-item-sub">Selected Enhancement Upgrade</div>
+              <div style="font-size:11px; color:#475569; line-height:1.4; margin-top:2px;">${escapeHtml(a.spec || "Optional session / event deliverable enhancement.")}</div>
             </td>
-            <td>
-              <div style="font-size:11.5px; color:#475569; line-height:1.4;">${escapeHtml(a.spec || "Optional session / event deliverable enhancement.")}</div>
-            </td>
-            <td style="text-align:right; font-weight:600;">KSh ${price.toLocaleString()}</td>
-            <td style="text-align:right; font-weight:700;">KSh ${price.toLocaleString()}</td>
+            <td class="col-qty">1 Unit</td>
+            <td class="col-rate">KSh ${price.toLocaleString()}</td>
+            <td class="col-amount">KSh ${price.toLocaleString()}</td>
           </tr>
         `;
       });
 
       if (invoiceSessions.length === 0 && invoiceAddons.length === 0) {
-        rowsHtml = `<tr><td colspan="4" style="text-align:center; padding:20px; color:#64748b;">No shoot sessions or add-ons configured yet.</td></tr>`;
+        rowsHtml = `<tr><td colspan="5" style="text-align:center; padding:24px; color:#64748b;">No shoot sessions or add-ons configured yet.</td></tr>`;
       }
 
       tbody.innerHTML = rowsHtml;
@@ -2971,16 +2973,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elGrand) elGrand.textContent = `KSh ${grandTotal.toLocaleString()}`;
     if (elGrandLbl) elGrandLbl.textContent = invoiceMode === "receipt" ? "TOTAL SHOOT INVESTMENT:" : "TOTAL PROJECT INVESTMENT:";
 
-    // Mode-Specific Financial Breakdown
+    // Mode-Specific Financial Breakdown & Deposit Highlight Card
     const payStatusSelect = document.getElementById("invPaymentStatusSelect");
     const payMethodSelect = document.getElementById("invPaymentMethodSelect");
     const payRefInput = document.getElementById("invPaymentRefInput");
 
     const paymentStatus = payStatusSelect ? payStatusSelect.value : "full";
-    const paymentMethod = payMethodSelect ? payMethodSelect.value : "M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)";
+    const paymentMethod = payMethodSelect ? payMethodSelect.value : "M-Pesa Till 0790048905 (Laureign Studios)";
     const paymentRef = (payRefInput && payRefInput.value.trim()) || "M-Pesa Verified";
 
     const elStatusPill = document.getElementById("invDisplayStatusPill");
+    const elWordmark = document.getElementById("invSheetMainWordmark");
+    const elDocType = document.getElementById("invDisplayDocType");
     const elPaidRow = document.getElementById("invPaidRow");
     const elPaidLabel = document.getElementById("invPaidLabel");
     const elPaidAmt = document.getElementById("invPaidAmt");
@@ -2991,6 +2995,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const elBalLabel = document.getElementById("invBalanceLabel");
     const elBalVal = document.getElementById("invBalanceDue");
 
+    // Deposit Highlight Card (Left Side, Sample 5 Style)
+    const elDepAmt = document.getElementById("invDepDisplayAmt");
+    const elDepHeaderBadge = document.getElementById("invDepHeaderBadge");
+    const elDepPercentLabel = document.getElementById("invDepPercentLabel");
+    const elDepBalSub = document.getElementById("invDepBalanceSub");
+    const elDepBalSubAmt = document.getElementById("invDepBalanceSubAmt");
+
     const elPayChannelLine = document.getElementById("invPayChannelLine");
     const elPayTillLine = document.getElementById("invPayTillLine");
     const elPayAccountLine = document.getElementById("invPayAccountLine");
@@ -2998,6 +3009,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const elTermsNote = document.getElementById("invTermsNote");
 
     if (isReceipt) {
+      if (elWordmark) elWordmark.textContent = "RECEIPT";
+      if (elDocType) elDocType.textContent = "OFFICIAL PAYMENT RECEIPT";
+
       if (paymentStatus === "full") {
         if (elStatusPill) {
           elStatusPill.className = "val status-paid";
@@ -3018,6 +3032,13 @@ document.addEventListener("DOMContentLoaded", () => {
             elBalVal.style.fontWeight = "800";
           }
         }
+
+        // Highlight card in full receipt mode
+        if (elDepHeaderBadge) elDepHeaderBadge.textContent = "✓ PAYMENT CONFIRMED IN FULL";
+        if (elDepAmt) elDepAmt.textContent = `KSh ${grandTotal.toLocaleString()}`;
+        if (elDepPercentLabel) elDepPercentLabel.textContent = "Official studio payment confirmation. Cashless record verified.";
+        if (elDepBalSub) elDepBalSub.innerHTML = `Account balance: <b style="color:#15803d;">KSh 0 (CLEARED)</b>. Master cloud delivery initiated.`;
+
       } else {
         if (elStatusPill) {
           elStatusPill.className = "val status-deposit";
@@ -3038,6 +3059,12 @@ document.addEventListener("DOMContentLoaded", () => {
             elBalVal.style.fontWeight = "800";
           }
         }
+
+        // Highlight card in deposit receipt mode
+        if (elDepHeaderBadge) elDepHeaderBadge.textContent = `✓ BOOKING DEPOSIT RECEIVED (${depPercent}%)`;
+        if (elDepAmt) elDepAmt.textContent = `KSh ${deposit.toLocaleString()}`;
+        if (elDepPercentLabel) elDepPercentLabel.textContent = `${depPercent}% deposit received and logged into studio accounting.`;
+        if (elDepBalSub) elDepBalSub.innerHTML = `Balance due on master delivery: <b style="color:#dc2626;">KSh ${balance.toLocaleString()}</b>.`;
       }
 
       if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Payment Channel:</b> <span style="font-weight:700; color:#15803d;">${escapeHtml(paymentMethod)}</span>`;
@@ -3047,6 +3074,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (elTermsNote) elTermsNote.textContent = "* Official studio receipt. Cashless payment verified. High-resolution master files and deliverables are processed per the agreed production timeline.";
     } else {
       // Quotation mode
+      if (elWordmark) elWordmark.textContent = "QUOTATION";
+      if (elDocType) elDocType.textContent = "OFFICIAL PROFORMA RATE CARD";
+
       if (elStatusPill) {
         elStatusPill.className = "val status-proforma";
         elStatusPill.textContent = "PROFORMA / UNPAID";
@@ -3067,8 +3097,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Remittance Channel:</b> <span id="invPayChannelVal">M-Pesa Paybill &amp; Direct Bank Transfer</span>`;
-      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Paybill Number:</b> <span class="till-num">542542</span> &nbsp;&nbsp;<b>Account No:</b> <span class="till-num">486197</span>`;
+      // Highlight card in quotation mode (Sample 5 Style)
+      if (elDepHeaderBadge) elDepHeaderBadge.textContent = `BOOKING DEPOSIT REQUIRED (${depPercent}%)`;
+      if (elDepAmt) elDepAmt.textContent = `KSh ${deposit.toLocaleString()}`;
+      if (elDepPercentLabel) elDepPercentLabel.textContent = `${depPercent}% commitment required to secure shoot date &amp; creative crew allocation.`;
+      if (elDepBalSub) elDepBalSub.innerHTML = `Remaining balance of <b id="invDepBalanceSubAmt">KSh ${balance.toLocaleString()}</b> payable upon master high-res delivery.`;
+
+      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Remittance Channel:</b> <span id="invPayChannelVal">M-Pesa Till &amp; Paybill / Direct Bank Transfer</span>`;
+      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Buy Goods Till:</b> <span class="till-num">0790048905</span> &nbsp;<b>Paybill:</b> <span class="till-num">542542</span> Acc: <span class="till-num">486197</span>`;
       if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name to Verify:</b> <span style="font-weight:700; color:#047857;">JANE AKOTH</span> (Laureign Studios)`;
       const elBankLine = document.getElementById("invPayBankLine");
       if (elBankLine) elBankLine.innerHTML = `<b>Direct Bank Remittance:</b> <span>I&amp;M Bank Kenya · Account No: <b>486197</b></span>`;
