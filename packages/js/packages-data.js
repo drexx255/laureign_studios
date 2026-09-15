@@ -675,51 +675,51 @@ const PACKAGES_DATA = [
   },
   {
     "id": "traditional-creative",
-    "pathway": "studio",
-    "subcat": "traditional",
-    "catLabel": "Traditional Cultural",
-    "title": "Traditional Cultural Shoot",
-    "tagline": "Celebrate African heritage, traditional cultural regalia, and authentic tribal styling",
-    "image": "samples/studio/traditional-creative/cover_thumb.jpg",
-    "imageWebp": "samples/studio/traditional-creative/cover_thumb.webp",
-    "imageHighRes": "samples/studio/traditional-creative/cover.jpg",
+    "pathway": "outdoor",
+    "subcat": "outdoor-traditional",
+    "catLabel": "Outdoor Cultural",
+    "title": "Traditional Cultural Shoot (Outdoor & Creative)",
+    "tagline": "African heritage regalia, tribal beads & creative outdoor lighting on location or cultural gardens",
+    "image": "samples/outdoor/traditional-creative/cover_thumb.jpg",
+    "imageWebp": "samples/outdoor/traditional-creative/cover_thumb.webp",
+    "imageHighRes": "samples/outdoor/traditional-creative/cover.jpg",
     "badge": "👑 Cultural Heritage",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 200 to KSh 1,100 (lock your slot)",
-    "sampleFolder": "samples/studio/traditional-creative",
+    "sampleFolder": "samples/outdoor/traditional-creative",
     "samples": [
       {
-        "url": "samples/studio/traditional-creative/O13A0286.jpg",
+        "url": "samples/outdoor/traditional-creative/O13A0286.jpg",
         "type": "image",
         "title": "Authentic African Heritage Attire"
       },
       {
-        "url": "samples/studio/traditional-creative/O13A0309 (2).jpg",
+        "url": "samples/outdoor/traditional-creative/O13A0309 (2).jpg",
         "type": "image",
         "title": "Regal Traditional Beadwork & Posing"
       },
       {
-        "url": "samples/studio/traditional-creative/_R2A6166.jpg",
+        "url": "samples/outdoor/traditional-creative/_R2A6166.jpg",
         "type": "image",
         "title": "Creative Studio Heritage Composition"
       },
       {
-        "url": "samples/studio/traditional-creative/O13A0278.jpg",
+        "url": "samples/outdoor/traditional-creative/O13A0278.jpg",
         "type": "image",
         "title": "Cultural Pride & Vibrant Textures"
       },
       {
-        "url": "samples/studio/traditional-creative/_R2A6168.jpg",
+        "url": "samples/outdoor/traditional-creative/_R2A6168.jpg",
         "type": "image",
         "title": "Editorial Creative Studio Portrait"
       },
       {
-        "url": "samples/studio/traditional-creative/O13A0317.jpg",
+        "url": "samples/outdoor/traditional-creative/O13A0317.jpg",
         "type": "image",
         "title": "Modern African Royalty Styling"
       },
       {
-        "url": "samples/studio/traditional-creative/_INDOOR TRADITIONALCREATIVE  SHOOT.jpg",
+        "url": "samples/outdoor/traditional-creative/_INDOOR TRADITIONALCREATIVE  SHOOT.jpg",
         "type": "image",
         "title": "Indoor Traditional Shoot Rates & Guide"
       }
@@ -1104,36 +1104,36 @@ const PACKAGES_DATA = [
   },
   {
     "id": "couple-shoot",
-    "pathway": "studio",
-    "subcat": "couples-family",
-    "catLabel": "Couples & Romance",
-    "title": "Couple Studio Session",
-    "tagline": "Intimate couple storytelling for anniversaries, engagements, or celebrating love",
-    "image": "samples/studio/couple-shoot/cover_thumb.jpg",
-    "imageWebp": "samples/studio/couple-shoot/cover_thumb.webp",
-    "imageHighRes": "samples/studio/couple-shoot/cover.JPG",
+    "pathway": "outdoor",
+    "subcat": "outdoor-couples",
+    "catLabel": "Outdoor Couples",
+    "title": "Outdoor Couple Lifestyle & Date Session",
+    "tagline": "Intimate golden hour romance, park picnics, sunset walks & candid connection for dating, married & anniversary couples",
+    "image": "samples/outdoor/couple-shoot/cover_thumb.jpg",
+    "imageWebp": "samples/outdoor/couple-shoot/cover_thumb.webp",
+    "imageHighRes": "samples/outdoor/couple-shoot/cover.JPG",
     "badge": "❤️ Intimate Romance",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
-    "sampleFolder": "samples/studio/couple-shoot",
+    "sampleFolder": "samples/outdoor/couple-shoot",
     "samples": [
       {
-        "url": "samples/studio/couple-shoot/work-2.jpg",
+        "url": "samples/outdoor/couple-shoot/work-2.jpg",
         "type": "image",
         "title": "Magazine-Grade Studio Couple Portrait"
       },
       {
-        "url": "samples/studio/couple-shoot/DSC07790_(2).jpg",
+        "url": "samples/outdoor/couple-shoot/DSC07790_(2).jpg",
         "type": "image",
         "title": "Gentle Romantic Embrace"
       },
       {
-        "url": "samples/studio/couple-shoot/IMG_5195.JPG",
+        "url": "samples/outdoor/couple-shoot/IMG_5195.JPG",
         "type": "image",
         "title": "Connection & Studio Smiles"
       },
       {
-        "url": "samples/studio/couple-shoot/COUPLE.jpg",
+        "url": "samples/outdoor/couple-shoot/COUPLE.jpg",
         "type": "image",
         "title": "Couple Shoot Rates & Guide"
       }
@@ -3345,6 +3345,165 @@ const PACKAGES_DATA = [
           "1 x 45s High-Energy Model Runway & Posing Video Reel",
           "Printable Comp-Card + Digital Instagram Carousel Assets",
           "Express 48-Hour Delivery Turnaround"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "outdoor-silk-wrap",
+    "pathway": "outdoor",
+    "subcat": "outdoor-headshots",
+    "catLabel": "Outdoor Silk Wrap",
+    "title": "Outdoor Luxury Silk Wrap Shoot",
+    "tagline": "Breathtaking 6-meter flying satin silk wrap session in natural golden-hour wind & outdoor bokeh",
+    "image": "samples/outdoor/outdoor-silk-wrap/cover_thumb.jpg",
+    "imageWebp": "samples/outdoor/outdoor-silk-wrap/cover_thumb.webp",
+    "imageHighRes": "samples/outdoor/outdoor-silk-wrap/cover.jpg",
+    "badge": "✨ Flying Silk Satin",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/outdoor/outdoor-silk-wrap",
+    "samples": [
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/cover.jpg",
+        "type": "image",
+        "title": "Flying Silk Wrap Outdoor Golden Hour"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/_R2A6339.jpg",
+        "type": "image",
+        "title": "Luxury Satin Drape Wind Motion"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/_R2A6346.jpg",
+        "type": "image",
+        "title": "Sunset Silhouette with Silk Flow"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver Wrap (8 Images)",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 retouched images, 1 silk wrap color, 30 min session",
+        "inclusions": [
+          "8 Retouched High-Fashion Wrap Images",
+          "1 Studio Luxury Silk Fabric of Choice (Red, Emerald, Gold, Black, Royal Blue)",
+          "Outdoor Natural Light & Breeze Motion",
+          "Posing Direction for Dramatic Fabric Waves",
+          "Delivered via WhatsApp & Cloud"
+        ]
+      },
+      {
+        "id": "gold",
+        "name": "Gold Allure (15 Images)",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "15 retouched images, 2 silk colors, golden hour lighting",
+        "inclusions": [
+          "15 Editorial-Grade Retouched Images",
+          "2 Luxury Silk Wrap Transitions",
+          "Dedicated Fabric Assistant for Flying Wrap Dynamics",
+          "45 Mins Golden Hour Session",
+          "Delivered within 48 Hours"
+        ]
+      },
+      {
+        "id": "platinum",
+        "name": "Royal Silk Luxe (25 Images)",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "25 retouched images, 3 wrap looks + 45s slow-motion wind reel",
+        "inclusions": [
+          "25 Master Retouched Silk Wrap Portraits",
+          "3 Silk Wrap Colors / Styles Included",
+          "1 x 45s Slow-Motion Vertical Fabric Reel for Social Media",
+          "Full 60 Mins Sunset Session",
+          "Priority 24-Hour Turnaround"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "outdoor-graduation",
+    "pathway": "outdoor",
+    "subcat": "outdoor-headshots",
+    "catLabel": "Campus Graduation",
+    "title": "Campus & Outdoor Graduation Milestone",
+    "tagline": "Celebrate your degree in natural sunlight on university campus grounds, gates, convocation lawns & scenic gardens",
+    "image": "samples/outdoor/outdoor-graduation/cover_thumb.jpg",
+    "imageWebp": "samples/outdoor/outdoor-graduation/cover_thumb.webp",
+    "imageHighRes": "samples/outdoor/outdoor-graduation/cover.jpg",
+    "badge": "🎓 Campus Convocation",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/outdoor/outdoor-graduation",
+    "samples": [
+      {
+        "url": "samples/outdoor/outdoor-graduation/cover.jpg",
+        "type": "image",
+        "title": "Sunlit Campus Convocation Regalia Walk"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/PRI_5893.jpg",
+        "type": "image",
+        "title": "Golden Hour Outdoor Graduation Glow"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/PRI_5912.jpg",
+        "type": "image",
+        "title": "Grand Convocation Regalia Portrait"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/PRI_5363.jpg",
+        "type": "image",
+        "title": "Degree Scroll & Celebration Bouquet"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver Scholar (8 Images)",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 retouched images on campus grounds, gown & cap, 30 mins",
+        "inclusions": [
+          "8 Magazine-Grade Retouched Graduation Images",
+          "Academic Regalia (Gown, Cap, Hood & Scroll)",
+          "Campus Landmarks, Gates & Green Lawns",
+          "Includes Cap Toss Action Shots",
+          "Delivered via WhatsApp & Cloud"
+        ]
+      },
+      {
+        "id": "gold",
+        "name": "Gold Honors (15 Images)",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "15 retouched images, campus grounds + family portraits",
+        "inclusions": [
+          "15 Master Retouched Convocation Portraits",
+          "Dedicated Graduate Solo + Proud Parents & Family Members",
+          "45 Mins Campus Session Across Multiple Landmarks",
+          "Degree Scroll & Honors Detail Posing",
+          "Delivered within 48 Hours"
+        ]
+      },
+      {
+        "id": "platinum",
+        "name": "Presidential Convocation (25 Images)",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "25 retouched images, family inclusive, 60 mins + A4 wooden mount",
+        "inclusions": [
+          "25 Master Retouched Graduation Portraits",
+          "Comprehensive Campus & Convocation Coverage",
+          "Includes 1 Solid Wooden A4 Photo Mount Ready to Hang",
+          "1 x 45s Graduate Celebration Reel for TikTok / Instagram",
+          "Express 24-Hour Delivery"
         ]
       }
     ]
