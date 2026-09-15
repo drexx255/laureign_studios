@@ -100,66 +100,125 @@ const REEL_SAMPLES = [
     id: "reel-1",
     title: "Editorial Fashion & Glamour Reel",
     video: "samples/reels/C1261_1.mp4",
-    poster: "samples/06-silk-wrap/BR2A0814.JPG",
+    poster: "samples/studio/silk-wrap/BR2A0814.JPG",
     tag: "✨ Editorial Glamour",
     desc: "Slow-motion transitions, luxury studio lighting & viral audio sync"
   },
   {
     id: "reel-2",
     title: "Vibrant Portrait & Smile Reel",
-    video: "samples/reels/camila.mp4",
-    poster: "samples/01-indoor-headshots/DSC09594_(2).jpg",
+    video: "samples/studio/shirt-reels/camila.mp4",
+    poster: "samples/studio/indoor-headshots/DSC09594_(2).jpg",
     tag: "🔥 Viral TikTok Poses",
     desc: "High-energy rhythm, smile transitions & candid studio poses"
   }
 ];
 
 const PACKAGES_DATA = [
-  // ==========================================================================
-  // PATHWAY 1: STUDIO & PORTRAIT SESSIONS (INDOOR CONTROLLED LIGHTING)
-  // ==========================================================================
-
-  // 1. GRADUATION SHOOT
   {
-    id: "graduation-shoot",
-    pathway: "studio",
-    subcat: "graduation",
-    catLabel: "Graduation Milestones",
-    title: "Graduation Milestone Shoot",
-    tagline: "Celebrate your academic degree in style with gown, cap, hood, scroll & proud family",
-    image: "samples/13-graduation-shoot/cover_thumb.jpg",
-    imageWebp: "samples/13-graduation-shoot/cover_thumb.webp",
-    imageHighRes: "samples/13-graduation-shoot/cover.jpg",
-    badge: "🎓 Academic Pride",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 200 to KSh 1,700 (lock your slot)",
-    sampleFolder: "samples/13-graduation-shoot",
-    samples: [
-      { url: "samples/13-graduation-shoot/cover.jpg", type: "image", title: "Graduate Milestone Achievement Cover" },
-      { url: "samples/13-graduation-shoot/PRI_5912.jpg", type: "image", title: "Grand Convocation Regalia Portrait" },
-      { url: "samples/13-graduation-shoot/PRI_5893.jpg", type: "image", title: "Golden Hour Outdoor Graduation Glow" },
-      { url: "samples/13-graduation-shoot/DSC09941.JPG", type: "image", title: "Official Academic Graduation Portrait" },
-      { url: "samples/13-graduation-shoot/DSC09938.JPG", type: "image", title: "Graduation Cap & Gown Posing" },
-      { url: "samples/13-graduation-shoot/PRI_5363.jpg", type: "image", title: "Diploma & Celebration Flower Bouquet" },
-      { url: "samples/13-graduation-shoot/DSC09939.JPG", type: "image", title: "Degree Scroll & Academic Pride" },
-      { url: "samples/13-graduation-shoot/PRI_5013.jpg", type: "image", title: "Academic Hood & Honors Detail" },
-      { url: "samples/13-graduation-shoot/DSC09940.JPG", type: "image", title: "Celebration Gown Studio Lighting" },
-      { url: "samples/13-graduation-shoot/PRI_4998.jpg", type: "image", title: "Sunlit Campus Convocation Walk" },
-      { url: "samples/13-graduation-shoot/DSC09942.JPG", type: "image", title: "Close-up Retouched Graduate Portrait" },
-      { url: "samples/13-graduation-shoot/PRI_5895.jpg", type: "image", title: "Proud Graduate Natural Profile" },
-      { url: "samples/13-graduation-shoot/DSC09943.JPG", type: "image", title: "Milestone Degree Academic Look" },
-      { url: "samples/13-graduation-shoot/PRI_5412.jpg", type: "image", title: "Joyful Academic Milestone Smile" },
-      { url: "samples/13-graduation-shoot/DSC09945.JPG", type: "image", title: "Full-Length Academic Regalia Session" },
-      { url: "samples/13-graduation-shoot/graduation.jpg", type: "image", title: "Official Graduation Poster Rates & Guide" }
-    ],
-    options: [
+    "id": "graduation-shoot",
+    "pathway": "studio",
+    "subcat": "graduation",
+    "catLabel": "Graduation Milestones",
+    "title": "Graduation Milestone Shoot",
+    "tagline": "Celebrate your academic degree in style with gown, cap, hood, scroll & proud family",
+    "image": "samples/studio/graduation-shoot/cover_thumb.jpg",
+    "imageWebp": "samples/studio/graduation-shoot/cover_thumb.webp",
+    "imageHighRes": "samples/studio/graduation-shoot/cover.jpg",
+    "badge": "🎓 Academic Pride",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 200 to KSh 1,700 (lock your slot)",
+    "sampleFolder": "samples/studio/graduation-shoot",
+    "samples": [
       {
-        id: "starter",
-        name: "Single Image (Solo Graduate)",
-        price: 350,
-        deposit: 200,
-        summary: "Single official academic regalia portrait (Pay per image)",
-        inclusions: [
+        "url": "samples/studio/graduation-shoot/cover.jpg",
+        "type": "image",
+        "title": "Graduate Milestone Achievement Cover"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/PRI_5912.jpg",
+        "type": "image",
+        "title": "Grand Convocation Regalia Portrait"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/PRI_5893.jpg",
+        "type": "image",
+        "title": "Golden Hour Outdoor Graduation Glow"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09941.JPG",
+        "type": "image",
+        "title": "Official Academic Graduation Portrait"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09938.JPG",
+        "type": "image",
+        "title": "Graduation Cap & Gown Posing"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/PRI_5363.jpg",
+        "type": "image",
+        "title": "Diploma & Celebration Flower Bouquet"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09939.JPG",
+        "type": "image",
+        "title": "Degree Scroll & Academic Pride"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/PRI_5013.jpg",
+        "type": "image",
+        "title": "Academic Hood & Honors Detail"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09940.JPG",
+        "type": "image",
+        "title": "Celebration Gown Studio Lighting"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/PRI_4998.jpg",
+        "type": "image",
+        "title": "Sunlit Campus Convocation Walk"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09942.JPG",
+        "type": "image",
+        "title": "Close-up Retouched Graduate Portrait"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/PRI_5895.jpg",
+        "type": "image",
+        "title": "Proud Graduate Natural Profile"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09943.JPG",
+        "type": "image",
+        "title": "Milestone Degree Academic Look"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/PRI_5412.jpg",
+        "type": "image",
+        "title": "Joyful Academic Milestone Smile"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09945.JPG",
+        "type": "image",
+        "title": "Full-Length Academic Regalia Session"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/graduation.jpg",
+        "type": "image",
+        "title": "Official Graduation Poster Rates & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "starter",
+        "name": "Single Image (Solo Graduate)",
+        "price": 350,
+        "deposit": 200,
+        "summary": "Single official academic regalia portrait (Pay per image)",
+        "inclusions": [
           "1 Premium Edited Regalia Portrait",
           "Gown, Cap, Hood & Scroll Setup",
           "Extra Edited Photos: KSh 350 each",
@@ -169,12 +228,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver (Solo Graduate)",
-        price: 2000,
-        deposit: 500,
-        summary: "Essential solo academic portrait session from official rate booklet",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver (Solo Graduate)",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "Essential solo academic portrait session from official rate booklet",
+        "inclusions": [
           "8 Premium Edited Images (Save KSh 800 vs single rate!)",
           "Gown + 1 Outfit",
           "Headshots, Cap Toss & 1 Group Photo",
@@ -183,13 +242,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold (Graduate + Family)",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "Graduate solo plus proud family group portraits",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold (Graduate + Family)",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "Graduate solo plus proud family group portraits",
+        "inclusions": [
           "16 Premium Edited Images (Save KSh 2,100 vs single rate!)",
           "Gown + 1 Outfit",
           "Headshots, Solo Cap Poses & 2 Group Photos",
@@ -198,12 +257,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (VIP + Video Reel)",
-        price: 6700,
-        deposit: 1700,
-        summary: "VIP celebration with mounted print & express delivery",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (VIP + Video Reel)",
+        "price": 6700,
+        "deposit": 1700,
+        "summary": "VIP celebration with mounted print & express delivery",
+        "inclusions": [
           "25 Premium Edited Images",
           "Gown + 1 Outfit",
           "Headshots, Individual & 3 Group Photos",
@@ -214,39 +273,60 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 2. INDOOR STUDIO HEADSHOTS
   {
-    id: "indoor-headshots",
-    pathway: "studio",
-    subcat: "portraits",
-    catLabel: "Executive Headshots",
-    title: "Executive Headshots",
-    tagline: "High-impact headshots for LinkedIn, corporate bios, modeling comp cards & casting calls",
-    image: "samples/01-indoor-headshots/cover_thumb.jpg",
-    imageWebp: "samples/01-indoor-headshots/cover_thumb.webp",
-    imageHighRes: "samples/01-indoor-headshots/cover.jpg",
-    badge: "💼 Executive & Model Casting",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/01-indoor-headshots",
-    samples: [
-      { url: "samples/01-indoor-headshots/DSC09594_(2).jpg", type: "image", title: "Polished Executive Studio Headshot" },
-      { url: "samples/01-indoor-headshots/DSC09626_(2).jpg", type: "image", title: "Professional Leadership Portrait" },
-      { url: "samples/01-indoor-headshots/DSC09765_(2).jpg", type: "image", title: "Corporate Board & LinkedIn Profile" },
-      { url: "samples/01-indoor-headshots/DSC09795_(2).jpg", type: "image", title: "Modern Professional Studio Lighting" },
-      { url: "samples/01-indoor-headshots/work-10.jpg", type: "image", title: "Editorial Studio Headshot Retouching" },
-      { url: "images/ceo.jpg", type: "image", title: "Executive Lighting & Composition" },
-      { url: "samples/01-indoor-headshots/INDOOR HEADSHOTS.jpg", type: "image", title: "Official Rates Poster & Guide" }
-    ],
-    options: [
+    "id": "indoor-headshots",
+    "pathway": "studio",
+    "subcat": "portraits",
+    "catLabel": "Executive Headshots",
+    "title": "Executive Headshots",
+    "tagline": "High-impact headshots for LinkedIn, corporate bios, modeling comp cards & casting calls",
+    "image": "samples/studio/indoor-headshots/cover_thumb.jpg",
+    "imageWebp": "samples/studio/indoor-headshots/cover_thumb.webp",
+    "imageHighRes": "samples/studio/indoor-headshots/cover.jpg",
+    "badge": "💼 Executive & Model Casting",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/studio/indoor-headshots",
+    "samples": [
       {
-        id: "starter",
-        name: "Single Image (Quick Headshot)",
-        price: 300,
-        deposit: 200,
-        summary: "Single executive, model comp-card or LinkedIn headshot",
-        inclusions: [
+        "url": "samples/studio/indoor-headshots/DSC09594_(2).jpg",
+        "type": "image",
+        "title": "Polished Executive Studio Headshot"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC09626_(2).jpg",
+        "type": "image",
+        "title": "Professional Leadership Portrait"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC09765_(2).jpg",
+        "type": "image",
+        "title": "Corporate Board & LinkedIn Profile"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC09795_(2).jpg",
+        "type": "image",
+        "title": "Modern Professional Studio Lighting"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/work-10.jpg",
+        "type": "image",
+        "title": "Editorial Studio Headshot Retouching"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/INDOOR HEADSHOTS.jpg",
+        "type": "image",
+        "title": "Official Rates Poster & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "starter",
+        "name": "Single Image (Quick Headshot)",
+        "price": 300,
+        "deposit": 200,
+        "summary": "Single executive, model comp-card or LinkedIn headshot",
+        "inclusions": [
           "1 Magazine-Grade Retouched Headshot",
           "1 Outfit of Choice",
           "Extra Retouched Photos: KSh 300 each",
@@ -257,12 +337,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "8 retouched images, 1 outfit, 30 min session",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 retouched images, 1 outfit, 30 min session",
+        "inclusions": [
           "8 Magazine-Grade Retouched Headshots (Save KSh 400 vs single rate!)",
           "1 Outfit of Choice",
           "Neutral Grey / White Backdrop",
@@ -271,13 +351,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "16 retouched images, 2-3 outfits, 45 min session",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "16 retouched images, 2-3 outfits, 45 min session",
+        "inclusions": [
           "16 Magazine-Grade Retouched Headshots (Save KSh 1,300 vs single rate!)",
           "2–3 Outfit Changes",
           "Multiple Lighting Setups & Backdrops",
@@ -286,12 +366,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (VIP + Makeup)",
-        price: 5500,
-        deposit: 1400,
-        summary: "22 retouched images, pro makeup artist included, 1 hr session",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (VIP + Makeup)",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "22 retouched images, pro makeup artist included, 1 hr session",
+        "inclusions": [
           "22 Magazine-Grade Retouched Headshots",
           "Professional Studio Makeup Artist Included",
           "Unlimited Outfit Changes",
@@ -302,34 +382,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 3. INDOOR WHITE SHIRT SHOOT
   {
-    id: "indoor-shirt-shoot",
-    pathway: "studio",
-    subcat: "white-shirt",
-    catLabel: "Crisp White Shirt",
-    title: "Crisp White Shirt Shoot (Studio)",
-    tagline: "The viral, clean minimalist studio white shirt look with studio shirts provided",
-    image: "samples/03-indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES_thumb.jpg",
-    imageWebp: "samples/03-indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES_thumb.webp",
-    imageHighRes: "samples/03-indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES.jpg",
-    badge: "👔 Studio Shirts Provided",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/03-indoor-shirt-shoot",
-    samples: [
-      { url: "samples/03-indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES.jpg", type: "image", title: "Indoor White Shirt Shoot Rates & Guide" },
-      { url: "images/work-3.jpg", type: "image", title: "Clean White Shirt Studio Styling" }
-    ],
-    options: [
+    "id": "indoor-shirt-shoot",
+    "pathway": "studio",
+    "subcat": "white-shirt",
+    "catLabel": "Crisp White Shirt",
+    "title": "Crisp White Shirt Shoot (Studio)",
+    "tagline": "The viral, clean minimalist studio white shirt look with studio shirts provided",
+    "image": "samples/studio/indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES_thumb.jpg",
+    "imageWebp": "samples/studio/indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES_thumb.webp",
+    "imageHighRes": "samples/studio/indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES.jpg",
+    "badge": "👔 Studio Shirts Provided",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/studio/indoor-shirt-shoot",
+    "samples": [
       {
-        id: "single-photo",
-        name: "Single Image (Solo White Shirt · Dressing Included)",
-        price: 350,
-        deposit: 200,
-        summary: "1 Masterpiece Retouched Photo with Studio White Shirt Wardrobe & Sizing Included",
-        inclusions: [
+        "url": "samples/studio/indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES.jpg",
+        "type": "image",
+        "title": "Indoor White Shirt Shoot Rates & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "single-photo",
+        "name": "Single Image (Solo White Shirt · Dressing Included)",
+        "price": 350,
+        "deposit": 200,
+        "summary": "1 Masterpiece Retouched Photo with Studio White Shirt Wardrobe & Sizing Included",
+        "inclusions": [
           "1 Magazine-Grade Retouched White Shirt Portrait",
           "Studio Crisp White Shirt Wardrobe & Sizing Included",
           "High-Key Studio Lighting & High-End Skin Retouching",
@@ -339,12 +420,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "starter-5",
-        name: "Starter (5 Images · Studio Shirts Included)",
-        price: 1500,
-        deposit: 400,
-        summary: "5 edited white shirt portraits with studio shirts included",
-        inclusions: [
+        "id": "starter-5",
+        "name": "Starter (5 Images · Studio Shirts Included)",
+        "price": 1500,
+        "deposit": 400,
+        "summary": "5 edited white shirt portraits with studio shirts included",
+        "inclusions": [
           "5 Premium Edited White Shirt Portraits",
           "Studio Button-Down Shirts Provided",
           "15–20 Mins Studio Session",
@@ -353,12 +434,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "8 edited images, studio white shirts provided, 30 min session",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 edited images, studio white shirts provided, 30 min session",
+        "inclusions": [
           "8 Premium Edited Images (Save KSh 800 vs single rate!)",
           "Studio White Shirts Provided",
           "Classic Button-Down or Oversized Styling",
@@ -367,13 +448,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "16 edited images, 2 looks (Denim + Formal), 45 min session",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "16 edited images, 2 looks (Denim + Formal), 45 min session",
+        "inclusions": [
           "16 Premium Edited Images (Save KSh 2,100 vs single rate!)",
           "2 Looks (Denim + Formal White Shirt)",
           "Studio Wardrobe Access Included",
@@ -382,12 +463,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum",
-        price: 5500,
-        deposit: 1400,
-        summary: "24 edited images + Pro Makeup or Trending Reel, 1 hr session",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "24 edited images + Pro Makeup or Trending Reel, 1 hr session",
+        "inclusions": [
           "24 Premium Edited Images",
           "Choice of Professional Makeup or Trending Reel",
           "Full Wardrobe Styling & Creative Direction",
@@ -397,33 +478,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 4. SHIRT SHOOT REELS
   {
-    id: "shirt-reels",
-    pathway: "studio",
-    subcat: "white-shirt",
-    catLabel: "Crisp White Shirt",
-    title: "White Shirt Video Reels",
-    tagline: "Trending short-form vertical video reels for TikTok & Instagram",
-    image: "samples/05-shirt-reels/SHIRT SHOOT REELS PACKAGES_thumb.jpg",
-    imageWebp: "samples/05-shirt-reels/SHIRT SHOOT REELS PACKAGES_thumb.webp",
-    imageHighRes: "samples/05-shirt-reels/SHIRT SHOOT REELS PACKAGES.jpg",
-    badge: "🎬 TikTok & Reels",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/05-shirt-reels",
-    samples: [
-      { url: "samples/05-shirt-reels/SHIRT SHOOT REELS PACKAGES.jpg", type: "image", title: "White Shirt Video Reels Rates & Production Guide" }
-    ],
-    options: [
+    "id": "shirt-reels",
+    "pathway": "studio",
+    "subcat": "white-shirt",
+    "catLabel": "Crisp White Shirt",
+    "title": "White Shirt Video Reels",
+    "tagline": "Trending short-form vertical video reels for TikTok & Instagram",
+    "image": "samples/studio/shirt-reels/SHIRT SHOOT REELS PACKAGES_thumb.jpg",
+    "imageWebp": "samples/studio/shirt-reels/SHIRT SHOOT REELS PACKAGES_thumb.webp",
+    "imageHighRes": "samples/studio/shirt-reels/SHIRT SHOOT REELS PACKAGES.jpg",
+    "badge": "🎬 TikTok & Reels",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/studio/shirt-reels",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "2 vertical video reels (up to 45s each)",
-        inclusions: [
+        "url": "samples/studio/shirt-reels/SHIRT SHOOT REELS PACKAGES.jpg",
+        "type": "image",
+        "title": "White Shirt Video Reels Rates & Production Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "2 vertical video reels (up to 45s each)",
+        "inclusions": [
           "2 Vertical Cinematic Video Reels (up to 45s each)",
           "Cut to Trending Audio",
           "Color Graded for Mobile Displays",
@@ -431,13 +514,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "3 vertical video reels (up to 60s each) with trending audio",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "3 vertical video reels (up to 60s each) with trending audio",
+        "inclusions": [
           "3 Vertical Cinematic Video Reels (up to 60s each)",
           "Dynamic Fast-Paced Editing to Trending Beats",
           "Color Graded & Formatted for IG & TikTok",
@@ -445,12 +528,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum",
-        price: 5500,
-        deposit: 1400,
-        summary: "5 vertical video reels (up to 60s each) + custom text motion",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "5 vertical video reels (up to 60s each) + custom text motion",
+        "inclusions": [
           "5 Vertical Cinematic Video Reels (up to 60s each)",
           "Custom Motion Typography & Text Overlays",
           "Audio Sync & Sound Design",
@@ -459,40 +542,70 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 5. SILK WRAP SHOOT
   {
-    id: "silk-wrap",
-    pathway: "studio",
-    subcat: "silk-wrap",
-    catLabel: "Luxury Silk Wrap",
-    title: "Luxury Silk Wrap Shoot",
-    tagline: "Sculpted luxury silk drape sessions with studio drapery wardrobe provided",
-    image: "samples/06-silk-wrap/cover_thumb.jpg",
-    imageWebp: "samples/06-silk-wrap/cover_thumb.webp",
-    imageHighRes: "samples/06-silk-wrap/cover.JPG",
-    badge: "✨ Luxury Silk Wardrobe",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/06-silk-wrap",
-    samples: [
-      { url: "samples/06-silk-wrap/BR2A0814.JPG", type: "image", title: "Flowing Satin Drapery & Studio Silhouette" },
-      { url: "samples/06-silk-wrap/BR2A0811.JPG", type: "image", title: "High-Key Silk Draping Portrait" },
-      { url: "samples/06-silk-wrap/BR2A0797.JPG", type: "image", title: "Sculpted Silk Glow & Form" },
-      { url: "samples/06-silk-wrap/BR2A0836.JPG", type: "image", title: "Editorial Satin Lighting & Posing" },
-      { url: "samples/06-silk-wrap/BR2A1804.JPG", type: "image", title: "Dramatic Royal Silk Drapery" },
-      { url: "samples/06-silk-wrap/BR2A1829.JPG", type: "image", title: "Graceful Studio Satin Texture" },
-      { url: "samples/06-silk-wrap/INDOOR WRAP SHOOT PACKAGES.jpg", type: "image", title: "Indoor Wrap Shoot Rates & Guide" },
-      { url: "samples/06-silk-wrap/SPECIAL WRAP BUMP SHOOT PACKAGES.jpg", type: "image", title: "Special Wrap Bump Shoot Rates & Guide" }
-    ],
-    options: [
+    "id": "silk-wrap",
+    "pathway": "studio",
+    "subcat": "silk-wrap",
+    "catLabel": "Luxury Silk Wrap",
+    "title": "Luxury Silk Wrap Shoot",
+    "tagline": "Sculpted luxury silk drape sessions with studio drapery wardrobe provided",
+    "image": "samples/studio/silk-wrap/cover_thumb.jpg",
+    "imageWebp": "samples/studio/silk-wrap/cover_thumb.webp",
+    "imageHighRes": "samples/studio/silk-wrap/cover.JPG",
+    "badge": "✨ Luxury Silk Wardrobe",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/studio/silk-wrap",
+    "samples": [
       {
-        id: "single-photo",
-        name: "Single Image (Solo Silk Wrap · Dressing Included)",
-        price: 350,
-        deposit: 200,
-        summary: "1 Masterpiece Retouched Photo with Luxury Silk Wardrobe & Studio Dressing Included",
-        inclusions: [
+        "url": "samples/studio/silk-wrap/BR2A0814.JPG",
+        "type": "image",
+        "title": "Flowing Satin Drapery & Studio Silhouette"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A0811.JPG",
+        "type": "image",
+        "title": "High-Key Silk Draping Portrait"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A0797.JPG",
+        "type": "image",
+        "title": "Sculpted Silk Glow & Form"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A0836.JPG",
+        "type": "image",
+        "title": "Editorial Satin Lighting & Posing"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A1804.JPG",
+        "type": "image",
+        "title": "Dramatic Royal Silk Drapery"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A1829.JPG",
+        "type": "image",
+        "title": "Graceful Studio Satin Texture"
+      },
+      {
+        "url": "samples/studio/silk-wrap/INDOOR WRAP SHOOT PACKAGES.jpg",
+        "type": "image",
+        "title": "Indoor Wrap Shoot Rates & Guide"
+      },
+      {
+        "url": "samples/studio/silk-wrap/SPECIAL WRAP BUMP SHOOT PACKAGES.jpg",
+        "type": "image",
+        "title": "Special Wrap Bump Shoot Rates & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "single-photo",
+        "name": "Single Image (Solo Silk Wrap · Dressing Included)",
+        "price": 350,
+        "deposit": 200,
+        "summary": "1 Masterpiece Retouched Photo with Luxury Silk Wardrobe & Studio Dressing Included",
+        "inclusions": [
           "1 Magazine-Grade Retouched Silk Wrap Portrait",
           "Studio 6-Meter Flowing Luxury Silk Drapery Wardrobe Provided",
           "Dedicated Studio Lighting & Sculpted Posing Direction",
@@ -502,12 +615,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "starter-5",
-        name: "Starter (5 Images · Silk Wardrobe Included)",
-        price: 1500,
-        deposit: 400,
-        summary: "5 sculpted silk drape portraits with studio wardrobe included",
-        inclusions: [
+        "id": "starter-5",
+        "name": "Starter (5 Images · Silk Wardrobe Included)",
+        "price": 1500,
+        "deposit": 400,
+        "summary": "5 sculpted silk drape portraits with studio wardrobe included",
+        "inclusions": [
           "5 Magazine-Grade Retouched Silk Drape Portraits",
           "Studio 6-Meter Flowing Silk Drapery Wardrobe Provided",
           "20 Mins Dedicated Sculpted Posing Session",
@@ -515,12 +628,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "8 retouched images, 30 min session, silk drapery provided",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 retouched images, 30 min session, silk drapery provided",
+        "inclusions": [
           "8 Premium Retouched Images (Save KSh 800 vs single rate!)",
           "Studio Silk Drapery Provided",
           "30 Mins Studio Session",
@@ -529,13 +642,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "16 retouched images, 45 min session, multiple silk colors",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "16 retouched images, 45 min session, multiple silk colors",
+        "inclusions": [
           "16 Premium Retouched Images (Save KSh 2,100 vs single rate!)",
           "Multiple Silk Drapery Colors (Gold, Red, Black, Emerald)",
           "Creative Studio Posing & Silhouette Direction",
@@ -544,12 +657,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (VIP + Makeup)",
-        price: 5500,
-        deposit: 1400,
-        summary: "24 retouched images, 1 hr session, pro makeup artist included",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (VIP + Makeup)",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "24 retouched images, 1 hr session, pro makeup artist included",
+        "inclusions": [
           "24 Premium Retouched Images",
           "Professional Studio Makeup Artist Included",
           "Unlimited Drapery Color Styling Changes",
@@ -560,39 +673,65 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 6. TRADITIONAL CULTURAL SHOOT
   {
-    id: "traditional-creative",
-    pathway: "studio",
-    subcat: "traditional",
-    catLabel: "Traditional Cultural",
-    title: "Traditional Cultural Shoot",
-    tagline: "Celebrate African heritage, traditional cultural regalia, and authentic tribal styling",
-    image: "samples/07-traditional-creative/cover_thumb.jpg",
-    imageWebp: "samples/07-traditional-creative/cover_thumb.webp",
-    imageHighRes: "samples/07-traditional-creative/cover.jpg",
-    badge: "👑 Cultural Heritage",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 200 to KSh 1,100 (lock your slot)",
-    sampleFolder: "samples/07-traditional-creative",
-    samples: [
-      { url: "samples/07-traditional-creative/O13A0286.jpg", type: "image", title: "Authentic African Heritage Attire" },
-      { url: "samples/07-traditional-creative/O13A0309 (2).jpg", type: "image", title: "Regal Traditional Beadwork & Posing" },
-      { url: "samples/07-traditional-creative/_R2A6166.jpg", type: "image", title: "Creative Studio Heritage Composition" },
-      { url: "samples/07-traditional-creative/O13A0278.jpg", type: "image", title: "Cultural Pride & Vibrant Textures" },
-      { url: "samples/07-traditional-creative/_R2A6168.jpg", type: "image", title: "Editorial Creative Studio Portrait" },
-      { url: "samples/07-traditional-creative/O13A0317.jpg", type: "image", title: "Modern African Royalty Styling" },
-      { url: "samples/07-traditional-creative/_INDOOR TRADITIONALCREATIVE  SHOOT.jpg", type: "image", title: "Indoor Traditional Shoot Rates & Guide" }
-    ],
-    options: [
+    "id": "traditional-creative",
+    "pathway": "studio",
+    "subcat": "traditional",
+    "catLabel": "Traditional Cultural",
+    "title": "Traditional Cultural Shoot",
+    "tagline": "Celebrate African heritage, traditional cultural regalia, and authentic tribal styling",
+    "image": "samples/studio/traditional-creative/cover_thumb.jpg",
+    "imageWebp": "samples/studio/traditional-creative/cover_thumb.webp",
+    "imageHighRes": "samples/studio/traditional-creative/cover.jpg",
+    "badge": "👑 Cultural Heritage",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 200 to KSh 1,100 (lock your slot)",
+    "sampleFolder": "samples/studio/traditional-creative",
+    "samples": [
       {
-        id: "single-photo",
-        name: "Single Image (Solo Cultural Attire · Dressing Included)",
-        price: 350,
-        deposit: 200,
-        summary: "1 Masterpiece Retouched Photo with Traditional Dressing & Cultural Styling",
-        inclusions: [
+        "url": "samples/studio/traditional-creative/O13A0286.jpg",
+        "type": "image",
+        "title": "Authentic African Heritage Attire"
+      },
+      {
+        "url": "samples/studio/traditional-creative/O13A0309 (2).jpg",
+        "type": "image",
+        "title": "Regal Traditional Beadwork & Posing"
+      },
+      {
+        "url": "samples/studio/traditional-creative/_R2A6166.jpg",
+        "type": "image",
+        "title": "Creative Studio Heritage Composition"
+      },
+      {
+        "url": "samples/studio/traditional-creative/O13A0278.jpg",
+        "type": "image",
+        "title": "Cultural Pride & Vibrant Textures"
+      },
+      {
+        "url": "samples/studio/traditional-creative/_R2A6168.jpg",
+        "type": "image",
+        "title": "Editorial Creative Studio Portrait"
+      },
+      {
+        "url": "samples/studio/traditional-creative/O13A0317.jpg",
+        "type": "image",
+        "title": "Modern African Royalty Styling"
+      },
+      {
+        "url": "samples/studio/traditional-creative/_INDOOR TRADITIONALCREATIVE  SHOOT.jpg",
+        "type": "image",
+        "title": "Indoor Traditional Shoot Rates & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "single-photo",
+        "name": "Single Image (Solo Cultural Attire · Dressing Included)",
+        "price": 350,
+        "deposit": 200,
+        "summary": "1 Masterpiece Retouched Photo with Traditional Dressing & Cultural Styling",
+        "inclusions": [
           "1 Master Magazine-Grade Retouched Photo",
           "Studio Cultural Regalia, Tribal Beads & Ankara Fabric Styling Included",
           "Creative Studio Lighting & Heritage Backdrop",
@@ -602,12 +741,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver",
-        price: 1100,
-        deposit: 300,
-        summary: "3 retouched images, 30 min session",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver",
+        "price": 1100,
+        "deposit": 300,
+        "summary": "3 retouched images, 30 min session",
+        "inclusions": [
           "3 Retouched Traditional Images",
           "1 Traditional / Cultural Outfit",
           "30 Mins Studio Session",
@@ -615,13 +754,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 2500,
-        deposit: 600,
-        summary: "6 retouched images, 45 min session, cultural theme styling",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 2500,
+        "deposit": 600,
+        "summary": "6 retouched images, 45 min session, cultural theme styling",
+        "inclusions": [
           "6 Retouched Traditional Images",
           "Cultural Theme Styling & Props Support",
           "45 Mins Studio Session",
@@ -629,12 +768,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum",
-        price: 4500,
-        deposit: 1100,
-        summary: "10 retouched images, 1 hr session, full creative heritage setup",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum",
+        "price": 4500,
+        "deposit": 1100,
+        "summary": "10 retouched images, 1 hr session, full creative heritage setup",
+        "inclusions": [
           "10 Retouched Traditional Images",
           "Full Creative Heritage & Fine Art Lighting",
           "1 Hour Dedicated Studio Session",
@@ -643,38 +782,55 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 7. INDOOR BABY BUMP / MATERNITY SHOOT
   {
-    id: "baby-bump",
-    pathway: "studio",
-    subcat: "maternity-kids",
-    catLabel: "Maternity & Baby Bump",
-    title: "Maternity & Baby Bump Shoot (Studio)",
-    tagline: "Celebrate expecting motherhood in cozy studio comfort with radiant lighting & wraps",
-    image: "samples/08-baby-bump/cover_thumb.jpg",
-    imageWebp: "samples/08-baby-bump/cover_thumb.webp",
-    imageHighRes: "samples/08-baby-bump/cover.jpg",
-    badge: "🍼 Motherhood Glow",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/08-baby-bump",
-    samples: [
-      { url: "samples/08-baby-bump/DSC07764_(2).jpg", type: "image", title: "Radiant Expectant Mother Studio Glow" },
-      { url: "samples/08-baby-bump/DSC07893_(2).jpg", type: "image", title: "Intimate Belly Bump Silhouette & Retouching" },
-      { url: "samples/08-baby-bump/DSC04963-2.jpg", type: "image", title: "Gentle Floral & Studio Maternity Portrait" },
-      { url: "samples/08-baby-bump/DSC07790_(2).jpg", type: "image", title: "Couples Maternity Studio Connection" },
-      { url: "samples/06-silk-wrap/SPECIAL WRAP BUMP SHOOT PACKAGES.jpg", type: "image", title: "Special Silk Wrap Bump Setup Guide" },
-      { url: "samples/08-baby-bump/OUTDOOR BABY BUMP SHOOT.jpg", type: "image", title: "Official Rates Poster & Guide" }
-    ],
-    options: [
+    "id": "baby-bump",
+    "pathway": "studio",
+    "subcat": "maternity-kids",
+    "catLabel": "Maternity & Baby Bump",
+    "title": "Maternity & Baby Bump Shoot (Studio)",
+    "tagline": "Celebrate expecting motherhood in cozy studio comfort with radiant lighting & wraps",
+    "image": "samples/studio/baby-bump/cover_thumb.jpg",
+    "imageWebp": "samples/studio/baby-bump/cover_thumb.webp",
+    "imageHighRes": "samples/studio/baby-bump/cover.jpg",
+    "badge": "🍼 Motherhood Glow",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/studio/baby-bump",
+    "samples": [
       {
-        id: "starter",
-        name: "Single Image (Starter)",
-        price: 300,
-        deposit: 200,
-        summary: "1 retouched maternity portrait (Pay per image)",
-        inclusions: [
+        "url": "samples/studio/baby-bump/DSC07764_(2).jpg",
+        "type": "image",
+        "title": "Radiant Expectant Mother Studio Glow"
+      },
+      {
+        "url": "samples/studio/baby-bump/DSC07893_(2).jpg",
+        "type": "image",
+        "title": "Intimate Belly Bump Silhouette & Retouching"
+      },
+      {
+        "url": "samples/studio/baby-bump/DSC04963-2.jpg",
+        "type": "image",
+        "title": "Gentle Floral & Studio Maternity Portrait"
+      },
+      {
+        "url": "samples/studio/baby-bump/DSC07790_(2).jpg",
+        "type": "image",
+        "title": "Couples Maternity Studio Connection"
+      },
+      {
+        "url": "samples/studio/baby-bump/OUTDOOR BABY BUMP SHOOT.jpg",
+        "type": "image",
+        "title": "Official Rates Poster & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "starter",
+        "name": "Single Image (Starter)",
+        "price": 300,
+        "deposit": 200,
+        "summary": "1 retouched maternity portrait (Pay per image)",
+        "inclusions": [
           "1 Magazine-Grade Retouched Maternity Image",
           "Studio Lighting & Bump Posing Assistance",
           "Extra Retouched Photos: KSh 300 each",
@@ -684,12 +840,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "8 retouched images, 1 outfit, 30 min session",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 retouched images, 1 outfit, 30 min session",
+        "inclusions": [
           "8 Retouched Maternity Images (Save KSh 400 vs single rate!)",
           "1 Outfit of Choice",
           "Comfortable Studio Session with Rest Breaks",
@@ -698,13 +854,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold (Mother + Partner)",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "16 retouched images, 2 outfits, partner included, 45 min session",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold (Mother + Partner)",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "16 retouched images, 2 outfits, partner included, 45 min session",
+        "inclusions": [
           "16 Retouched Maternity Images (Save KSh 1,300 vs single rate!)",
           "2 Outfits (Studio Silk Wrap or Personal Gown)",
           "Partner & Sibling Shots Included",
@@ -713,12 +869,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (VIP + Makeup)",
-        price: 5500,
-        deposit: 1400,
-        summary: "25 retouched images, pro makeup included, up to 5 outfits, 1 hr session",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (VIP + Makeup)",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "25 retouched images, pro makeup included, up to 5 outfits, 1 hr session",
+        "inclusions": [
           "25 Retouched Maternity Images",
           "Professional Studio Makeup Artist Included",
           "Up to 5 Outfit & Drapery Changes",
@@ -729,38 +885,60 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 8. INDOOR BIRTHDAY CELEBRATION SHOOT
   {
-    id: "birthday-shoot",
-    pathway: "studio",
-    subcat: "maternity-kids",
-    catLabel: "Birthdays & Celebrations",
-    title: "Birthday Studio Glamour Shoot",
-    tagline: "Studio birthday glamour with cake, crown, numbered balloons, backdrops & confetti",
-    image: "samples/09-birthday-shoot/cover_thumb.jpg",
-    imageWebp: "samples/09-birthday-shoot/cover_thumb.webp",
-    imageHighRes: "samples/09-birthday-shoot/cover.jpg",
-    badge: "🎂 Studio Birthday Glam",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/09-birthday-shoot",
-    samples: [
-      { url: "samples/09-birthday-shoot/DSC05153.jpg", type: "image", title: "Birthday Celebrant Glamour with Crown" },
-      { url: "samples/09-birthday-shoot/DSC05247.jpg", type: "image", title: "Celebratory Toast & Joyous Portrait" },
-      { url: "samples/09-birthday-shoot/DSC07329-.jpgljuhv-b_status.jpg", type: "image", title: "Studio Birthday Milestone" },
-      { url: "samples/09-birthday-shoot/DSC07479.jpgfh_status.jpg", type: "image", title: "Party Glamour & Balloons" },
-      { url: "samples/09-birthday-shoot/indoor bd.jpg", type: "image", title: "Indoor Birthday Shoot Rates & Guide" },
-      { url: "samples/09-birthday-shoot/BIRTHDAY REELS PACKAGE.mp4", type: "video", title: "Cinematic Birthday Video Reel Sample" }
-    ],
-    options: [
+    "id": "birthday-shoot",
+    "pathway": "studio",
+    "subcat": "maternity-kids",
+    "catLabel": "Birthdays & Celebrations",
+    "title": "Birthday Studio Glamour Shoot",
+    "tagline": "Studio birthday glamour with cake, crown, numbered balloons, backdrops & confetti",
+    "image": "samples/studio/birthday-shoot/cover_thumb.jpg",
+    "imageWebp": "samples/studio/birthday-shoot/cover_thumb.webp",
+    "imageHighRes": "samples/studio/birthday-shoot/cover.jpg",
+    "badge": "🎂 Studio Birthday Glam",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/studio/birthday-shoot",
+    "samples": [
       {
-        id: "starter",
-        name: "Single Image (Starter)",
-        price: 300,
-        deposit: 200,
-        summary: "1 retouched birthday glamour portrait",
-        inclusions: [
+        "url": "samples/studio/birthday-shoot/DSC05153.jpg",
+        "type": "image",
+        "title": "Birthday Celebrant Glamour with Crown"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC05247.jpg",
+        "type": "image",
+        "title": "Celebratory Toast & Joyous Portrait"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC07329-.jpgljuhv-b_status.jpg",
+        "type": "image",
+        "title": "Studio Birthday Milestone"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC07479.jpgfh_status.jpg",
+        "type": "image",
+        "title": "Party Glamour & Balloons"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/indoor bd.jpg",
+        "type": "image",
+        "title": "Indoor Birthday Shoot Rates & Guide"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/BIRTHDAY REELS PACKAGE.mp4",
+        "type": "video",
+        "title": "Cinematic Birthday Video Reel Sample"
+      }
+    ],
+    "options": [
+      {
+        "id": "starter",
+        "name": "Single Image (Starter)",
+        "price": 300,
+        "deposit": 200,
+        "summary": "1 retouched birthday glamour portrait",
+        "inclusions": [
           "1 Magazine-Grade Retouched Birthday Image",
           "Studio Birthday Set & Props Assistance",
           "Extra Retouched Photos: KSh 300 each",
@@ -770,12 +948,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "8 retouched images, 1 outfit change, 30 min session",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 retouched images, 1 outfit change, 30 min session",
+        "inclusions": [
           "8 Retouched Birthday Images (Save KSh 400 vs single rate!)",
           "1 Outfit Change",
           "Studio Birthday Props & Balloons Assistance",
@@ -784,13 +962,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "16 retouched images, 2 outfit changes, birthday setup & props, 45 min session",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "16 retouched images, 2 outfit changes, birthday setup & props, 45 min session",
+        "inclusions": [
           "16 Retouched Birthday Images (Save KSh 1,300 vs single rate!)",
           "2 Outfit Changes",
           "Full Birthday Studio Setup & Props",
@@ -800,12 +978,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (VIP + Video Reel)",
-        price: 5500,
-        deposit: 1400,
-        summary: "26 retouched images + 45s birthday video reel, up to 5 outfits, 1 hr session",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (VIP + Video Reel)",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "26 retouched images + 45s birthday video reel, up to 5 outfits, 1 hr session",
+        "inclusions": [
           "26 Retouched Birthday Images",
           "1x 45s Cinematic Birthday Video Reel",
           "Up to 5 Outfit Changes",
@@ -816,38 +994,60 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 9. STANDARD KIDS INDOOR SHOOT
   {
-    id: "kids-shoot",
-    pathway: "studio",
-    subcat: "maternity-kids",
-    catLabel: "Kids & Milestones",
-    title: "Kids & Infant Studio Shoot",
-    tagline: "Patience-driven, kid-friendly studio photography with games and relaxed posing",
-    image: "samples/10-kids-shoot/cover_thumb.jpg",
-    imageWebp: "samples/10-kids-shoot/cover_thumb.webp",
-    imageHighRes: "samples/10-kids-shoot/cover.jpg",
-    badge: "🎈 Studio Kids Fun",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/10-kids-shoot",
-    samples: [
-      { url: "samples/10-kids-shoot/kids bithday shoot.jpeg", type: "image", title: "Studio Birthday Boy with Balloon Setup" },
-      { url: "samples/10-kids-shoot/DSC07657_(2).jpg", type: "image", title: "Candid Little Explorer Smile" },
-      { url: "samples/10-kids-shoot/DSC07662_(2).jpg", type: "image", title: "Playful Studio Portrait Lighting" },
-      { url: "samples/10-kids-shoot/DSC07698_(2).jpg", type: "image", title: "Innocent Childhood Milestone" },
-      { url: "samples/10-kids-shoot/standard kids INDOOR SHOOT.jpg", type: "image", title: "Standard Kids Indoor Rates & Guide" },
-      { url: "samples/10-kids-shoot/Kids birthday reels.mp4", type: "video", title: "Kids Birthday Video Reel" }
-    ],
-    options: [
+    "id": "kids-shoot",
+    "pathway": "studio",
+    "subcat": "maternity-kids",
+    "catLabel": "Kids & Milestones",
+    "title": "Kids & Infant Studio Shoot",
+    "tagline": "Patience-driven, kid-friendly studio photography with games and relaxed posing",
+    "image": "samples/studio/kids-shoot/cover_thumb.jpg",
+    "imageWebp": "samples/studio/kids-shoot/cover_thumb.webp",
+    "imageHighRes": "samples/studio/kids-shoot/cover.jpg",
+    "badge": "🎈 Studio Kids Fun",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/studio/kids-shoot",
+    "samples": [
       {
-        id: "starter",
-        name: "Single Image (Starter)",
-        price: 300,
-        deposit: 200,
-        summary: "1 retouched kids portrait (Pay per image)",
-        inclusions: [
+        "url": "samples/studio/kids-shoot/kids bithday shoot.jpeg",
+        "type": "image",
+        "title": "Studio Birthday Boy with Balloon Setup"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC07657_(2).jpg",
+        "type": "image",
+        "title": "Candid Little Explorer Smile"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC07662_(2).jpg",
+        "type": "image",
+        "title": "Playful Studio Portrait Lighting"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC07698_(2).jpg",
+        "type": "image",
+        "title": "Innocent Childhood Milestone"
+      },
+      {
+        "url": "samples/studio/kids-shoot/standard kids INDOOR SHOOT.jpg",
+        "type": "image",
+        "title": "Standard Kids Indoor Rates & Guide"
+      },
+      {
+        "url": "samples/studio/kids-shoot/Kids birthday reels.mp4",
+        "type": "video",
+        "title": "Kids Birthday Video Reel"
+      }
+    ],
+    "options": [
+      {
+        "id": "starter",
+        "name": "Single Image (Starter)",
+        "price": 300,
+        "deposit": 200,
+        "summary": "1 retouched kids portrait (Pay per image)",
+        "inclusions": [
           "1 Magazine-Grade Retouched Kids Portrait",
           "Patient, Fun Studio Posing Guide",
           "Extra Retouched Photos: KSh 300 each",
@@ -857,12 +1057,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "8 retouched images, 1 outfit, 30 min session",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 retouched images, 1 outfit, 30 min session",
+        "inclusions": [
           "8 Retouched Images (Save KSh 400 vs single rate!)",
           "1 Outfit of Choice",
           "Kid-Friendly Studio Games & Toys",
@@ -871,13 +1071,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "16 retouched images, 2 outfits, 45 min session",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "16 retouched images, 2 outfits, 45 min session",
+        "inclusions": [
           "16 Retouched Images (Save KSh 1,300 vs single rate!)",
           "2 Outfits of Choice",
           "Solo Kid & Parents/Siblings Inclusions",
@@ -886,12 +1086,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum",
-        price: 5500,
-        deposit: 1400,
-        summary: "26 retouched images + BTS video clips, up to 5 outfits, 1 hr session",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "26 retouched images + BTS video clips, up to 5 outfits, 1 hr session",
+        "inclusions": [
           "26 Retouched Images",
           "Behind-The-Scenes Short Video Clips",
           "Up to 5 Outfits of Choice",
@@ -902,36 +1102,50 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 10. STUDIO COUPLE SHOOT
   {
-    id: "couple-shoot",
-    pathway: "studio",
-    subcat: "couples-family",
-    catLabel: "Couples & Romance",
-    title: "Couple Studio Session",
-    tagline: "Intimate couple storytelling for anniversaries, engagements, or celebrating love",
-    image: "samples/11-couple-shoot/cover_thumb.jpg",
-    imageWebp: "samples/11-couple-shoot/cover_thumb.webp",
-    imageHighRes: "samples/11-couple-shoot/cover.JPG",
-    badge: "❤️ Intimate Romance",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/11-couple-shoot",
-    samples: [
-      { url: "samples/11-couple-shoot/work-2.jpg", type: "image", title: "Magazine-Grade Studio Couple Portrait" },
-      { url: "samples/11-couple-shoot/DSC07790_(2).jpg", type: "image", title: "Gentle Romantic Embrace" },
-      { url: "samples/11-couple-shoot/IMG_5195.JPG", type: "image", title: "Connection & Studio Smiles" },
-      { url: "samples/11-couple-shoot/COUPLE.jpg", type: "image", title: "Couple Shoot Rates & Guide" }
-    ],
-    options: [
+    "id": "couple-shoot",
+    "pathway": "studio",
+    "subcat": "couples-family",
+    "catLabel": "Couples & Romance",
+    "title": "Couple Studio Session",
+    "tagline": "Intimate couple storytelling for anniversaries, engagements, or celebrating love",
+    "image": "samples/studio/couple-shoot/cover_thumb.jpg",
+    "imageWebp": "samples/studio/couple-shoot/cover_thumb.webp",
+    "imageHighRes": "samples/studio/couple-shoot/cover.JPG",
+    "badge": "❤️ Intimate Romance",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/studio/couple-shoot",
+    "samples": [
       {
-        id: "starter",
-        name: "Single Image (Starter)",
-        price: 300,
-        deposit: 200,
-        summary: "1 retouched couple portrait (Pay per image)",
-        inclusions: [
+        "url": "samples/studio/couple-shoot/work-2.jpg",
+        "type": "image",
+        "title": "Magazine-Grade Studio Couple Portrait"
+      },
+      {
+        "url": "samples/studio/couple-shoot/DSC07790_(2).jpg",
+        "type": "image",
+        "title": "Gentle Romantic Embrace"
+      },
+      {
+        "url": "samples/studio/couple-shoot/IMG_5195.JPG",
+        "type": "image",
+        "title": "Connection & Studio Smiles"
+      },
+      {
+        "url": "samples/studio/couple-shoot/COUPLE.jpg",
+        "type": "image",
+        "title": "Couple Shoot Rates & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "starter",
+        "name": "Single Image (Starter)",
+        "price": 300,
+        "deposit": 200,
+        "summary": "1 retouched couple portrait (Pay per image)",
+        "inclusions": [
           "1 Magazine-Grade Retouched Couple Image",
           "Couple Posing & Chemistry Guidance",
           "Extra Retouched Photos: KSh 300 each",
@@ -941,12 +1155,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "8 retouched images, 1 outfit, 30 min session",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 retouched images, 1 outfit, 30 min session",
+        "inclusions": [
           "8 Retouched Images (Save KSh 400 vs single rate!)",
           "1 Outfit of Choice",
           "Romantic Studio Lighting & Posing Guide",
@@ -955,13 +1169,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "16 retouched images, 2 outfits, 45 min session",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "16 retouched images, 2 outfits, 45 min session",
+        "inclusions": [
           "16 Retouched Images (Save KSh 1,300 vs single rate!)",
           "2 Outfits of Choice",
           "Candid & Posed Romantic Sets",
@@ -970,12 +1184,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum",
-        price: 5500,
-        deposit: 1400,
-        summary: "26 retouched images + 30s romantic mini reel, multiple outfits, 1 hr session",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "26 retouched images + 30s romantic mini reel, multiple outfits, 1 hr session",
+        "inclusions": [
           "26 Retouched Images",
           "30s Romantic Cinematic Video Reel",
           "Multiple Outfit Changes",
@@ -985,36 +1199,50 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 11. INDOOR STUDIO FAMILY SHOOT
   {
-    id: "family-shoot",
-    pathway: "studio",
-    subcat: "couples-family",
-    catLabel: "Family Milestones",
-    title: "Family Studio Session",
-    tagline: "Timeless studio family portraits capturing the warmth of generations together",
-    image: "samples/12-family-shoot/cover_thumb.jpg",
-    imageWebp: "samples/12-family-shoot/cover_thumb.webp",
-    imageHighRes: "samples/12-family-shoot/cover.jpg",
-    badge: "👨‍👩‍👧 Family Legacy",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/12-family-shoot",
-    samples: [
-      { url: "samples/12-family-shoot/DSC07720_(2).jpg", type: "image", title: "Warm Family Studio Portrait" },
-      { url: "samples/12-family-shoot/DSC07926_(2).jpg", type: "image", title: "Parent & Children Loving Moment" },
-      { url: "samples/12-family-shoot/DSC07994_(2).jpg", type: "image", title: "Clean Backlit Studio Composition" },
-      { url: "samples/12-family-shoot/FAMILY SHOOT PCKAGES.jpg", type: "image", title: "Family Shoot Rates & Guide" }
-    ],
-    options: [
+    "id": "family-shoot",
+    "pathway": "studio",
+    "subcat": "couples-family",
+    "catLabel": "Family Milestones",
+    "title": "Family Studio Session",
+    "tagline": "Timeless studio family portraits capturing the warmth of generations together",
+    "image": "samples/studio/family-shoot/cover_thumb.jpg",
+    "imageWebp": "samples/studio/family-shoot/cover_thumb.webp",
+    "imageHighRes": "samples/studio/family-shoot/cover.jpg",
+    "badge": "👨‍👩‍👧 Family Legacy",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/studio/family-shoot",
+    "samples": [
       {
-        id: "starter",
-        name: "Single Image (Starter)",
-        price: 300,
-        deposit: 200,
-        summary: "1 retouched family portrait (Pay per image)",
-        inclusions: [
+        "url": "samples/studio/family-shoot/DSC07720_(2).jpg",
+        "type": "image",
+        "title": "Warm Family Studio Portrait"
+      },
+      {
+        "url": "samples/studio/family-shoot/DSC07926_(2).jpg",
+        "type": "image",
+        "title": "Parent & Children Loving Moment"
+      },
+      {
+        "url": "samples/studio/family-shoot/DSC07994_(2).jpg",
+        "type": "image",
+        "title": "Clean Backlit Studio Composition"
+      },
+      {
+        "url": "samples/studio/family-shoot/FAMILY SHOOT PCKAGES.jpg",
+        "type": "image",
+        "title": "Family Shoot Rates & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "starter",
+        "name": "Single Image (Starter)",
+        "price": 300,
+        "deposit": 200,
+        "summary": "1 retouched family portrait (Pay per image)",
+        "inclusions": [
           "1 Retouched Studio Family Portrait",
           "Group Composition & Posing Guide",
           "Extra Retouched Photos: KSh 300 each",
@@ -1024,12 +1252,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver (Small Family 3–4 Pax)",
-        price: 2000,
-        deposit: 500,
-        summary: "8 retouched images for up to 4 family members",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver (Small Family 3–4 Pax)",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 retouched images for up to 4 family members",
+        "inclusions": [
           "8 Retouched Images (Save KSh 400 vs single rate!)",
           "Suitable for 3–4 Family Members",
           "Full Group + Solo Parent/Child Sub-shots",
@@ -1038,13 +1266,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold (Standard Family 5–8 Pax)",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "16 retouched images for 5-8 family members",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold (Standard Family 5–8 Pax)",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "16 retouched images for 5-8 family members",
+        "inclusions": [
           "16 Retouched Images (Save KSh 1,300 vs single rate!)",
           "Suitable for 5–8 Family Members",
           "Group, Sub-Group & Individual Portraits",
@@ -1053,12 +1281,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (Extended Family up to 12 Pax)",
-        price: 5500,
-        deposit: 1400,
-        summary: "26 retouched images + 45s family video reel + A4 mount print",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (Extended Family up to 12 Pax)",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "26 retouched images + 45s family video reel + A4 mount print",
+        "inclusions": [
           "26 Retouched Images",
           "1x 45s Family Highlight Video Reel",
           "1 Mounted A4 Print Ready to Hang",
@@ -1069,45 +1297,75 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // ==========================================================================
-  // PATHWAY 2: OUTDOOR & NATURAL LIGHT SESSIONS (GOLDEN HOUR & NATURE)
-  // ==========================================================================
-
-  // 12. OUTDOOR NATURAL LIGHT HEADSHOTS
   {
-    id: "outdoor-headshots",
-    pathway: "outdoor",
-    subcat: "outdoor-headshots",
-    catLabel: "Outdoor &amp; Model Headshots",
-    title: "Outdoor Natural &amp; Model Headshots",
-    tagline: "Approachable lifestyle and commercial model portraits under natural golden-hour daylight (Minimum 7 images · No single image for outdoor)",
-    image: "samples/02-outdoor-headshots/FAITH-8_thumb.jpg",
-    imageWebp: "samples/02-outdoor-headshots/FAITH-8_thumb.webp",
-    imageHighRes: "samples/02-outdoor-headshots/FAITH-8.jpg",
-    badge: "🌿 Min 7 Images (No Single Image)",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/02-outdoor-headshots",
-    samples: [
-      { url: "samples/02-outdoor-headshots/FAITH-8.jpg", type: "image", title: "Editorial Natural Light Fashion Profile" },
-      { url: "samples/02-outdoor-headshots/FAITH-10.jpg", type: "image", title: "Casual Chic Lifestyle Posing" },
-      { url: "samples/02-outdoor-headshots/FAITH-6.jpg", type: "image", title: "Fresh Outdoor Daylight Expression" },
-      { url: "samples/02-outdoor-headshots/_R2A2783.jpg", type: "image", title: "Relaxed Golden-Hour Casual Shoot" },
-      { url: "samples/02-outdoor-headshots/_R2A2808.jpg", type: "image", title: "Warm Environmental Model Portrait" },
-      { url: "samples/02-outdoor-headshots/_R2A2851.jpg", type: "image", title: "High-Fashion Street and Natural Lighting" },
-      { url: "samples/02-outdoor-headshots/O13A0383 (2).jpg", type: "image", title: "Crisp Executive Outdoor Headshot" },
-      { url: "samples/02-outdoor-headshots/O13A0650.jpg", type: "image", title: "Warm Golden Hour Leadership Look" },
-      { url: "samples/02-outdoor-headshots/OUTDOOR HEADSHOTS PACKAGES.jpg", type: "image", title: "Outdoor Headshots Rates & Guide" }
-    ],
-    options: [
+    "id": "outdoor-headshots",
+    "pathway": "outdoor",
+    "subcat": "outdoor-headshots",
+    "catLabel": "Outdoor &amp; Model Headshots",
+    "title": "Outdoor Natural &amp; Model Headshots",
+    "tagline": "Approachable lifestyle and commercial model portraits under natural golden-hour daylight (Minimum 7 images · No single image for outdoor)",
+    "image": "samples/outdoor/outdoor-headshots/FAITH-8_thumb.jpg",
+    "imageWebp": "samples/outdoor/outdoor-headshots/FAITH-8_thumb.webp",
+    "imageHighRes": "samples/outdoor/outdoor-headshots/FAITH-8.jpg",
+    "badge": "🌿 Min 7 Images (No Single Image)",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/outdoor/outdoor-headshots",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "8 retouched images, 1 scenic location backdrop, 30 min session",
-        inclusions: [
+        "url": "samples/outdoor/outdoor-headshots/FAITH-8.jpg",
+        "type": "image",
+        "title": "Editorial Natural Light Fashion Profile"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/FAITH-10.jpg",
+        "type": "image",
+        "title": "Casual Chic Lifestyle Posing"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/FAITH-6.jpg",
+        "type": "image",
+        "title": "Fresh Outdoor Daylight Expression"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/_R2A2783.jpg",
+        "type": "image",
+        "title": "Relaxed Golden-Hour Casual Shoot"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/_R2A2808.jpg",
+        "type": "image",
+        "title": "Warm Environmental Model Portrait"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/_R2A2851.jpg",
+        "type": "image",
+        "title": "High-Fashion Street and Natural Lighting"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/O13A0383 (2).jpg",
+        "type": "image",
+        "title": "Crisp Executive Outdoor Headshot"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/O13A0650.jpg",
+        "type": "image",
+        "title": "Warm Golden Hour Leadership Look"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/OUTDOOR HEADSHOTS PACKAGES.jpg",
+        "type": "image",
+        "title": "Outdoor Headshots Rates & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 retouched images, 1 scenic location backdrop, 30 min session",
+        "inclusions": [
           "8 Retouched Images (Save KSh 400 vs single rate!)",
           "1 Scenic Location Backdrop",
           "Natural Light & Reflector Fill",
@@ -1116,13 +1374,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "16 retouched images, 2 outfits, multiple outdoor angles, 45 min session",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "16 retouched images, 2 outfits, multiple outdoor angles, 45 min session",
+        "inclusions": [
           "16 Retouched Images (Save KSh 1,300 vs single rate!)",
           "2 Outfits of Choice",
           "Multiple Outdoor Angles & Backgrounds",
@@ -1131,12 +1389,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum",
-        price: 5500,
-        deposit: 1400,
-        summary: "22 retouched images, pro makeup included, 1 hr session",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "22 retouched images, pro makeup included, 1 hr session",
+        "inclusions": [
           "22 Retouched Images",
           "Professional Makeup Artist Included",
           "Multiple Outfit Changes & Golden Hour Lighting",
@@ -1146,39 +1404,65 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 13. OUTDOOR BIRTHDAY SHOOT
   {
-    id: "outdoor-birthday-shoot",
-    pathway: "outdoor",
-    subcat: "outdoor-birthdays",
-    catLabel: "Outdoor Birthdays",
-    title: "Outdoor Birthday Celebration",
-    tagline: "Vibrant celebration shoot in natural sunshine, scenic gardens or resorts (Minimum 7 images · No single image for outdoor)",
-    image: "samples/09-birthday-shoot/outdoor-cover_thumb.jpg",
-    imageWebp: "samples/09-birthday-shoot/outdoor-cover_thumb.webp",
-    imageHighRes: "samples/09-birthday-shoot/outdoor-cover.JPG",
-    badge: "🎉 Min 7 Images (No Single Image)",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/09-birthday-shoot",
-    samples: [
-      { url: "samples/09-birthday-shoot/IMG_0990.JPG", type: "image", title: "Golden-Hour Outdoor Birthday Glow" },
-      { url: "samples/09-birthday-shoot/IMG_0975.JPG", type: "image", title: "Vibrant Garden Celebration Portrait" },
-      { url: "samples/09-birthday-shoot/IMG_0982.JPG", type: "image", title: "Joyful Sunlit Posing" },
-      { url: "samples/09-birthday-shoot/IMG_1074.JPG", type: "image", title: "Scenic Resort Outdoor Setup" },
-      { url: "samples/09-birthday-shoot/IMG_0565.JPG", type: "image", title: "Lush Greenery Lifestyle Portrait" },
-      { url: "samples/09-birthday-shoot/IMG_0566.JPG", type: "image", title: "Candid Celebration Happiness" },
-      { url: "samples/09-birthday-shoot/OUTDOOR BIRTHDAY SHOOT.jpg", type: "image", title: "Official Rates Poster & Guide" }
-    ],
-    options: [
+    "id": "outdoor-birthday-shoot",
+    "pathway": "outdoor",
+    "subcat": "outdoor-birthdays",
+    "catLabel": "Outdoor Birthdays",
+    "title": "Outdoor Birthday Celebration",
+    "tagline": "Vibrant celebration shoot in natural sunshine, scenic gardens or resorts (Minimum 7 images · No single image for outdoor)",
+    "image": "samples/outdoor/outdoor-birthday-shoot/outdoor-cover_thumb.jpg",
+    "imageWebp": "samples/outdoor/outdoor-birthday-shoot/outdoor-cover_thumb.webp",
+    "imageHighRes": "samples/outdoor/outdoor-birthday-shoot/outdoor-cover.JPG",
+    "badge": "🎉 Min 7 Images (No Single Image)",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/outdoor/outdoor-birthday-shoot",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "7 retouched outdoor images (Minimum 7 images for outdoor)",
-        inclusions: [
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0990.JPG",
+        "type": "image",
+        "title": "Golden-Hour Outdoor Birthday Glow"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0975.JPG",
+        "type": "image",
+        "title": "Vibrant Garden Celebration Portrait"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0982.JPG",
+        "type": "image",
+        "title": "Joyful Sunlit Posing"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_1074.JPG",
+        "type": "image",
+        "title": "Scenic Resort Outdoor Setup"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0565.JPG",
+        "type": "image",
+        "title": "Lush Greenery Lifestyle Portrait"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0566.JPG",
+        "type": "image",
+        "title": "Candid Celebration Happiness"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/OUTDOOR BIRTHDAY SHOOT.jpg",
+        "type": "image",
+        "title": "Official Rates Poster & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "7 retouched outdoor images (Minimum 7 images for outdoor)",
+        "inclusions": [
           "7 Retouched Images in Natural Light (Minimum 7 Images)",
           "1 Outfit of Choice",
           "Garden or Park Setting Assistance",
@@ -1187,13 +1471,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "12 retouched outdoor images, 2 outfit changes",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "12 retouched outdoor images, 2 outfit changes",
+        "inclusions": [
           "12 Retouched Images in Golden Hour Light",
           "2 Outfit Changes",
           "Scenic Natural Backgrounds & Posing Guide",
@@ -1202,12 +1486,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum",
-        price: 5500,
-        deposit: 1400,
-        summary: "20 retouched outdoor images, up to 5 outfit changes",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "20 retouched outdoor images, up to 5 outfit changes",
+        "inclusions": [
           "20 Retouched Images",
           "Up to 5 Outfit Changes",
           "Golden Hour Light & Sunset Portraits",
@@ -1217,43 +1501,85 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 14. OUTDOOR BABY BUMP SHOOT
   {
-    id: "outdoor-baby-bump",
-    pathway: "outdoor",
-    subcat: "outdoor-maternity",
-    catLabel: "Outdoor Maternity",
-    title: "Outdoor Baby Bump Lifestyle",
-    tagline: "Bespoke natural light maternity celebration in scenic nature (Minimum 7 images · No single image for outdoor)",
-    image: "samples/08-baby-bump/2N4A9118_thumb.jpg",
-    imageWebp: "samples/08-baby-bump/2N4A9118_thumb.webp",
-    imageHighRes: "samples/08-baby-bump/2N4A9118.jpg",
-    badge: "🍼 Min 7 Images (No Single Image)",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/08-baby-bump",
-    samples: [
-      { url: "samples/08-baby-bump/2N4A9118.jpg", type: "image", title: "Sunlit Outdoor Maternal Serenity" },
-      { url: "samples/08-baby-bump/2N4A9177.jpg", type: "image", title: "Golden Hour Garden Maternity Glow" },
-      { url: "samples/08-baby-bump/2N4A9111.jpg", type: "image", title: "Scenic Outdoor Motherhood Radiance" },
-      { url: "samples/08-baby-bump/DSC_3613.JPG", type: "image", title: "Couples Outdoor Baby Bump Connection" },
-      { url: "samples/08-baby-bump/DSC_3684.jpg", type: "image", title: "Belly Bump Close-up with Nature Bokeh" },
-      { url: "samples/08-baby-bump/2N4A9167.jpg", type: "image", title: "Natural Sunlight Expecting Grace" },
-      { url: "samples/08-baby-bump/2N4A9266.jpg", type: "image", title: "Lush Park Maternity Composition" },
-      { url: "samples/08-baby-bump/DSC_3590.JPG", type: "image", title: "Peaceful Motherhood Milestone" },
-      { url: "samples/08-baby-bump/DSC_3681.JPG", type: "image", title: "Soft Sunlight and Natural Textures" },
-      { url: "samples/08-baby-bump/DSC_3709.JPG", type: "image", title: "Radiant Sunset Maternity Stroll" },
-      { url: "samples/08-baby-bump/OUTDOOR BABY BUMP SHOOT.jpg", type: "image", title: "Official Rates Poster & Guide" }
-    ],
-    options: [
+    "id": "outdoor-baby-bump",
+    "pathway": "outdoor",
+    "subcat": "outdoor-maternity",
+    "catLabel": "Outdoor Maternity",
+    "title": "Outdoor Baby Bump Lifestyle",
+    "tagline": "Bespoke natural light maternity celebration in scenic nature (Minimum 7 images · No single image for outdoor)",
+    "image": "samples/outdoor/outdoor-baby-bump/2N4A9118_thumb.jpg",
+    "imageWebp": "samples/outdoor/outdoor-baby-bump/2N4A9118_thumb.webp",
+    "imageHighRes": "samples/outdoor/outdoor-baby-bump/2N4A9118.jpg",
+    "badge": "🍼 Min 7 Images (No Single Image)",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/outdoor/outdoor-baby-bump",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "8 retouched images, 1 outfit, 30 min session",
-        inclusions: [
+        "url": "samples/outdoor/outdoor-baby-bump/2N4A9118.jpg",
+        "type": "image",
+        "title": "Sunlit Outdoor Maternal Serenity"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/2N4A9177.jpg",
+        "type": "image",
+        "title": "Golden Hour Garden Maternity Glow"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/2N4A9111.jpg",
+        "type": "image",
+        "title": "Scenic Outdoor Motherhood Radiance"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3613.JPG",
+        "type": "image",
+        "title": "Couples Outdoor Baby Bump Connection"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3684.jpg",
+        "type": "image",
+        "title": "Belly Bump Close-up with Nature Bokeh"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/2N4A9167.jpg",
+        "type": "image",
+        "title": "Natural Sunlight Expecting Grace"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/2N4A9266.jpg",
+        "type": "image",
+        "title": "Lush Park Maternity Composition"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3590.JPG",
+        "type": "image",
+        "title": "Peaceful Motherhood Milestone"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3681.JPG",
+        "type": "image",
+        "title": "Soft Sunlight and Natural Textures"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3709.JPG",
+        "type": "image",
+        "title": "Radiant Sunset Maternity Stroll"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/OUTDOOR BABY BUMP SHOOT.jpg",
+        "type": "image",
+        "title": "Official Rates Poster & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 retouched images, 1 outfit, 30 min session",
+        "inclusions": [
           "8 Retouched Images (Save KSh 400 vs single rate!)",
           "1 Outfit of Choice",
           "Natural Light & Garden Setting",
@@ -1262,13 +1588,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold (Mother + Partner)",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "16 retouched images, 2 outfits, partner/kids included, 45 min session",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold (Mother + Partner)",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "16 retouched images, 2 outfits, partner/kids included, 45 min session",
+        "inclusions": [
           "16 Retouched Images (Save KSh 1,300 vs single rate!)",
           "2 Outfits of Choice",
           "Partner & Sibling Photos Included",
@@ -1277,12 +1603,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum",
-        price: 5500,
-        deposit: 1400,
-        summary: "25 retouched images, pro makeup included, up to 5 outfits, 1 hr session",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "25 retouched images, pro makeup included, up to 5 outfits, 1 hr session",
+        "inclusions": [
           "25 Retouched Images",
           "Professional Makeup Artist Included",
           "Up to 5 Outfit Changes",
@@ -1293,39 +1619,65 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 15. OUTDOOR FAMILY LIFESTYLE SHOOT
   {
-    id: "outdoor-family-shoot",
-    pathway: "outdoor",
-    subcat: "outdoor-family",
-    catLabel: "Outdoor Family",
-    title: "Outdoor Family Lifestyle",
-    tagline: "Relaxed on-location family session in lush gardens (Minimum 7 images · No single image for outdoor)",
-    image: "samples/12-family-shoot/outdoor-cover_thumb.jpg",
-    imageWebp: "samples/12-family-shoot/outdoor-cover_thumb.webp",
-    imageHighRes: "samples/12-family-shoot/outdoor-cover.JPG",
-    badge: "👨‍👩‍👧 Min 7 Images (No Single Image)",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 500 to KSh 1,500 (lock your slot)",
-    sampleFolder: "samples/12-family-shoot",
-    samples: [
-      { url: "samples/12-family-shoot/IMG_5180.JPG", type: "image", title: "Heartwarming Sunlit Family Portrait" },
-      { url: "samples/12-family-shoot/IMG_0015.JPG", type: "image", title: "Kids & Parents Candid Laughter in Park" },
-      { url: "samples/12-family-shoot/IMG_5129.JPG", type: "image", title: "Natural Stroll Through Gardens" },
-      { url: "samples/12-family-shoot/IMG_5145.JPG", type: "image", title: "Outdoor Family Hugs & Smiles" },
-      { url: "samples/12-family-shoot/IMG_5143.JPG", type: "image", title: "Relaxed Compound Family Composition" },
-      { url: "samples/12-family-shoot/IMG_5202.JPG", type: "image", title: "Golden Hour Multi-Generation Group" },
-      { url: "samples/12-family-shoot/FAMILY OUTDOOR SHOOT PACKAGES.jpg", type: "image", title: "Family Outdoor Rates Poster & Guide" }
-    ],
-    options: [
+    "id": "outdoor-family-shoot",
+    "pathway": "outdoor",
+    "subcat": "outdoor-family",
+    "catLabel": "Outdoor Family",
+    "title": "Outdoor Family Lifestyle",
+    "tagline": "Relaxed on-location family session in lush gardens (Minimum 7 images · No single image for outdoor)",
+    "image": "samples/outdoor/outdoor-family-shoot/outdoor-cover_thumb.jpg",
+    "imageWebp": "samples/outdoor/outdoor-family-shoot/outdoor-cover_thumb.webp",
+    "imageHighRes": "samples/outdoor/outdoor-family-shoot/outdoor-cover.JPG",
+    "badge": "👨‍👩‍👧 Min 7 Images (No Single Image)",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 500 to KSh 1,500 (lock your slot)",
+    "sampleFolder": "samples/outdoor/outdoor-family-shoot",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver (Small Family 3–4 Pax)",
-        price: 2000,
-        deposit: 500,
-        summary: "7 retouched images for small family (Minimum 7 images for outdoor)",
-        inclusions: [
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5180.JPG",
+        "type": "image",
+        "title": "Heartwarming Sunlit Family Portrait"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_0015.JPG",
+        "type": "image",
+        "title": "Kids & Parents Candid Laughter in Park"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5129.JPG",
+        "type": "image",
+        "title": "Natural Stroll Through Gardens"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5145.JPG",
+        "type": "image",
+        "title": "Outdoor Family Hugs & Smiles"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5143.JPG",
+        "type": "image",
+        "title": "Relaxed Compound Family Composition"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5202.JPG",
+        "type": "image",
+        "title": "Golden Hour Multi-Generation Group"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/FAMILY OUTDOOR SHOOT PACKAGES.jpg",
+        "type": "image",
+        "title": "Family Outdoor Rates Poster & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver (Small Family 3–4 Pax)",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "7 retouched images for small family (Minimum 7 images for outdoor)",
+        "inclusions": [
           "7 Retouched Images in Natural Daylight (Minimum 7 Images)",
           "Suitable for 3–4 Family Members",
           "Relaxed Group Posing & Warm Interaction",
@@ -1334,13 +1686,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold (5–8 Pax)",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "12 retouched images for standard family",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold (5–8 Pax)",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "12 retouched images for standard family",
+        "inclusions": [
           "12 Retouched Images in Natural Daylight",
           "Suitable for 5–8 Family Members",
           "Full Group + Parents & Kids Sub-shots",
@@ -1349,12 +1701,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (Up to 12 Pax)",
-        price: 6000,
-        deposit: 1500,
-        summary: "22 retouched images for extended family",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (Up to 12 Pax)",
+        "price": 6000,
+        "deposit": 1500,
+        "summary": "22 retouched images for extended family",
+        "inclusions": [
           "22 Retouched Images",
           "Suitable for Up to 12 Family Members",
           "Generational Portraits & Candid Play Moments",
@@ -1364,43 +1716,80 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 16. KIDS OUTDOOR BIRTHDAY SHOOT
   {
-    id: "kids-outdoor-shoot",
-    pathway: "outdoor",
-    subcat: "outdoor-family",
-    catLabel: "Kids & Milestones",
-    title: "Kids Outdoor Sunshine Shoot",
-    tagline: "High-energy outdoor shoot capturing natural laughter and outdoor sunshine (Minimum 7 images · No single image for outdoor)",
-    image: "samples/10-kids-shoot/MAK_7817_thumb.jpg",
-    imageWebp: "samples/10-kids-shoot/MAK_7817_thumb.webp",
-    imageHighRes: "samples/10-kids-shoot/MAK_7817.jpg",
-    badge: "🎈 Min 7 Images (No Single Image)",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/10-kids-shoot",
-    samples: [
-      { url: "samples/10-kids-shoot/MAK_7817.jpg", type: "image", title: "Sunlit Golden Smile Portrait" },
-      { url: "samples/10-kids-shoot/MAK_7820.jpg", type: "image", title: "Joyful Outdoor Garden Play" },
-      { url: "samples/10-kids-shoot/MAK_7905.jpg", type: "image", title: "Natural Childhood Sunshine Glow" },
-      { url: "samples/10-kids-shoot/MAK_7915.jpg", type: "image", title: "Candid Park Laughter Moment" },
-      { url: "samples/10-kids-shoot/MAK_7826.jpg", type: "image", title: "Outdoor Milestones and Playtime" },
-      { url: "samples/10-kids-shoot/MAK_7790.jpg", type: "image", title: "Vibrant Summer Day Posing" },
-      { url: "samples/10-kids-shoot/MAK_7876.jpg", type: "image", title: "Heartwarming Kids Outdoor Charm" },
-      { url: "samples/10-kids-shoot/MAK_7884.jpg", type: "image", title: "High-Energy Birthday Joy" },
-      { url: "samples/10-kids-shoot/MAK_7951.jpg", type: "image", title: "Sunny Outdoor Playful Portrait" },
-      { url: "samples/10-kids-shoot/MAK_7837.jpg", type: "image", title: "Authentic Garden Smiles" },
-      { url: "samples/10-kids-shoot/Kids outdoor photoshoot.jpg", type: "image", title: "Outdoor Kids Rates Poster & Guide" }
-    ],
-    options: [
+    "id": "kids-outdoor-shoot",
+    "pathway": "outdoor",
+    "subcat": "outdoor-family",
+    "catLabel": "Kids & Milestones",
+    "title": "Kids Outdoor Sunshine Shoot",
+    "tagline": "High-energy outdoor shoot capturing natural laughter and outdoor sunshine (Minimum 7 images · No single image for outdoor)",
+    "image": "samples/outdoor/kids-outdoor-shoot/MAK_7817_thumb.jpg",
+    "imageWebp": "samples/outdoor/kids-outdoor-shoot/MAK_7817_thumb.webp",
+    "imageHighRes": "samples/outdoor/kids-outdoor-shoot/MAK_7817.jpg",
+    "badge": "🎈 Min 7 Images (No Single Image)",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/outdoor/kids-outdoor-shoot",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "7 solo kid retouched images (Minimum 7 images for outdoor)",
-        inclusions: [
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7817.jpg",
+        "type": "image",
+        "title": "Sunlit Golden Smile Portrait"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7820.jpg",
+        "type": "image",
+        "title": "Joyful Outdoor Garden Play"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7905.jpg",
+        "type": "image",
+        "title": "Natural Childhood Sunshine Glow"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7915.jpg",
+        "type": "image",
+        "title": "Candid Park Laughter Moment"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7826.jpg",
+        "type": "image",
+        "title": "Outdoor Milestones and Playtime"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7790.jpg",
+        "type": "image",
+        "title": "Vibrant Summer Day Posing"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7876.jpg",
+        "type": "image",
+        "title": "Heartwarming Kids Outdoor Charm"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7884.jpg",
+        "type": "image",
+        "title": "High-Energy Birthday Joy"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7951.jpg",
+        "type": "image",
+        "title": "Sunny Outdoor Playful Portrait"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7837.jpg",
+        "type": "image",
+        "title": "Authentic Garden Smiles"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "7 solo kid retouched images (Minimum 7 images for outdoor)",
+        "inclusions": [
           "7 Solo Kid Retouched Images (Minimum 7 Images)",
           "Behind-The-Scenes Short Video Clips",
           "Natural Play & Bubble Machine Fun",
@@ -1409,13 +1798,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "12 retouched images (Solo Kid + Family)",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "12 retouched images (Solo Kid + Family)",
+        "inclusions": [
           "12 Retouched Images in Natural Light",
           "Solo Kid & Family Moments Included",
           "Candid Smiles & Cake Cutting Setup",
@@ -1424,12 +1813,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum",
-        price: 5500,
-        deposit: 1400,
-        summary: "20 retouched images, 2-3 outfit changes, complete birthday family album",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum",
+        "price": 5500,
+        "deposit": 1400,
+        "summary": "20 retouched images, 2-3 outfit changes, complete birthday family album",
+        "inclusions": [
           "20 Retouched Images",
           "2–3 Outfit Changes",
           "Complete Birthday Family Memory Collection",
@@ -1439,34 +1828,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 17. OUTDOOR WHITE SHIRT SHOOT
   {
-    id: "outdoor-shirt-shoot",
-    pathway: "outdoor",
-    subcat: "outdoor-headshots",
-    catLabel: "Crisp White Shirt",
-    title: "Outdoor White Shirt Shoot",
-    tagline: "Chic outdoor white shirt lifestyle session (Minimum 7 images · No single image for outdoor)",
-    image: "samples/04-outdoor-shirt-shoot/OUTDOOR SHIRT SHOOT PACKAGES_thumb.jpg",
-    imageWebp: "samples/04-outdoor-shirt-shoot/OUTDOOR SHIRT SHOOT PACKAGES_thumb.webp",
-    imageHighRes: "samples/04-outdoor-shirt-shoot/OUTDOOR SHIRT SHOOT PACKAGES.jpg",
-    badge: "🌿 Min 7 Images (No Single Image)",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
-    sampleFolder: "samples/04-outdoor-shirt-shoot",
-    samples: [
-      { url: "samples/04-outdoor-shirt-shoot/OUTDOOR SHIRT SHOOT PACKAGES.jpg", type: "image", title: "Outdoor White Shirt Rates & Guide" },
-      { url: "images/work-7.jpg", type: "image", title: "Crisp White Shirt Lifestyle" }
-    ],
-    options: [
+    "id": "outdoor-shirt-shoot",
+    "pathway": "outdoor",
+    "subcat": "outdoor-headshots",
+    "catLabel": "Crisp White Shirt",
+    "title": "Outdoor White Shirt Shoot",
+    "tagline": "Chic outdoor white shirt lifestyle session (Minimum 7 images · No single image for outdoor)",
+    "image": "samples/outdoor/outdoor-shirt-shoot/OUTDOOR SHIRT SHOOT PACKAGES_thumb.jpg",
+    "imageWebp": "samples/outdoor/outdoor-shirt-shoot/OUTDOOR SHIRT SHOOT PACKAGES_thumb.webp",
+    "imageHighRes": "samples/outdoor/outdoor-shirt-shoot/OUTDOOR SHIRT SHOOT PACKAGES.jpg",
+    "badge": "🌿 Min 7 Images (No Single Image)",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
+    "sampleFolder": "samples/outdoor/outdoor-shirt-shoot",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver",
-        price: 2000,
-        deposit: 500,
-        summary: "8 retouched outdoor images, 30 min session",
-        inclusions: [
+        "url": "samples/outdoor/outdoor-shirt-shoot/OUTDOOR SHIRT SHOOT PACKAGES.jpg",
+        "type": "image",
+        "title": "Outdoor White Shirt Rates & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver",
+        "price": 2000,
+        "deposit": 500,
+        "summary": "8 retouched outdoor images, 30 min session",
+        "inclusions": [
           "8 Retouched Outdoor Images (Save KSh 800 vs single rate!)",
           "1 Location Backdrop",
           "30 Mins Session",
@@ -1474,13 +1864,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 3500,
-        deposit: 900,
-        summary: "16 retouched outdoor images, 2 outfits, 45 min session",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 3500,
+        "deposit": 900,
+        "summary": "16 retouched outdoor images, 2 outfits, 45 min session",
+        "inclusions": [
           "16 Retouched Outdoor Images (Save KSh 2,100 vs single rate!)",
           "2 Outfits (Casual / Semi-Formal)",
           "45 Mins Session",
@@ -1488,12 +1878,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum",
-        price: 5500,
-        deposit: 900,
-        summary: "24 retouched outdoor images, 3 outfits, 1 hr session",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum",
+        "price": 5500,
+        "deposit": 900,
+        "summary": "24 retouched outdoor images, 3 outfits, 1 hr session",
+        "inclusions": [
           "24 Retouched Outdoor Images",
           "3 Outfits of Choice",
           "Multiple Outdoor Environmental Perspectives",
@@ -1503,43 +1893,85 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 18. PRE-WEDDING & COUPLES STORY
   {
-    id: "pre-wedding",
-    pathway: "outdoor",
-    subcat: "outdoor-couples",
-    catLabel: "Pre-Wedding & Romance",
-    title: "Pre-Wedding & Love Story",
-    tagline: "Romantic scenic portrait sessions & save-the-dates (Minimum 7 images · No single image for outdoor)",
-    image: "samples/15-pre-wedding/IMG_5186_thumb.jpg",
-    imageWebp: "samples/15-pre-wedding/IMG_5186_thumb.webp",
-    imageHighRes: "samples/15-pre-wedding/IMG_5186.JPG",
-    badge: "💍 Min 7 Images (No Single Image)",
-    turnaround: "5–7 Business Days",
-    depositRate: "80% booking deposit required",
-    sampleFolder: "samples/15-pre-wedding",
-    samples: [
-      { url: "samples/15-pre-wedding/IMG_5186.JPG", type: "image", title: "Epic Romantic Golden Hour Connection" },
-      { url: "samples/15-pre-wedding/IMG_5097.JPG", type: "image", title: "Intimate Couple Love Story Session" },
-      { url: "samples/15-pre-wedding/IMG_5119.JPG", type: "image", title: "Warm Evening Sunset Embrace" },
-      { url: "samples/15-pre-wedding/IMG_5151.JPG", type: "image", title: "Scenic Outdoor Promenade" },
-      { url: "samples/15-pre-wedding/IMG_5165.JPG", type: "image", title: "Joyful Candid Engagement Laughs" },
-      { url: "samples/15-pre-wedding/IMG_0156.JPG", type: "image", title: "Editorial Romantic Posing" },
-      { url: "samples/15-pre-wedding/IMG_5072.JPG", type: "image", title: "Save-The-Date Stroll and Whispers" },
-      { url: "samples/15-pre-wedding/IMG_5136.JPG", type: "image", title: "Tender Outdoor Couple Portrait" },
-      { url: "samples/15-pre-wedding/IMG_5190.JPG", type: "image", title: "Natural Sunlight Couple Glow" },
-      { url: "samples/15-pre-wedding/IMG_0131.JPG", type: "image", title: "Modern Pre-Wedding Aesthetic" },
-      { url: "samples/15-pre-wedding/PRE WEDDING SHOOT.jpg", type: "image", title: "Pre-Wedding Rates Poster & Guide" }
-    ],
-    options: [
+    "id": "pre-wedding",
+    "pathway": "outdoor",
+    "subcat": "outdoor-couples",
+    "catLabel": "Pre-Wedding & Romance",
+    "title": "Pre-Wedding & Love Story",
+    "tagline": "Romantic scenic portrait sessions & save-the-dates (Minimum 7 images · No single image for outdoor)",
+    "image": "samples/outdoor/pre-wedding/IMG_5186_thumb.jpg",
+    "imageWebp": "samples/outdoor/pre-wedding/IMG_5186_thumb.webp",
+    "imageHighRes": "samples/outdoor/pre-wedding/IMG_5186.JPG",
+    "badge": "💍 Min 7 Images (No Single Image)",
+    "turnaround": "5–7 Business Days",
+    "depositRate": "80% booking deposit required",
+    "sampleFolder": "samples/outdoor/pre-wedding",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver",
-        price: 2600,
-        deposit: 2080,
-        summary: "7 high-end retouched digital images (Minimum 7 images for outdoor)",
-        inclusions: [
+        "url": "samples/outdoor/pre-wedding/IMG_5186.JPG",
+        "type": "image",
+        "title": "Epic Romantic Golden Hour Connection"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5097.JPG",
+        "type": "image",
+        "title": "Intimate Couple Love Story Session"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5119.JPG",
+        "type": "image",
+        "title": "Warm Evening Sunset Embrace"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5151.JPG",
+        "type": "image",
+        "title": "Scenic Outdoor Promenade"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5165.JPG",
+        "type": "image",
+        "title": "Joyful Candid Engagement Laughs"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_0156.JPG",
+        "type": "image",
+        "title": "Editorial Romantic Posing"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5072.JPG",
+        "type": "image",
+        "title": "Save-The-Date Stroll and Whispers"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5136.JPG",
+        "type": "image",
+        "title": "Tender Outdoor Couple Portrait"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5190.JPG",
+        "type": "image",
+        "title": "Natural Sunlight Couple Glow"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_0131.JPG",
+        "type": "image",
+        "title": "Modern Pre-Wedding Aesthetic"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/PRE WEDDING SHOOT.jpg",
+        "type": "image",
+        "title": "Pre-Wedding Rates Poster & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver",
+        "price": 2600,
+        "deposit": 2080,
+        "summary": "7 high-end retouched digital images (Minimum 7 images for outdoor)",
+        "inclusions": [
           "7 High-End Retouched Digital Images (Minimum 7 Images)",
           "30 Mins Dedicated Session",
           "1 Outfit of Choice",
@@ -1547,13 +1979,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold",
-        popular: true,
-        price: 4550,
-        deposit: 3640,
-        summary: "12 retouched images + Save-the-Date graphic + 45s cinematic reel",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold",
+        "popular": true,
+        "price": 4550,
+        "deposit": 3640,
+        "summary": "12 retouched images + Save-the-Date graphic + 45s cinematic reel",
+        "inclusions": [
           "12 High-End Retouched Digital Images",
           "45 Mins Dedicated Session",
           "2 Outfit Changes",
@@ -1562,12 +1994,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum",
-        price: 8450,
-        deposit: 6760,
-        summary: "18 retouched images + Save-the-Date suite + 3x 60s 4K video reels",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum",
+        "price": 8450,
+        "deposit": 6760,
+        "summary": "18 retouched images + Save-the-Date suite + 3x 60s 4K video reels",
+        "inclusions": [
           "18 High-End Retouched Digital Images",
           "1 Hour Dedicated Session",
           "Unlimited Outfit Changes",
@@ -1577,38 +2009,40 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // ==========================================================================
-  // PATHWAY 3: WEDDINGS & EVENT COVERAGE (ON-LOCATION PRODUCTION)
-  // ==========================================================================
-
-  // 19. FULL-DAY WEDDING COVERAGE
   {
-    id: "wedding-coverage",
-    pathway: "events",
-    subcat: "weddings",
-    catLabel: "Weddings & Matrimony",
-    title: "Wedding Shoot (Full-Day Coverage)",
-    tagline: "Complete photo and cinema production for your holy matrimony and reception",
-    image: "samples/14-wedding-coverage/BASIC WEDDING PACKAGES_thumb.jpg",
-    imageWebp: "samples/14-wedding-coverage/BASIC WEDDING PACKAGES_thumb.webp",
-    imageHighRes: "samples/14-wedding-coverage/BASIC WEDDING PACKAGES.jpg",
-    badge: "💍 Holy Matrimony",
-    turnaround: "48hr Teaser · Full Gallery in 3 Weeks",
-    depositRate: "80% booking deposit required",
-    sampleFolder: "samples/14-wedding-coverage",
-    samples: [
-      { url: "samples/14-wedding-coverage/work-1.jpg", type: "image", title: "Luxury Wedding Matrimony Master Portrait" },
-      { url: "samples/14-wedding-coverage/BASIC WEDDING PACKAGES.jpg", type: "image", title: "Basic Wedding Packages Rate Sheet" }
-    ],
-    options: [
+    "id": "wedding-coverage",
+    "pathway": "events",
+    "subcat": "weddings",
+    "catLabel": "Weddings & Matrimony",
+    "title": "Wedding Shoot (Full-Day Coverage)",
+    "tagline": "Complete photo and cinema production for your holy matrimony and reception",
+    "image": "samples/events/wedding-coverage/BASIC WEDDING PACKAGES_thumb.jpg",
+    "imageWebp": "samples/events/wedding-coverage/BASIC WEDDING PACKAGES_thumb.webp",
+    "imageHighRes": "samples/events/wedding-coverage/BASIC WEDDING PACKAGES.jpg",
+    "badge": "💍 Holy Matrimony",
+    "turnaround": "48hr Teaser · Full Gallery in 3 Weeks",
+    "depositRate": "80% booking deposit required",
+    "sampleFolder": "samples/events/wedding-coverage",
+    "samples": [
       {
-        id: "bronze",
-        name: "Bronze (Civil & Intimate Vows)",
-        price: 25000,
-        deposit: 10000,
-        summary: "1 dedicated senior photographer, up to 4 hrs coverage, 120+ retouched photos",
-        inclusions: [
+        "url": "samples/events/wedding-coverage/work-1.jpg",
+        "type": "image",
+        "title": "Luxury Wedding Matrimony Master Portrait"
+      },
+      {
+        "url": "samples/events/wedding-coverage/BASIC WEDDING PACKAGES.jpg",
+        "type": "image",
+        "title": "Basic Wedding Packages Rate Sheet"
+      }
+    ],
+    "options": [
+      {
+        "id": "bronze",
+        "name": "Bronze (Civil & Intimate Vows)",
+        "price": 25000,
+        "deposit": 10000,
+        "summary": "1 dedicated senior photographer, up to 4 hrs coverage, 120+ retouched photos",
+        "inclusions": [
           "1 Dedicated Senior Lead Wedding Photographer",
           "Up to 4 Hours On-Site Coverage (Ceremony + Couple Session)",
           "120+ Magazine-Retouched High-Res Images",
@@ -1618,12 +2052,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver (Classic Full-Day Coverage)",
-        price: 45000,
-        deposit: 18000,
-        summary: "2 photographers, full-day photo coverage, 250+ retouched images, 48hr teasers",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver (Classic Full-Day Coverage)",
+        "price": 45000,
+        "deposit": 18000,
+        "summary": "2 photographers, full-day photo coverage, 250+ retouched images, 48hr teasers",
+        "inclusions": [
           "2 Photographers (Lead Photographer + Assistant Shooter)",
           "Full-Day Coverage (Morning Prep to Evening Reception)",
           "250+ Magazine-Retouched High-Res Images",
@@ -1633,13 +2067,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold (Gold Matrimony + 4K Cinema + Drone)",
-        popular: true,
-        price: 75000,
-        deposit: 30000,
-        summary: "3-person crew, 4K cinematic film + aerial drone, 400+ images, wooden USB",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold (Gold Matrimony + 4K Cinema + Drone)",
+        "popular": true,
+        "price": 75000,
+        "deposit": 30000,
+        "summary": "3-person crew, 4K cinematic film + aerial drone, 400+ images, wooden USB",
+        "inclusions": [
           "3-Person Crew (2 Photographers + 1 Cinematographer)",
           "3–5 Minute 4K Cinematic Highlight Film with Clean Audio",
           "4K Aerial Drone Cinematography for Venue & Convoy",
@@ -1649,12 +2083,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (Royal Heirloom VIP Full Production)",
-        price: 90000,
-        deposit: 36000,
-        summary: "4-person full crew, documentary film + reel, luxury layflat photobook + 2 canvas mounts",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (Royal Heirloom VIP Full Production)",
+        "price": 90000,
+        "deposit": 36000,
+        "summary": "4-person full crew, documentary film + reel, luxury layflat photobook + 2 canvas mounts",
+        "inclusions": [
           "4-Person Complete Production Crew (2 Photographers + 2 Cinematographers)",
           "Full 10–15 Min Wedding Documentary Film + 60s Social Reel",
           "Luxury Hardcover Layflat Printed Keepsake Photobook Album",
@@ -1665,35 +2099,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 20. TRADITIONAL WEDDING (RURACIO)
   {
-    id: "traditional-wedding",
-    pathway: "events",
-    subcat: "weddings",
-    catLabel: "Weddings & Matrimony",
-    title: "Traditional Wedding (Ruracio)",
-    tagline: "Authentic cultural ceremony coverage honoring rich Kenyan marital customs",
-    image: "samples/07-traditional-creative/OUTDOOR TRADITIONALCREATIVE  SHOOT_thumb.jpg",
-    imageWebp: "samples/07-traditional-creative/OUTDOOR TRADITIONALCREATIVE  SHOOT_thumb.webp",
-    imageHighRes: "samples/07-traditional-creative/OUTDOOR TRADITIONALCREATIVE  SHOOT.jpg",
-    badge: "👑 Cultural Matrimony",
-    turnaround: "48hr Teaser · Full Gallery in 3 Weeks",
-    depositRate: "80% booking deposit required",
-    sampleFolder: "samples/07-traditional-creative",
-    samples: [
-      { url: "samples/07-traditional-creative/OUTDOOR TRADITIONALCREATIVE  SHOOT.jpg", type: "image", title: "Outdoor Cultural Attire & Ceremony Setup" },
-      { url: "samples/14-wedding-coverage/work-1.jpg", type: "image", title: "Ceremony & Couple Nuptials" },
-      { url: "samples/07-traditional-creative/O13A0286.jpg", type: "image", title: "Traditional Regalia Portrait" }
-    ],
-    options: [
+    "id": "traditional-wedding",
+    "pathway": "events",
+    "subcat": "weddings",
+    "catLabel": "Weddings & Matrimony",
+    "title": "Traditional Wedding (Ruracio)",
+    "tagline": "Authentic cultural ceremony coverage honoring rich Kenyan marital customs",
+    "image": "samples/events/traditional-wedding/OUTDOOR TRADITIONALCREATIVE  SHOOT_thumb.jpg",
+    "imageWebp": "samples/events/traditional-wedding/OUTDOOR TRADITIONALCREATIVE  SHOOT_thumb.webp",
+    "imageHighRes": "samples/events/traditional-wedding/OUTDOOR TRADITIONALCREATIVE  SHOOT.jpg",
+    "badge": "👑 Cultural Matrimony",
+    "turnaround": "48hr Teaser · Full Gallery in 3 Weeks",
+    "depositRate": "80% booking deposit required",
+    "sampleFolder": "samples/events/traditional-wedding",
+    "samples": [
       {
-        id: "bronze",
-        name: "Bronze (Civil & Intimate Ceremony)",
-        price: 25000,
-        deposit: 10000,
-        summary: "1 dedicated photographer, up to 4 hrs coverage, 120+ retouched photos",
-        inclusions: [
+        "url": "samples/events/traditional-wedding/OUTDOOR TRADITIONALCREATIVE  SHOOT.jpg",
+        "type": "image",
+        "title": "Outdoor Cultural Attire & Ceremony Setup"
+      }
+    ],
+    "options": [
+      {
+        "id": "bronze",
+        "name": "Bronze (Civil & Intimate Ceremony)",
+        "price": 25000,
+        "deposit": 10000,
+        "summary": "1 dedicated photographer, up to 4 hrs coverage, 120+ retouched photos",
+        "inclusions": [
           "1 Dedicated Senior Lead Wedding Photographer",
           "Up to 4 Hours On-Site Coverage (Ceremony + Dowry Session)",
           "120+ Magazine-Retouched High-Res Images",
@@ -1703,12 +2137,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver (Classic Full-Day Coverage)",
-        price: 45000,
-        deposit: 18000,
-        summary: "2 photographers, full-day cultural ceremony coverage, 250+ retouched images",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver (Classic Full-Day Coverage)",
+        "price": 45000,
+        "deposit": 18000,
+        "summary": "2 photographers, full-day cultural ceremony coverage, 250+ retouched images",
+        "inclusions": [
           "2 Photographers (Lead Photographer + Cultural Assistant)",
           "Full-Day Coverage of Ruracio & Dowry Festivities",
           "250+ Magazine-Retouched High-Res Images",
@@ -1718,13 +2152,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold (Cultural Matrimony + 4K Cinema + Drone)",
-        popular: true,
-        price: 75000,
-        deposit: 30000,
-        summary: "3-person crew, 4K cultural documentary + drone, 400+ images, wooden USB",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold (Cultural Matrimony + 4K Cinema + Drone)",
+        "popular": true,
+        "price": 75000,
+        "deposit": 30000,
+        "summary": "3-person crew, 4K cultural documentary + drone, 400+ images, wooden USB",
+        "inclusions": [
           "3-Person Crew (2 Photographers + 1 Cinematographer)",
           "3–5 Minute 4K Cinematic Highlight Film with Elder Speeches Audio",
           "4K Aerial Drone Cinematography for Rural / Venue Overhead",
@@ -1734,12 +2168,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (Royal Heritage VIP Full Production)",
-        price: 90000,
-        deposit: 36000,
-        summary: "4-person full crew, documentary film + reel, luxury layflat photobook + 2 canvas mounts",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (Royal Heritage VIP Full Production)",
+        "price": 90000,
+        "deposit": 36000,
+        "summary": "4-person full crew, documentary film + reel, luxury layflat photobook + 2 canvas mounts",
+        "inclusions": [
           "4-Person Complete Production Crew (2 Photographers + 2 Cinematographers)",
           "Full 10–15 Min Cultural Documentary Film + 60s Social Reel",
           "Luxury Hardcover Layflat Printed Keepsake Photobook Album",
@@ -1750,34 +2184,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 21. BURIAL & MEMORIAL TRIBUTES
   {
-    id: "burial-coverage",
-    pathway: "events",
-    subcat: "memorials",
-    catLabel: "Burials & Memorials",
-    title: "Burials & Memorials Coverage",
-    tagline: "Dignified, respectful, and unobtrusive photo & video coverage honoring loved ones",
-    image: "samples/16-burial-coverage/BURIAL COVERAGE PACKAGES_thumb.jpg",
-    imageWebp: "samples/16-burial-coverage/BURIAL COVERAGE PACKAGES_thumb.webp",
-    imageHighRes: "samples/16-burial-coverage/BURIAL COVERAGE PACKAGES.jpg",
-    badge: "🕊️ In Loving Memory",
-    turnaround: "7–10 Business Days",
-    depositRate: "80% booking deposit required",
-    sampleFolder: "samples/16-burial-coverage",
-    samples: [
-      { url: "samples/16-burial-coverage/BURIAL COVERAGE PACKAGES.jpg", type: "image", title: "Burial Coverage Packages Official Rates & Inclusions" },
-      { url: "images/work-6.jpg", type: "image", title: "Respectful Family Tribute Documentation" }
-    ],
-    options: [
+    "id": "burial-coverage",
+    "pathway": "events",
+    "subcat": "memorials",
+    "catLabel": "Burials & Memorials",
+    "title": "Burials & Memorials Coverage",
+    "tagline": "Dignified, respectful, and unobtrusive photo & video coverage honoring loved ones",
+    "image": "samples/events/burial-coverage/BURIAL COVERAGE PACKAGES_thumb.jpg",
+    "imageWebp": "samples/events/burial-coverage/BURIAL COVERAGE PACKAGES_thumb.webp",
+    "imageHighRes": "samples/events/burial-coverage/BURIAL COVERAGE PACKAGES.jpg",
+    "badge": "🕊️ In Loving Memory",
+    "turnaround": "7–10 Business Days",
+    "depositRate": "80% booking deposit required",
+    "sampleFolder": "samples/events/burial-coverage",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver (Respectful Half-Day Service)",
-        price: 25000,
-        deposit: 10000,
-        summary: "Up to 4 hrs coverage, 100+ edited master photos, respectful documentation",
-        inclusions: [
+        "url": "samples/events/burial-coverage/BURIAL COVERAGE PACKAGES.jpg",
+        "type": "image",
+        "title": "Burial Coverage Packages Official Rates & Inclusions"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver (Respectful Half-Day Service)",
+        "price": 25000,
+        "deposit": 10000,
+        "summary": "Up to 4 hrs coverage, 100+ edited master photos, respectful documentation",
+        "inclusions": [
           "1 Senior Lead Event Photographer",
           "Up to 4 Hours On-Site Coverage",
           "100+ Edited High-Resolution Master Photos",
@@ -1787,13 +2222,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold (Full-Day Memorial Photo + Film)",
-        popular: true,
-        price: 35000,
-        deposit: 14000,
-        summary: "Full-day photo + video, complete service & eulogy recording, 5-7 min highlight",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold (Full-Day Memorial Photo + Film)",
+        "popular": true,
+        "price": 35000,
+        "deposit": 14000,
+        "summary": "Full-day photo + video, complete service & eulogy recording, 5-7 min highlight",
+        "inclusions": [
           "2-Person Photo & Video Production Crew",
           "Up to 8 Hours Full Celebration of Life Coverage",
           "Complete Service & Eulogy Recording with Clear Audio",
@@ -1803,12 +2238,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (Memorial Documentary Tribute)",
-        price: 65000,
-        deposit: 26000,
-        summary: "Full 4-person crew, 4K documentary film, speeches recording, printed photobook album",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (Memorial Documentary Tribute)",
+        "price": 65000,
+        "deposit": 26000,
+        "summary": "Full 4-person crew, 4K documentary film, speeches recording, printed photobook album",
+        "inclusions": [
           "Full Production Crew (2 Photographers + 2 Videographers)",
           "4K Memorial Documentary Film + Complete Speeches Recording",
           "Hardcover Printed Memorial Tribute Photobook for the Family",
@@ -1818,35 +2253,40 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 22. CORPORATE EVENT COVERAGE
   {
-    id: "corporate-event",
-    pathway: "events",
-    subcat: "corporate-events",
-    catLabel: "Corporate & Summits",
-    title: "Corporate Events & Summits",
-    tagline: "High-level visual documentation for conferences, AGM summits, galas & brand activations",
-    image: "samples/17-corporate-event/COPORATE EVENT COVERAGE_thumb.jpg",
-    imageWebp: "samples/17-corporate-event/COPORATE EVENT COVERAGE_thumb.webp",
-    imageHighRes: "samples/17-corporate-event/COPORATE EVENT COVERAGE.jpg",
-    badge: "🏢 Conferences & Galas",
-    turnaround: "3–5 Business Days",
-    depositRate: "80% booking deposit required",
-    sampleFolder: "samples/17-corporate-event",
-    samples: [
-      { url: "samples/17-corporate-event/COPORATE EVENT COVERAGE.jpg", type: "image", title: "Corporate Event Coverage Official Rates & Guide" },
-      { url: "samples/17-corporate-event/CORPORATE PORTRAIT SHOOT.jpg", type: "image", title: "Corporate Portrait & Board Showcase" },
-      { url: "images/work-10.jpg", type: "image", title: "Keynote Speaker & Stage Lighting" }
-    ],
-    options: [
+    "id": "corporate-event",
+    "pathway": "events",
+    "subcat": "corporate-events",
+    "catLabel": "Corporate & Summits",
+    "title": "Corporate Events & Summits",
+    "tagline": "High-level visual documentation for conferences, AGM summits, galas & brand activations",
+    "image": "samples/events/corporate-event/COPORATE EVENT COVERAGE_thumb.jpg",
+    "imageWebp": "samples/events/corporate-event/COPORATE EVENT COVERAGE_thumb.webp",
+    "imageHighRes": "samples/events/corporate-event/COPORATE EVENT COVERAGE.jpg",
+    "badge": "🏢 Conferences & Galas",
+    "turnaround": "3–5 Business Days",
+    "depositRate": "80% booking deposit required",
+    "sampleFolder": "samples/events/corporate-event",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver (Half-Day Summit / Conference)",
-        price: 25000,
-        deposit: 10000,
-        summary: "Up to 4 hours on-site coverage, 100+ PR-ready images",
-        inclusions: [
+        "url": "samples/events/corporate-event/COPORATE EVENT COVERAGE.jpg",
+        "type": "image",
+        "title": "Corporate Event Coverage Official Rates & Guide"
+      },
+      {
+        "url": "samples/events/corporate-event/CORPORATE PORTRAIT SHOOT.jpg",
+        "type": "image",
+        "title": "Corporate Portrait & Board Showcase"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver (Half-Day Summit / Conference)",
+        "price": 25000,
+        "deposit": 10000,
+        "summary": "Up to 4 hours on-site coverage, 100+ PR-ready images",
+        "inclusions": [
           "Up to 4 Hours On-Site Photography Coverage",
           "1 Senior Lead Event Photographer",
           "Keynotes, Audience & Brand Step-and-Repeat",
@@ -1855,13 +2295,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold (Full-Day Conference + Gala)",
-        popular: true,
-        price: 35000,
-        deposit: 14000,
-        summary: "Up to 8 hours full coverage (Photo + Video Highlights), 200+ images",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold (Full-Day Conference + Gala)",
+        "popular": true,
+        "price": 35000,
+        "deposit": 14000,
+        "summary": "Up to 8 hours full coverage (Photo + Video Highlights), 200+ images",
+        "inclusions": [
           "Up to 8 Hours Comprehensive Coverage",
           "2-Person Coverage Crew (Stills + 4K Reel Video)",
           "200+ High-Resolution Master Images",
@@ -1870,12 +2310,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (Multi-Day Summit Cinema & PR)",
-        price: 65000,
-        deposit: 26000,
-        summary: "Multi-day summit coverage, full video documentary, dedicated PR editor on-site",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (Multi-Day Summit Cinema & PR)",
+        "price": 65000,
+        "deposit": 26000,
+        "summary": "Multi-day summit coverage, full video documentary, dedicated PR editor on-site",
+        "inclusions": [
           "Multi-Day or Full Team Production Suite",
           "Dedicated On-Site Photo & Video Editors for Real-Time Press Delivery",
           "Executive Boardroom Stills & VIP Step-and-Repeat",
@@ -1885,37 +2325,80 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // ==========================================================================
-  // 22B. BIRTHDAY PARTY EVENTS COVERAGE
   {
-    id: "birthday-events",
-    pathway: "events",
-    subcat: "parties-galas",
-    catLabel: "Birthday Party Events",
-    title: "Birthday Party Events Coverage",
-    tagline: "Up to 8 hours on-site birthday party coverage: cake cutting, guest candids, decor details & 4K video reel",
-    image: "samples/09-birthday-shoot/event-cover_thumb.jpg",
-    imageWebp: "samples/09-birthday-shoot/event-cover_thumb.webp",
-    imageHighRes: "samples/09-birthday-shoot/event-cover.JPG",
-    badge: "🎉 Party Extravaganza",
-    turnaround: "48hr Teasers · Full Gallery in 7 Days",
-    depositRate: "Booking deposit: KSh 10,000 to KSh 22,000",
-    sampleFolder: "samples/09-birthday-shoot",
-    samples: [
-      { url: "samples/09-birthday-shoot/DSC05153.jpg", type: "image", title: "Birthday Party Celebration Candids" },
-      { url: "samples/09-birthday-shoot/DSC05247.jpg", type: "image", title: "Toast & Joyous Party Interaction" },
-      { url: "samples/10-kids-shoot/Kids outdoor photoshoot.jpg", type: "image", title: "High-Energy Birthday Celebration" },
-      { url: "samples/09-birthday-shoot/BIRTHDAY REELS PACKAGE.mp4", type: "video", title: "Party Video Reel Highlight" }
-    ],
-    options: [
+    "id": "birthday-events",
+    "pathway": "events",
+    "subcat": "parties-galas",
+    "catLabel": "Birthday Party Events",
+    "title": "Birthday Party Events Coverage",
+    "tagline": "Up to 8 hours on-site birthday party coverage: cake cutting, guest candids, decor details & 4K video reel",
+    "image": "samples/events/birthday-events/event-cover_thumb.jpg",
+    "imageWebp": "samples/events/birthday-events/event-cover_thumb.webp",
+    "imageHighRes": "samples/events/birthday-events/event-cover.JPG",
+    "badge": "🎉 Party Extravaganza",
+    "turnaround": "48hr Teasers · Full Gallery in 7 Days",
+    "depositRate": "Booking deposit: KSh 10,000 to KSh 22,000",
+    "sampleFolder": "samples/events/birthday-events",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver (Half-Day Party Celebration)",
-        price: 25000,
-        deposit: 10000,
-        summary: "Up to 4 hours on-site birthday party coverage",
-        inclusions: [
+        "url": "samples/events/birthday-events/DSC07430-.jpg-k-gv.jpg",
+        "type": "image",
+        "title": "Birthday Party Events Coverage - Sample Photo"
+      },
+      {
+        "url": "samples/events/birthday-events/DSC07430-.jpg-k-gv_status.jpg",
+        "type": "image",
+        "title": "Birthday Party Events Coverage - Sample Photo"
+      },
+      {
+        "url": "samples/events/birthday-events/DSC07469.jpghx.jpg",
+        "type": "image",
+        "title": "Birthday Party Events Coverage - Sample Photo"
+      },
+      {
+        "url": "samples/events/birthday-events/DSC07469.jpghx_status.jpg",
+        "type": "image",
+        "title": "Birthday Party Events Coverage - Sample Photo"
+      },
+      {
+        "url": "samples/events/birthday-events/DSC07479.jpgfh.jpg",
+        "type": "image",
+        "title": "Birthday Party Events Coverage - Sample Photo"
+      },
+      {
+        "url": "samples/events/birthday-events/DSC07479.jpgfh_status.jpg",
+        "type": "image",
+        "title": "Birthday Party Events Coverage - Sample Photo"
+      },
+      {
+        "url": "samples/events/birthday-events/DSC07485.jpg,l.jpg",
+        "type": "image",
+        "title": "Birthday Party Events Coverage - Sample Photo"
+      },
+      {
+        "url": "samples/events/birthday-events/event-cover.JPG",
+        "type": "image",
+        "title": "Birthday Party Events Coverage - Sample Photo"
+      },
+      {
+        "url": "samples/events/birthday-events/IMG_0545.JPG",
+        "type": "image",
+        "title": "Birthday Party Events Coverage - Sample Photo"
+      },
+      {
+        "url": "samples/events/birthday-events/IMG_0556.JPG",
+        "type": "image",
+        "title": "Birthday Party Events Coverage - Sample Photo"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver (Half-Day Party Celebration)",
+        "price": 25000,
+        "deposit": 10000,
+        "summary": "Up to 4 hours on-site birthday party coverage",
+        "inclusions": [
           "100+ Edited High-Resolution Master Photos",
           "1 Senior Lead Event Photographer",
           "Up to 4 Hours On-Site Coverage",
@@ -1925,13 +2408,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold (Full Party Stills + 4K Reel)",
-        popular: true,
-        price: 35000,
-        deposit: 14000,
-        summary: "Up to 8 hours full party celebration with 4K video reel",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold (Full Party Stills + 4K Reel)",
+        "popular": true,
+        "price": 35000,
+        "deposit": 14000,
+        "summary": "Up to 8 hours full party celebration with 4K video reel",
+        "inclusions": [
           "200+ Edited High-Resolution Master Photos",
           "2 Dedicated Photographers",
           "Up to 8 Hours Full Party Extravaganza Coverage",
@@ -1941,12 +2424,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (VIP Party + Cinema Film)",
-        price: 55000,
-        deposit: 22000,
-        summary: "Full VIP celebration with 2 photographers + 1 cinematographer",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (VIP Party + Cinema Film)",
+        "price": 55000,
+        "deposit": 22000,
+        "summary": "Full VIP celebration with 2 photographers + 1 cinematographer",
+        "inclusions": [
           "350+ Magazine Retouched Master Photos",
           "Full Production Crew (2 Photographers + 1 Cinematographer)",
           "3–5 Min 4K Cinematic Party Highlight Film + 2x Viral Reels",
@@ -1957,43 +2440,85 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 22C. GRADUATION CEREMONIES & EVENTS COVERAGE
   {
-    id: "graduation-events",
-    pathway: "events",
-    subcat: "parties-galas",
-    catLabel: "Graduation Ceremonies",
-    title: "Graduation Ceremonies & Events Coverage",
-    tagline: "Full convocation walk, degree conferment, family banquet celebration & honorary portraits",
-    image: "samples/13-graduation-shoot/cover_thumb.jpg",
-    imageWebp: "samples/13-graduation-shoot/cover_thumb.webp",
-    imageHighRes: "samples/13-graduation-shoot/cover.jpg",
-    badge: "🎓 Convocation Walk",
-    turnaround: "48hr Teasers · Full Gallery in 7 Days",
-    depositRate: "Booking deposit: KSh 10,000 to KSh 22,000",
-    sampleFolder: "samples/13-graduation-shoot",
-    samples: [
-      { url: "samples/13-graduation-shoot/cover.jpg", type: "image", title: "Convocation Milestone Hero Portrait" },
-      { url: "samples/13-graduation-shoot/DSC09938.JPG", type: "image", title: "Cap Toss Moment of Pride" },
-      { url: "samples/13-graduation-shoot/PRI_5912.jpg", type: "image", title: "Grand Convocation Regalia Portrait" },
-      { url: "samples/13-graduation-shoot/PRI_5893.jpg", type: "image", title: "Golden Hour Campus Celebration" },
-      { url: "samples/13-graduation-shoot/DSC09941.JPG", type: "image", title: "Honorary Graduate Regalia Walk" },
-      { url: "samples/13-graduation-shoot/PRI_5363.jpg", type: "image", title: "Celebration Bouquet & Degree Scroll" },
-      { url: "samples/13-graduation-shoot/DSC09940.JPG", type: "image", title: "Celebration Studio & Event Lighting" },
-      { url: "samples/13-graduation-shoot/PRI_4998.jpg", type: "image", title: "Campus Convocation Walk" },
-      { url: "samples/13-graduation-shoot/DSC09945.JPG", type: "image", title: "Family Convocation Banquet" },
-      { url: "samples/13-graduation-shoot/PRI_5412.jpg", type: "image", title: "Graduate Joy & Laughter" },
-      { url: "samples/13-graduation-shoot/graduation.jpg", type: "image", title: "Official Academic Graduation Guide" }
-    ],
-    options: [
+    "id": "graduation-events",
+    "pathway": "events",
+    "subcat": "parties-galas",
+    "catLabel": "Graduation Ceremonies",
+    "title": "Graduation Ceremonies & Events Coverage",
+    "tagline": "Full convocation walk, degree conferment, family banquet celebration & honorary portraits",
+    "image": "samples/events/graduation-events/cover_thumb.jpg",
+    "imageWebp": "samples/events/graduation-events/cover_thumb.webp",
+    "imageHighRes": "samples/events/graduation-events/cover.jpg",
+    "badge": "🎓 Convocation Walk",
+    "turnaround": "48hr Teasers · Full Gallery in 7 Days",
+    "depositRate": "Booking deposit: KSh 10,000 to KSh 22,000",
+    "sampleFolder": "samples/events/graduation-events",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver (Convocation & Ceremony Walk)",
-        price: 25000,
-        deposit: 10000,
-        summary: "Up to 4 hours on-site graduation celebration coverage",
-        inclusions: [
+        "url": "samples/events/graduation-events/cover.jpg",
+        "type": "image",
+        "title": "Convocation Milestone Hero Portrait"
+      },
+      {
+        "url": "samples/events/graduation-events/DSC09938.JPG",
+        "type": "image",
+        "title": "Cap Toss Moment of Pride"
+      },
+      {
+        "url": "samples/events/graduation-events/PRI_5912.jpg",
+        "type": "image",
+        "title": "Grand Convocation Regalia Portrait"
+      },
+      {
+        "url": "samples/events/graduation-events/PRI_5893.jpg",
+        "type": "image",
+        "title": "Golden Hour Campus Celebration"
+      },
+      {
+        "url": "samples/events/graduation-events/DSC09941.JPG",
+        "type": "image",
+        "title": "Honorary Graduate Regalia Walk"
+      },
+      {
+        "url": "samples/events/graduation-events/PRI_5363.jpg",
+        "type": "image",
+        "title": "Celebration Bouquet & Degree Scroll"
+      },
+      {
+        "url": "samples/events/graduation-events/DSC09940.JPG",
+        "type": "image",
+        "title": "Celebration Studio & Event Lighting"
+      },
+      {
+        "url": "samples/events/graduation-events/PRI_4998.jpg",
+        "type": "image",
+        "title": "Campus Convocation Walk"
+      },
+      {
+        "url": "samples/events/graduation-events/DSC09945.JPG",
+        "type": "image",
+        "title": "Family Convocation Banquet"
+      },
+      {
+        "url": "samples/events/graduation-events/PRI_5412.jpg",
+        "type": "image",
+        "title": "Graduate Joy & Laughter"
+      },
+      {
+        "url": "samples/events/graduation-events/graduation.jpg",
+        "type": "image",
+        "title": "Official Academic Graduation Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver (Convocation & Ceremony Walk)",
+        "price": 25000,
+        "deposit": 10000,
+        "summary": "Up to 4 hours on-site graduation celebration coverage",
+        "inclusions": [
           "100+ Edited High-Resolution Master Photos",
           "1 Senior Lead Event Photographer",
           "Up to 4 Hours On-Site Coverage",
@@ -2003,13 +2528,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold (Ceremony + Afterparty Feast)",
-        popular: true,
-        price: 35000,
-        deposit: 14000,
-        summary: "Up to 8 hours full day convocation & evening banquet coverage",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold (Ceremony + Afterparty Feast)",
+        "popular": true,
+        "price": 35000,
+        "deposit": 14000,
+        "summary": "Up to 8 hours full day convocation & evening banquet coverage",
+        "inclusions": [
           "200+ Edited High-Resolution Master Photos",
           "2 Dedicated Event Photographers",
           "Up to 8 Hours Full Day Celebration Coverage",
@@ -2018,12 +2543,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (VIP Convocation Cinema + Album)",
-        price: 55000,
-        deposit: 22000,
-        summary: "Full VIP production with 2 photographers, 1 cinematographer & printed photobook",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (VIP Convocation Cinema + Album)",
+        "price": 55000,
+        "deposit": 22000,
+        "summary": "Full VIP production with 2 photographers, 1 cinematographer & printed photobook",
+        "inclusions": [
           "350+ Magazine Retouched Master Photos",
           "Full Production Crew (2 Photographers + 1 Cinematographer)",
           "3–5 Min 4K Cinematic Milestone Film + 2x Social Reels",
@@ -2034,35 +2559,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 22D. HOTEL & GALA EVENTS COVERAGE
   {
-    id: "hotel-events",
-    pathway: "events",
-    subcat: "corporate-events",
-    catLabel: "Hotel & Gala Events",
-    title: "Hotel & Gala Events Coverage",
-    tagline: "Corporate gala dinners, luxury hotel launches, culinary showcases & VIP networking",
-    image: "samples/18-hotel-hospitality/HOTEL AND HOSPITALITY SHOOT_thumb.jpg",
-    imageWebp: "samples/18-hotel-hospitality/HOTEL AND HOSPITALITY SHOOT_thumb.webp",
-    imageHighRes: "samples/18-hotel-hospitality/HOTEL AND HOSPITALITY SHOOT.jpg",
-    badge: "🥂 Luxury Hospitality",
-    turnaround: "48hr Teasers · Full Gallery in 7 Days",
-    depositRate: "Booking deposit: KSh 10,000 to KSh 22,000",
-    sampleFolder: "samples/18-hotel-hospitality",
-    samples: [
-      { url: "images/work-8.jpg", type: "image", title: "VIP Guest Lifestyle Candids" },
-      { url: "images/work-7.jpg", type: "image", title: "Culinary Dinner Presentation" },
-      { url: "samples/18-hotel-hospitality/HOTEL AND HOSPITALITY SHOOT.jpg", type: "image", title: "Hotel & Hospitality Official Rates" }
-    ],
-    options: [
+    "id": "hotel-events",
+    "pathway": "events",
+    "subcat": "corporate-events",
+    "catLabel": "Hotel & Gala Events",
+    "title": "Hotel & Gala Events Coverage",
+    "tagline": "Corporate gala dinners, luxury hotel launches, culinary showcases & VIP networking",
+    "image": "samples/events/hotel-events/HOTEL AND HOSPITALITY SHOOT_thumb.jpg",
+    "imageWebp": "samples/events/hotel-events/HOTEL AND HOSPITALITY SHOOT_thumb.webp",
+    "imageHighRes": "samples/events/hotel-events/HOTEL AND HOSPITALITY SHOOT.jpg",
+    "badge": "🥂 Luxury Hospitality",
+    "turnaround": "48hr Teasers · Full Gallery in 7 Days",
+    "depositRate": "Booking deposit: KSh 10,000 to KSh 22,000",
+    "sampleFolder": "samples/events/hotel-events",
+    "samples": [
       {
-        id: "silver",
-        name: "Silver (Half-Day Hospitality Showcase)",
-        price: 25000,
-        deposit: 10000,
-        summary: "Up to 4 hours coverage documenting hotel events, launches & culinary dinners",
-        inclusions: [
+        "url": "samples/events/hotel-events/HOTEL AND HOSPITALITY SHOOT.jpg",
+        "type": "image",
+        "title": "Hotel & Hospitality Official Rates"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver (Half-Day Hospitality Showcase)",
+        "price": 25000,
+        "deposit": 10000,
+        "summary": "Up to 4 hours coverage documenting hotel events, launches & culinary dinners",
+        "inclusions": [
           "100+ Edited High-Resolution Master Photos",
           "1 Senior Lead Event Photographer",
           "Up to 4 Hours On-Site Coverage",
@@ -2072,13 +2597,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold (Full-Day Gala + Culinary Showcase)",
-        popular: true,
-        price: 35000,
-        deposit: 14000,
-        summary: "Up to 8 hours comprehensive hospitality event coverage + 4K reel",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold (Full-Day Gala + Culinary Showcase)",
+        "popular": true,
+        "price": 35000,
+        "deposit": 14000,
+        "summary": "Up to 8 hours comprehensive hospitality event coverage + 4K reel",
+        "inclusions": [
           "200+ Edited High-Resolution Master Photos",
           "2 Dedicated Event Photographers",
           "Up to 8 Hours Comprehensive Event Coverage",
@@ -2087,12 +2612,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Platinum (VIP Gala Cinema + Brand Suite)",
-        price: 55000,
-        deposit: 22000,
-        summary: "Full VIP production crew (2 Photographers + 1 Cinematographer) & commercial licensing",
-        inclusions: [
+        "id": "platinum",
+        "name": "Platinum (VIP Gala Cinema + Brand Suite)",
+        "price": 55000,
+        "deposit": 22000,
+        "summary": "Full VIP production crew (2 Photographers + 1 Cinematographer) & commercial licensing",
+        "inclusions": [
           "350+ Magazine Retouched Master Photos",
           "Full Production Crew (2 Photographers + 1 Cinematographer)",
           "3–5 Min 4K Cinematic Venue Showcase Film + 2x Viral Reels",
@@ -2103,37 +2628,40 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // PATHWAY 4: COMMERCIAL & BRAND GROWTH (PRODUCTS, HOTELS & BRAND IDENTITY)
-  // ==========================================================================
-
-  // 23. PRODUCT & E-COMMERCE PHOTOGRAPHY
   {
-    id: "product-shoot",
-    pathway: "commercial",
-    subcat: "products-hospitality",
-    catLabel: "Products & E-Commerce",
-    title: "Product Photography",
-    tagline: "Studio lighting, pure white background e-commerce packs, and lifestyle brand imagery",
-    image: "samples/19-product-shoot/PRODUCT SHOOT PACKAGES_thumb.jpg",
-    imageWebp: "samples/19-product-shoot/PRODUCT SHOOT PACKAGES_thumb.webp",
-    imageHighRes: "samples/19-product-shoot/PRODUCT SHOOT PACKAGES.jpg",
-    badge: "📦 E-Commerce Catalog",
-    turnaround: "3–5 Business Days",
-    depositRate: "80% booking deposit required",
-    sampleFolder: "samples/19-product-shoot",
-    samples: [
-      { url: "samples/19-product-shoot/PRODUCT SHOOT PACKAGES.jpg", type: "image", title: "Product Shoot Packages Official Rates & Inclusions" },
-      { url: "samples/19-product-shoot/Business 2 Business.jpg", type: "image", title: "B2B Brand Photography Showcase" }
-    ],
-    options: [
+    "id": "product-shoot",
+    "pathway": "commercial",
+    "subcat": "products-hospitality",
+    "catLabel": "Products & E-Commerce",
+    "title": "Product Photography",
+    "tagline": "Studio lighting, pure white background e-commerce packs, and lifestyle brand imagery",
+    "image": "samples/commercial/product-shoot/PRODUCT SHOOT PACKAGES_thumb.jpg",
+    "imageWebp": "samples/commercial/product-shoot/PRODUCT SHOOT PACKAGES_thumb.webp",
+    "imageHighRes": "samples/commercial/product-shoot/PRODUCT SHOOT PACKAGES.jpg",
+    "badge": "📦 E-Commerce Catalog",
+    "turnaround": "3–5 Business Days",
+    "depositRate": "80% booking deposit required",
+    "sampleFolder": "samples/commercial/product-shoot",
+    "samples": [
       {
-        id: "silver",
-        name: "Catalog Essentials (10 SKUs)",
-        price: 4500,
-        deposit: 3600,
-        summary: "Pure white backdrop & transparent PNG cutouts for 10 items",
-        inclusions: [
+        "url": "samples/commercial/product-shoot/PRODUCT SHOOT PACKAGES.jpg",
+        "type": "image",
+        "title": "Product Shoot Packages Official Rates & Inclusions"
+      },
+      {
+        "url": "samples/commercial/product-shoot/Business 2 Business.jpg",
+        "type": "image",
+        "title": "B2B Brand Photography Showcase"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Catalog Essentials (10 SKUs)",
+        "price": 4500,
+        "deposit": 3600,
+        "summary": "Pure white backdrop & transparent PNG cutouts for 10 items",
+        "inclusions": [
           "Up to 10 Product Items / SKUs (2 angles each = 20 photos)",
           "Pure White E-Commerce Backdrop (Amazon / Shopify Compliant)",
           "Transparent PNG Cutouts for Digital Ads Included",
@@ -2141,13 +2669,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Brand Lifestyle (25 SKUs)",
-        popular: true,
-        price: 9500,
-        deposit: 7600,
-        summary: "White backdrop + textured lifestyle staging for 25 items",
-        inclusions: [
+        "id": "gold",
+        "name": "Brand Lifestyle (25 SKUs)",
+        "popular": true,
+        "price": 9500,
+        "deposit": 7600,
+        "summary": "White backdrop + textured lifestyle staging for 25 items",
+        "inclusions": [
           "Up to 25 Product Items / SKUs (75+ final photos)",
           "Combination of Pure White E-Commerce & Styled Lifestyle Staging",
           "Model Hand-Interactions & Prop Styling",
@@ -2155,12 +2683,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Master Brand Suite",
-        price: 18000,
-        deposit: 14400,
-        summary: "50+ SKUs with 360 spin animations & 3x 15s product video ads",
-        inclusions: [
+        "id": "platinum",
+        "name": "Master Brand Suite",
+        "price": 18000,
+        "deposit": 14400,
+        "summary": "50+ SKUs with 360 spin animations & 3x 15s product video ads",
+        "inclusions": [
           "50+ Product Items / SKUs (Full Catalog Production)",
           "3x 15s High-Energy Vertical Product Video Ads for TikTok & IG",
           "Full Commercial Master Licensing",
@@ -2169,34 +2697,40 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 24. HOTEL & HOSPITALITY SHOWCASE
   {
-    id: "hotel-hospitality",
-    pathway: "commercial",
-    subcat: "products-hospitality",
-    catLabel: "Hotels & Hospitality",
-    title: "Hotel & Hospitality Showcase",
-    tagline: "Architectural, interior, culinary, and experiential imagery for luxury hotels, Airbnbs & resorts",
-    image: "samples/18-hotel-hospitality/HOTEL AND HOSPITALITY SHOOT_thumb.jpg",
-    imageWebp: "samples/18-hotel-hospitality/HOTEL AND HOSPITALITY SHOOT_thumb.webp",
-    imageHighRes: "samples/18-hotel-hospitality/HOTEL AND HOSPITALITY SHOOT.jpg",
-    badge: "🏖️ Resorts & Luxury",
-    turnaround: "4–6 Business Days",
-    depositRate: "80% booking deposit required",
-    sampleFolder: "samples/18-hotel-hospitality",
-    samples: [
-      { url: "samples/18-hotel-hospitality/work-5.jpg", type: "image", title: "Luxury Suite Architectural Lighting & Detail" },
-      { url: "samples/18-hotel-hospitality/HOTEL AND HOSPITALITY SHOOT.jpg", type: "image", title: "Hotel & Hospitality Shoot Rates & Guide" }
-    ],
-    options: [
+    "id": "hotel-hospitality",
+    "pathway": "commercial",
+    "subcat": "products-hospitality",
+    "catLabel": "Hotels & Hospitality",
+    "title": "Hotel & Hospitality Showcase",
+    "tagline": "Architectural, interior, culinary, and experiential imagery for luxury hotels, Airbnbs & resorts",
+    "image": "samples/commercial/hotel-hospitality/HOTEL AND HOSPITALITY SHOOT_thumb.jpg",
+    "imageWebp": "samples/commercial/hotel-hospitality/HOTEL AND HOSPITALITY SHOOT_thumb.webp",
+    "imageHighRes": "samples/commercial/hotel-hospitality/HOTEL AND HOSPITALITY SHOOT.jpg",
+    "badge": "🏖️ Resorts & Luxury",
+    "turnaround": "4–6 Business Days",
+    "depositRate": "80% booking deposit required",
+    "sampleFolder": "samples/commercial/hotel-hospitality",
+    "samples": [
       {
-        id: "silver",
-        name: "Airbnb / Boutique Suite",
-        price: 8000,
-        deposit: 6400,
-        summary: "Up to 3 rooms/spaces, 20 high-res interior & exterior photos",
-        inclusions: [
+        "url": "samples/commercial/hotel-hospitality/work-5.jpg",
+        "type": "image",
+        "title": "Luxury Suite Architectural Lighting & Detail"
+      },
+      {
+        "url": "samples/commercial/hotel-hospitality/HOTEL AND HOSPITALITY SHOOT.jpg",
+        "type": "image",
+        "title": "Hotel & Hospitality Shoot Rates & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Airbnb / Boutique Suite",
+        "price": 8000,
+        "deposit": 6400,
+        "summary": "Up to 3 rooms/spaces, 20 high-res interior & exterior photos",
+        "inclusions": [
           "Up to 3 Key Spaces (Living, Master Bedroom, Balcony/Amenities)",
           "20 HDR Professionally Balanced Interior & Exterior Photos",
           "Flawless Window Views (No blown-out highlights)",
@@ -2204,13 +2738,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Full Resort Showcase",
-        popular: true,
-        price: 18000,
-        deposit: 14400,
-        summary: "Full property walkthrough + restaurant/culinary + 60s reel",
-        inclusions: [
+        "id": "gold",
+        "name": "Full Resort Showcase",
+        "popular": true,
+        "price": 18000,
+        "deposit": 14400,
+        "summary": "Full property walkthrough + restaurant/culinary + 60s reel",
+        "inclusions": [
           "Complete Property Coverage (Rooms, Dining, Pool, Grounds, Twilight)",
           "45+ Magazine-Grade Architectural & Hospitality Photos",
           "Culinary & Cocktail Gourmet Food Photography",
@@ -2218,12 +2752,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Commercial Brand Campaign",
-        price: 35000,
-        deposit: 28000,
-        summary: "Complete visual asset overhaul with model lifestyle talents & 4K cinematic film",
-        inclusions: [
+        "id": "platinum",
+        "name": "Commercial Brand Campaign",
+        "price": 35000,
+        "deposit": 28000,
+        "summary": "Complete visual asset overhaul with model lifestyle talents & 4K cinematic film",
+        "inclusions": [
           "2-Day Multi-Production Shoot (Architectural + Lifestyle)",
           "Curated Talent / Guest Experience Lifestyle Posing",
           "2-3 Min 4K Cinematic Promotional Venue Film",
@@ -2232,35 +2766,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 25. CORPORATE BRANDING & PORTRAITS
   {
-    id: "corporate-branding",
-    pathway: "commercial",
-    subcat: "graphic-design",
-    catLabel: "Corporate & Branding",
-    title: "Corporate & Brand Growth Suite",
-    tagline: "Cohesive leadership headshots and annual report imagery for company teams",
-    image: "samples/17-corporate-event/CORPORATE PORTRAIT SHOOT_thumb.jpg",
-    imageWebp: "samples/17-corporate-event/CORPORATE PORTRAIT SHOOT_thumb.webp",
-    imageHighRes: "samples/17-corporate-event/CORPORATE PORTRAIT SHOOT.jpg",
-    badge: "🏢 Leadership Suite",
-    turnaround: "3–5 Business Days",
-    depositRate: "80% booking deposit required",
-    sampleFolder: "samples/17-corporate-event",
-    samples: [
-      { url: "samples/17-corporate-event/CORPORATE PORTRAIT SHOOT.jpg", type: "image", title: "Corporate Portrait Shoot Rates & Guide" },
-      { url: "samples/01-indoor-headshots/DSC09594_(2).jpg", type: "image", title: "Board Member & Executive Bio Standard" },
-      { url: "images/ceo.jpg", type: "image", title: "Chief Executive Leadership Style" }
-    ],
-    options: [
+    "id": "corporate-branding",
+    "pathway": "commercial",
+    "subcat": "graphic-design",
+    "catLabel": "Corporate & Branding",
+    "title": "Corporate & Brand Growth Suite",
+    "tagline": "Cohesive leadership headshots and annual report imagery for company teams",
+    "image": "samples/commercial/corporate-branding/CORPORATE PORTRAIT SHOOT_thumb.jpg",
+    "imageWebp": "samples/commercial/corporate-branding/CORPORATE PORTRAIT SHOOT_thumb.webp",
+    "imageHighRes": "samples/commercial/corporate-branding/CORPORATE PORTRAIT SHOOT.jpg",
+    "badge": "🏢 Leadership Suite",
+    "turnaround": "3–5 Business Days",
+    "depositRate": "80% booking deposit required",
+    "sampleFolder": "samples/commercial/corporate-branding",
+    "samples": [
       {
-        id: "silver",
-        name: "Small Team (Up to 5 Execs)",
-        price: 5000,
-        deposit: 4000,
-        summary: "5 executives, 2 retouched portraits each + 1 team group",
-        inclusions: [
+        "url": "samples/commercial/corporate-branding/CORPORATE PORTRAIT SHOOT.jpg",
+        "type": "image",
+        "title": "Corporate Portrait Shoot Rates & Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Small Team (Up to 5 Execs)",
+        "price": 5000,
+        "deposit": 4000,
+        "summary": "5 executives, 2 retouched portraits each + 1 team group",
+        "inclusions": [
           "Up to 5 Executives / Board Members",
           "2 Magazine Retouched Headshots per Person",
           "1 Cohesive Team Group Portrait",
@@ -2268,13 +2802,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Department Suite (Up to 15 Execs)",
-        popular: true,
-        price: 12000,
-        deposit: 9600,
-        summary: "15 executives with on-site studio lighting setup at your offices",
-        inclusions: [
+        "id": "gold",
+        "name": "Department Suite (Up to 15 Execs)",
+        "popular": true,
+        "price": 12000,
+        "deposit": 9600,
+        "summary": "15 executives with on-site studio lighting setup at your offices",
+        "inclusions": [
           "Up to 15 Team Members",
           "On-Site Studio Lighting Setup at Your Corporate Office",
           "2 Magazine Retouched Headshots per Person + Department Groups",
@@ -2282,12 +2816,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Enterprise Firm (Up to 30 Execs)",
-        price: 22000,
-        deposit: 17600,
-        summary: "Full firm photo day with executive grooming & PR media pack",
-        inclusions: [
+        "id": "platinum",
+        "name": "Enterprise Firm (Up to 30 Execs)",
+        "price": 22000,
+        "deposit": 17600,
+        "summary": "Full firm photo day with executive grooming & PR media pack",
+        "inclusions": [
           "Up to 30 Team Members",
           "Executive Grooming & Anti-Shine Touch-Ups Included",
           "Individual Bio Shots, Working Action Candids & Board Portraits",
@@ -2296,33 +2830,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 26. GRAPHIC DESIGN STARTER
   {
-    id: "graphic-starter",
-    pathway: "commercial",
-    subcat: "graphic-design",
-    catLabel: "Graphic Design & Branding",
-    title: "Graphic Design Starter Package",
-    tagline: "Essential visual branding assets for startups, small businesses & social campaigns",
-    image: "samples/20-graphic-starter/GRAPHIC DESIGNING STARTER PACKAGE_thumb.jpg",
-    imageWebp: "samples/20-graphic-starter/GRAPHIC DESIGNING STARTER PACKAGE_thumb.webp",
-    imageHighRes: "samples/20-graphic-starter/GRAPHIC DESIGNING STARTER PACKAGE.jpg",
-    badge: "🎨 Visual Identity",
-    turnaround: "3 Business Days",
-    depositRate: "80% booking deposit required",
-    sampleFolder: "samples/20-graphic-starter",
-    samples: [
-      { url: "samples/20-graphic-starter/GRAPHIC DESIGNING STARTER PACKAGE.jpg", type: "image", title: "Graphic Design Starter Package Rates & Inclusions Guide" }
-    ],
-    options: [
+    "id": "graphic-starter",
+    "pathway": "commercial",
+    "subcat": "graphic-design",
+    "catLabel": "Graphic Design & Branding",
+    "title": "Graphic Design Starter Package",
+    "tagline": "Essential visual branding assets for startups, small businesses & social campaigns",
+    "image": "samples/commercial/graphic-starter/GRAPHIC DESIGNING STARTER PACKAGE_thumb.jpg",
+    "imageWebp": "samples/commercial/graphic-starter/GRAPHIC DESIGNING STARTER PACKAGE_thumb.webp",
+    "imageHighRes": "samples/commercial/graphic-starter/GRAPHIC DESIGNING STARTER PACKAGE.jpg",
+    "badge": "🎨 Visual Identity",
+    "turnaround": "3 Business Days",
+    "depositRate": "80% booking deposit required",
+    "sampleFolder": "samples/commercial/graphic-starter",
+    "samples": [
       {
-        id: "silver",
-        name: "Starter Pack",
-        price: 2500,
-        deposit: 2000,
-        summary: "Logo design + business card layout",
-        inclusions: [
+        "url": "samples/commercial/graphic-starter/GRAPHIC DESIGNING STARTER PACKAGE.jpg",
+        "type": "image",
+        "title": "Graphic Design Starter Package Rates & Inclusions Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Starter Pack",
+        "price": 2500,
+        "deposit": 2000,
+        "summary": "Logo design + business card layout",
+        "inclusions": [
           "Primary Logo Design (2 Initial Concepts, 2 Revisions)",
           "Double-Sided Business Card Print-Ready PDF",
           "Transparent PNG & Vector SVG Master Files",
@@ -2330,13 +2866,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Growth Kit",
-        popular: true,
-        price: 5500,
-        deposit: 4400,
-        summary: "Logo suite + marketing promotional flyers",
-        inclusions: [
+        "id": "gold",
+        "name": "Growth Kit",
+        "popular": true,
+        "price": 5500,
+        "deposit": 4400,
+        "summary": "Logo suite + marketing promotional flyers",
+        "inclusions": [
           "Full Logo Suite (Primary, Secondary, Monogram/Favicon)",
           "2x Marketing Event / Promo Flyer Designs",
           "Brand Color Palette & Typography Guidelines Card",
@@ -2345,33 +2881,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 27. GRAPHIC DESIGN GROWTH
   {
-    id: "graphic-growth",
-    pathway: "commercial",
-    subcat: "graphic-design",
-    catLabel: "Graphic Design & Branding",
-    title: "Graphic Design Growth Package",
-    tagline: "Comprehensive corporate brand identity, company profile & marketing collateral",
-    image: "samples/21-graphic-growth/GRAPHIC DESGINING GROWTH PACKAGE_thumb.jpg",
-    imageWebp: "samples/21-graphic-growth/GRAPHIC DESGINING GROWTH PACKAGE_thumb.webp",
-    imageHighRes: "samples/21-graphic-growth/GRAPHIC DESGINING GROWTH PACKAGE.jpg",
-    badge: "Corporate Identity",
-    turnaround: "5 Business Days",
-    depositRate: "80% booking deposit required",
-    sampleFolder: "samples/21-graphic-growth",
-    samples: [
-      { url: "samples/21-graphic-growth/GRAPHIC DESGINING GROWTH PACKAGE.jpg", type: "image", title: "Corporate Rebrand, Company Profile & Advertising Suite Guide" }
-    ],
-    options: [
+    "id": "graphic-growth",
+    "pathway": "commercial",
+    "subcat": "graphic-design",
+    "catLabel": "Graphic Design & Branding",
+    "title": "Graphic Design Growth Package",
+    "tagline": "Comprehensive corporate brand identity, company profile & marketing collateral",
+    "image": "samples/commercial/graphic-growth/GRAPHIC DESGINING GROWTH PACKAGE_thumb.jpg",
+    "imageWebp": "samples/commercial/graphic-growth/GRAPHIC DESGINING GROWTH PACKAGE_thumb.webp",
+    "imageHighRes": "samples/commercial/graphic-growth/GRAPHIC DESGINING GROWTH PACKAGE.jpg",
+    "badge": "Corporate Identity",
+    "turnaround": "5 Business Days",
+    "depositRate": "80% booking deposit required",
+    "sampleFolder": "samples/commercial/graphic-growth",
+    "samples": [
       {
-        id: "silver",
-        name: "Corporate Standard",
-        price: 8000,
-        deposit: 6400,
-        summary: "Multi-page corporate profile & marketing pack",
-        inclusions: [
+        "url": "samples/commercial/graphic-growth/GRAPHIC DESGINING GROWTH PACKAGE.jpg",
+        "type": "image",
+        "title": "Corporate Rebrand, Company Profile & Advertising Suite Guide"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Corporate Standard",
+        "price": 8000,
+        "deposit": 6400,
+        "summary": "Multi-page corporate profile & marketing pack",
+        "inclusions": [
           "Full Brand Identity Guidelines System",
           "4-Page Corporate Company Profile (PDF + Print)",
           "Letterhead, Invoice & Official Email Signature",
@@ -2379,13 +2917,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Executive Scale",
-        popular: true,
-        price: 14000,
-        deposit: 11200,
-        summary: "Full company suite with 8-page profile & packaging design",
-        inclusions: [
+        "id": "gold",
+        "name": "Executive Scale",
+        "popular": true,
+        "price": 14000,
+        "deposit": 11200,
+        "summary": "Full company suite with 8-page profile & packaging design",
+        "inclusions": [
           "8-Page Complete Corporate Brochure / Company Profile",
           "Full Stationery System (Card, Letterhead, Envelope, Folders)",
           "Product Packaging / Label Mockups",
@@ -2393,39 +2931,36 @@ const PACKAGES_DATA = [
         ]
       }
     ]
-  }
-,
-
-  // ==========================================================================
-  // NEW PACKAGES: BOUDOIR, NEWBORN, SCHOOL, CLUBS, FUN CLUBS & MODEL PORTFOLIO
-  // ==========================================================================
-
-  // 31. LUXURY STUDIO BOUDOIR & INTIMATE PORTRAIT
+  },
   {
-    id: "boudoir-shoot",
-    pathway: "studio",
-    subcat: "boudoir",
-    catLabel: "Boudoir & Intimate",
-    title: "Luxury Studio Boudoir & Intimate Portrait",
-    tagline: "Empowering, sensual, and tastefully lit private studio session with silk robes & lingerie posing guidance",
-    image: "samples/22-boudoir-shoot/cover_thumb.jpg",
-    imageWebp: "samples/22-boudoir-shoot/cover_thumb.webp",
-    imageHighRes: "samples/22-boudoir-shoot/cover.jpg",
-    badge: "🌹 Private VIP Studio",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 400 to KSh 2,500 (lock your slot)",
-    sampleFolder: "samples/22-boudoir-shoot",
-    samples: [
-      { url: "samples/22-boudoir-shoot/cover.jpg", type: "image", title: "Luxury Boudoir & Intimate Silk Silhouette" }
-    ],
-    options: [
+    "id": "boudoir-shoot",
+    "pathway": "studio",
+    "subcat": "boudoir",
+    "catLabel": "Boudoir & Intimate",
+    "title": "Luxury Studio Boudoir & Intimate Portrait",
+    "tagline": "Empowering, sensual, and tastefully lit private studio session with silk robes & lingerie posing guidance",
+    "image": "samples/studio/boudoir-shoot/cover_thumb.jpg",
+    "imageWebp": "samples/studio/boudoir-shoot/cover_thumb.webp",
+    "imageHighRes": "samples/studio/boudoir-shoot/cover.jpg",
+    "badge": "🌹 Private VIP Studio",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 400 to KSh 2,500 (lock your slot)",
+    "sampleFolder": "samples/studio/boudoir-shoot",
+    "samples": [
       {
-        id: "starter",
-        name: "Intimate Starter",
-        price: 1500,
-        deposit: 400,
-        summary: "3 magazine-retouched images, 1 outfit, 30 min session",
-        inclusions: [
+        "url": "samples/studio/boudoir-shoot/cover.jpg",
+        "type": "image",
+        "title": "Luxury Boudoir & Intimate Silk Silhouette"
+      }
+    ],
+    "options": [
+      {
+        "id": "starter",
+        "name": "Intimate Starter",
+        "price": 1500,
+        "deposit": 400,
+        "summary": "3 magazine-retouched images, 1 outfit, 30 min session",
+        "inclusions": [
           "3 Magazine-Grade Skin & Tone Retouched Photos",
           "1 Lingerie / Silk Robe Outfit",
           "Completely Private, Closed-Door Studio Comfort",
@@ -2434,12 +2969,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Silver Elegance",
-        price: 3500,
-        deposit: 900,
-        summary: "8 retouched images, 2 outfit changes, 45 min session",
-        inclusions: [
+        "id": "silver",
+        "name": "Silver Elegance",
+        "price": 3500,
+        "deposit": 900,
+        "summary": "8 retouched images, 2 outfit changes, 45 min session",
+        "inclusions": [
           "8 High-Fashion Retouched Photos",
           "2 Outfit Changes (Robes, Silks or Lingerie)",
           "Creative Rim Lighting & Soft Shadows",
@@ -2449,13 +2984,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Gold Allure",
-        popular: true,
-        price: 6000,
-        deposit: 1500,
-        summary: "15 retouched images, 3 outfit changes, 1 hr session, mood lighting",
-        inclusions: [
+        "id": "gold",
+        "name": "Gold Allure",
+        "popular": true,
+        "price": 6000,
+        "deposit": 1500,
+        "summary": "15 retouched images, 3 outfit changes, 1 hr session, mood lighting",
+        "inclusions": [
           "15 Editorial-Grade Retouched Photos",
           "3 Wardrobe Changes (Studio Silk Fabrics Included)",
           "Dramatic Mood & Venetian Blind Light Setups",
@@ -2464,12 +2999,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "platinum",
-        name: "Royal Boudoir Luxe",
-        price: 10000,
-        deposit: 2500,
-        summary: "25 retouched images, unlimited looks, 90 mins, luxury A4 wooden mount",
-        inclusions: [
+        "id": "platinum",
+        "name": "Royal Boudoir Luxe",
+        "price": 10000,
+        "deposit": 2500,
+        "summary": "25 retouched images, unlimited looks, 90 mins, luxury A4 wooden mount",
+        "inclusions": [
           "25 Master Retouched High-Fashion Images",
           "Unlimited Outfit / Silk Fabric Transitions",
           "Includes 1 Solid Wooden A4 Photo Mount (Discreet Packaging)",
@@ -2479,33 +3014,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 32. NEWBORN BABY MILESTONE (0–30 DAYS)
   {
-    id: "newborn-shoot",
-    pathway: "studio",
-    subcat: "maternity-kids",
-    catLabel: "Newborn Milestones",
-    title: "Newborn Baby Milestone (0–30 Days)",
-    tagline: "Gentle nursery-climate studio photography with sterile organic wraps, nesting baskets & paci breaks",
-    image: "samples/23-newborn-shoot/cover_thumb.jpg",
-    imageWebp: "samples/23-newborn-shoot/cover_thumb.webp",
-    imageHighRes: "samples/23-newborn-shoot/cover.jpg",
-    badge: "🍼 Nursery Climate Controlled",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 600 to KSh 2,000 (lock your slot)",
-    sampleFolder: "samples/23-newborn-shoot",
-    samples: [
-      { url: "samples/23-newborn-shoot/cover.jpg", type: "image", title: "Gentle Newborn Sleeping Milestone" }
-    ],
-    options: [
+    "id": "newborn-shoot",
+    "pathway": "studio",
+    "subcat": "maternity-kids",
+    "catLabel": "Newborn Milestones",
+    "title": "Newborn Baby Milestone (0–30 Days)",
+    "tagline": "Gentle nursery-climate studio photography with sterile organic wraps, nesting baskets & paci breaks",
+    "image": "samples/studio/newborn-shoot/cover_thumb.jpg",
+    "imageWebp": "samples/studio/newborn-shoot/cover_thumb.webp",
+    "imageHighRes": "samples/studio/newborn-shoot/cover.jpg",
+    "badge": "🍼 Nursery Climate Controlled",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 600 to KSh 2,000 (lock your slot)",
+    "sampleFolder": "samples/studio/newborn-shoot",
+    "samples": [
       {
-        id: "starter",
-        name: "Cozy Mini",
-        price: 2500,
-        deposit: 600,
-        summary: "5 retouched photos, 1 swaddle setup, 45 min relaxed session",
-        inclusions: [
+        "url": "samples/studio/newborn-shoot/cover.jpg",
+        "type": "image",
+        "title": "Gentle Newborn Sleeping Milestone"
+      }
+    ],
+    "options": [
+      {
+        "id": "starter",
+        "name": "Cozy Mini",
+        "price": 2500,
+        "deposit": 600,
+        "summary": "5 retouched photos, 1 swaddle setup, 45 min relaxed session",
+        "inclusions": [
           "5 Tender Retouched Newborn Portraits",
           "1 Organic Wrap / Swaddle Setup",
           "Warm, Temperature-Controlled Studio Room",
@@ -2514,13 +3051,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "silver",
-        name: "Nest & Baskets",
-        popular: true,
-        price: 4500,
-        deposit: 1200,
-        summary: "10 retouched photos, 2 prop setups, 1 hr session with parents",
-        inclusions: [
+        "id": "silver",
+        "name": "Nest & Baskets",
+        "popular": true,
+        "price": 4500,
+        "deposit": 1200,
+        "summary": "10 retouched photos, 2 prop setups, 1 hr session with parents",
+        "inclusions": [
           "10 Delicate Retouched Newborn Portraits",
           "2 Creative Setups (Handmade Baskets, Soft Furs & Headbands)",
           "Includes Gentle Mother/Father Posing with Baby",
@@ -2529,12 +3066,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "gold",
-        name: "Heirloom Keepsake",
-        price: 8000,
-        deposit: 2000,
-        summary: "20 retouched photos, 3 setups, family inclusive + A4 wooden mount",
-        inclusions: [
+        "id": "gold",
+        "name": "Heirloom Keepsake",
+        "price": 8000,
+        "deposit": 2000,
+        "summary": "20 retouched photos, 3 setups, family inclusive + A4 wooden mount",
+        "inclusions": [
           "20 Master Retouched Keepsake Portraits",
           "3 Distinct Thematic Setups (Pastel Wraps, Baskets, Blankets)",
           "Full Family & Sibling Posing Included",
@@ -2544,33 +3081,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 33. SCHOOL & INSTITUTIONAL EVENTS COVERAGE
   {
-    id: "school-events",
-    pathway: "events",
-    subcat: "school-club-events",
-    catLabel: "School Events",
-    title: "School & Institutional Events Coverage",
-    tagline: "Comprehensive documentary photography & cinema reels for prize givings, sports days, graduations & proms",
-    image: "samples/24-school-events/cover_thumb.jpg",
-    imageWebp: "samples/24-school-events/cover_thumb.webp",
-    imageHighRes: "samples/24-school-events/cover.jpg",
-    badge: "🏫 Institutional & Academic",
-    turnaround: "3–5 Business Days",
-    depositRate: "Booking deposit: KSh 8,000 to KSh 20,000 (locks crew & gear)",
-    sampleFolder: "samples/24-school-events",
-    samples: [
-      { url: "samples/24-school-events/cover.jpg", type: "image", title: "School Convocation & Academic Campus Assembly" }
-    ],
-    options: [
+    "id": "school-events",
+    "pathway": "events",
+    "subcat": "school-club-events",
+    "catLabel": "School Events",
+    "title": "School & Institutional Events Coverage",
+    "tagline": "Comprehensive documentary photography & cinema reels for prize givings, sports days, graduations & proms",
+    "image": "samples/events/school-events/cover_thumb.jpg",
+    "imageWebp": "samples/events/school-events/cover_thumb.webp",
+    "imageHighRes": "samples/events/school-events/cover.jpg",
+    "badge": "🏫 Institutional & Academic",
+    "turnaround": "3–5 Business Days",
+    "depositRate": "Booking deposit: KSh 8,000 to KSh 20,000 (locks crew & gear)",
+    "sampleFolder": "samples/events/school-events",
+    "samples": [
       {
-        id: "half-day",
-        name: "Half-Day Academic / Sports",
-        price: 20000,
-        deposit: 8000,
-        summary: "Up to 4 hours coverage, 1 lead photographer, 100+ retouched highlights",
-        inclusions: [
+        "url": "samples/events/school-events/cover.jpg",
+        "type": "image",
+        "title": "School Convocation & Academic Campus Assembly"
+      }
+    ],
+    "options": [
+      {
+        "id": "half-day",
+        "name": "Half-Day Academic / Sports",
+        "price": 20000,
+        "deposit": 8000,
+        "summary": "Up to 4 hours coverage, 1 lead photographer, 100+ retouched highlights",
+        "inclusions": [
           "Up to 4 Hours High-Speed Event Coverage",
           "1 Lead Senior Photojournalist",
           "100+ Color-Graded & Retouched Key Moments",
@@ -2579,13 +3118,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "full-day",
-        name: "Full-Day Gala & Sports Day",
-        popular: true,
-        price: 35000,
-        deposit: 14000,
-        summary: "Up to 8 hours, 2 camera angles (photo + reel highlights), 250+ images",
-        inclusions: [
+        "id": "full-day",
+        "name": "Full-Day Gala & Sports Day",
+        "popular": true,
+        "price": 35000,
+        "deposit": 14000,
+        "summary": "Up to 8 hours, 2 camera angles (photo + reel highlights), 250+ images",
+        "inclusions": [
           "Up to 8 Hours Comprehensive Coverage",
           "2-Person Professional Media Crew",
           "250+ High-Resolution Master Images",
@@ -2594,12 +3133,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "festival-2day",
-        name: "2-Day Tournament / Graduation Festival",
-        price: 55000,
-        deposit: 22000,
-        summary: "2 Full Days coverage, drone aerial views, 2 photographers + videographer",
-        inclusions: [
+        "id": "festival-2day",
+        "name": "2-Day Tournament / Graduation Festival",
+        "price": 55000,
+        "deposit": 22000,
+        "summary": "2 Full Days coverage, drone aerial views, 2 photographers + videographer",
+        "inclusions": [
           "2 Consecutive Full Days Coverage",
           "3-Person Cinema & Photo Crew",
           "4K Aerial Drone Coverage of Campus & Grounds",
@@ -2609,33 +3148,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 34. CLUB & NIGHTLIFE EVENT COVERAGE
   {
-    id: "club-events",
-    pathway: "events",
-    subcat: "school-club-events",
-    catLabel: "Nightlife & Clubs",
-    title: "Club & Nightlife Event Coverage",
-    tagline: "Low-light cinema prime lenses, synchronized flash & high-energy crowd portraits for DJs, lounges & VIP parties",
-    image: "samples/25-club-events/cover_thumb.jpg",
-    imageWebp: "samples/25-club-events/cover_thumb.webp",
-    imageHighRes: "samples/25-club-events/cover.jpg",
-    badge: "🎧 DJ Sets & VIP Nightlife",
-    turnaround: "24–48 Hours",
-    depositRate: "Booking deposit: KSh 6,000 to KSh 18,000 (locks crew)",
-    sampleFolder: "samples/25-club-events",
-    samples: [
-      { url: "samples/25-club-events/cover.jpg", type: "image", title: "High-Energy Nightlife & Crowd Celebration" }
-    ],
-    options: [
+    "id": "club-events",
+    "pathway": "events",
+    "subcat": "school-club-events",
+    "catLabel": "Nightlife & Clubs",
+    "title": "Club & Nightlife Event Coverage",
+    "tagline": "Low-light cinema prime lenses, synchronized flash & high-energy crowd portraits for DJs, lounges & VIP parties",
+    "image": "samples/events/club-events/cover_thumb.jpg",
+    "imageWebp": "samples/events/club-events/cover_thumb.webp",
+    "imageHighRes": "samples/events/club-events/cover.jpg",
+    "badge": "🎧 DJ Sets & VIP Nightlife",
+    "turnaround": "24–48 Hours",
+    "depositRate": "Booking deposit: KSh 6,000 to KSh 18,000 (locks crew)",
+    "sampleFolder": "samples/events/club-events",
+    "samples": [
       {
-        id: "teaser",
-        name: "Party Teaser (3 Hours)",
-        price: 15000,
-        deposit: 6000,
-        summary: "3 hours coverage, off-camera flash, 60+ vibrant party shots",
-        inclusions: [
+        "url": "samples/events/club-events/cover.jpg",
+        "type": "image",
+        "title": "High-Energy Nightlife & Crowd Celebration"
+      }
+    ],
+    "options": [
+      {
+        "id": "teaser",
+        "name": "Party Teaser (3 Hours)",
+        "price": 15000,
+        "deposit": 6000,
+        "summary": "3 hours coverage, off-camera flash, 60+ vibrant party shots",
+        "inclusions": [
           "3 Hours Dedicated Nightlife Coverage",
           "1 Senior Nightlife Specialist Photographer",
           "60+ Color-Graded Vibrant Party & Guest Portraits",
@@ -2644,13 +3185,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "all-night",
-        name: "All-Night Club Gig",
-        popular: true,
-        price: 28000,
-        deposit: 12000,
-        summary: "Full night coverage (up to 6 hrs), 150+ photos + 45s hype video reel",
-        inclusions: [
+        "id": "all-night",
+        "name": "All-Night Club Gig",
+        "popular": true,
+        "price": 28000,
+        "deposit": 12000,
+        "summary": "Full night coverage (up to 6 hrs), 150+ photos + 45s hype video reel",
+        "inclusions": [
           "Up to 6 Hours Full Night Event Coverage",
           "1 Photographer + 1 Vertical Video Reel Creator",
           "150+ High-Contrast Magazine Party Photos",
@@ -2659,12 +3200,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "vip-festival",
-        name: "VIP Festival / Brand Night",
-        price: 45000,
-        deposit: 18000,
-        summary: "Full night multi-angle team, VIP red carpet backdrop, full recap film",
-        inclusions: [
+        "id": "vip-festival",
+        "name": "VIP Festival / Brand Night",
+        "price": 45000,
+        "deposit": 18000,
+        "summary": "Full night multi-angle team, VIP red carpet backdrop, full recap film",
+        "inclusions": [
           "Full Event Duration (8 Hours Coverage)",
           "2 Photographers + 1 4K Gimbal Videographer",
           "Red Carpet / Step-and-Repeat Photo Station",
@@ -2674,33 +3215,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 35. FUN CLUB, BIKERS & COMMUNITY MEETUPS
   {
-    id: "fun-club-events",
-    pathway: "events",
-    subcat: "school-club-events",
-    catLabel: "Club & Rally Events",
-    title: "Fun Club, Bikers & Community Meetups",
-    tagline: "High-shutter tracking shots, convoy rolling photography & outdoor expedition coverage for enthusiast groups",
-    image: "samples/26-fun-club-events/cover_thumb.jpg",
-    imageWebp: "samples/26-fun-club-events/cover_thumb.webp",
-    imageHighRes: "samples/26-fun-club-events/cover.jpg",
-    badge: "🏍️ Convoys & Adventures",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 7,000 to KSh 24,000 (locks crew)",
-    sampleFolder: "samples/26-fun-club-events",
-    samples: [
-      { url: "samples/26-fun-club-events/cover.jpg", type: "image", title: "Enthusiast Community Rally & Convoy Meetup" }
-    ],
-    options: [
+    "id": "fun-club-events",
+    "pathway": "events",
+    "subcat": "school-club-events",
+    "catLabel": "Club & Rally Events",
+    "title": "Fun Club, Bikers & Community Meetups",
+    "tagline": "High-shutter tracking shots, convoy rolling photography & outdoor expedition coverage for enthusiast groups",
+    "image": "samples/events/fun-club-events/cover_thumb.jpg",
+    "imageWebp": "samples/events/fun-club-events/cover_thumb.webp",
+    "imageHighRes": "samples/events/fun-club-events/cover.jpg",
+    "badge": "🏍️ Convoys & Adventures",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 7,000 to KSh 24,000 (locks crew)",
+    "sampleFolder": "samples/events/fun-club-events",
+    "samples": [
       {
-        id: "half-day-meet",
-        name: "Half-Day Meet / Ride-Out",
-        price: 18000,
-        deposit: 7000,
-        summary: "Up to 4 hours, static vehicle/member shots, rolling pass shots",
-        inclusions: [
+        "url": "samples/events/fun-club-events/cover.jpg",
+        "type": "image",
+        "title": "Enthusiast Community Rally & Convoy Meetup"
+      }
+    ],
+    "options": [
+      {
+        "id": "half-day-meet",
+        "name": "Half-Day Meet / Ride-Out",
+        "price": 18000,
+        "deposit": 7000,
+        "summary": "Up to 4 hours, static vehicle/member shots, rolling pass shots",
+        "inclusions": [
           "Up to 4 Hours Meetup & Ride Coverage",
           "Static Lineup Individual & Group Portraits",
           "Highway Rolling & Cornering Action Photography",
@@ -2709,13 +3252,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "full-day-rally",
-        name: "Full-Day Rally / Excursion",
-        popular: true,
-        price: 32000,
-        deposit: 13000,
-        summary: "Full day excursion coverage, 200+ action photos + 60s rally reel",
-        inclusions: [
+        "id": "full-day-rally",
+        "name": "Full-Day Rally / Excursion",
+        "popular": true,
+        "price": 32000,
+        "deposit": 13000,
+        "summary": "Full day excursion coverage, 200+ action photos + 60s rally reel",
+        "inclusions": [
           "Full Day Tracking & Destination Coverage (Up to 8 Hours)",
           "1 Action Photographer + 1 Drone / Reel Creator",
           "200+ Dynamic Action & Campfire/Lunch Gathering Photos",
@@ -2724,12 +3267,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "multi-day-camp",
-        name: "Multi-Day Tour / Camping Expedition",
-        price: 60000,
-        deposit: 24000,
-        summary: "2 Full Days road-trip or camping coverage, full documentary recap",
-        inclusions: [
+        "id": "multi-day-camp",
+        "name": "Multi-Day Tour / Camping Expedition",
+        "price": 60000,
+        "deposit": 24000,
+        "summary": "2 Full Days road-trip or camping coverage, full documentary recap",
+        "inclusions": [
           "2 Consecutive Days Complete Expedition Coverage",
           "Dedicated Chase Vehicle Accommodation for Media Crew",
           "4K Aerial Drone Scenics Across Road Trip Routes",
@@ -2739,33 +3282,35 @@ const PACKAGES_DATA = [
       }
     ]
   },
-
-  // 36. MODEL PORTFOLIO & AGENCY Z-CARD
   {
-    id: "model-portfolio",
-    pathway: "outdoor",
-    subcat: "outdoor-headshots",
-    catLabel: "Model Portfolio",
-    title: "Model Portfolio & Agency Z-Card Shoot",
-    tagline: "Magazine-standard editorial tests, commercial looks, swimwear/casual & printable composite card layouts",
-    image: "samples/27-model-portfolio/cover_thumb.jpg",
-    imageWebp: "samples/27-model-portfolio/cover_thumb.webp",
-    imageHighRes: "samples/27-model-portfolio/cover.jpg",
-    badge: "🌟 Comp Card & Editorial",
-    turnaround: "2–3 Business Days",
-    depositRate: "Booking deposit: KSh 600 to KSh 2,500 (lock your slot)",
-    sampleFolder: "samples/27-model-portfolio",
-    samples: [
-      { url: "samples/27-model-portfolio/cover.jpg", type: "image", title: "Editorial Fashion Model Portfolio Test" }
-    ],
-    options: [
+    "id": "model-portfolio",
+    "pathway": "outdoor",
+    "subcat": "outdoor-headshots",
+    "catLabel": "Model Portfolio",
+    "title": "Model Portfolio & Agency Z-Card Shoot",
+    "tagline": "Magazine-standard editorial tests, commercial looks, swimwear/casual & printable composite card layouts",
+    "image": "samples/outdoor/model-portfolio/cover_thumb.jpg",
+    "imageWebp": "samples/outdoor/model-portfolio/cover_thumb.webp",
+    "imageHighRes": "samples/outdoor/model-portfolio/cover.jpg",
+    "badge": "🌟 Comp Card & Editorial",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 600 to KSh 2,500 (lock your slot)",
+    "sampleFolder": "samples/outdoor/model-portfolio",
+    "samples": [
       {
-        id: "starter",
-        name: "Portfolio Starter (6 Shots)",
-        price: 2500,
-        deposit: 600,
-        summary: "6 magazine-retouched images, 2 outfit changes, headshot & 3/4 length",
-        inclusions: [
+        "url": "samples/outdoor/model-portfolio/cover.jpg",
+        "type": "image",
+        "title": "Editorial Fashion Model Portfolio Test"
+      }
+    ],
+    "options": [
+      {
+        "id": "starter",
+        "name": "Portfolio Starter (6 Shots)",
+        "price": 2500,
+        "deposit": 600,
+        "summary": "6 magazine-retouched images, 2 outfit changes, headshot & 3/4 length",
+        "inclusions": [
           "6 High-End Magazine Retouched Images",
           "2 Outfits (Commercial Smile + Dramatic Editorial)",
           "Professional Posing Direction & Lighting",
@@ -2774,13 +3319,13 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "zcard-pro",
-        name: "Pro Agency Comp-Card (12 Shots)",
-        popular: true,
-        price: 5000,
-        deposit: 1200,
-        summary: "12 retouched images, 3 outfit transitions, printable A5 Comp-Card PDF",
-        inclusions: [
+        "id": "zcard-pro",
+        "name": "Pro Agency Comp-Card (12 Shots)",
+        "popular": true,
+        "price": 5000,
+        "deposit": 1200,
+        "summary": "12 retouched images, 3 outfit transitions, printable A5 Comp-Card PDF",
+        "inclusions": [
           "12 High-Fashion & Commercial Retouched Images",
           "3 Diverse Looks (Casual, High-Fashion, Formal/Swimwear)",
           "Includes Custom Designed Agency Comp-Card (PDF Ready to Print)",
@@ -2789,12 +3334,12 @@ const PACKAGES_DATA = [
         ]
       },
       {
-        id: "agency-elite",
-        name: "Agency Elite Suite (20 Shots + Reel)",
-        price: 9000,
-        deposit: 2200,
-        summary: "20 retouched images, 4 outfits, comp-card layout + 45s runway walk reel",
-        inclusions: [
+        "id": "agency-elite",
+        "name": "Agency Elite Suite (20 Shots + Reel)",
+        "price": 9000,
+        "deposit": 2200,
+        "summary": "20 retouched images, 4 outfits, comp-card layout + 45s runway walk reel",
+        "inclusions": [
           "20 Editorial Master Retouched Deliverables",
           "4 Wardrobe Transitions with Location Variety",
           "1 x 45s High-Energy Model Runway & Posing Video Reel",
@@ -2804,7 +3349,6 @@ const PACKAGES_DATA = [
       }
     ]
   }
-
 ];
 
 // Frequently Asked Questions
