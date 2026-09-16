@@ -3310,24 +3310,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // App-Like Mobile / Desktop Tab Switcher
+  // App-Like Mobile & Desktop Tab Switcher (Full Quotation Display vs Editor)
   function switchInvoiceTab(tab) {
     const btnEdit = document.getElementById("tabBtnEdit");
     const btnPrev = document.getElementById("tabBtnPreview");
     const paneEdit = document.getElementById("invEditorPane");
     const panePrev = document.getElementById("invPreviewPane");
+    const dockBtn = document.getElementById("dockToggleEditText");
 
-    if (tab === "preview") {
-      if (btnPrev) btnPrev.classList.add("active");
-      if (btnEdit) btnEdit.classList.remove("active");
-      if (paneEdit) paneEdit.classList.add("hide-mobile");
-      if (panePrev) panePrev.classList.remove("hide-mobile");
-    } else {
+    if (tab === "edit") {
       if (btnEdit) btnEdit.classList.add("active");
       if (btnPrev) btnPrev.classList.remove("active");
-      if (paneEdit) paneEdit.classList.remove("hide-mobile");
-      if (panePrev) panePrev.classList.add("hide-mobile");
+      if (paneEdit) {
+        paneEdit.classList.remove("tab-hidden", "hide-mobile");
+        paneEdit.style.display = "flex";
+      }
+      if (panePrev) {
+        panePrev.classList.add("tab-hidden", "hide-mobile");
+        panePrev.style.display = "none";
+      }
+      if (dockBtn) dockBtn.textContent = "📄 View Quotation Sheet";
+    } else {
+      // Default: preview (Full Display)
+      if (btnPrev) btnPrev.classList.add("active");
+      if (btnEdit) btnEdit.classList.remove("active");
+      if (panePrev) {
+        panePrev.classList.remove("tab-hidden", "hide-mobile");
+        panePrev.style.display = "flex";
+      }
+      if (paneEdit) {
+        paneEdit.classList.add("tab-hidden", "hide-mobile");
+        paneEdit.style.display = "none";
+      }
+      if (dockBtn) dockBtn.textContent = "✏️ Edit Shoot & Add-Ons";
     }
+  }
+
+  function toggleInvoiceEditTab() {
+    const paneEdit = document.getElementById("invEditorPane");
+    const isEditHidden = !paneEdit || paneEdit.classList.contains("tab-hidden") || paneEdit.classList.contains("hide-mobile") || paneEdit.style.display === "none";
+    switchInvoiceTab(isEditHidden ? "edit" : "preview");
   }
 
   // Staff Portal & Protected Internal Tools Control
@@ -3411,6 +3433,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateInvoiceDisplay();
+    switchInvoiceTab("preview");
     invoiceModal.classList.add("open");
     invoiceModal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -4292,6 +4315,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Tab & Staff Mode
   window.switchInvoiceTab = switchInvoiceTab;
+  window.toggleInvoiceEditTab = toggleInvoiceEditTab;
   window.toggleStaffMode = toggleStaffMode;
   window.initStaffMode = initStaffMode;
 

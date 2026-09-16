@@ -301,6 +301,41 @@ const PACKAGES_DATA = [
         "title": "Graduate Milestone Achievement Cover"
       },
       {
+        "url": "samples/studio/graduation-shoot/DSC09938.JPG",
+        "type": "image",
+        "title": "Graduation Milestone Shoot · DSC09938"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09939.JPG",
+        "type": "image",
+        "title": "Graduation Milestone Shoot · DSC09939"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09940.JPG",
+        "type": "image",
+        "title": "Graduation Milestone Shoot · DSC09940"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09941.JPG",
+        "type": "image",
+        "title": "Graduation Milestone Shoot · DSC09941"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09942.JPG",
+        "type": "image",
+        "title": "Graduation Milestone Shoot · DSC09942"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09943.JPG",
+        "type": "image",
+        "title": "Graduation Milestone Shoot · DSC09943"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/DSC09945.JPG",
+        "type": "image",
+        "title": "Graduation Milestone Shoot · DSC09945"
+      },
+      {
         "url": "samples/studio/graduation-shoot/PRI_4998.jpg",
         "type": "image",
         "title": "Sunlit Campus Convocation Walk"
@@ -484,6 +519,36 @@ const PACKAGES_DATA = [
         "title": "Executive Headshots · DSC02891.jpgj"
       },
       {
+        "url": "samples/studio/indoor-headshots/DSC06408.jpgk.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC06408.jpgk"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC06473.jpglo.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC06473.jpglo"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC06479.jpgmjk-hb.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC06479.jpgmjk hb"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC06606.jpgkjh.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC06606.jpgkjh"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07103-Recovered.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07103 Recovered"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07103gjhgj_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07103gjhgj"
+      },
+      {
         "url": "samples/studio/indoor-headshots/DSC07116-7_status.jpg",
         "type": "image",
         "title": "Executive Headshots · DSC07116 7"
@@ -497,6 +562,16 @@ const PACKAGES_DATA = [
         "url": "samples/studio/indoor-headshots/DSC07119ggggggg_status.jpg",
         "type": "image",
         "title": "Executive Headshots · DSC07119ggggggg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07230.kkkkkkkjpg_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07230.kkkkkkkjpg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07230.kkkkkkkjpg.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07230.kkkkkkkjpg"
       },
       {
         "url": "samples/studio/indoor-headshots/DSC07302.hjghthjpg_status.jpg",
@@ -532,6 +607,21 @@ const PACKAGES_DATA = [
         "url": "samples/studio/indoor-headshots/DSC09626_(2).jpg",
         "type": "image",
         "title": "Professional Leadership Portrait"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC09765_(2).jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC09765"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC09795_(2).jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC09795"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/work-10.jpg",
+        "type": "image",
+        "title": "Executive Headshots · Work 10"
       }
     ],
     "options": [
@@ -1038,7 +1128,27 @@ const PACKAGES_DATA = [
     "sampleFolder": "samples/studio/traditional-creative",
     "samples": [
       {
+        "url": "samples/studio/traditional-creative/_R2A6159.jpg",
+        "type": "image",
+        "title": "Traditional Creative Shoot (Studio) · R2A6159"
+      },
+      {
+        "url": "samples/studio/traditional-creative/_R2A6166.jpg",
+        "type": "image",
+        "title": "Traditional Creative Shoot (Studio) · R2A6166"
+      },
+      {
+        "url": "samples/studio/traditional-creative/_R2A6178.jpg",
+        "type": "image",
+        "title": "Traditional Creative Shoot (Studio) · R2A6178"
+      },
+      {
         "url": "samples/studio/traditional-creative/BRA (2).jpg",
+        "type": "image",
+        "title": "Traditional Creative Shoot (Studio) · BRA"
+      },
+      {
+        "url": "samples/studio/traditional-creative/BRA (5).jpg",
         "type": "image",
         "title": "Traditional Creative Shoot (Studio) · BRA"
       },
@@ -1315,6 +1425,11 @@ const PACKAGES_DATA = [
     "sampleFolder": "samples/studio/birthday-shoot",
     "samples": [
       {
+        "url": "samples/studio/birthday-shoot/BIRTHDAY REELS PACKAGE.mp4",
+        "type": "video",
+        "title": "Birthday Studio Glamour Shoot · BIRTHDAY REELS PACKAGE"
+      },
+      {
         "url": "samples/studio/birthday-shoot/cover.jpg",
         "type": "image",
         "title": "Birthday Studio Glamour Shoot · Cover"
@@ -1385,6 +1500,16 @@ const PACKAGES_DATA = [
         "title": "Celebratory Toast & Joyous Portrait"
       },
       {
+        "url": "samples/studio/birthday-shoot/DSC07329-.jpgljuhv-b_status.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC07329 .jpgljuhv b"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC07430-.jpg-k-gv_status.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC07430 .jpg k gv"
+      },
+      {
         "url": "samples/studio/birthday-shoot/DSC07430-.jpg-k-gv.jpg",
         "type": "image",
         "title": "Birthday Studio Glamour Shoot · DSC07430 .jpg k gv"
@@ -1398,6 +1523,11 @@ const PACKAGES_DATA = [
         "url": "samples/studio/birthday-shoot/DSC07469.jpghx.jpg",
         "type": "image",
         "title": "Birthday Studio Glamour Shoot · DSC07469.jpghx"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC07479.jpgfh_status.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC07479.jpgfh"
       },
       {
         "url": "samples/studio/birthday-shoot/DSC07485.jpg,l.jpg",
@@ -1622,6 +1752,16 @@ const PACKAGES_DATA = [
         "url": "samples/studio/kids-shoot/DSC09493.jpgffffd.jpg",
         "type": "image",
         "title": "Kids & Infant Studio Shoot · DSC09493.jpgffffd"
+      },
+      {
+        "url": "samples/studio/kids-shoot/Kids birthday reels.mp4",
+        "type": "video",
+        "title": "Kids & Infant Studio Shoot · Kids birthday reels"
+      },
+      {
+        "url": "samples/studio/kids-shoot/kids bithday shoot.jpeg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · Kids bithday shoot"
       }
     ],
     "options": [
@@ -1740,6 +1880,11 @@ const PACKAGES_DATA = [
         "url": "samples/outdoor/couple-shoot/IMG_5196.JPG",
         "type": "image",
         "title": "Outdoor Couple Lifestyle & Date Session · IMG 5196"
+      },
+      {
+        "url": "samples/outdoor/couple-shoot/work-2.jpg",
+        "type": "image",
+        "title": "Outdoor Couple Lifestyle & Date Session · Work 2"
       }
     ],
     "options": [
@@ -1930,14 +2075,44 @@ const PACKAGES_DATA = [
         "title": "Outdoor Natural &amp; Model Headshots · R2A2757"
       },
       {
+        "url": "samples/outdoor/outdoor-headshots/_R2A2783.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · R2A2783"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/_R2A2808.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · R2A2808"
+      },
+      {
         "url": "samples/outdoor/outdoor-headshots/_R2A2829.jpg",
         "type": "image",
         "title": "Outdoor Natural &amp; Model Headshots · R2A2829"
       },
       {
+        "url": "samples/outdoor/outdoor-headshots/_R2A2836.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · R2A2836"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/_R2A2842.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · R2A2842"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/_R2A2851.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · R2A2851"
+      },
+      {
         "url": "samples/outdoor/outdoor-headshots/cover.jpg",
         "type": "image",
         "title": "Outdoor Natural &amp; Model Headshots · Cover"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/DSC08911.JPG_(2)_1.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · DSC08911.JPG 1"
       },
       {
         "url": "samples/outdoor/outdoor-headshots/DSC08912_(2) 2.jpg",
@@ -1953,6 +2128,16 @@ const PACKAGES_DATA = [
         "url": "samples/outdoor/outdoor-headshots/FAITH-6.jpg",
         "type": "image",
         "title": "Fresh Outdoor Daylight Expression"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/FAITH-7.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · FAITH 7"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/FAITH-8.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · FAITH 8"
       },
       {
         "url": "samples/outdoor/outdoor-headshots/FAITH-9.jpg",
@@ -2075,6 +2260,11 @@ const PACKAGES_DATA = [
         "title": "Outdoor Natural &amp; Model Headshots · O13A0651"
       },
       {
+        "url": "samples/outdoor/outdoor-headshots/SAG_1203.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · SAG 1203"
+      },
+      {
         "url": "samples/outdoor/outdoor-headshots/SAG_1255.jpg",
         "type": "image",
         "title": "Outdoor Natural &amp; Model Headshots · SAG 1255"
@@ -2090,6 +2280,11 @@ const PACKAGES_DATA = [
         "title": "Outdoor Natural &amp; Model Headshots · SAG 1261"
       },
       {
+        "url": "samples/outdoor/outdoor-headshots/SAG_1267.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · SAG 1267"
+      },
+      {
         "url": "samples/outdoor/outdoor-headshots/SAG_1270.jpg",
         "type": "image",
         "title": "Outdoor Natural &amp; Model Headshots · SAG 1270"
@@ -2103,6 +2298,16 @@ const PACKAGES_DATA = [
         "url": "samples/outdoor/outdoor-headshots/SAG_1288.jpg",
         "type": "image",
         "title": "Outdoor Natural &amp; Model Headshots · SAG 1288"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/SAG_1293.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · SAG 1293"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/SAG_1296.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · SAG 1296"
       }
     ],
     "options": [
@@ -3361,6 +3566,11 @@ const PACKAGES_DATA = [
         "url": "samples/outdoor/pre-wedding/IMG_5202.JPG",
         "type": "image",
         "title": "Pre-Wedding & Love Story · IMG 5202"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/work-3.jpg",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · Work 3"
       }
     ],
     "options": [
@@ -3415,8 +3625,8 @@ const PACKAGES_DATA = [
     "catLabel": "Weddings & Matrimony",
     "title": "Wedding Shoot (Full-Day Coverage)",
     "tagline": "Complete photo and cinema production for your holy matrimony and reception",
-    "image": "samples/events/wedding-coverage/BASIC WEDDING PACKAGES.jpg",
-    "imageHighRes": "samples/events/wedding-coverage/BASIC WEDDING PACKAGES.jpg",
+    "image": "samples/events/wedding-coverage/cover_thumb.jpg",
+    "imageHighRes": "samples/events/wedding-coverage/cover.jpg",
     "badge": "💍 Holy Matrimony",
     "turnaround": "48hr Teaser · Full Gallery in 3 Weeks",
     "depositRate": "80% booking deposit required",
@@ -3426,6 +3636,16 @@ const PACKAGES_DATA = [
         "url": "samples/events/wedding-coverage/BASIC WEDDING PACKAGES.jpg",
         "type": "image",
         "title": "Basic Wedding Packages Rate Sheet"
+      },
+      {
+        "url": "samples/events/wedding-coverage/cover.jpg",
+        "type": "image",
+        "title": "Wedding Shoot (Full-Day Coverage) · Cover"
+      },
+      {
+        "url": "samples/events/wedding-coverage/work-1.jpg",
+        "type": "image",
+        "title": "Wedding Shoot (Full-Day Coverage) · Work 1"
       }
     ],
     "options": [
@@ -3490,7 +3710,8 @@ const PACKAGES_DATA = [
           "Custom Wooden USB Keepsake Box with All Raw & Edited Files"
         ]
       }
-    ]
+    ],
+    "imageWebp": "samples/events/wedding-coverage/cover_thumb.webp"
   },
   {
     "id": "traditional-wedding",
@@ -3507,6 +3728,21 @@ const PACKAGES_DATA = [
     "depositRate": "80% booking deposit required",
     "sampleFolder": "samples/events/traditional-wedding",
     "samples": [
+      {
+        "url": "samples/events/traditional-wedding/BRA (2).jpg",
+        "type": "image",
+        "title": "Traditional Wedding (Ruracio) · BRA"
+      },
+      {
+        "url": "samples/events/traditional-wedding/BRA (5).jpg",
+        "type": "image",
+        "title": "Traditional Wedding (Ruracio) · BRA"
+      },
+      {
+        "url": "samples/events/traditional-wedding/BRA (17).jpg",
+        "type": "image",
+        "title": "Traditional Wedding (Ruracio) · BRA"
+      },
       {
         "url": "samples/events/traditional-wedding/BRA (22).jpg",
         "type": "image",
@@ -5209,6 +5445,36 @@ const PACKAGES_DATA = [
         "title": "Convocation Milestone Hero Portrait"
       },
       {
+        "url": "samples/events/graduation-events/DSC09938.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · DSC09938"
+      },
+      {
+        "url": "samples/events/graduation-events/DSC09940.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · DSC09940"
+      },
+      {
+        "url": "samples/events/graduation-events/DSC09941.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · DSC09941"
+      },
+      {
+        "url": "samples/events/graduation-events/DSC09942.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · DSC09942"
+      },
+      {
+        "url": "samples/events/graduation-events/DSC09943.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · DSC09943"
+      },
+      {
+        "url": "samples/events/graduation-events/DSC09945.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · DSC09945"
+      },
+      {
         "url": "samples/events/graduation-events/PRI_4998.jpg",
         "type": "image",
         "title": "Campus Convocation Walk"
@@ -6544,7 +6810,27 @@ const PACKAGES_DATA = [
     "sampleFolder": "samples/outdoor/traditional-creative",
     "samples": [
       {
+        "url": "samples/outdoor/traditional-creative/_R2A6159.jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · R2A6159"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/_R2A6166.jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · R2A6166"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/_R2A6178.jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · R2A6178"
+      },
+      {
         "url": "samples/outdoor/traditional-creative/BRA (2).jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · BRA"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/BRA (5).jpg",
         "type": "image",
         "title": "Traditional Cultural Shoot (Outdoor) · BRA"
       },
