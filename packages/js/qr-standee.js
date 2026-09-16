@@ -1,54 +1,80 @@
 /**
- * Studio QR Standee & Digital Counter Pass Engine
- * Supports multi-destination QR codes, on-screen scanning, direct PNG download,
- * and boardroom/counter printable standee cards.
+ * Studio QR Smart Poster & Digital Rate Card Engine
+ * Supports fixed A4 museum-grade printable posters, domain switching (Vercel, Official Domain),
+ * live URL verification, on-screen scanning, direct PNG download, and desk standees.
  */
 
 (function() {
   let qrCodeInstance = null;
   let currentQrUrl = "";
   let currentTargetKey = "full";
-
-  function getBaseUrl() {
-    return window.location.origin;
-  }
+  let currentDomainMode = "auto";
+  let customBaseUrl = "";
 
   const QR_DESTINATIONS = {
     full: {
       path: "/packages",
       title: "🌟 Full Studio Rate Card & Official Packages",
+      badge: "🌟 FULL STUDIO RATE CARD & ALL PACKAGES",
       sub: "Instant Rates · Deliverable Specs · Book Direct on WhatsApp"
     },
     graduation: {
       path: "/packages/graduation-shoot.html",
       title: "🎓 Graduation Milestone Shoots & Regalia",
+      badge: "🎓 GRADUATION MILESTONE PORTAL",
       sub: "Solo Gowns, Mortarboards, Scrolls & Family Portraits"
     },
     weddings: {
       path: "/packages/wedding-shoot.html",
       title: "💍 Matrimony Cinema & Wedding Photography",
+      badge: "💍 WEDDINGS & MATRIMONY COVERAGE",
       sub: "Full-Day Coverage, 4K Drone, Keepsake Photobooks & Teasers"
     },
     birthdays: {
       path: "/packages/birthday-shoots.html",
       title: "🎂 Milestone Birthday Studio Shoots",
+      badge: "🎂 BIRTHDAY & MILESTONE GLAM",
       sub: "Luxury Studio Lighting, Outfit Changes & High-End Edits"
     },
     headshots: {
       path: "/packages/headshots.html",
       title: "💼 Executive Headshots & Corporate Profiles",
+      badge: "💼 EXECUTIVE & CORPORATE HEADSHOTS",
       sub: "LinkedIn, Company Boardrooms, CVs & Personal Branding"
     },
     walkin: {
       path: "/packages/index.html?desk=walkin",
       title: "⚡ Walk-in Reception Desk Portal",
+      badge: "⚡ INSTANT RECEPTION WALK-IN DESK",
       sub: "Instant Walk-in Sessions & Cashless Digital Receipts"
     }
   };
 
+  function getBaseUrl() {
+    if (currentDomainMode === "official") {
+      return "https://laureignstudios.co.ke";
+    }
+    if (currentDomainMode === "vercel") {
+      if (window.location.hostname.includes("vercel.app")) {
+        return window.location.origin;
+      }
+      return "https://laureign-studios.vercel.app";
+    }
+    if (currentDomainMode === "custom" && customBaseUrl) {
+      return customBaseUrl.replace(/\/$/, "");
+    }
+    // Auto-detect
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:") {
+      // When testing locally, default to live domain so physical phone scans work!
+      return "https://laureignstudios.co.ke";
+    }
+    return window.location.origin;
+  }
+
   function computeTargetUrl(key) {
     const item = QR_DESTINATIONS[key] || QR_DESTINATIONS.full;
-    return getBaseUrl() + item.path;
+    const base = getBaseUrl();
+    return base + item.path;
   }
 
   function renderQrCode(url) {
@@ -58,15 +84,15 @@
     container.innerHTML = "";
 
     if (typeof QRCode === "undefined") {
-      container.innerHTML = `<div style="padding:20px; color:#ef4444; font-size:12px;">QR Library loading... Please check internet or refresh.</div>`;
+      container.innerHTML = `<div style="padding:20px; color:#ef4444; font-size:12px; text-align:center;">QR Library loading... Please check connection or refresh.</div>`;
       return;
     }
 
     try {
       qrCodeInstance = new QRCode(container, {
         text: url,
-        width: 156,
-        height: 156,
+        width: 180,
+        height: 180,
         colorDark: "#000000",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H
@@ -76,11 +102,30 @@
     }
   }
 
-  function updateDestinationText(key) {
+  function updateDisplayDetails(key) {
     const item = QR_DESTINATIONS[key] || QR_DESTINATIONS.full;
+    
+    // Poster destination badge
+    const badgeEl = document.getElementById("qrDestinationBadge");
+    if (badgeEl) {
+      badgeEl.textContent = item.badge;
+    }
+
+    // Poster destination subtext
     const destEl = document.getElementById("qrDestinationText");
     if (destEl) {
       destEl.textContent = item.sub;
+    }
+
+    // Live URL Verification strip
+    const urlDisplay = document.getElementById("qrEncodedUrlDisplay");
+    if (urlDisplay) {
+      urlDisplay.textContent = currentQrUrl;
+    }
+
+    const testBtn = document.getElementById("qrTestLinkBtn");
+    if (testBtn) {
+      testBtn.href = currentQrUrl;
     }
   }
 
@@ -94,12 +139,16 @@
       select.value = targetKey;
     }
 
+    const domainSelect = document.getElementById("qrDomainSelect");
+    if (domainSelect) {
+      domainSelect.value = currentDomainMode;
+    }
+
     currentQrUrl = computeTargetUrl(targetKey);
-    updateDestinationText(targetKey);
+    updateDisplayDetails(targetKey);
     renderQrCode(currentQrUrl);
 
     modal.style.display = "flex";
-    // Trigger reflow for transition
     void modal.offsetWidth;
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
@@ -123,7 +172,26 @@
   function onQrTargetChange(targetKey) {
     currentTargetKey = targetKey;
     currentQrUrl = computeTargetUrl(targetKey);
-    updateDestinationText(targetKey);
+    updateDisplayDetails(targetKey);
+    renderQrCode(currentQrUrl);
+  }
+
+  function onQrDomainChange(domainKey) {
+    currentDomainMode = domainKey;
+    const customBox = document.getElementById("qrCustomUrlBox");
+    if (customBox) {
+      customBox.style.display = domainKey === "custom" ? "block" : "none";
+    }
+
+    currentQrUrl = computeTargetUrl(currentTargetKey);
+    updateDisplayDetails(currentTargetKey);
+    renderQrCode(currentQrUrl);
+  }
+
+  function onCustomUrlInput(val) {
+    customBaseUrl = val.trim();
+    currentQrUrl = computeTargetUrl(currentTargetKey);
+    updateDisplayDetails(currentTargetKey);
     renderQrCode(currentQrUrl);
   }
 
@@ -160,7 +228,7 @@
 
     const a = document.createElement("a");
     a.href = dataUrl;
-    a.download = `Laureign_Studios_QR_${currentTargetKey}.png`;
+    a.download = `Laureign_Studios_A4_Poster_QR_${currentTargetKey}.png`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -171,7 +239,7 @@
     navigator.clipboard.writeText(currentQrUrl).then(() => {
       const toast = document.getElementById("invToastNotice");
       if (toast) {
-        toast.textContent = "✓ Link copied! Ready to share or embed in print.";
+        toast.textContent = "✓ Link copied! Ready to share or embed.";
         toast.classList.add("show");
         setTimeout(() => toast.classList.remove("show"), 3200);
       } else {
@@ -210,6 +278,8 @@
   window.openQrModal = openQrModal;
   window.closeQrModal = closeQrModal;
   window.onQrTargetChange = onQrTargetChange;
+  window.onQrDomainChange = onQrDomainChange;
+  window.onCustomUrlInput = onCustomUrlInput;
   window.printQrStandee = printQrStandee;
   window.downloadQrPng = downloadQrPng;
   window.copyQrTargetUrl = copyQrTargetUrl;

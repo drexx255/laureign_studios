@@ -2220,46 +2220,61 @@ document.addEventListener("DOMContentLoaded", () => {
     return `DATE: ${day} ${mon} ${yr}`;
   }
 
-  // Official Studio Quotation Mode (Receipt mode removed per client direction)
+  // Studio Document Mode: Quotation / Proforma Estimate vs Official Receipt
   function setInvoiceMode(mode) {
-    invoiceMode = "quotation";
+    invoiceMode = mode === "receipt" ? "receipt" : "quotation";
+
+    const btnQuote = document.getElementById("btnModeQuotation");
+    const btnReceipt = document.getElementById("btnModeReceipt");
+    const receiptSettings = document.getElementById("invReceiptSettings");
+    if (btnQuote) btnQuote.classList.toggle("active", invoiceMode === "quotation");
+    if (btnReceipt) btnReceipt.classList.toggle("active", invoiceMode === "receipt");
+    if (receiptSettings) receiptSettings.style.display = invoiceMode === "receipt" ? "block" : "none";
 
     const docBadge = document.getElementById("invDisplayDocType");
     const refLabel = document.getElementById("invDisplayRefLabel");
     const validityItem = document.getElementById("invValidityMetaItem");
-    const verifiedBanner = document.getElementById("invReceiptVerifiedBanner");
     const sealStamp = document.getElementById("invSealStamp");
     const termsTitle = document.getElementById("invTermsTitle");
     const termsNote = document.getElementById("invTermsNote");
     const btnPdfText = document.getElementById("btnDownloadPdfText");
     const btnWaText = document.getElementById("btnSendWaText");
 
-    if (currentInvoiceRef.startsWith("LS-REC-")) {
-      currentInvoiceRef = currentInvoiceRef.replace("LS-REC-", "LS-QUO-");
-    } else if (!currentInvoiceRef.startsWith("LS-QUO-")) {
-      const randNum = Math.floor(1000 + Math.random() * 9000);
-      currentInvoiceRef = `LS-QUO-2026-${randNum}`;
-    }
+    if (invoiceMode === "receipt") {
+      if (currentInvoiceRef.startsWith("LS-QUO-")) {
+        currentInvoiceRef = currentInvoiceRef.replace("LS-QUO-", "LS-REC-");
+      } else if (!currentInvoiceRef.startsWith("LS-REC-")) {
+        const randNum = Math.floor(1000 + Math.random() * 9000);
+        currentInvoiceRef = `LS-REC-2026-${randNum}`;
+      }
 
-    if (docBadge) docBadge.textContent = "OFFICIAL PROFORMA RATE PROPOSAL";
-    if (refLabel) refLabel.textContent = "QUOTATION REF:";
-    if (validityItem) validityItem.style.display = "flex";
-    if (verifiedBanner) verifiedBanner.style.display = "none";
-    if (sealStamp) sealStamp.classList.remove("paid-stamp");
+      if (docBadge) docBadge.textContent = "OFFICIAL PAYMENT RECEIPT & TAX CLEARANCE";
+      if (refLabel) refLabel.textContent = "RECEIPT REF:";
+      if (validityItem) validityItem.style.display = "none";
+      if (sealStamp) sealStamp.classList.add("paid-stamp");
 
-    if (termsTitle) termsTitle.textContent = "Studio Terms & Production Policies";
-    if (termsNote) termsNote.textContent = "* Official studio quotation & rate proposal. Payment of the booking deposit confirms your session date and creative crew allocation. The remaining balance is payable upon master gallery delivery.";
-    const promiseEl = document.getElementById("invBrandPromise");
-    if (promiseEl) {
-      promiseEl.innerHTML = `
-        <div class="promise-title">✨ LAUREIGN STUDIOS OFFICIAL PROMISE</div>
-        <p class="promise-text">Every milestone. Captured with precision. Curated, museum-grade photography &amp; bespoke cinematography by Laureign Studios.</p>
-      `;
+      if (termsTitle) termsTitle.textContent = "Production Timeline & Delivery Policies";
+      if (termsNote) termsNote.textContent = "* Official studio payment receipt. Payment verified via cashless M-Pesa / Bank remittance. High-resolution master deliverables processed per agreed schedule.";
+      if (btnPdfText) btnPdfText.textContent = "📥 Download Official Receipt (PDF)";
+      if (btnWaText) btnWaText.textContent = "📲 Send Receipt via WhatsApp";
+    } else {
+      if (currentInvoiceRef.startsWith("LS-REC-")) {
+        currentInvoiceRef = currentInvoiceRef.replace("LS-REC-", "LS-QUO-");
+      } else if (!currentInvoiceRef.startsWith("LS-QUO-")) {
+        const randNum = Math.floor(1000 + Math.random() * 9000);
+        currentInvoiceRef = `LS-QUO-2026-${randNum}`;
+      }
+
+      if (docBadge) docBadge.textContent = "OFFICIAL PROFORMA RATE CARD";
+      if (refLabel) refLabel.textContent = "QUOTATION REF:";
+      if (validityItem) validityItem.style.display = "flex";
+      if (sealStamp) sealStamp.classList.remove("paid-stamp");
+
+      if (termsTitle) termsTitle.textContent = "Studio Terms & Production Policies";
+      if (termsNote) termsNote.textContent = "* Official studio quotation & rate proposal. Payment of the booking deposit confirms your session date and creative crew allocation. Remaining balance payable upon master delivery.";
+      if (btnPdfText) btnPdfText.textContent = "📥 Download Quotation (PDF)";
+      if (btnWaText) btnWaText.textContent = "📲 Send Quotation via WhatsApp";
     }
-    const ackNote = document.getElementById("invAckNote");
-    if (ackNote) ackNote.textContent = "Official client quotation. Payment of booking deposit signifies reservation of date and crew. Thank you for choosing Laureign Studios!";
-    if (btnPdfText) btnPdfText.textContent = "📥 Download Quotation (PDF)";
-    if (btnWaText) btnWaText.textContent = "📲 Send Quotation via WhatsApp";
 
     updateInvoiceDisplay();
   }
@@ -2939,7 +2954,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const elVal = document.getElementById("invDisplayValidity");
     if (elRef) elRef.textContent = currentInvoiceRef;
     if (elDate) elDate.textContent = invoiceDateIssued;
-    if (elVal) elVal.textContent = invoiceValidity;
+    const invValInput = document.getElementById("invValidityInput");
+    const userValidity = invValInput && invValInput.value.trim();
+    if (elVal) elVal.textContent = userValidity || invoiceValidity || "14 Days";
 
     // Client & Assignment Details
     const clientVal = (invClientInput && invClientInput.value.trim()) || "Valued Client";
@@ -3364,6 +3381,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const validDate = new Date();
     validDate.setDate(today.getDate() + 14);
     invoiceValidity = `${formatExecutiveDate(validDate)} (14 Days)`;
+    const elValInput = document.getElementById("invValidityInput");
+    if (elValInput && !elValInput.value) {
+      elValInput.value = "14 Days (Standard Offer)";
+    }
 
     if (invoiceSessions.length === 0) {
       addInvoiceSession("graduation", 0, false);

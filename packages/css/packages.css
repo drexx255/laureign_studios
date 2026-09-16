@@ -338,22 +338,25 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #FFFFFF;
-  font-size: 12.5px;
-  font-weight: 600;
-  padding: 8px 16px;
+  background: #22c55e;
+  border: 1px solid #16a34a;
+  color: #000000 !important;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 8px 18px;
   border-radius: var(--radius-full);
   text-decoration: none;
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
   transition: var(--transition);
+  white-space: nowrap;
 }
 
 .header-cta-cal:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.28);
-  color: #FFFFFF;
+  background: #16a34a;
+  border-color: #15803d;
+  color: #ffffff !important;
   transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(34, 197, 94, 0.45);
 }
 
 .header-cta-wa {
@@ -381,6 +384,30 @@ img {
   width: 16px;
   height: 16px;
   fill: #000000 !important;
+}
+
+/* Official Rate Card desktop nav button */
+.header-nav-rate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  padding: 8px 16px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-nav-rate-btn:hover {
+  background: rgba(34, 197, 94, 0.18);
+  border-color: #22c55e;
+  color: #4ade80;
+  transform: translateY(-1px);
 }
 
 /* Mobile toggle & drawer for rate card header */
@@ -541,6 +568,65 @@ img {
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+/* Official Rate Card Eyebrow (Well-padded above 'Every milestone. Captured with precision.') */
+.hero-rate-card-eyebrow-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 22px;
+  padding: 6px 0 2px;
+}
+
+.hero-rate-card-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 22px;
+  border-radius: var(--radius-full);
+  background: rgba(34, 197, 94, 0.12);
+  border: 1.5px solid rgba(74, 222, 128, 0.38);
+  box-shadow: 0 4px 18px rgba(34, 197, 94, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  text-decoration: none;
+  color: #ffffff;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-rate-card-pill:hover {
+  background: rgba(34, 197, 94, 0.22);
+  border-color: #22c55e;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(34, 197, 94, 0.24);
+}
+
+.hero-emerald-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  animation: pulseGreenDot 2s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+.hero-rate-pill-text {
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 2.2px;
+  color: #4ade80;
+  text-transform: uppercase;
+}
+
+.hero-rate-pill-arr {
+  color: #86efac;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.hero-rate-card-pill:hover .hero-rate-pill-arr {
+  transform: translate(2px, -2px);
 }
 
 .hero-tag {
@@ -2670,8 +2756,15 @@ img {
     display: flex !important;
     flex-shrink: 0;
   }
-  /* Minimal Mobile Header: Hamburger covers Book on Calendar, WhatsApp, Theme Switcher & Quotation */
-  .header-cta-cal,
+  /* Minimal Mobile Header: Official Rate Card came out of mobile nav to above 'Every milestone' */
+  .header-nav-rate-btn {
+    display: none !important;
+  }
+  .header-cta-cal {
+    display: inline-flex !important;
+    padding: 6px 14px !important;
+    font-size: 12px !important;
+  }
   .header-cta-wa,
   .header-right-btns .hero-btn-wa,
   .header-right-btns .pkg-rate-pill,

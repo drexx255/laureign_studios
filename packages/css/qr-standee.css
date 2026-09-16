@@ -1,14 +1,15 @@
 /* ============================================================
-   APPLE DESIGN SYSTEM: STUDIO QR PLAQUE & COUNTER STANDEE
-   Palette: Obsidian Dark (#000000 / #090a0f), Studio Emerald Green (#22c55e), Crisp White (#ffffff)
-   Layout: Titanium Acrylic Plaque with Recessed Center QR Bezel
+   LAUREIGN STUDIOS OFFICIAL A4 SMART POSTER & DIGITAL RATE CARD
+   Style: Haute Couture Obsidian & Brushed Titanium (#06080d),
+   Laureign Signature Emerald Green (#22c55e / #16a34a / #15803d),
+   Fixed-Size True A4 Precision (794px × 1123px), Museum-Grade Print.
    ============================================================ */
 
 .qr-modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 10005;
-  background: rgba(0, 0, 0, 0.88);
+  background: rgba(0, 0, 0, 0.9);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   display: flex;
@@ -26,13 +27,14 @@
   visibility: visible;
 }
 
-.qr-modal-container {
-  background: #08090d;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+.qr-modal-container.a4-poster-mode {
+  background: #090b10;
+  border: 1px solid rgba(34, 197, 94, 0.25);
   border-radius: 24px;
-  max-width: 480px;
-  width: 100%;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 30px rgba(34, 197, 94, 0.08);
+  max-width: 940px;
+  width: 96vw;
+  max-height: 94vh;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.98), 0 0 40px rgba(34, 197, 94, 0.12);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -41,47 +43,48 @@
 }
 
 @keyframes appleQrPop {
-  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .qr-modal-header {
-  padding: 18px 24px 14px;
+  padding: 16px 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  background: rgba(14, 15, 22, 0.6);
+  background: rgba(14, 17, 24, 0.85);
+  flex-shrink: 0;
 }
 
 .qr-header-info h3 {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-  font-size: 18px;
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
   font-weight: 700;
   color: #ffffff;
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 0 0 3px;
+  margin: 0 0 2px;
   letter-spacing: -0.01em;
 }
 
 .qr-header-info p {
   font-size: 12px;
-  color: #a1a1aa;
-  line-height: 1.4;
+  color: #94a3b8;
+  line-height: 1.35;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .qr-close-btn {
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #a1a1aa;
-  font-size: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #94a3b8;
+  font-size: 22px;
   line-height: 1;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -92,23 +95,37 @@
 }
 
 .qr-close-btn:hover {
-  background: rgba(239, 68, 68, 0.2);
+  background: rgba(239, 68, 68, 0.25);
   border-color: #ef4444;
   color: #ffffff;
 }
 
 .qr-modal-body {
-  padding: 18px 22px 22px;
+  padding: 16px 22px 22px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
+  overflow-y: auto;
+  flex: 1;
 }
 
-/* Selector row */
-.qr-target-selector-row {
+/* Controls Toolbar (Destination + Domain Selector) */
+.qr-controls-toolbar {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 680px) {
+  .qr-controls-toolbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+.qr-ctrl-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
 }
 
 .qr-select-label {
@@ -117,18 +134,18 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #4ade80;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .qr-select-control {
   width: 100%;
-  background: #11131a;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
+  background: #11141c;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
   color: #ffffff;
-  padding: 10px 14px;
-  font-size: 13px;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  padding: 9px 12px;
+  font-size: 12.5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   outline: none;
   cursor: pointer;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -139,256 +156,68 @@
   box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
 }
 
-/* ============================================================
-   THE TITANIUM / OBSIDIAN PLAQUE (STAND-ALONE PRINTABLE OBJECT)
-   ============================================================ */
-.qr-standee-card-wrapper {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.qr-standee-card {
-  background: linear-gradient(180deg, #11131a 0%, #08090d 100%);
-  color: #ffffff;
-  border-radius: 24px;
-  padding: 22px 20px 18px;
-  width: 100%;
-  max-width: 350px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), inset 0 1px 1px rgba(255, 255, 255, 0.22), 0 0 30px rgba(34, 197, 94, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Subtle carbon dot pattern inside card */
-.qr-standee-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 14px 14px;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-/* Top Row: Brand Info + Phone + Digital Chip */
-.qr-card-top-row {
+/* Real-Time URL Verification Banner */
+.qr-url-verify-strip {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
-  position: relative;
-  z-index: 2;
-}
-
-.qr-card-brand-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.qr-card-logo {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #22c55e;
-  padding: 2px;
-  background: #000000;
-  box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
-}
-
-.qr-card-title-group {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.qr-card-name {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  color: #ffffff;
-  margin: 0;
-  line-height: 1.2;
-}
-
-.qr-card-phone {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 10px;
+  padding: 8px 14px;
   font-size: 11.5px;
-  font-weight: 600;
-  color: #4ade80;
-  letter-spacing: 0.02em;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", monospace, sans-serif;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.qr-card-chip-icon {
+.qr-url-info {
   display: flex;
   align-items: center;
-  justify-content: center;
-  opacity: 0.85;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-/* Scan Prompt Pill */
-.qr-card-scan-label {
+.qr-url-tag {
+  font-weight: 800;
+  color: #4ade80;
+  letter-spacing: 0.05em;
+  font-size: 10.5px;
+}
+
+.qr-url-code {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3px 8px;
+  border-radius: 6px;
+  color: #e2e8f0;
+  font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+  font-size: 11px;
+  word-break: break-all;
+}
+
+.qr-url-test-btn {
+  background: #15803d;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  background: rgba(34, 197, 94, 0.10);
-  color: #4ade80;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  padding: 4px 12px;
-  border-radius: 9999px;
-  margin: 0 auto 10px;
-  border: 1px solid rgba(74, 222, 128, 0.3);
-  text-transform: uppercase;
-  position: relative;
-  z-index: 2;
+  gap: 4px;
+  transition: background 0.15s ease;
 }
 
-.qr-scan-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 8px #22c55e;
-  animation: pulseGreenDot 2s infinite ease-in-out;
+.qr-url-test-btn:hover {
+  background: #16a34a;
 }
 
-@keyframes pulseGreenDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
-}
-
-/* ============================================================
-   RECESSED CENTER BEZEL: QR SITS STRICTLY INSIDE THE POSTER
-   ============================================================ */
-.qr-card-bezel-frame {
-  position: relative;
-  z-index: 2;
-  background: radial-gradient(circle at 50% 50%, #0d1017 0%, #050608 100%);
-  border: 1.5px solid rgba(34, 197, 94, 0.4);
-  border-radius: 20px;
-  padding: 12px;
-  margin: 0 auto 12px;
-  width: 220px;
-  height: 220px;
-  box-sizing: border-box !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: inset 0 4px 16px rgba(0, 0, 0, 0.95), 0 0 25px rgba(34, 197, 94, 0.08);
-  overflow: hidden;
-}
-
-/* Scanner Corner Reticles (The 4 corners) */
-.qr-scanner-reticle {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: #22c55e;
-  border-style: solid;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.reticle-tl { top: 8px; left: 8px; border-width: 2.5px 0 0 2.5px; border-top-left-radius: 6px; }
-.reticle-tr { top: 8px; right: 8px; border-width: 2.5px 2.5px 0 0; border-top-right-radius: 6px; }
-.reticle-bl { bottom: 8px; left: 8px; border-width: 0 0 2.5px 2.5px; border-bottom-left-radius: 6px; }
-.reticle-br { bottom: 8px; right: 8px; border-width: 0 2.5px 2.5px 0; border-bottom-right-radius: 6px; }
-
-/* The White QR Capsule completely inside the bezel */
-.qr-code-viewport {
-  background: #ffffff;
-  padding: 8px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
-  width: 172px;
-  height: 172px;
-  box-sizing: border-box !important;
-  position: relative;
-  overflow: hidden;
-}
-
-/* CRITICAL: Hide canvas so it doesn't double-render and push the image out of the box */
-.qr-code-viewport canvas {
-  display: none !important;
-}
-
-.qr-code-viewport img {
-  display: block !important;
-  width: 156px !important;
-  height: 156px !important;
-  border-radius: 4px;
-  margin: auto !important;
-  object-fit: contain !important;
-}
-
-.qr-card-destination {
-  font-size: 11px;
-  color: #a1a1aa;
-  line-height: 1.35;
-  margin: 0 0 10px;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-}
-
-/* ============================================================
-   BOTTOM BADGES PLATE: M-PESA & CASHLESS VERIFIED
-   ============================================================ */
-.qr-card-bottom-plate {
-  position: relative;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 8px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.qr-plate-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 11.5px;
-  color: #e4e4e7;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-}
-
-.qr-plate-divider {
-  width: 1px;
-  height: 12px;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.qr-plate-sub {
-  font-size: 9.5px;
-  letter-spacing: 0.1em;
-  color: #71717a;
-  text-align: center;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-/* Actions Toolbar */
+/* Action Toolbar */
 .qr-actions-toolbar {
-  display: grid;
-  grid-template-columns: 1.2fr 1.2fr 0.9fr;
+  display: flex;
   gap: 8px;
-  margin-top: 2px;
+  flex-wrap: wrap;
 }
 
 .qr-btn {
@@ -396,21 +225,20 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 11px 12px;
-  border-radius: 12px;
+  padding: 9px 14px;
+  border-radius: 10px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   border: none;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .qr-btn-print {
   background: #22c55e;
   color: #000000;
-  font-weight: 700;
-  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
 }
 
 .qr-btn-print:hover {
@@ -440,12 +268,496 @@
 }
 
 /* ============================================================
-   @MEDIA PRINT: COUNTER STANDEE PLAQUE ON WHITE PAPER
+   A4 POSTER VIEWPORT PAN / SCROLL WRAPPER
+   Ensures the fixed 794px A4 sheet scrolls smoothly on mobile/tablets
+   ============================================================ */
+.qr-poster-viewport-wrapper {
+  background: #040508;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px 16px;
+  overflow-x: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 480px;
+}
+
+@media (max-width: 860px) {
+  .qr-poster-viewport-wrapper {
+    justify-content: flex-start;
+  }
+}
+
+/* ============================================================
+   THE FIXED A4 SMART STUDIO POSTER SHEET (794px × 1123px)
+   ============================================================ */
+.qr-a4-poster-sheet {
+  width: 794px !important;
+  min-width: 794px !important;
+  max-width: 794px !important;
+  min-height: 1123px !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  margin: 0 auto !important;
+  background: radial-gradient(circle at 50% 12%, #13271b 0%, #0d131c 38%, #06080d 100%) !important;
+  border: 2px solid rgba(34, 197, 94, 0.45) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.95), inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 0 45px rgba(34, 197, 94, 0.08) !important;
+  padding: 34px 38px 28px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  color: #ffffff !important;
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  line-height: 1.45;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+/* Subtle micro-linen / security watermark across poster */
+.qr-a4-poster-sheet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(34, 197, 94, 0.02) 0%, transparent 45%, rgba(34, 197, 94, 0.02) 100%);
+  background-size: 20px 20px, 100% 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.qr-a4-poster-sheet > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Decorative Brass Corner Rivets */
+.poster-corner-rivet {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fde047 0%, #ca8a04 60%, #854d0e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  z-index: 4;
+}
+
+.rivet-tl { top: 14px; left: 14px; }
+.rivet-tr { top: 14px; right: 14px; }
+.rivet-bl { bottom: 14px; left: 14px; }
+.rivet-br { bottom: 14px; right: 14px; }
+
+/* ============================================================
+   POSTER HEADER: STUDIO BRAND IDENTITY & BADGE
+   ============================================================ */
+.poster-header-section {
+  border-bottom: 2px solid rgba(34, 197, 94, 0.4);
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.poster-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.poster-studio-logo {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid #22c55e;
+  padding: 3px;
+  background: #000000;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.35);
+  flex-shrink: 0;
+}
+
+.poster-brand-text {
+  text-align: left;
+}
+
+.poster-brand-eyebrow {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #4ade80;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.poster-studio-title {
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.poster-studio-subtitle {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #cbd5e1;
+  margin-top: 3px;
+  text-transform: uppercase;
+}
+
+.poster-location-bar {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 10px;
+  color: #94a3b8;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+/* ============================================================
+   HERO SMART POSTER PROMPT
+   "TO VIEW OUR PACKAGES & RATES, PLEASE SCAN BELOW"
+   ============================================================ */
+.poster-hero-prompt {
+  text-align: center;
+  margin-bottom: 16px;
+  padding: 0 10px;
+}
+
+.poster-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #4ade80;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.poster-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  animation: pulseGreenDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseGreenDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+.poster-hero-title {
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  margin: 0 0 6px;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.poster-hero-desc {
+  font-size: 12px;
+  color: #cbd5e1;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* ============================================================
+   CENTERPIECE: RECESSED QR CODE PLAQUE
+   ============================================================ */
+.poster-qr-centerpiece {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.poster-qr-frame {
+  position: relative;
+  background: radial-gradient(circle at 50% 50%, #0d1118 0%, #05070a 100%);
+  border: 2px solid rgba(34, 197, 94, 0.5);
+  border-radius: 22px;
+  padding: 16px;
+  width: 250px;
+  height: 250px;
+  box-sizing: border-box !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.95), 0 0 35px rgba(34, 197, 94, 0.15);
+  margin-bottom: 10px;
+}
+
+/* Scanner Corner Reticles */
+.qr-scanner-reticle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: #22c55e;
+  border-style: solid;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.reticle-tl { top: 10px; left: 10px; border-width: 3px 0 0 3px; border-top-left-radius: 6px; }
+.reticle-tr { top: 10px; right: 10px; border-width: 3px 3px 0 0; border-top-right-radius: 6px; }
+.reticle-bl { bottom: 10px; left: 10px; border-width: 0 0 3px 3px; border-bottom-left-radius: 6px; }
+.reticle-br { bottom: 10px; right: 10px; border-width: 0 3px 3px 0; border-bottom-right-radius: 6px; }
+
+/* The White QR Capsule strictly inside frame */
+.poster-qr-viewport {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65);
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.poster-qr-viewport canvas {
+  display: none !important;
+}
+
+.poster-qr-viewport img {
+  display: block !important;
+  width: 180px !important;
+  height: 180px !important;
+  border-radius: 4px;
+  margin: auto !important;
+  object-fit: contain !important;
+}
+
+/* QR Destination Badge & Instructions */
+.poster-qr-meta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.poster-dest-pill {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  color: #4ade80;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.poster-dest-sub {
+  font-size: 11px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.poster-scan-features {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.dot-sep {
+  color: #334155;
+}
+
+/* ============================================================
+   POSTER CATALOG HIGHLIGHTS GRID (WHAT'S INSIDE WHEN SCANNED)
+   ============================================================ */
+.poster-catalog-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-bottom: 16px;
+}
+
+.poster-cat-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-left: 3px solid #22c55e;
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.cat-card-icon {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.cat-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cat-card-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+
+.cat-card-desc {
+  font-size: 10.5px;
+  color: #94a3b8;
+  line-height: 1.35;
+}
+
+.cat-card-price {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #4ade80;
+  margin-top: 2px;
+}
+
+.cat-card-price span {
+  font-weight: 500;
+  color: #cbd5e1;
+}
+
+/* ============================================================
+   OFFICIAL CASHLESS REMITTANCE BANNER
+   ============================================================ */
+.poster-remittance-banner {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1.5px solid rgba(34, 197, 94, 0.35);
+  border-radius: 12px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.poster-remit-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.poster-remit-title {
+  font-size: 10px;
+  font-weight: 800;
+  color: #4ade80;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.poster-remit-channels {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.remit-pill {
+  font-size: 11px;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.poster-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #4ade80;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   POSTER FOOTER STRIP
+   ============================================================ */
+.poster-footer-strip {
+  border-top: 1.5px solid rgba(34, 197, 94, 0.35);
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #94a3b8;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.poster-foot-col {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.poster-foot-col b {
+  color: #e2e8f0;
+}
+
+/* ============================================================
+   @MEDIA PRINT: TRUE A4 PHYSICAL PRINTING
    ============================================================ */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 5mm;
+  }
+
   body.printing-qr {
-    background: #ffffff !important;
-    color: #000000 !important;
+    background: #000000 !important;
+    color: #ffffff !important;
     margin: 0 !important;
     padding: 0 !important;
   }
@@ -459,8 +771,8 @@
     position: static !important;
     width: 100% !important;
     height: auto !important;
-    background: #ffffff !important;
-    padding: 24px 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
     margin: 0 !important;
     opacity: 1 !important;
     visibility: visible !important;
@@ -472,97 +784,39 @@
     border: none !important;
     background: transparent !important;
     max-width: 100% !important;
+    width: 100% !important;
     padding: 0 !important;
     margin: 0 auto !important;
     animation: none !important;
   }
 
   body.printing-qr .qr-modal-header,
-  body.printing-qr .qr-target-selector-row,
+  body.printing-qr .qr-controls-toolbar,
+  body.printing-qr .qr-url-verify-strip,
+  body.printing-qr .qr-custom-url-box,
   body.printing-qr .qr-actions-toolbar,
   body.printing-qr .qr-close-btn {
     display: none !important;
   }
 
-  body.printing-qr .qr-modal-body {
+  body.printing-qr .qr-poster-viewport-wrapper {
+    background: transparent !important;
+    border: none !important;
     padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
   }
 
-  body.printing-qr .qr-standee-card-wrapper {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    min-height: 85vh !important;
-  }
-
-  body.printing-qr .qr-standee-card {
-    background: #ffffff !important;
-    color: #000000 !important;
-    border: 3px solid #000000 !important;
+  body.printing-qr .qr-a4-poster-sheet {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    min-height: auto !important;
     box-shadow: none !important;
-    width: 360px !important;
-    max-width: 95% !important;
-    padding: 28px 22px !important;
-    border-radius: 24px !important;
     page-break-inside: avoid !important;
-  }
-
-  body.printing-qr .qr-standee-card::before {
-    display: none !important;
-  }
-
-  body.printing-qr .qr-card-name {
-    color: #000000 !important;
-  }
-
-  body.printing-qr .qr-card-phone {
-    color: #16a34a !important;
-  }
-
-  body.printing-qr .qr-card-chip-icon svg rect,
-  body.printing-qr .qr-card-chip-icon svg path {
-    stroke: #000000 !important;
-  }
-
-  body.printing-qr .qr-card-scan-label {
-    background: #000000 !important;
-    color: #ffffff !important;
-    border: 1px solid #000000 !important;
-  }
-
-  body.printing-qr .qr-card-bezel-frame {
-    background: #f4f4f5 !important;
-    border: 2px solid #000000 !important;
-    box-shadow: none !important;
-  }
-
-  body.printing-qr .qr-scanner-reticle {
-    border-color: #16a34a !important;
-  }
-
-  body.printing-qr .qr-code-viewport {
-    border: 1px solid #000000 !important;
-    box-shadow: none !important;
-  }
-
-  body.printing-qr .qr-card-destination {
-    color: #52525b !important;
-  }
-
-  body.printing-qr .qr-card-bottom-plate {
-    background: #f4f4f5 !important;
-    border: 1px solid #d4d4d8 !important;
-  }
-
-  body.printing-qr .qr-plate-row {
-    color: #000000 !important;
-  }
-
-  body.printing-qr .qr-plate-row b {
-    color: #16a34a !important;
-  }
-
-  body.printing-qr .qr-plate-sub {
-    color: #52525b !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    padding: 24px 28px !important;
+    border: 2px solid #22c55e !important;
   }
 }
