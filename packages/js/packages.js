@@ -2231,6 +2231,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnReceipt) btnReceipt.classList.toggle("active", invoiceMode === "receipt");
     if (receiptSettings) receiptSettings.style.display = invoiceMode === "receipt" ? "block" : "none";
 
+    const printableSheet = document.getElementById("invoicePrintableSheet");
+    if (printableSheet) printableSheet.classList.toggle("is-receipt-mode", invoiceMode === "receipt");
+
     const docBadge = document.getElementById("invDisplayDocType");
     const refLabel = document.getElementById("invDisplayRefLabel");
     const validityItem = document.getElementById("invValidityMetaItem");
@@ -2239,6 +2242,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const termsNote = document.getElementById("invTermsNote");
     const btnPdfText = document.getElementById("btnDownloadPdfText");
     const btnWaText = document.getElementById("btnSendWaText");
+    const topDownloadText = document.getElementById("invTopDownloadText");
+    const topWaText = document.getElementById("invTopWaText");
 
     if (invoiceMode === "receipt") {
       if (currentInvoiceRef.startsWith("LS-QUO-")) {
@@ -2257,6 +2262,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (termsNote) termsNote.textContent = "* Official studio payment receipt. Payment verified via cashless M-Pesa / Bank remittance. High-resolution master deliverables processed per agreed schedule.";
       if (btnPdfText) btnPdfText.textContent = "📥 Download Official Receipt (PDF)";
       if (btnWaText) btnWaText.textContent = "📲 Send Receipt via WhatsApp";
+      if (topDownloadText) topDownloadText.textContent = "📥 Download Receipt (PDF)";
+      if (topWaText) topWaText.textContent = "📲 WhatsApp Receipt";
     } else {
       if (currentInvoiceRef.startsWith("LS-REC-")) {
         currentInvoiceRef = currentInvoiceRef.replace("LS-REC-", "LS-QUO-");
@@ -2274,8 +2281,23 @@ document.addEventListener("DOMContentLoaded", () => {
       if (termsNote) termsNote.textContent = "* Official studio quotation & rate proposal. Payment of the booking deposit confirms your session date and creative crew allocation. Remaining balance payable upon master delivery.";
       if (btnPdfText) btnPdfText.textContent = "📥 Download Quotation (PDF)";
       if (btnWaText) btnWaText.textContent = "📲 Send Quotation via WhatsApp";
+      if (topDownloadText) topDownloadText.textContent = "📥 Download PDF";
+      if (topWaText) topWaText.textContent = "📲 WhatsApp";
     }
 
+    updateInvoiceDisplay();
+  }
+
+  // Handle receipt payment status switch (Full Payment vs Commitment Deposit)
+  function onPaymentStatusChange(status) {
+    const depositPercentSelect = document.getElementById("invDepositPercent");
+    if (status === "full") {
+      if (depositPercentSelect) depositPercentSelect.value = "100";
+    } else if (status === "deposit") {
+      if (depositPercentSelect && depositPercentSelect.value === "100") {
+        depositPercentSelect.value = "80";
+      }
+    }
     updateInvoiceDisplay();
   }
 
@@ -2295,15 +2317,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (invLocationInput) invLocationInput.value = "Laureign Studios (Kakamega Town, Mumias Rd, Opp. Jamia Mosque, Bukura Pharmacy Bldg, 1st Floor)";
     if (invCrewInput) invCrewInput.value = "Studio Lead Photographer + Lighting Assistant";
 
-    const payStatusSelect = document.getElementById("invPaymentStatusSelect");
+    const payStatusSelect = document.getElementById("invReceiptStatusSelect") || document.getElementById("invPaymentStatusSelect");
     if (payStatusSelect) {
       payStatusSelect.value = status === "deposit" ? "deposit" : "full";
     }
 
-    const payMethodSelect = document.getElementById("invPaymentMethodSelect");
-    if (payMethodSelect) payMethodSelect.value = "M-Pesa Paybill 542542 (Acc: 486197 - JANE AKOTH)";
+    const payMethodSelect = document.getElementById("invReceiptMethodSelect") || document.getElementById("invPaymentMethodSelect");
+    if (payMethodSelect) payMethodSelect.value = "mpesa-till";
 
-    const payRefInput = document.getElementById("invPaymentRefInput");
+    const payRefInput = document.getElementById("invReceiptRefInput") || document.getElementById("invPaymentRefInput");
     if (payRefInput && (!payRefInput.value.trim() || payRefInput.value === "M-Pesa Verified")) {
       const mpesaChars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
       let code = "SL";
@@ -3154,13 +3176,26 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elGrandLbl) elGrandLbl.textContent = invoiceMode === "receipt" ? "TOTAL SHOOT INVESTMENT:" : "TOTAL PROJECT INVESTMENT:";
 
     // Mode-Specific Financial Breakdown & Deposit Highlight Card
-    const payStatusSelect = document.getElementById("invPaymentStatusSelect");
-    const payMethodSelect = document.getElementById("invPaymentMethodSelect");
-    const payRefInput = document.getElementById("invPaymentRefInput");
+    const payStatusSelect = document.getElementById("invReceiptStatusSelect") || document.getElementById("invPaymentStatusSelect");
+    const payMethodSelect = document.getElementById("invReceiptMethodSelect") || document.getElementById("invPaymentMethodSelect");
+    const payRefInput = document.getElementById("invReceiptRefInput") || document.getElementById("invPaymentRefInput");
 
     const paymentStatus = payStatusSelect ? payStatusSelect.value : "full";
-    const paymentMethod = payMethodSelect ? payMethodSelect.value : "M-Pesa Till 0790048905 (Laureign Studios)";
+    let paymentMethod = "M-Pesa Buy Goods Till 0790048905 (Laureign Studios)";
+    if (payMethodSelect) {
+      if (payMethodSelect.tagName === "SELECT" && payMethodSelect.options[payMethodSelect.selectedIndex]) {
+        paymentMethod = payMethodSelect.options[payMethodSelect.selectedIndex].text || payMethodSelect.value;
+      } else {
+        paymentMethod = payMethodSelect.value || paymentMethod;
+      }
+    }
     const paymentRef = (payRefInput && payRefInput.value.trim()) || "M-Pesa Verified";
+
+    // Synchronize printable sheet mode class
+    const printableSheet = document.getElementById("invoicePrintableSheet");
+    if (printableSheet) {
+      printableSheet.classList.toggle("is-receipt-mode", isReceipt);
+    }
 
     const elStatusPill = document.getElementById("invDisplayStatusPill");
     const elWordmark = document.getElementById("invSheetMainWordmark");
@@ -3214,15 +3249,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Highlight card in full receipt mode
-        if (elDepHeaderBadge) elDepHeaderBadge.textContent = "✓ PAYMENT CONFIRMED IN FULL";
+        if (elDepHeaderBadge) elDepHeaderBadge.textContent = "✓ PAYMENT RECEIVED IN FULL";
         if (elDepAmt) elDepAmt.textContent = `KSh ${grandTotal.toLocaleString()}`;
-        if (elDepPercentLabel) elDepPercentLabel.textContent = "Official studio payment confirmation. Cashless record verified.";
-        if (elDepBalSub) elDepBalSub.innerHTML = `Account balance: <b style="color:#15803d;">KSh 0 (CLEARED)</b>. Master cloud delivery initiated.`;
+        if (elDepPercentLabel) elDepPercentLabel.textContent = "Official studio payment confirmation. Payment received in full.";
+        if (elDepBalSub) elDepBalSub.innerHTML = `Remaining balance: <b style="color:#15803d;">KSh 0 (PAID IN FULL)</b>. Master gallery authorized.`;
 
       } else {
         if (elStatusPill) {
           elStatusPill.className = "val status-deposit";
-          elStatusPill.textContent = "✓ DEPOSIT RECEIVED";
+          elStatusPill.textContent = `✓ DEPOSIT RECEIVED (${depPercent}%)`;
         }
         if (elPaidRow) {
           elPaidRow.style.display = "flex";
@@ -3243,9 +3278,21 @@ document.addEventListener("DOMContentLoaded", () => {
         // Highlight card in deposit receipt mode
         if (elDepHeaderBadge) elDepHeaderBadge.textContent = `✓ BOOKING DEPOSIT RECEIVED (${depPercent}%)`;
         if (elDepAmt) elDepAmt.textContent = `KSh ${deposit.toLocaleString()}`;
-        if (elDepPercentLabel) elDepPercentLabel.textContent = `${depPercent}% deposit received and logged into studio accounting.`;
+        if (elDepPercentLabel) elDepPercentLabel.textContent = `${depPercent}% commitment deposit confirmed and allocated to production.`;
         if (elDepBalSub) elDepBalSub.innerHTML = `Balance due on master delivery: <b style="color:#dc2626;">KSh ${balance.toLocaleString()}</b>.`;
       }
+
+      // Dynamic receipt clearance summary elements
+      const elClearanceBadge = document.getElementById("invReceiptClearanceBadge");
+      const elVerifyChannel = document.getElementById("receiptVerifyChannel");
+      const elVerifyCode = document.getElementById("receiptVerifyCode");
+      if (elClearanceBadge) {
+        elClearanceBadge.textContent = paymentStatus === "full"
+          ? "✓ PAYMENT RECEIVED IN FULL & DELIVERABLES AUTHORIZED"
+          : `✓ BOOKING DEPOSIT CONFIRMED (${depPercent}%) & PRODUCTION RESERVED`;
+      }
+      if (elVerifyChannel) elVerifyChannel.textContent = paymentMethod;
+      if (elVerifyCode) elVerifyCode.textContent = paymentRef;
 
       if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Payment Channel:</b> <span style="font-weight:700; color:#0f172a;">${escapeHtml(paymentMethod)}</span>`;
       if (elPayTillLine) elPayTillLine.innerHTML = `<b>Payment Ref / Code:</b> <span class="till-num" style="background:#f1f5f9; color:#0f172a; border-color:#cbd5e1; font-weight:800;">${escapeHtml(paymentRef)}</span> &nbsp;<b>Bank:</b> I&amp;M Bank`;
@@ -3292,6 +3339,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Dynamic Rubber Stamp Content & Live Up-To-Date Dates
+    const elSealStamp = document.getElementById("invSealStamp");
+    if (elSealStamp) {
+      elSealStamp.classList.toggle("paid-stamp", isReceipt);
+    }
     const elStampDate = document.getElementById("stampSvgDate");
     if (elStampDate) {
       elStampDate.textContent = getFormattedStampDate(new Date());
@@ -3303,7 +3354,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const elStampTitle = document.getElementById("stampSvgTitle");
     if (elStampTitle) {
       if (isReceipt) {
-        elStampTitle.textContent = paymentStatus === "deposit" ? "DEPOSIT CONFIRMED" : "PAID & CONFIRMED";
+        elStampTitle.textContent = paymentStatus === "deposit" ? "DEPOSIT CONFIRMED" : "PAID IN FULL";
       } else {
         elStampTitle.textContent = "OFFICIAL QUOTE";
       }
@@ -4286,6 +4337,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.openInvoiceModal = openInvoiceModal;
   window.closeInvoiceModal = closeInvoiceModal;
   window.setInvoiceMode = setInvoiceMode;
+  window.onPaymentStatusChange = onPaymentStatusChange;
   window.applyWalkinPreset = applyWalkinPreset;
   window.applyQuotationPreset = applyQuotationPreset;
   window.normalizeKenyanPhone = normalizeKenyanPhone;

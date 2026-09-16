@@ -2728,7 +2728,7 @@ html:not([data-theme="dark"]) .packages-mobile-toggle:hover {
   .pkg-topbar-in {
     position: relative;
     height: 54px;
-    padding: 0 12px;
+    padding: 0 14px;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
@@ -2737,32 +2737,32 @@ html:not([data-theme="dark"]) .packages-mobile-toggle:hover {
   }
   .brand-wrap,
   .pkg-brand {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
     margin: 0 !important;
     gap: 8px;
-    z-index: 1;
-    pointer-events: auto;
+    z-index: 2;
   }
   .brand-logo-img,
   .pkg-brand img {
     height: 32px;
     width: auto;
     flex-shrink: 0;
+    display: block !important;
   }
   .brand-title,
   .pkg-brand span {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 19px;
     font-weight: 700;
     white-space: nowrap;
     overflow: visible;
-    flex-shrink: 0;
     text-align: center;
     margin: 0;
+    z-index: 1;
+    pointer-events: auto;
   }
   .brand-badge {
     display: none !important;
@@ -7808,6 +7808,203 @@ h2.serif,
   flex-shrink: 0 !important;
 }
 
+/* ============================================================
+   RECEIPT MODE AESTHETIC & CLEARANCE STYLING (EMERALD & GOLD)
+   ============================================================ */
+
+/* Document Mode Visibility Rules */
+.invoice-printable-sheet .inv-receipt-clearance-summary {
+  display: none !important;
+}
+.invoice-printable-sheet .inv-policy-bullet-list {
+  display: flex !important;
+}
+
+.invoice-printable-sheet.is-receipt-mode .inv-policy-bullet-list,
+.invoice-printable-sheet.is-receipt-mode .inv-terms-note {
+  display: none !important;
+}
+.invoice-printable-sheet.is-receipt-mode .inv-receipt-clearance-summary {
+  display: block !important;
+}
+
+/* Receipt Mode Printable Sheet Framing & Background Texture Layers */
+.invoice-printable-sheet.is-receipt-mode {
+  border: 1.5px solid #059669 !important;
+  box-shadow: 0 30px 80px -20px rgba(5, 150, 105, 0.45), 0 0 0 1px rgba(5, 150, 105, 0.3), inset 0 0 0 3px #ffffff, inset 0 0 0 4.5px rgba(5, 150, 105, 0.35) !important;
+}
+
+/* Security lattice, watermark grid & linen weave texture */
+.invoice-printable-sheet.is-receipt-mode::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background-image: 
+    radial-gradient(rgba(5, 150, 105, 0.05) 1px, transparent 1px),
+    repeating-linear-gradient(45deg, rgba(5, 150, 105, 0.018) 0, rgba(5, 150, 105, 0.018) 1px, transparent 0, transparent 20px),
+    linear-gradient(135deg, rgba(5, 150, 105, 0.025) 0%, transparent 45%, rgba(197, 160, 89, 0.025) 100%) !important;
+  background-size: 20px 20px, 20px 20px, 100% 100% !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Center Watermark for Official Payment Receipt */
+.invoice-printable-sheet.is-receipt-mode::after {
+  content: "OFFICIAL PAYMENT RECEIPT · VERIFIED" !important;
+  color: rgba(5, 150, 105, 0.04) !important;
+  letter-spacing: 9px !important;
+}
+
+/* Receipt Mode Header Accent */
+.invoice-printable-sheet.is-receipt-mode .inv-sheet-header {
+  border-bottom: 2px solid #064e3b !important;
+}
+.invoice-printable-sheet.is-receipt-mode .inv-sheet-header::after {
+  background: rgba(5, 150, 105, 0.45) !important;
+}
+.invoice-printable-sheet.is-receipt-mode .inv-sheet-logo {
+  border-color: #059669 !important;
+  box-shadow: 0 2px 10px rgba(5, 150, 105, 0.25) !important;
+}
+.invoice-printable-sheet.is-receipt-mode .inv-brand-badge {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.12) 0%, rgba(5, 150, 105, 0.22) 100%) !important;
+  color: #047857 !important;
+  border-color: rgba(5, 150, 105, 0.4) !important;
+}
+.invoice-printable-sheet.is-receipt-mode .inv-ref-pill {
+  background: #f0fdf4 !important;
+  border: 1px solid rgba(5, 150, 105, 0.35) !important;
+  border-left: 3.5px solid #059669 !important;
+}
+.invoice-printable-sheet.is-receipt-mode .inv-ref-label {
+  color: #047857 !important;
+}
+
+/* Receipt Mode Client & Event Specs Box */
+.invoice-printable-sheet.is-receipt-mode .inv-client-box,
+.invoice-printable-sheet.is-receipt-mode .inv-event-box {
+  border-top: 2.5px solid #059669 !important;
+}
+.invoice-printable-sheet.is-receipt-mode .spec-label {
+  color: #047857 !important;
+}
+.invoice-printable-sheet.is-receipt-mode .spec-value.highlight {
+  border-left: 2.5px solid #059669 !important;
+}
+
+/* Receipt Mode Table & Headers */
+.invoice-printable-sheet.is-receipt-mode .inv-table th {
+  border-bottom: 2px solid #059669 !important;
+}
+
+/* Receipt Mode Clearance Summary Card */
+.inv-receipt-clearance-summary {
+  margin: 4px 0 8px 0 !important;
+  background: #f0fdf4 !important;
+  border: 1px solid rgba(5, 150, 105, 0.3) !important;
+  border-left: 3.5px solid #059669 !important;
+  border-radius: 6px !important;
+  padding: 9px 12px !important;
+  box-shadow: 0 1px 4px rgba(5, 150, 105, 0.06) !important;
+}
+
+.receipt-clearance-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 8.5px !important;
+  font-weight: 800 !important;
+  color: #047857 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 6px !important;
+  background: rgba(5, 150, 105, 0.1) !important;
+  padding: 2px 7px !important;
+  border-radius: 3px !important;
+  border: 1px solid rgba(5, 150, 105, 0.25) !important;
+}
+
+.receipt-clearance-details {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3.5px !important;
+}
+
+.receipt-detail-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-size: 9.5px !important;
+  line-height: 1.35 !important;
+  border-bottom: 1px dashed rgba(5, 150, 105, 0.18) !important;
+  padding-bottom: 2.5px !important;
+}
+
+.receipt-detail-item:last-child {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.receipt-detail-item span {
+  color: #475569 !important;
+  font-weight: 600 !important;
+}
+
+.receipt-detail-item b {
+  color: #064e3b !important;
+  font-weight: 700 !important;
+}
+
+/* Receipt Mode Transformation for Deposit Highlight Card */
+.invoice-printable-sheet.is-receipt-mode .inv-deposit-highlight-card {
+  background: linear-gradient(145deg, #022c22 0%, #064e3b 55%, #042f2e 100%) !important;
+  border: 1.5px solid rgba(52, 211, 153, 0.5) !important;
+  box-shadow: 0 8px 24px rgba(4, 120, 87, 0.28) !important;
+}
+
+.invoice-printable-sheet.is-receipt-mode .inv-dep-header-badge {
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  letter-spacing: 1.2px !important;
+}
+
+.invoice-printable-sheet.is-receipt-mode .inv-dep-amount {
+  color: #6ee7b7 !important;
+  text-shadow: 0 0 20px rgba(110, 231, 183, 0.3) !important;
+}
+
+.invoice-printable-sheet.is-receipt-mode .inv-dep-percent-label {
+  color: #a7f3d0 !important;
+}
+
+.invoice-printable-sheet.is-receipt-mode .inv-dep-balance-sub {
+  color: #cbd5e1 !important;
+}
+
+.invoice-printable-sheet.is-receipt-mode .inv-dep-balance-sub b {
+  color: #34d399 !important;
+}
+
+.invoice-printable-sheet.is-receipt-mode .inv-dep-guarantee-pill {
+  background: rgba(52, 211, 153, 0.12) !important;
+  border-color: rgba(52, 211, 153, 0.4) !important;
+  color: #a7f3d0 !important;
+}
+
+.invoice-printable-sheet.is-receipt-mode .inv-dep-star {
+  color: #34d399 !important;
+}
+
+/* Rubber Stamp Styling with Emerald Green Color for Paid Receipts */
+.inv-seal-stamp.paid-stamp .official-studio-stamp-svg circle,
+.inv-seal-stamp.paid-stamp .official-studio-stamp-svg path,
+.inv-seal-stamp.paid-stamp .official-studio-stamp-svg line {
+  stroke: #059669 !important;
+}
+
+.inv-seal-stamp.paid-stamp .official-studio-stamp-svg text {
+  fill: #059669 !important;
+}
+
 /* Bottom Floating Dock */
 .invoice-bottom-dock {
   display: flex;
@@ -7976,6 +8173,9 @@ h2.serif,
     box-sizing: border-box !important;
     border: 1.5px solid #c5a059 !important;
     box-shadow: none !important;
+  }
+  .invoice-printable-sheet.is-receipt-mode {
+    border: 1.5px solid #059669 !important;
   }
   .inv-brand-name {
     color: #000000 !important;
