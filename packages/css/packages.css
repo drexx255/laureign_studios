@@ -5110,10 +5110,10 @@ html[data-theme="dark"] .btn-tier-cal {
    Borders: 1px solid rgba(255, 255, 255, 0.12), radius: 18px
    ============================================================ */
 
+/* Dark Mode Tokens (Default & Explicit Dark) */
 :root,
 html,
-html[data-theme="dark"],
-html[data-theme="light"] {
+html[data-theme="dark"] {
   --bg-page: #000000;
   --bg-gradient: radial-gradient(ellipse at top, #1d1d1f 0%, #000000 70%);
   --bg: #000000;
@@ -5166,8 +5166,63 @@ html[data-theme="light"] {
   --theme-toggle-text: #4ade80;
 }
 
-/* Base Body Application */
-body {
+/* Light Mode Tokens (Apple Minimalist Light Canvas) */
+html[data-theme="light"] {
+  --bg-page: #F5F5F7;
+  --bg-gradient: radial-gradient(ellipse at top, #FFFFFF 0%, #F5F5F7 80%);
+  --bg: #F5F5F7;
+  --bg-stage: #F5F5F7;
+  --bg-stage-1: #FFFFFF;
+  --bg-stage-2: #E8E8ED;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FFFFFF;
+  --bg-elevated: #FFFFFF;
+
+  --glass-bg: rgba(255, 255, 255, 0.90);
+  --glass-bg-hover: #FFFFFF;
+  --glass-border: 1px solid rgba(0, 0, 0, 0.08);
+  --glass-blur: blur(20px) saturate(180%);
+
+  --panel: rgba(255, 255, 255, 0.92);
+  --panel-border: rgba(0, 0, 0, 0.08);
+  --panel-border-subtle: rgba(0, 0, 0, 0.05);
+  --divider: rgba(0, 0, 0, 0.06);
+  --hairline: rgba(0, 0, 0, 0.08);
+
+  /* Typography */
+  --ink: #1D1D1F;
+  --text-primary: #1D1D1F;
+  --muted: #6E6E73;
+  --muted-light: #86868B;
+  --head: #1D1D1F;
+  --head-sub: #15803d;
+
+  /* Laureign Studio Green Brand Identity */
+  --accent: #15803d;
+  --accent-soft: #16a34a;
+  --accent-green-bright: #16a34a;
+  --accent-green-hover: #15803d;
+  --accent-green-tint: rgba(22, 163, 74, 0.08);
+  --accent-green-border: rgba(22, 163, 74, 0.25);
+  --on-accent: #ffffff;
+  --on-primary: #ffffff;
+
+  --hero-bg: radial-gradient(ellipse at top, #FFFFFF 0%, #F5F5F7 80%);
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --header-border: rgba(0, 0, 0, 0.08);
+
+  --apple-img-shadow: 0 16px 40px rgba(0, 0, 0, 0.10);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --card-shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.09);
+
+  --theme-toggle-bg: rgba(0, 0, 0, 0.06);
+  --theme-toggle-indicator: #FFFFFF;
+  --theme-toggle-text: #15803d;
+}
+
+/* Base Body Application - Dark Mode */
+html[data-theme="dark"] body,
+:root:not([data-theme="light"]) body {
   background: #000000 !important;
   background: radial-gradient(ellipse at top, #1d1d1f 0%, #000000 70%) !important;
   background-attachment: fixed !important;
@@ -5179,25 +5234,56 @@ body {
   overflow-x: hidden !important;
 }
 
-/* Glassmorphism Surfaces & Cards */
-.card,
-.glass-card,
-.pathway-card,
-.pkg-card,
-.detail-pkg-card,
-.faq-item,
-.hero-steps-guide,
-.share-link-bar,
-.step-guide-item,
-.sample-preview-card,
-.service-out-card,
-.photo-mount-card,
-.mount-card,
-.concept-col-card,
-.concept-explainer-banner,
-.addon-card,
-.calc-summary-card,
-.apple-tile {
+/* Base Body Application - Light Mode */
+html[data-theme="light"] body {
+  background: #F5F5F7 !important;
+  background: radial-gradient(ellipse at top, #FFFFFF 0%, #F5F5F7 80%) !important;
+  background-attachment: fixed !important;
+  color: #1D1D1F !important;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif !important;
+  line-height: 1.55 !important;
+  -webkit-font-smoothing: antialiased !important;
+  min-height: 100vh !important;
+  overflow-x: hidden !important;
+}
+
+/* Dark Glassmorphism Surfaces & Cards */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .glass-card,
+html[data-theme="dark"] .pathway-card,
+html[data-theme="dark"] .pkg-card,
+html[data-theme="dark"] .detail-pkg-card,
+html[data-theme="dark"] .faq-item,
+html[data-theme="dark"] .hero-steps-guide,
+html[data-theme="dark"] .share-link-bar,
+html[data-theme="dark"] .step-guide-item,
+html[data-theme="dark"] .sample-preview-card,
+html[data-theme="dark"] .service-out-card,
+html[data-theme="dark"] .photo-mount-card,
+html[data-theme="dark"] .mount-card,
+html[data-theme="dark"] .concept-col-card,
+html[data-theme="dark"] .concept-explainer-banner,
+html[data-theme="dark"] .addon-card,
+html[data-theme="dark"] .calc-summary-card,
+html[data-theme="dark"] .apple-tile,
+:root:not([data-theme="light"]) .card,
+:root:not([data-theme="light"]) .glass-card,
+:root:not([data-theme="light"]) .pathway-card,
+:root:not([data-theme="light"]) .pkg-card,
+:root:not([data-theme="light"]) .detail-pkg-card,
+:root:not([data-theme="light"]) .faq-item,
+:root:not([data-theme="light"]) .hero-steps-guide,
+:root:not([data-theme="light"]) .share-link-bar,
+:root:not([data-theme="light"]) .step-guide-item,
+:root:not([data-theme="light"]) .sample-preview-card,
+:root:not([data-theme="light"]) .service-out-card,
+:root:not([data-theme="light"]) .photo-mount-card,
+:root:not([data-theme="light"]) .mount-card,
+:root:not([data-theme="light"]) .concept-col-card,
+:root:not([data-theme="light"]) .concept-explainer-banner,
+:root:not([data-theme="light"]) .addon-card,
+:root:not([data-theme="light"]) .calc-summary-card,
+:root:not([data-theme="light"]) .apple-tile {
   background: rgba(255, 255, 255, 0.08) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
@@ -5207,40 +5293,122 @@ body {
   transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
 }
 
-.card:hover,
-.glass-card:hover,
-.pathway-card:hover,
-.pkg-card:hover,
-.detail-pkg-card:hover,
-.faq-item:hover,
-.service-out-card:hover,
-.photo-mount-card:hover,
-.mount-card:hover,
-.concept-col-card:hover,
-.addon-card:hover {
+html[data-theme="dark"] .card:hover,
+html[data-theme="dark"] .glass-card:hover,
+html[data-theme="dark"] .pathway-card:hover,
+html[data-theme="dark"] .pkg-card:hover,
+html[data-theme="dark"] .detail-pkg-card:hover,
+html[data-theme="dark"] .faq-item:hover,
+html[data-theme="dark"] .service-out-card:hover,
+html[data-theme="dark"] .photo-mount-card:hover,
+html[data-theme="dark"] .mount-card:hover,
+html[data-theme="dark"] .concept-col-card:hover,
+html[data-theme="dark"] .addon-card:hover,
+:root:not([data-theme="light"]) .card:hover,
+:root:not([data-theme="light"]) .glass-card:hover,
+:root:not([data-theme="light"]) .pathway-card:hover,
+:root:not([data-theme="light"]) .pkg-card:hover,
+:root:not([data-theme="light"]) .detail-pkg-card:hover,
+:root:not([data-theme="light"]) .faq-item:hover,
+:root:not([data-theme="light"]) .service-out-card:hover,
+:root:not([data-theme="light"]) .photo-mount-card:hover,
+:root:not([data-theme="light"]) .mount-card:hover,
+:root:not([data-theme="light"]) .concept-col-card:hover,
+:root:not([data-theme="light"]) .addon-card:hover {
   background: rgba(255, 255, 255, 0.14) !important;
   transform: translateY(-2px) !important;
   border-color: rgba(255, 255, 255, 0.22) !important;
 }
 
+/* Light Mode Surfaces & Cards */
+html[data-theme="light"] .card,
+html[data-theme="light"] .glass-card,
+html[data-theme="light"] .pathway-card,
+html[data-theme="light"] .pkg-card,
+html[data-theme="light"] .detail-pkg-card,
+html[data-theme="light"] .faq-item,
+html[data-theme="light"] .hero-steps-guide,
+html[data-theme="light"] .share-link-bar,
+html[data-theme="light"] .step-guide-item,
+html[data-theme="light"] .sample-preview-card,
+html[data-theme="light"] .service-out-card,
+html[data-theme="light"] .photo-mount-card,
+html[data-theme="light"] .mount-card,
+html[data-theme="light"] .concept-col-card,
+html[data-theme="light"] .concept-explainer-banner,
+html[data-theme="light"] .addon-card,
+html[data-theme="light"] .calc-summary-card,
+html[data-theme="light"] .apple-tile {
+  background: #FFFFFF !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  color: #1D1D1F !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+}
+
+html[data-theme="light"] .card:hover,
+html[data-theme="light"] .glass-card:hover,
+html[data-theme="light"] .pathway-card:hover,
+html[data-theme="light"] .pkg-card:hover,
+html[data-theme="light"] .detail-pkg-card:hover,
+html[data-theme="light"] .faq-item:hover,
+html[data-theme="light"] .service-out-card:hover,
+html[data-theme="light"] .photo-mount-card:hover,
+html[data-theme="light"] .mount-card:hover,
+html[data-theme="light"] .concept-col-card:hover,
+html[data-theme="light"] .addon-card:hover {
+  background: #FFFFFF !important;
+  transform: translateY(-2px) !important;
+  border-color: rgba(21, 128, 61, 0.35) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.09) !important;
+}
+
 /* Active pathway and featured cards */
-.pathway-card.active,
-.detail-pkg-card.featured,
-.mount-card.highlight {
+html[data-theme="dark"] .pathway-card.active,
+html[data-theme="dark"] .detail-pkg-card.featured,
+html[data-theme="dark"] .mount-card.highlight,
+:root:not([data-theme="light"]) .pathway-card.active,
+:root:not([data-theme="light"]) .detail-pkg-card.featured,
+:root:not([data-theme="light"]) .mount-card.highlight {
   background: rgba(255, 255, 255, 0.11) !important;
   border: 2px solid #22c55e !important;
   box-shadow: 0 6px 25px rgba(34, 197, 94, 0.22) !important;
 }
 
-/* Navigation Header */
-.site-header,
-.pkg-topbar,
-.sticky-controls-bar {
+html[data-theme="light"] .pathway-card.active,
+html[data-theme="light"] .detail-pkg-card.featured,
+html[data-theme="light"] .mount-card.highlight {
+  background: #FFFFFF !important;
+  border: 2px solid #16a34a !important;
+  box-shadow: 0 6px 25px rgba(22, 163, 74, 0.20) !important;
+}
+
+/* Navigation Header - Dark */
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .pkg-topbar,
+html[data-theme="dark"] .sticky-controls-bar,
+:root:not([data-theme="light"]) .site-header,
+:root:not([data-theme="light"]) .pkg-topbar,
+:root:not([data-theme="light"]) .sticky-controls-bar {
   background: rgba(0, 0, 0, 0.72) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
   box-shadow: none !important;
+}
+
+/* Navigation Header - Light */
+html[data-theme="light"] .site-header,
+html[data-theme="light"] .pkg-topbar,
+html[data-theme="light"] .sticky-controls-bar {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
 }
 
 .inside-back-strip,
@@ -5249,8 +5417,9 @@ body {
   border-color: rgba(255, 255, 255, 0.10) !important;
 }
 
-/* Mobile Drawer */
-.packages-mobile-drawer {
+/* Mobile Drawer - Dark */
+html[data-theme="dark"] .packages-mobile-drawer,
+:root:not([data-theme="light"]) .packages-mobile-drawer {
   background: rgba(18, 18, 20, 0.94) !important;
   backdrop-filter: blur(30px) saturate(190%) !important;
   -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
@@ -5258,20 +5427,45 @@ body {
   border-radius: 18px !important;
 }
 
-.drawer-link {
+html[data-theme="dark"] .drawer-link,
+:root:not([data-theme="light"]) .drawer-link {
   color: #f5f5f7 !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.drawer-link:hover {
+html[data-theme="dark"] .drawer-link:hover,
+:root:not([data-theme="light"]) .drawer-link:hover {
   background: rgba(255, 255, 255, 0.08) !important;
   color: #4ade80 !important;
 }
 
-/* Modals */
-.booking-modal-content,
-.samples-modal-content,
-.sample-item-card {
+/* Mobile Drawer - Light */
+html[data-theme="light"] .packages-mobile-drawer {
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(30px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14) !important;
+}
+
+html[data-theme="light"] .drawer-link {
+  color: #1D1D1F !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+html[data-theme="light"] .drawer-link:hover {
+  background: rgba(22, 163, 74, 0.08) !important;
+  color: #15803d !important;
+}
+
+/* Modals - Dark */
+html[data-theme="dark"] .booking-modal-content,
+html[data-theme="dark"] .samples-modal-content,
+html[data-theme="dark"] .sample-item-card,
+:root:not([data-theme="light"]) .booking-modal-content,
+:root:not([data-theme="light"]) .samples-modal-content,
+:root:not([data-theme="light"]) .sample-item-card {
   background: rgba(20, 20, 24, 0.90) !important;
   backdrop-filter: blur(30px) saturate(190%) !important;
   -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
@@ -5280,47 +5474,134 @@ body {
   color: #f5f5f7 !important;
 }
 
-/* Text Hierarchy */
-h1:not(.invoice-printable-sheet *),
-h2:not(.invoice-printable-sheet *),
-h3:not(.invoice-printable-sheet *),
-h4:not(.invoice-printable-sheet *),
-.hero-title,
-.showcase-title,
-.pathway-card-title,
-.pkg-card-title,
-.pkg-title-big,
-.brand-title,
-.pkg-brand {
+/* Modals - Light */
+html[data-theme="light"] .booking-modal-content,
+html[data-theme="light"] .samples-modal-content,
+html[data-theme="light"] .sample-item-card {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(30px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-radius: 22px !important;
+  color: #1D1D1F !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16) !important;
+}
+
+/* Text Hierarchy - Dark */
+html[data-theme="dark"] h1:not(.invoice-printable-sheet *),
+html[data-theme="dark"] h2:not(.invoice-printable-sheet *),
+html[data-theme="dark"] h3:not(.invoice-printable-sheet *),
+html[data-theme="dark"] h4:not(.invoice-printable-sheet *),
+html[data-theme="dark"] .hero-title,
+html[data-theme="dark"] .showcase-title,
+html[data-theme="dark"] .pathway-card-title,
+html[data-theme="dark"] .pkg-card-title,
+html[data-theme="dark"] .pkg-title-big,
+html[data-theme="dark"] .brand-title,
+html[data-theme="dark"] .pkg-brand,
+:root:not([data-theme="light"]) h1:not(.invoice-printable-sheet *),
+:root:not([data-theme="light"]) h2:not(.invoice-printable-sheet *),
+:root:not([data-theme="light"]) h3:not(.invoice-printable-sheet *),
+:root:not([data-theme="light"]) h4:not(.invoice-printable-sheet *),
+:root:not([data-theme="light"]) .hero-title,
+:root:not([data-theme="light"]) .showcase-title,
+:root:not([data-theme="light"]) .pathway-card-title,
+:root:not([data-theme="light"]) .pkg-card-title,
+:root:not([data-theme="light"]) .pkg-title-big,
+:root:not([data-theme="light"]) .brand-title,
+:root:not([data-theme="light"]) .pkg-brand {
   color: #f5f5f7 !important;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif !important;
   letter-spacing: -0.022em !important;
 }
 
-h1:not(.invoice-printable-sheet *) span,
-h1:not(.invoice-printable-sheet *) i,
-h2:not(.invoice-printable-sheet *) span,
-h2:not(.invoice-printable-sheet *) i,
-.showcase-title i,
-.pkg-price-val,
-.pathway-starting-tag,
-.pkg-type-tag,
-.share-link-text span.share-label {
+html[data-theme="dark"] h1:not(.invoice-printable-sheet *) span,
+html[data-theme="dark"] h1:not(.invoice-printable-sheet *) i,
+html[data-theme="dark"] h2:not(.invoice-printable-sheet *) span,
+html[data-theme="dark"] h2:not(.invoice-printable-sheet *) i,
+html[data-theme="dark"] .showcase-title i,
+html[data-theme="dark"] .pkg-price-val,
+html[data-theme="dark"] .pathway-starting-tag,
+html[data-theme="dark"] .pkg-type-tag,
+html[data-theme="dark"] .share-link-text span.share-label,
+:root:not([data-theme="light"]) h1:not(.invoice-printable-sheet *) span,
+:root:not([data-theme="light"]) h1:not(.invoice-printable-sheet *) i,
+:root:not([data-theme="light"]) h2:not(.invoice-printable-sheet *) span,
+:root:not([data-theme="light"]) h2:not(.invoice-printable-sheet *) i,
+:root:not([data-theme="light"]) .showcase-title i,
+:root:not([data-theme="light"]) .pkg-price-val,
+:root:not([data-theme="light"]) .pathway-starting-tag,
+:root:not([data-theme="light"]) .pkg-type-tag,
+:root:not([data-theme="light"]) .share-link-text span.share-label {
   color: #4ade80 !important;
   font-style: normal !important;
 }
 
-p:not(.invoice-printable-sheet *),
-.hero-desc,
-.showcase-desc,
-.pathway-card-desc,
-.pkg-card-tagline,
-.pkg-desc-text,
-.faq-item p,
-.hint,
-.deliverables-list li,
-.share-link-text {
+html[data-theme="dark"] p:not(.invoice-printable-sheet *),
+html[data-theme="dark"] .hero-desc,
+html[data-theme="dark"] .showcase-desc,
+html[data-theme="dark"] .pathway-card-desc,
+html[data-theme="dark"] .pkg-card-tagline,
+html[data-theme="dark"] .pkg-desc-text,
+html[data-theme="dark"] .faq-item p,
+html[data-theme="dark"] .hint,
+html[data-theme="dark"] .deliverables-list li,
+html[data-theme="dark"] .share-link-text,
+:root:not([data-theme="light"]) p:not(.invoice-printable-sheet *),
+:root:not([data-theme="light"]) .hero-desc,
+:root:not([data-theme="light"]) .showcase-desc,
+:root:not([data-theme="light"]) .pathway-card-desc,
+:root:not([data-theme="light"]) .pkg-card-tagline,
+:root:not([data-theme="light"]) .pkg-desc-text,
+:root:not([data-theme="light"]) .faq-item p,
+:root:not([data-theme="light"]) .hint,
+:root:not([data-theme="light"]) .deliverables-list li,
+:root:not([data-theme="light"]) .share-link-text {
   color: rgba(245, 245, 247, 0.65) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif !important;
+}
+
+/* Text Hierarchy - Light */
+html[data-theme="light"] h1:not(.invoice-printable-sheet *),
+html[data-theme="light"] h2:not(.invoice-printable-sheet *),
+html[data-theme="light"] h3:not(.invoice-printable-sheet *),
+html[data-theme="light"] h4:not(.invoice-printable-sheet *),
+html[data-theme="light"] .hero-title,
+html[data-theme="light"] .showcase-title,
+html[data-theme="light"] .pathway-card-title,
+html[data-theme="light"] .pkg-card-title,
+html[data-theme="light"] .pkg-title-big,
+html[data-theme="light"] .brand-title,
+html[data-theme="light"] .pkg-brand {
+  color: #1D1D1F !important;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif !important;
+  letter-spacing: -0.022em !important;
+}
+
+html[data-theme="light"] h1:not(.invoice-printable-sheet *) span,
+html[data-theme="light"] h1:not(.invoice-printable-sheet *) i,
+html[data-theme="light"] h2:not(.invoice-printable-sheet *) span,
+html[data-theme="light"] h2:not(.invoice-printable-sheet *) i,
+html[data-theme="light"] .showcase-title i,
+html[data-theme="light"] .pkg-price-val,
+html[data-theme="light"] .pathway-starting-tag,
+html[data-theme="light"] .pkg-type-tag,
+html[data-theme="light"] .share-link-text span.share-label {
+  color: #15803d !important;
+  font-style: normal !important;
+}
+
+html[data-theme="light"] p:not(.invoice-printable-sheet *),
+html[data-theme="light"] .hero-desc,
+html[data-theme="light"] .showcase-desc,
+html[data-theme="light"] .pathway-card-desc,
+html[data-theme="light"] .pkg-card-tagline,
+html[data-theme="light"] .pkg-desc-text,
+html[data-theme="light"] .faq-item p,
+html[data-theme="light"] .hint,
+html[data-theme="light"] .deliverables-list li,
+html[data-theme="light"] .share-link-text {
+  color: #424245 !important;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif !important;
 }
 
@@ -5368,16 +5649,25 @@ p:not(.invoice-printable-sheet *),
   fill: #ffffff !important;
 }
 
-/* Secondary Action Buttons (Apple Translucent Glass Pills) */
-.btn-card-wa-clean,
-.hero-btn-cal,
-.btn-tier-cal,
-.header-cta-cal,
-.btn-inside-back,
-.btn-copy-link,
-.pkg-rate-pill,
-.subcat-pill,
-.folder-tab-btn {
+/* Secondary Action Buttons (Apple Translucent Glass Pills) - Dark */
+html[data-theme="dark"] .btn-card-wa-clean,
+html[data-theme="dark"] .hero-btn-cal,
+html[data-theme="dark"] .btn-tier-cal,
+html[data-theme="dark"] .header-cta-cal,
+html[data-theme="dark"] .btn-inside-back,
+html[data-theme="dark"] .btn-copy-link,
+html[data-theme="dark"] .pkg-rate-pill,
+html[data-theme="dark"] .subcat-pill,
+html[data-theme="dark"] .folder-tab-btn,
+:root:not([data-theme="light"]) .btn-card-wa-clean,
+:root:not([data-theme="light"]) .hero-btn-cal,
+:root:not([data-theme="light"]) .btn-tier-cal,
+:root:not([data-theme="light"]) .header-cta-cal,
+:root:not([data-theme="light"]) .btn-inside-back,
+:root:not([data-theme="light"]) .btn-copy-link,
+:root:not([data-theme="light"]) .pkg-rate-pill,
+:root:not([data-theme="light"]) .subcat-pill,
+:root:not([data-theme="light"]) .folder-tab-btn {
   background: rgba(255, 255, 255, 0.08) !important;
   backdrop-filter: blur(20px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
@@ -5387,45 +5677,181 @@ p:not(.invoice-printable-sheet *),
   transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
 }
 
-.btn-card-wa-clean:hover,
-.hero-btn-cal:hover,
-.btn-tier-cal:hover,
-.header-cta-cal:hover,
-.btn-inside-back:hover,
-.btn-copy-link:hover,
-.pkg-rate-pill:hover,
-.subcat-pill:hover,
-.folder-tab-btn:hover {
+html[data-theme="dark"] .btn-card-wa-clean:hover,
+html[data-theme="dark"] .hero-btn-cal:hover,
+html[data-theme="dark"] .btn-tier-cal:hover,
+html[data-theme="dark"] .header-cta-cal:hover,
+html[data-theme="dark"] .btn-inside-back:hover,
+html[data-theme="dark"] .btn-copy-link:hover,
+html[data-theme="dark"] .pkg-rate-pill:hover,
+html[data-theme="dark"] .subcat-pill:hover,
+html[data-theme="dark"] .folder-tab-btn:hover,
+:root:not([data-theme="light"]) .btn-card-wa-clean:hover,
+:root:not([data-theme="light"]) .hero-btn-cal:hover,
+:root:not([data-theme="light"]) .btn-tier-cal:hover,
+:root:not([data-theme="light"]) .header-cta-cal:hover,
+:root:not([data-theme="light"]) .btn-inside-back:hover,
+:root:not([data-theme="light"]) .btn-copy-link:hover,
+:root:not([data-theme="light"]) .pkg-rate-pill:hover,
+:root:not([data-theme="light"]) .subcat-pill:hover,
+:root:not([data-theme="light"]) .folder-tab-btn:hover {
   background: rgba(255, 255, 255, 0.16) !important;
   transform: translateY(-2px) !important;
   border-color: rgba(255, 255, 255, 0.25) !important;
   color: #ffffff !important;
 }
 
-.subcat-pill.active,
-.folder-tab-btn.active,
-.pathway-toggle-btn.active {
+/* Secondary Action Buttons - Light */
+html[data-theme="light"] .btn-card-wa-clean,
+html[data-theme="light"] .hero-btn-cal,
+html[data-theme="light"] .btn-tier-cal,
+html[data-theme="light"] .header-cta-cal,
+html[data-theme="light"] .btn-inside-back,
+html[data-theme="light"] .btn-copy-link,
+html[data-theme="light"] .pkg-rate-pill,
+html[data-theme="light"] .subcat-pill,
+html[data-theme="light"] .folder-tab-btn {
+  background: #FFFFFF !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  color: #1D1D1F !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+}
+
+html[data-theme="light"] .btn-card-wa-clean:hover,
+html[data-theme="light"] .hero-btn-cal:hover,
+html[data-theme="light"] .btn-tier-cal:hover,
+html[data-theme="light"] .header-cta-cal:hover,
+html[data-theme="light"] .btn-inside-back:hover,
+html[data-theme="light"] .btn-copy-link:hover,
+html[data-theme="light"] .pkg-rate-pill:hover,
+html[data-theme="light"] .subcat-pill:hover,
+html[data-theme="light"] .folder-tab-btn:hover {
+  background: #F5F5F7 !important;
+  transform: translateY(-2px) !important;
+  border-color: rgba(0, 0, 0, 0.22) !important;
+  color: #000000 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme="dark"] .subcat-pill.active,
+html[data-theme="dark"] .folder-tab-btn.active,
+html[data-theme="dark"] .pathway-toggle-btn.active,
+:root:not([data-theme="light"]) .subcat-pill.active,
+:root:not([data-theme="light"]) .folder-tab-btn.active,
+:root:not([data-theme="light"]) .pathway-toggle-btn.active {
   background: #16a34a !important;
   color: #ffffff !important;
   border-color: #16a34a !important;
 }
 
-/* Form inputs & selects */
-input[type="text"],
-input[type="search"],
-input[type="date"],
-input[type="time"],
-select,
-textarea {
+html[data-theme="light"] .subcat-pill.active,
+html[data-theme="light"] .folder-tab-btn.active,
+html[data-theme="light"] .pathway-toggle-btn.active {
+  background: #16a34a !important;
+  color: #ffffff !important;
+  border-color: #16a34a !important;
+}
+
+/* Form inputs & selects - Dark */
+html[data-theme="dark"] input[type="text"],
+html[data-theme="dark"] input[type="search"],
+html[data-theme="dark"] input[type="date"],
+html[data-theme="dark"] input[type="time"],
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea,
+:root:not([data-theme="light"]) input[type="text"],
+:root:not([data-theme="light"]) input[type="search"],
+:root:not([data-theme="light"]) input[type="date"],
+:root:not([data-theme="light"]) input[type="time"],
+:root:not([data-theme="light"]) select,
+:root:not([data-theme="light"]) textarea {
   background: rgba(255, 255, 255, 0.06) !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
   color: #f5f5f7 !important;
   border-radius: 12px !important;
 }
 
-input:focus, select:focus, textarea:focus {
-  border-color: #4ade80 !important;
+/* Form inputs & selects - Light */
+html[data-theme="light"] input[type="text"],
+html[data-theme="light"] input[type="search"],
+html[data-theme="light"] input[type="date"],
+html[data-theme="light"] input[type="time"],
+html[data-theme="light"] select,
+html[data-theme="light"] textarea {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.14) !important;
+  color: #1D1D1F !important;
+  border-radius: 12px !important;
+}
+
+html[data-theme="light"] input:focus,
+html[data-theme="light"] select:focus,
+html[data-theme="light"] textarea:focus {
+  border-color: #16a34a !important;
   outline: none !important;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15) !important;
+}
+
+/* Search suggestions & controls - Light */
+html[data-theme="light"] .search-wrap {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.14) !important;
+}
+html[data-theme="light"] .search-input {
+  background: transparent !important;
+  color: #1D1D1F !important;
+}
+html[data-theme="light"] .search-icon {
+  stroke: #6E6E73 !important;
+}
+html[data-theme="light"] .search-suggestions-box {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.10) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10) !important;
+}
+html[data-theme="light"] .search-suggestion-item {
+  color: #1D1D1F !important;
+}
+html[data-theme="light"] .search-suggestion-item:hover,
+html[data-theme="light"] .search-suggestion-item.active {
+  background: rgba(22, 163, 74, 0.08) !important;
+  color: #15803d !important;
+}
+
+/* Minimal tags & badges - Light */
+html[data-theme="light"] .pkg-minimal-meta {
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+html[data-theme="light"] .pkg-minimal-pill,
+html[data-theme="light"] .pkg-tag-category {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #1D1D1F !important;
+}
+html[data-theme="light"] .hero-rate-card-pill {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+}
+html[data-theme="light"] .hero-rate-pill-text {
+  color: #1D1D1F !important;
+}
+html[data-theme="light"] .calculator-dock {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.10) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
+  color: #1D1D1F !important;
+}
+html[data-theme="light"] .site-footer {
+  background: #F5F5F7 !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #6E6E73 !important;
+}
+html[data-theme="light"] .footer-info b {
+  color: #1D1D1F !important;
 }
 
 /* Bounded Product Imagery Shadows */
@@ -5433,7 +5859,7 @@ input:focus, select:focus, textarea:focus {
 .sample-preview-card,
 .pkg-card-media,
 .photo-mount-img-frame {
-  box-shadow: rgba(0, 0, 0, 0.65) 0 16px 45px 0 !important;
+  box-shadow: var(--apple-img-shadow) !important;
   border-radius: 18px !important;
 }
 
@@ -5443,20 +5869,26 @@ input:focus, select:focus, textarea:focus {
   font-size: 15px;
   margin-left: 4px;
 }
+html[data-theme="light"] .apple-chevron {
+  color: #15803d;
+}
 
 .pkg-minimal-meta {
-  border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 .pkg-minimal-pill,
 .pkg-tag-category {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  color: #f5f5f7 !important;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f5f5f7;
 }
 
 .packages-mobile-toggle span {
   background: #f5f5f7 !important;
+}
+html[data-theme="light"] .packages-mobile-toggle span {
+  background: #0f172a !important;
 }
 
 /* ============================================================
