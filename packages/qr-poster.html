@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Official A4 Smart QR Scan Poster · Laureign Studios</title>
+  <meta name="description" content="Official museum-grade A4 smart poster and printable desk standee for Laureign Studios transparent package pricing, deliverable specs, and WhatsApp VIP booking.">
+  <link rel="icon" type="image/png" href="/packages/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/packages/css/packages.css">
+  <link rel="stylesheet" href="/packages/css/qr-standee.css?v=2.4">
+  <style>
+    body {
+      background: #05070a;
+      color: #ffffff;
+      font-family: 'Jost', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: auto;
+    }
+
+    .poster-page-nav {
+      width: 100%;
+      max-width: 900px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(10, 14, 20, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .poster-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .poster-nav-brand img {
+      height: 32px;
+      width: auto;
+      border-radius: 50%;
+      border: 1.5px solid #10b981;
+    }
+
+    .poster-nav-brand span {
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .poster-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .poster-top-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    .btn-print-green {
+      background: #10b981;
+      color: #000000;
+      border: none;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    }
+    .btn-print-green:hover {
+      background: #059669;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline-white {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+    .btn-outline-white:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .poster-page-container {
+      padding: 30px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media print {
+      body {
+        background: #000000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .poster-page-nav {
+        display: none !important;
+      }
+      .poster-page-container {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .qr-a4-poster-sheet {
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 100vh !important;
+        margin: 0 !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="poster-page-nav">
+    <a href="/packages" class="poster-nav-brand">
+      <img src="/packages/images/logo.png" alt="Laureign Studios">
+      <span>LAUREIGN STUDIOS</span>
+    </a>
+    <div class="poster-nav-actions">
+      <button type="button" class="poster-top-btn btn-print-green" onclick="window.print()">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+        <span>🖨️ Print True A4 Poster</span>
+      </button>
+      <a href="/packages" class="poster-top-btn btn-outline-white">
+        <span>← Back to Rate Card</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Page Content Container -->
+  <main class="poster-page-container">
+
+    <!-- THE FIXED A4 SMART STUDIO POSTER SHEET (794px × 1123px) -->
+    <div class="qr-a4-poster-sheet" id="printableQrStandeeCard">
+      <!-- Decorative Titanium & Emerald Corner Studs -->
+      <div class="poster-corner-rivet rivet-tl"></div>
+      <div class="poster-corner-rivet rivet-tr"></div>
+      <div class="poster-corner-rivet rivet-bl"></div>
+      <div class="poster-corner-rivet rivet-br"></div>
+
+      <!-- Top Header: Studio Identity & Official Emblem -->
+      <div class="poster-header-section">
+        <div class="poster-brand-row">
+          <img src="/packages/images/logo.png" alt="Laureign Studios" class="poster-studio-logo">
+          <div class="poster-brand-text">
+            <span class="poster-brand-eyebrow">EST. 2026 · NATIONWIDE KENYA</span>
+            <h1 class="poster-studio-title">LAUREIGN STUDIOS</h1>
+            <span class="poster-studio-subtitle">HAUTE COUTURE PHOTOGRAPHY · BESPOKE CINEMATOGRAPHY · VISUAL ARCHIVES</span>
+          </div>
+        </div>
+        <div class="poster-location-bar">
+          <span>📍 Kakamega Town along Mumias Rd, Opp. Jamia Mosque (Bukura Pharmacy Bldg, 1st Flr) · Nairobi Nationwide</span>
+        </div>
+      </div>
+
+      <!-- Hero Smart Poster Headline -->
+      <div class="poster-hero-prompt">
+        <div class="poster-hero-tag">
+          <span class="poster-pulse-dot"></span>
+          <span>OFFICIAL DIGITAL RATE CARD &amp; VIP BOOKING PASS</span>
+        </div>
+        <h2 class="poster-hero-title">TO VIEW OUR PACKAGES &amp; RATES, PLEASE SCAN BELOW</h2>
+        <p class="poster-hero-desc">
+          Point your smartphone camera or Google Lens at the QR code below for instant transparent package pricing, deliverable specs, unedited proofs policy, and direct WhatsApp VIP booking.
+        </p>
+      </div>
+
+      <!-- Centerpiece: Recessed QR Code Plaque -->
+      <div class="poster-qr-centerpiece">
+        <div class="poster-qr-frame">
+          <div class="qr-scanner-reticle reticle-tl"></div>
+          <div class="qr-scanner-reticle reticle-tr"></div>
+          <div class="qr-scanner-reticle reticle-bl"></div>
+          <div class="qr-scanner-reticle reticle-br"></div>
+
+          <div class="poster-qr-viewport" id="qrCodeContainer">
+            <!-- QR Code rendered via QRCode JS -->
+          </div>
+        </div>
+
+        <!-- Active QR Destination & Instructions -->
+        <div class="poster-qr-meta">
+          <div class="poster-dest-pill" id="qrDestinationBadge">
+            🌟 FULL STUDIO RATE CARD &amp; ALL PACKAGES
+          </div>
+          <p class="poster-dest-sub" id="qrDestinationText">Instant Rates · Deliverable Specs · Book Direct on WhatsApp</p>
+          <div class="poster-scan-features">
+            <span>⚡ 100% Mobile Optimized</span>
+            <span class="dot-sep">•</span>
+            <span>🔒 Direct WhatsApp Booking</span>
+            <span class="dot-sep">•</span>
+            <span>✨ No App Needed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Official Cashless Remittance & Desk Credentials -->
+      <div class="poster-remittance-banner">
+        <div class="poster-remit-left">
+          <div class="poster-remit-title">OFFICIAL RECEPTION &amp; CASHLESS REMITTANCE</div>
+          <div class="poster-remit-channels">
+            <span class="remit-pill"><b style="color:#10b981;">M-PESA TILL:</b> 0790048905</span>
+            <span class="remit-pill"><b style="color:#10b981;">PAYBILL:</b> 542542 &nbsp;Acc: <b>486197</b></span>
+            <span class="remit-pill">Verify: <b style="color:#ffffff;">JANE AKOTH</b></span>
+          </div>
+        </div>
+        <div class="poster-remit-right">
+          <div class="poster-verified-badge">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="color:#10b981;"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            <span>OFFICIAL VERIFIED RATE CARD</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Poster Footer Strip -->
+      <div class="poster-footer-strip">
+        <div class="poster-foot-col">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" style="color:#10b981;"><path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.4-1.1-.6-2.3-.6-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1z"/></svg>
+          <span><b>Direct Hotline:</b> +254 790 048 905</span>
+        </div>
+        <div class="poster-foot-col">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" style="color:#10b981;"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span><b>Email:</b> laureignstudios25@gmail.com</span>
+        </div>
+        <div class="poster-foot-col">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" style="color:#10b981;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          <span><b>Web:</b> laureignstudios.co.ke</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/packages/js/qrcode.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var container = document.getElementById("qrCodeContainer");
+      if (!container) return;
+
+      var targetUrl = window.location.origin.includes("vercel.app") 
+        ? (window.location.origin + "/packages") 
+        : "https://drexx255-laureign-studios.vercel.app/packages";
+
+      if (typeof QRCode !== "undefined") {
+        new QRCode(container, {
+          text: targetUrl,
+          width: 350,
+          height: 350,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.M
+        });
+      }
+    });
+  </script>
+</body>
+</html>

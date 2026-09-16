@@ -522,10 +522,10 @@
   box-sizing: border-box !important;
   flex-shrink: 0 !important;
   margin: 0 auto !important;
-  background: radial-gradient(circle at 50% 12%, #13271b 0%, #0d131c 38%, #06080d 100%) !important;
-  border: 2px solid rgba(34, 197, 94, 0.45) !important;
-  border-radius: 20px !important;
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.95), inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 0 45px rgba(34, 197, 94, 0.08) !important;
+  background: radial-gradient(circle at 50% 8%, rgba(16, 185, 129, 0.18) 0%, transparent 45%), linear-gradient(180deg, #0e141c 0%, #080b10 50%, #040609 100%) !important;
+  border: 2px solid rgba(16, 185, 129, 0.5) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.96), inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 0 50px rgba(16, 185, 129, 0.18) !important;
   padding: 34px 38px 28px !important;
   position: relative !important;
   overflow: hidden !important;
@@ -543,8 +543,8 @@
   position: absolute;
   inset: 0;
   background-image: 
-    radial-gradient(rgba(34, 197, 94, 0.05) 1px, transparent 1px),
-    linear-gradient(135deg, rgba(34, 197, 94, 0.02) 0%, transparent 45%, rgba(34, 197, 94, 0.02) 100%);
+    radial-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(16, 185, 129, 0.03) 0%, transparent 45%, rgba(16, 185, 129, 0.03) 100%);
   background-size: 20px 20px, 100% 100%;
   pointer-events: none;
   z-index: 0;
@@ -555,15 +555,15 @@
   z-index: 1;
 }
 
-/* Decorative Brass Corner Rivets */
+/* Decorative Titanium & Emerald Corner Studs */
 .poster-corner-rivet {
   position: absolute;
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: radial-gradient(circle, #fde047 0%, #ca8a04 60%, #854d0e 100%);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  background: radial-gradient(circle, #34d399 0%, #059669 65%, #022c22 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 10px rgba(16, 185, 129, 0.4);
   z-index: 4;
 }
 

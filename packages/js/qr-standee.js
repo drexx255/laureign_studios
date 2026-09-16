@@ -102,7 +102,7 @@
       if (window.location.hostname.includes("vercel.app")) {
         return window.location.origin;
       }
-      return "https://laureign-studios.vercel.app";
+      return "https://drexx255-laureign-studios.vercel.app";
     }
     if (currentDomainMode === "custom" && customBaseUrl) {
       return customBaseUrl.replace(/\/$/, "");
@@ -110,7 +110,7 @@
     // Auto-detect
     if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:") {
       // When testing locally, default to live domain so physical phone scans work!
-      return "https://laureignstudios.co.ke";
+      return "https://drexx255-laureign-studios.vercel.app";
     }
     return window.location.origin;
   }
