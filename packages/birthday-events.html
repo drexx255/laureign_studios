@@ -173,33 +173,17 @@
     </div>
   </section>
 
-  <!-- REAL PHOTO SAMPLES GALLERY -->
-  <section class="gallery-sec">
+  <!-- REAL PHOTO SAMPLES GALLERY — APPLE MULTI-ALBUM EXPLORER -->
+  <section class="gallery-sec" id="birthdayAlbumsSection">
     <div class="wrap">
-      <div class="block-head" style="text-align:center;">
-        <h2 class="serif" style="font-size:36px;color:#14532d;">Event Coverage Samples</h2>
-        <p class="hint" style="max-width:600px;margin:8px auto 0;color:var(--muted);">Click any photo to view in full size; tap anywhere to exit.</p>
+      <div class="block-head" style="text-align:center; margin-bottom: 24px;">
+        <span class="sub-badge" style="display:inline-block; padding:4px 14px; border-radius:20px; font-size:11.5px; text-transform:uppercase; letter-spacing:1px; background:rgba(217,119,6,0.12); color:#d97706; font-weight:600; margin-bottom:10px;">📁 Curated Client Galleries</span>
+        <h2 class="serif" style="font-size:36px;color:var(--text-main,#14532d);">Event Coverage Albums</h2>
+        <p class="hint" style="max-width:640px;margin:8px auto 0;color:var(--muted);">Browse real birthday celebration albums below. Click any album to explore its individual event photos (132 authentic client photos).</p>
       </div>
 
-      <div class="gallery-grid">
-        
-        <div class="gallery-item" onclick="openLightbox('samples/09-birthday-shoot/indoor bd.jpg')">
-          <img src="samples/09-birthday-shoot/indoor bd.jpg" alt="Birthday Gala Decor & Setup" loading="lazy">
-          <div class="gallery-zoom-hint"><span>🔍 Birthday Gala Decor & Setup</span></div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('samples/09-birthday-shoot/OUTDOOR BIRTHDAY SHOOT.jpg')">
-          <img src="samples/09-birthday-shoot/OUTDOOR BIRTHDAY SHOOT.jpg" alt="Celebrant Joy & Toast Moment" loading="lazy">
-          <div class="gallery-zoom-hint"><span>🔍 Celebrant Joy & Toast Moment</span></div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('images/work-8.jpg')">
-          <img src="images/work-8.jpg" alt="Party Fashion & Guest Candids" loading="lazy">
-          <div class="gallery-zoom-hint"><span>🔍 Party Fashion & Guest Candids</span></div>
-        </div>
-        <div class="gallery-item" onclick="openLightbox('samples/10-kids-shoot/Kids outdoor photoshoot.jpg')">
-          <img src="samples/10-kids-shoot/Kids outdoor photoshoot.jpg" alt="High-Energy Birthday Celebration" loading="lazy">
-          <div class="gallery-zoom-hint"><span>🔍 High-Energy Birthday Celebration</span></div>
-        </div>
-      </div>
+      <!-- Interactive Multi-Album Container -->
+      <div id="birthdayAlbumsRoot"></div>
     </div>
   </section>
 
@@ -670,6 +654,84 @@
     </svg>
     <span>Back Up</span>
   </button>
+
+  <!-- PACKAGES DATA & DYNAMIC ALBUM EXPLORER -->
+  <script src="js/packages-data.js"></script>
+  <script>
+    (function() {
+      const pkg = (typeof PACKAGES_DATA !== 'undefined') ? PACKAGES_DATA.find(p => p.id === 'birthday-events') : null;
+      const root = document.getElementById('birthdayAlbumsRoot');
+      if (!pkg || !pkg.albums || !root) return;
+
+      let activeAlbum = null;
+
+      function renderAlbums() {
+        if (!activeAlbum) {
+          // Folder cards view
+          let html = '<div class="samples-folders-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-top:20px;">';
+          pkg.albums.forEach(alb => {
+            html += `
+              <div class="samples-folder-card" style="cursor:pointer; background:var(--card-bg, rgba(255,255,255,0.04)); border:1px solid var(--glass-border, rgba(255,255,255,0.1)); border-radius:18px; overflow:hidden; transition:transform 0.25s ease, box-shadow 0.25s ease;" onclick="selectBirthdayAlbum('${alb.id}')">
+                <div class="folder-card-thumb-wrap" style="position:relative; aspect-ratio:16/10; overflow:hidden; background:#111;">
+                  <img src="${alb.cover}" alt="${alb.title}" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;">
+                  <span class="folder-card-badge" style="position:absolute; bottom:10px; right:10px; background:rgba(0,0,0,0.78); backdrop-filter:blur(8px); color:#fff; font-size:11.5px; font-weight:600; padding:4px 10px; border-radius:20px; border:1px solid rgba(255,255,255,0.2);">📸 ${alb.count} Photos</span>
+                </div>
+                <div class="folder-card-info" style="padding:16px 18px; display:flex; justify-content:space-between; align-items:center;">
+                  <div>
+                    <h3 style="font-size:16px; font-weight:600; margin:0 0 4px; color:var(--text-main, #fff);">${alb.title}</h3>
+                    <p style="font-size:12.5px; color:var(--muted, #888); margin:0;">Event Client Album</p>
+                  </div>
+                  <span style="font-size:13px; font-weight:600; color:var(--gold, #d97706); display:flex; align-items:center; gap:4px;">Open Album ➔</span>
+                </div>
+              </div>
+            `;
+          });
+          html += '</div>';
+          root.innerHTML = html;
+        } else {
+          // Photos inside chosen album
+          let html = `
+            <div class="samples-album-breadcrumb-bar" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:24px; padding:14px 20px; background:var(--card-bg, rgba(255,255,255,0.05)); border:1px solid var(--glass-border, rgba(255,255,255,0.1)); border-radius:14px;">
+              <button type="button" onclick="selectBirthdayAlbum(null)" style="background:none; border:none; color:var(--gold, #d97706); font-size:14px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; padding:6px 10px; border-radius:8px;">
+                ‹ Back to All Albums
+              </button>
+              <div style="font-size:15px; font-weight:600; color:var(--text-main, #fff);">
+                📁 ${activeAlbum.title} <span style="font-size:12px; color:var(--muted, #888); font-weight:normal;">(${activeAlbum.count} Photos)</span>
+              </div>
+            </div>
+            <div class="gallery-grid">
+          `;
+          activeAlbum.samples.forEach((s, idx) => {
+            html += `
+              <div class="gallery-item" onclick="openLightbox('${s.url}')">
+                <img src="${s.url}" alt="${s.title}" loading="lazy">
+                <div class="gallery-zoom-hint"><span>🔍 Photo ${idx + 1} of ${activeAlbum.count}</span></div>
+              </div>
+            `;
+          });
+          html += '</div>';
+          root.innerHTML = html;
+        }
+
+        // Re-scan gallery for lightbox
+        if (typeof window.scanPageGallery === 'function') {
+          setTimeout(window.scanPageGallery, 50);
+        }
+      }
+
+      window.selectBirthdayAlbum = function(albumId) {
+        if (!albumId) {
+          activeAlbum = null;
+        } else {
+          activeAlbum = pkg.albums.find(a => a.id === albumId) || null;
+        }
+        renderAlbums();
+      };
+
+      // Initial render
+      renderAlbums();
+    })();
+  </script>
 
   <!-- MULTI-IMAGE GALLERY LIGHTBOX (SWAP / SWIPE / NEXT / PREV) -->
   <script src="js/gallery-lightbox.js"></script>

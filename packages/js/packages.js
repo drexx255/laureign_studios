@@ -738,11 +738,214 @@ document.addEventListener("DOMContentLoaded", () => {
   window.setPackageReelOption = setPackageReelOption;
 
   // ------------------------------------------------------------
-  // Free Samples Viewer Modal & Lightbox
+  // Free Samples Viewer Modal & Lightbox (With Apple Multi-Album Explorer)
   // ------------------------------------------------------------
+  function renderMultiAlbumSamplesModal(pkg, activeAlbumId = null) {
+    if (!pkg || !pkg.albums || pkg.albums.length === 0) return;
+
+    if (samplesModalTitle) {
+      samplesModalTitle.innerHTML = `${escapeHtml(pkg.title)} <span class="samples-modal-badge" style="background:#047857; color:#ffffff; padding:3px 10px; border-radius:999px; font-size:11px; font-weight:800; margin-left:8px;">📁 ${pkg.albums.length} Event Albums</span>`;
+    }
+
+    const allSamples = pkg.samples || [];
+    const totalCount = allSamples.length;
+
+    // Build top album filter tabs
+    let tabsHtml = `
+      <div class="samples-album-tabs-wrap">
+        <div class="samples-album-tabs">
+          <button type="button" class="album-tab-pill ${activeAlbumId === null ? 'active' : ''}" data-target="overview">
+            📁 All Albums (${pkg.albums.length})
+          </button>
+          ${pkg.albums.map(alb => `
+            <button type="button" class="album-tab-pill ${activeAlbumId === alb.id ? 'active' : ''}" data-target="${alb.id}">
+              ${escapeHtml(alb.title.replace(" Birthday Party", "").replace(" Birthday Celebration", "").replace(" Twin Birthday", "").replace(" 1st Birthday Milestone", "").replace(" Birthday Gala", "").replace(" Sunshine Birthday", ""))} (${alb.count})
+            </button>
+          `).join('')}
+          <button type="button" class="album-tab-pill ${activeAlbumId === 'all-stream' ? 'active' : ''}" data-target="all-stream">
+            📸 All Photos (${totalCount})
+          </button>
+        </div>
+      </div>
+    `;
+
+    if (samplesModalDesc) {
+      samplesModalDesc.innerHTML = `
+        <div style="font-size:12.5px; color:var(--muted); margin-bottom:4px;"><b>Select an event album</b> to inspect authentic milestone lighting, guest candids &amp; celebration moments:</div>
+        ${tabsHtml}
+      `;
+
+      // Attach tab click handlers
+      const pillButtons = samplesModalDesc.querySelectorAll('.album-tab-pill');
+      pillButtons.forEach(btn => {
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          const target = btn.dataset.target;
+          if (target === 'overview') {
+            renderMultiAlbumSamplesModal(pkg, null);
+          } else if (target === 'all-stream') {
+            renderMultiAlbumSamplesModal(pkg, 'all-stream');
+          } else {
+            renderMultiAlbumSamplesModal(pkg, target);
+          }
+        };
+      });
+    }
+
+    if (!samplesGalleryGrid) return;
+
+    // View 1: Overview - Apple Album Folder Cards
+    if (activeAlbumId === null) {
+      samplesGalleryGrid.innerHTML = `
+        <div class="samples-folders-grid" style="grid-column: 1 / -1;">
+          ${pkg.albums.map(alb => `
+            <div class="samples-folder-card" data-album-id="${alb.id}">
+              <div class="folder-card-thumb-wrap">
+                <img src="${alb.cover}" alt="${escapeHtml(alb.title)}" loading="lazy">
+                <div class="folder-card-badge">📁 Event Collection</div>
+                <div class="folder-card-count">📸 ${alb.count} Photos</div>
+              </div>
+              <div class="folder-card-body">
+                <div class="folder-card-title">${escapeHtml(alb.title)}</div>
+                <div class="folder-card-vibe">${escapeHtml(alb.vibe || 'Real client birthday celebration coverage')}</div>
+                <div class="folder-card-cta">
+                  <span>Open Album (${alb.count} Photos)</span>
+                  <span style="font-size:16px;">➔</span>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      // Attach card click handlers
+      const cards = samplesGalleryGrid.querySelectorAll('.samples-folder-card');
+      cards.forEach(card => {
+        card.onclick = (e) => {
+          e.stopPropagation();
+          const albId = card.dataset.albumId;
+          renderMultiAlbumSamplesModal(pkg, albId);
+        };
+      });
+
+    // View 2: Specific Album Photos View
+    } else if (activeAlbumId !== 'all-stream') {
+      const alb = pkg.albums.find(a => a.id === activeAlbumId) || pkg.albums[0];
+      const albSamples = alb.samples || [];
+
+      const sampleItems = albSamples.map((s, sIdx) => ({
+        url: s.url,
+        title: s.title || `${alb.title} · Photo ${sIdx + 1}`,
+        catLabel: pkg.catLabel,
+        price: (pkg.options[0] || {}).price || 0,
+        targetUrl: getPackageShowcaseUrl(pkg)
+      }));
+
+      samplesGalleryGrid.innerHTML = `
+        <div class="samples-album-breadcrumb-bar" style="grid-column: 1 / -1;">
+          <button type="button" class="btn-album-back" id="btnAlbumBack">‹ Back to All Albums</button>
+          <div class="album-breadcrumb-title">📁 <b>${escapeHtml(alb.title)}</b> (${alb.count} Curated Photos)</div>
+          <button type="button" class="btn-album-slideshow" id="btnAlbumSlideshow">▶ Start Fullscreen Slideshow</button>
+        </div>
+        ${albSamples.map((s, idx) => `
+          <div class="sample-item-card js-lightbox-trigger" data-url="${s.url}" data-idx="${idx}">
+            <img src="${s.url}" alt="${escapeHtml(s.title || 'Photo Sample')}" class="sample-item-thumb" loading="lazy">
+            <div class="sample-item-zoom-icon">🔍</div>
+          </div>
+        `).join('')}
+      `;
+
+      const btnBack = document.getElementById("btnAlbumBack");
+      if (btnBack) {
+        btnBack.onclick = (e) => {
+          e.stopPropagation();
+          renderMultiAlbumSamplesModal(pkg, null);
+        };
+      }
+
+      const btnSlideshow = document.getElementById("btnAlbumSlideshow");
+      if (btnSlideshow) {
+        btnSlideshow.onclick = (e) => {
+          e.stopPropagation();
+          openLightbox(sampleItems, 0);
+        };
+      }
+
+      const triggers = samplesGalleryGrid.querySelectorAll('.js-lightbox-trigger');
+      triggers.forEach((el, idx) => {
+        el.onclick = (e) => {
+          e.stopPropagation();
+          openLightbox(sampleItems, idx);
+        };
+      });
+
+    // View 3: All Photos Stream View
+    } else {
+      const sampleItems = allSamples.map((s, sIdx) => ({
+        url: s.url,
+        title: s.title || `Birthday Event · Photo ${sIdx + 1}`,
+        catLabel: pkg.catLabel,
+        price: (pkg.options[0] || {}).price || 0,
+        targetUrl: getPackageShowcaseUrl(pkg)
+      }));
+
+      samplesGalleryGrid.innerHTML = `
+        <div class="samples-album-breadcrumb-bar" style="grid-column: 1 / -1;">
+          <button type="button" class="btn-album-back" id="btnAlbumBack">‹ Switch to Folder Albums</button>
+          <div class="album-breadcrumb-title">📸 <b>All Birthday Event Photos</b> (${totalCount} Total Images)</div>
+          <button type="button" class="btn-album-slideshow" id="btnAlbumSlideshow">▶ Fullscreen Slideshow</button>
+        </div>
+        ${allSamples.map((s, idx) => `
+          <div class="sample-item-card js-lightbox-trigger" data-url="${s.url}" data-idx="${idx}">
+            <img src="${s.url}" alt="${escapeHtml(s.title || 'Photo Sample')}" class="sample-item-thumb" loading="lazy">
+            <div class="sample-item-zoom-icon">🔍</div>
+          </div>
+        `).join('')}
+      `;
+
+      const btnBack = document.getElementById("btnAlbumBack");
+      if (btnBack) {
+        btnBack.onclick = (e) => {
+          e.stopPropagation();
+          renderMultiAlbumSamplesModal(pkg, null);
+        };
+      }
+
+      const btnSlideshow = document.getElementById("btnAlbumSlideshow");
+      if (btnSlideshow) {
+        btnSlideshow.onclick = (e) => {
+          e.stopPropagation();
+          openLightbox(sampleItems, 0);
+        };
+      }
+
+      const triggers = samplesGalleryGrid.querySelectorAll('.js-lightbox-trigger');
+      triggers.forEach((el, idx) => {
+        el.onclick = (e) => {
+          e.stopPropagation();
+          openLightbox(sampleItems, idx);
+        };
+      });
+    }
+
+    if (samplesBookWaBtn) {
+      samplesBookWaBtn.onclick = () => {
+        const text = `👋 Hello ${PACKAGES_CONFIG.studioName}!\n\nI just checked your client event albums for "${pkg.title}" on your packages landing page, and I love the quality!\n\nI would like to inquire about booking availability for a birthday celebration. 📸`;
+        window.open(`https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`, "_blank");
+      };
+    }
+  }
+
   function openSamplesModal(pkgId) {
     const pkg = PACKAGES_DATA.find(p => p.id === pkgId);
     if (!pkg) return;
+
+    // Check if this package has curated event albums / subfolders
+    if (pkg.albums && pkg.albums.length > 0) {
+      renderMultiAlbumSamplesModal(pkg, null);
+      if (samplesModal) samplesModal.classList.add("open");
+      return;
+    }
 
     if (samplesModalTitle) {
       samplesModalTitle.textContent = `${pkg.title} · Photo Samples`;
@@ -3067,10 +3270,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (elDepBalSub) elDepBalSub.innerHTML = `Balance due on master delivery: <b style="color:#dc2626;">KSh ${balance.toLocaleString()}</b>.`;
       }
 
-      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Payment Channel:</b> <span style="font-weight:700; color:#15803d;">${escapeHtml(paymentMethod)}</span>`;
-      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Payment Ref / Code:</b> <span class="till-num" style="background:#dcfce7; color:#15803d; border-color:#86efac;">${escapeHtml(paymentRef)}</span> &nbsp;<b>Bank:</b> I&amp;M Bank`;
-      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name Verified:</b> <span style="font-weight:700; color:#0f766e;">JANE AKOTH</span> (Acc: 486197)`;
-      if (elPayRefLine) elPayRefLine.innerHTML = `<b>Receipt Clearance:</b> <span style="font-weight:700; color:#15803d;">✓ Validated &amp; Logged by Studio Reception (Strictly Cashless)</span>`;
+      if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Payment Channel:</b> <span style="font-weight:700; color:#0f172a;">${escapeHtml(paymentMethod)}</span>`;
+      if (elPayTillLine) elPayTillLine.innerHTML = `<b>Payment Ref / Code:</b> <span class="till-num" style="background:#f1f5f9; color:#0f172a; border-color:#cbd5e1; font-weight:800;">${escapeHtml(paymentRef)}</span> &nbsp;<b>Bank:</b> I&amp;M Bank`;
+      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name Verified:</b> <span style="font-weight:800; color:#0f172a;">JANE AKOTH</span> (Acc: 486197)`;
+      if (elPayRefLine) elPayRefLine.innerHTML = `<b>Receipt Clearance:</b> <span style="font-weight:700; color:#0f172a;">✓ Validated &amp; Logged by Studio Reception (Strictly Cashless)</span>`;
       if (elTermsNote) elTermsNote.textContent = "* Official studio receipt. Cashless payment verified. High-resolution master files and deliverables are processed per the agreed production timeline.";
     } else {
       // Quotation mode
@@ -3105,7 +3308,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (elPayChannelLine) elPayChannelLine.innerHTML = `<b>Remittance Channel:</b> <span id="invPayChannelVal">M-Pesa Till &amp; Paybill / Direct Bank Transfer</span>`;
       if (elPayTillLine) elPayTillLine.innerHTML = `<b>Buy Goods Till:</b> <span class="till-num">0790048905</span> &nbsp;<b>Paybill:</b> <span class="till-num">542542</span> Acc: <span class="till-num">486197</span>`;
-      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name to Verify:</b> <span style="font-weight:700; color:#047857;">JANE AKOTH</span> (Laureign Studios)`;
+      if (elPayAccountLine) elPayAccountLine.innerHTML = `<b>Account Name to Verify:</b> <span style="font-weight:800; color:#0f172a;">JANE AKOTH</span> (Laureign Studios)`;
       const elBankLine = document.getElementById("invPayBankLine");
       if (elBankLine) elBankLine.innerHTML = `<b>Direct Bank Remittance:</b> <span>I&amp;M Bank Kenya · Account No: <b>486197</b></span>`;
       if (elTermsNote) elTermsNote.textContent = `* An ${depPercent}% commitment deposit confirms your booking and reserves our creative crew on your event date. The remaining ${100 - depPercent}% balance is payable upon delivery of your master high-resolution deliverables.`;

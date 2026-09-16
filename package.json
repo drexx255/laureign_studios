@@ -1,0 +1,13 @@
+{
+  "name": "laureign-studios-packages",
+  "version": "2.0.0",
+  "description": "Laureign Studios Official Rates, Packages & Booking Platform",
+  "main": "packages/index.html",
+  "scripts": {
+    "sync": "node packages/js/sync-samples.js",
+    "watch": "node packages/js/watch-samples.js"
+  },
+  "keywords": ["photography", "packages", "kenya", "laureign-studios"],
+  "author": "Laureign Studios",
+  "license": "ISC"
+}

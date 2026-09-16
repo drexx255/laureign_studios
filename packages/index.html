@@ -20,6 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/packages/css/packages.css?v=darkglass_v3">
+  <link rel="stylesheet" href="/packages/css/qr-standee.css">
   <script src="/packages/js/theme-switcher.js"></script>
 </head>
 <body>
@@ -63,6 +64,10 @@
         <div class="staff-tools-cluster" id="headerStaffTools" style="display:none; align-items:center; gap:8px;">
           <button type="button" class="btn-open-walkin" onclick="openInvoiceModal(); applyWalkinPreset();" title="Quick Walk-in Client Desk (Today's Shoot)">
             <span>⚡ Walk-in Desk</span>
+          </button>
+          <button type="button" class="btn-open-qr" onclick="openQrModal()" title="Studio QR Plaque &amp; Standee Generator" style="display:inline-flex; align-items:center; gap:6px; background:rgba(34,197,94,0.12); border:1px solid rgba(74,222,128,0.35); color:#4ade80; font-weight:700; border-radius:999px; padding:7px 14px; font-size:12px; cursor:pointer; transition:all 0.2s ease;">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm2 3h3v2h-3v-2zm3 3h3v3h-3v-3zm-3 0h3v1h-3v-1zm-2-1h2v3h-2v-3z"/></svg>
+            <span>📱 QR Standee</span>
           </button>
           <button type="button" class="btn-open-leads" onclick="openLeadsModal()" title="View &amp; Export Collected Client Emails &amp; CRM Contacts">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
@@ -116,6 +121,10 @@
       </div>
       <div id="drawerStaffTools" style="display:none; margin:0 8px 10px;">
         <a href="javascript:void(0)" onclick="openInvoiceModal(); applyWalkinPreset(); toggleDrawer ? toggleDrawer(false) : togglePackagesDrawer(false);" class="drawer-link" style="background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.35); color:#4ade80; font-weight:700; border-radius:8px; padding:9px 10px; justify-content:center; font-size:11.5px; margin-bottom:6px;">⚡ Walk-in Receipt Desk</a>
+        <a href="javascript:void(0)" onclick="openQrModal(); typeof togglePackagesDrawer === 'function' ? togglePackagesDrawer(false) : (typeof toggleDrawer === 'function' ? toggleDrawer(false) : null);" class="drawer-link" style="display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(34,197,94,0.12); border:1px solid rgba(74,222,128,0.35); color:#4ade80; font-weight:700; border-radius:8px; padding:9px 10px; font-size:11.5px; margin-bottom:6px; text-decoration:none;">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm2 3h3v2h-3v-2zm3 3h3v3h-3v-3zm-3 0h3v1h-3v-1zm-2-1h2v3h-2v-3z"/></svg>
+          <span>📱 Studio QR Standee</span>
+        </a>
         <a href="javascript:void(0)" onclick="closeDrawer(); openLeadsModal();" class="drawer-link" style="background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.35); color:#a5b4fc; font-weight:700; border-radius:8px; padding:9px 10px; justify-content:center; font-size:11.5px;">📊 Studio Leads CRM</a>
       </div>
       <a href="index.html" class="drawer-link" style="color:var(--gold-soft);font-weight:700;">← Back to All Packages (Rate Card)</a>
@@ -1601,7 +1610,7 @@
                 <div class="inv-pay-box" id="invPayBox">
                   <div class="pay-line" id="invPayChannelLine"><b>Remittance Channel:</b> <span id="invPayChannelVal">M-Pesa Till &amp; Paybill / Direct Bank Transfer</span></div>
                   <div class="pay-line" id="invPayTillLine"><b>Buy Goods Till:</b> <span class="till-num">0790048905</span> &nbsp;<b>Paybill:</b> <span class="till-num">542542</span> Acc: <span class="till-num">486197</span></div>
-                  <div class="pay-line" id="invPayAccountLine"><b>Account Name to Verify:</b> <span style="font-weight:700; color:#047857;">JANE AKOTH</span> (Laureign Studios)</div>
+                  <div class="pay-line" id="invPayAccountLine"><b>Account Name to Verify:</b> <span style="font-weight:800; color:#0f172a;">JANE AKOTH</span> (Laureign Studios)</div>
                   <div class="pay-line" id="invPayBankLine"><b>Bank Wire Remittance:</b> <span>I&amp;M Bank Kenya · Account No: <b>486197</b></span></div>
                   <div class="pay-line cashless-warning" id="invPayRefLine" style="font-size:10.5px; color:#64748b; margin-top:6px;">🔒 Cashless accounting. Retain M-Pesa confirmation code for instant verification.</div>
                 </div>
@@ -1627,27 +1636,27 @@
                           <path id="stampTopArc" d="M 28,100 A 72,72 0 1,1 172,100" fill="none"/>
                           <path id="stampBottomArc" d="M 172,100 A 72,72 0 0,1 28,100" fill="none"/>
                         </defs>
-                        <circle cx="100" cy="100" r="95" fill="none" stroke="#047857" stroke-width="2.5" stroke-dasharray="8,3"/>
-                        <circle cx="100" cy="100" r="88" fill="none" stroke="#047857" stroke-width="1.2"/>
-                        <circle cx="100" cy="100" r="62" fill="none" stroke="#047857" stroke-width="1.6"/>
-                        <text font-family="'Jost', -apple-system, sans-serif" font-size="11" font-weight="800" fill="#047857" letter-spacing="2.2">
+                        <circle cx="100" cy="100" r="95" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-dasharray="8,3"/>
+                        <circle cx="100" cy="100" r="88" fill="none" stroke="#0f172a" stroke-width="1.2"/>
+                        <circle cx="100" cy="100" r="62" fill="none" stroke="#0f172a" stroke-width="1.6"/>
+                        <text font-family="'Jost', -apple-system, sans-serif" font-size="11" font-weight="800" fill="#0f172a" letter-spacing="2.2">
                           <textPath href="#stampTopArc" startOffset="50%" text-anchor="middle">
                             ★ LAUREIGN STUDIOS KENYA ★
                           </textPath>
                         </text>
-                        <text font-family="'Jost', -apple-system, sans-serif" font-size="9" font-weight="700" fill="#047857" letter-spacing="1.8">
+                        <text font-family="'Jost', -apple-system, sans-serif" font-size="9" font-weight="700" fill="#0f172a" letter-spacing="1.8">
                           <textPath href="#stampBottomArc" startOffset="50%" text-anchor="middle">
                             • OFFICIAL VERIFIED SEAL •
                           </textPath>
                         </text>
                         <g text-anchor="middle" font-family="'Jost', -apple-system, sans-serif">
-                          <text x="100" y="78" font-size="10" fill="#047857" font-weight="900">★ ★ ★</text>
-                          <text x="100" y="93" font-size="8.8" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgTitle">OFFICIAL INVOICE</text>
-                          <line x1="52" y1="99" x2="148" y2="99" stroke="#047857" stroke-width="1"/>
-                          <text x="100" y="111" font-size="9.5" font-weight="900" fill="#047857" letter-spacing="0.8" id="stampSvgDate">DATE: 16 SEP 2026</text>
-                          <line x1="52" y1="116" x2="148" y2="116" stroke="#047857" stroke-width="1"/>
-                          <text x="100" y="127" font-size="7.5" font-weight="800" fill="#047857" letter-spacing="0.6" id="stampSvgRef">REF: LS-QUO-2026</text>
-                          <text x="100" y="137" font-size="7" font-weight="800" fill="#047857" letter-spacing="1">AUTHENTICATED</text>
+                          <text x="100" y="78" font-size="10" fill="#0f172a" font-weight="900">★ ★ ★</text>
+                          <text x="100" y="93" font-size="8.8" font-weight="900" fill="#0f172a" letter-spacing="0.8" id="stampSvgTitle">OFFICIAL INVOICE</text>
+                          <line x1="52" y1="99" x2="148" y2="99" stroke="#0f172a" stroke-width="1"/>
+                          <text x="100" y="111" font-size="9.5" font-weight="900" fill="#0f172a" letter-spacing="0.8" id="stampSvgDate">DATE: 16 SEP 2026</text>
+                          <line x1="52" y1="116" x2="148" y2="116" stroke="#0f172a" stroke-width="1"/>
+                          <text x="100" y="127" font-size="7.5" font-weight="800" fill="#0f172a" letter-spacing="0.6" id="stampSvgRef">REF: LS-QUO-2026</text>
+                          <text x="100" y="137" font-size="7" font-weight="800" fill="#0f172a" letter-spacing="1">AUTHENTICATED</text>
                         </g>
                       </svg>
                     </div>
@@ -1882,11 +1891,121 @@
     </div>
   </div>
 
+  <!-- STUDIO QR STANDEE & DIGITAL COUNTER PASS MODAL -->
+  <div class="qr-modal-overlay" id="qrStandeeModal" aria-hidden="true" role="dialog" style="display:none;">
+    <div class="qr-modal-container">
+      <div class="qr-modal-header">
+        <div class="qr-header-info">
+          <h3>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="color:#22c55e;"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h3v3h-3v-3zm2 3h3v2h-3v-2zm3 3h3v3h-3v-3zm-3 0h3v1h-3v-1zm-2-1h2v3h-2v-3z"/></svg>
+            Studio QR Standee &amp; Walk-in Desk Pass
+          </h3>
+          <p>Let clients scan directly from your phone screen, or print an acrylic counter standee for your reception desk.</p>
+        </div>
+        <button type="button" class="qr-close-btn" onclick="closeQrModal()" aria-label="Close QR Standee">&times;</button>
+      </div>
+
+      <div class="qr-modal-body">
+        <!-- Selector row -->
+        <div class="qr-target-selector-row">
+          <label for="qrTargetSelect" class="qr-select-label">Select QR Destination:</label>
+          <select id="qrTargetSelect" class="qr-select-control" onchange="onQrTargetChange(this.value)">
+            <option value="full">🌟 Full Studio Rate Card &amp; Packages (Homepage)</option>
+            <option value="graduation">🎓 Graduation Packages Portal</option>
+            <option value="weddings">💍 Weddings &amp; Matrimony Coverage</option>
+            <option value="birthdays">🎂 Birthday &amp; Milestone Shoots</option>
+            <option value="headshots">💼 Executive &amp; Corporate Headshots</option>
+            <option value="walkin">⚡ Walk-in Reception Desk</option>
+          </select>
+        </div>
+
+        <!-- Printable Standee Preview Plaque (Titanium & Emerald Green Plaque) -->
+        <div class="qr-standee-card-wrapper">
+          <div class="qr-standee-card" id="printableQrStandeeCard">
+            <!-- Top Header Row: Brand Info + Phone + Digital NFC Chip -->
+            <div class="qr-card-top-row">
+              <div class="qr-card-brand-group">
+                <img src="/packages/images/logo.png" alt="Laureign Studios" class="qr-card-logo">
+                <div class="qr-card-title-group">
+                  <h2 class="qr-card-name">LAUREIGN STUDIOS</h2>
+                  <span class="qr-card-phone">+254 790 048 905</span>
+                </div>
+              </div>
+              <div class="qr-card-chip-icon" title="Digital Counter Pass">
+                <svg viewBox="0 0 24 24" width="28" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="2" y="3" width="20" height="14" rx="3" stroke="rgba(255,255,255,0.4)"/>
+                  <circle cx="6" cy="10" r="1.5" fill="#22c55e"/>
+                  <path d="M12 7v6M16 7v6" stroke="rgba(255,255,255,0.4)"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Scan Prompt Pill -->
+            <div class="qr-card-scan-label">
+              <span class="qr-scan-dot"></span>
+              <span>POINT CAMERA TO SCAN &amp; BOOK</span>
+            </div>
+
+            <!-- Recessed Center Bezel Frame (The QR code sits strictly inside the plaque) -->
+            <div class="qr-card-bezel-frame">
+              <div class="qr-scanner-reticle reticle-tl"></div>
+              <div class="qr-scanner-reticle reticle-tr"></div>
+              <div class="qr-scanner-reticle reticle-bl"></div>
+              <div class="qr-scanner-reticle reticle-br"></div>
+
+              <div class="qr-code-viewport" id="qrCodeContainer">
+                <!-- High-contrast QR canvas rendered inside -->
+              </div>
+            </div>
+
+            <p class="qr-card-destination" id="qrDestinationText">Instant Rates · Deliverable Specs · Book Direct on WhatsApp</p>
+
+            <!-- Bottom Badges Plate (M-Pesa / Cashless / Verified) -->
+            <div class="qr-card-bottom-plate">
+              <div class="qr-plate-row">
+                <span class="qr-plate-item">
+                  <b style="color:#22c55e;">M-PESA</b> Paybill 542542
+                </span>
+                <span class="qr-plate-divider"></span>
+                <span class="qr-plate-item">
+                  Acc: <b style="color:#ffffff;">486197</b>
+                </span>
+              </div>
+              <div class="qr-plate-sub">
+                <span>⚡ CASHLESS VERIFIED · OFFICIAL RATE CARD</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Action Buttons Toolbar -->
+        <div class="qr-actions-toolbar">
+          <button type="button" class="qr-btn qr-btn-print" onclick="printQrStandee()">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+            <span>🖨️ Print Desk Standee</span>
+          </button>
+          <button type="button" class="qr-btn qr-btn-download" onclick="downloadQrPng()">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            <span>📥 Download High-Res PNG</span>
+          </button>
+          <button type="button" class="qr-btn qr-btn-copy" onclick="copyQrTargetUrl()">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            <span>📋 Copy Link</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
+  <script src="/packages/js/qrcode.min.js"></script>
   <script src="/packages/js/html2pdf.bundle.min.js"></script>
   <script src="/packages/js/packages-data.js?v=2.1"></script>
   <script src="/packages/js/packages.js?v=2.1"></script>
   <script src="/packages/js/reels-modal.js"></script>
+  <script src="/packages/js/qr-standee.js"></script>
 
 
   <!-- FLOATING BACK-UP ARROW (SCROLL TO TOP) -->

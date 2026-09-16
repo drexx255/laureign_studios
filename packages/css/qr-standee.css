@@ -1,0 +1,554 @@
+/* ============================================================
+   APPLE DESIGN SYSTEM: STUDIO QR PLAQUE & COUNTER STANDEE
+   Palette: Obsidian Dark (#000000 / #090a0f), Studio Emerald Green (#22c55e), Crisp White (#ffffff)
+   Layout: Titanium Acrylic Plaque with Recessed Center QR Bezel
+   ============================================================ */
+
+.qr-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10005;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.qr-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.qr-modal-container {
+  background: #08090d;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 30px rgba(34, 197, 94, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: appleQrPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin: auto;
+}
+
+@keyframes appleQrPop {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.qr-modal-header {
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: rgba(14, 15, 22, 0.6);
+}
+
+.qr-header-info h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 3px;
+  letter-spacing: -0.01em;
+}
+
+.qr-header-info p {
+  font-size: 12px;
+  color: #a1a1aa;
+  line-height: 1.4;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+}
+
+.qr-close-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #a1a1aa;
+  font-size: 20px;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.qr-close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+.qr-modal-body {
+  padding: 18px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Selector row */
+.qr-target-selector-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.qr-select-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #4ade80;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.qr-select-control {
+  width: 100%;
+  background: #11131a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #ffffff;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.qr-select-control:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+}
+
+/* ============================================================
+   THE TITANIUM / OBSIDIAN PLAQUE (STAND-ALONE PRINTABLE OBJECT)
+   ============================================================ */
+.qr-standee-card-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.qr-standee-card {
+  background: linear-gradient(180deg, #11131a 0%, #08090d 100%);
+  color: #ffffff;
+  border-radius: 24px;
+  padding: 22px 20px 18px;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), inset 0 1px 1px rgba(255, 255, 255, 0.22), 0 0 30px rgba(34, 197, 94, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle carbon dot pattern inside card */
+.qr-standee-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 14px 14px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Top Row: Brand Info + Phone + Digital Chip */
+.qr-card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.qr-card-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qr-card-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #22c55e;
+  padding: 2px;
+  background: #000000;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
+}
+
+.qr-card-title-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.qr-card-name {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.qr-card-phone {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #4ade80;
+  letter-spacing: 0.02em;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", monospace, sans-serif;
+}
+
+.qr-card-chip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+}
+
+/* Scan Prompt Pill */
+.qr-card-scan-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(34, 197, 94, 0.10);
+  color: #4ade80;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin: 0 auto 10px;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+
+.qr-scan-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulseGreenDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseGreenDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ============================================================
+   RECESSED CENTER BEZEL: QR SITS STRICTLY INSIDE THE POSTER
+   ============================================================ */
+.qr-card-bezel-frame {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, #050608 0%, #0b0c12 100%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 20px;
+  padding: 16px;
+  margin: 0 auto 10px;
+  width: 236px;
+  height: 236px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 3px 12px rgba(0, 0, 0, 0.85), 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Scanner Corner Reticles (The 4 corners) */
+.qr-scanner-reticle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: #22c55e;
+  border-style: solid;
+  pointer-events: none;
+}
+
+.reticle-tl { top: 10px; left: 10px; border-width: 2.5px 0 0 2.5px; border-top-left-radius: 6px; }
+.reticle-tr { top: 10px; right: 10px; border-width: 2.5px 2.5px 0 0; border-top-right-radius: 6px; }
+.reticle-bl { bottom: 10px; left: 10px; border-width: 0 0 2.5px 2.5px; border-bottom-left-radius: 6px; }
+.reticle-br { bottom: 10px; right: 10px; border-width: 0 2.5px 2.5px 0; border-bottom-right-radius: 6px; }
+
+/* The White QR Capsule completely inside the bezel */
+.qr-code-viewport {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.qr-code-viewport img,
+.qr-code-viewport canvas {
+  display: block !important;
+  width: 180px !important;
+  height: 180px !important;
+  border-radius: 6px;
+}
+
+.qr-card-destination {
+  font-size: 11px;
+  color: #a1a1aa;
+  line-height: 1.35;
+  margin: 0 0 10px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+/* ============================================================
+   BOTTOM BADGES PLATE: M-PESA & CASHLESS VERIFIED
+   ============================================================ */
+.qr-card-bottom-plate {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.qr-plate-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 11.5px;
+  color: #e4e4e7;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.qr-plate-divider {
+  width: 1px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.qr-plate-sub {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: #71717a;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Actions Toolbar */
+.qr-actions-toolbar {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 0.9fr;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.qr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 11px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.qr-btn-print {
+  background: #22c55e;
+  color: #000000;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);
+}
+
+.qr-btn-print:hover {
+  background: #16a34a;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.qr-btn-download {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+.qr-btn-download:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.qr-btn-copy {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.32);
+  color: #4ade80;
+}
+
+.qr-btn-copy:hover {
+  background: rgba(34, 197, 94, 0.22);
+}
+
+/* ============================================================
+   @MEDIA PRINT: COUNTER STANDEE PLAQUE ON WHITE PAPER
+   ============================================================ */
+@media print {
+  body.printing-qr {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.printing-qr > *:not(#qrStandeeModal) {
+    display: none !important;
+  }
+
+  body.printing-qr #qrStandeeModal {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    background: #ffffff !important;
+    padding: 24px 0 !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    backdrop-filter: none !important;
+  }
+
+  body.printing-qr .qr-modal-container {
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    animation: none !important;
+  }
+
+  body.printing-qr .qr-modal-header,
+  body.printing-qr .qr-target-selector-row,
+  body.printing-qr .qr-actions-toolbar,
+  body.printing-qr .qr-close-btn {
+    display: none !important;
+  }
+
+  body.printing-qr .qr-modal-body {
+    padding: 0 !important;
+  }
+
+  body.printing-qr .qr-standee-card-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 85vh !important;
+  }
+
+  body.printing-qr .qr-standee-card {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 3px solid #000000 !important;
+    box-shadow: none !important;
+    width: 360px !important;
+    max-width: 95% !important;
+    padding: 28px 22px !important;
+    border-radius: 24px !important;
+    page-break-inside: avoid !important;
+  }
+
+  body.printing-qr .qr-standee-card::before {
+    display: none !important;
+  }
+
+  body.printing-qr .qr-card-name {
+    color: #000000 !important;
+  }
+
+  body.printing-qr .qr-card-phone {
+    color: #16a34a !important;
+  }
+
+  body.printing-qr .qr-card-chip-icon svg rect,
+  body.printing-qr .qr-card-chip-icon svg path {
+    stroke: #000000 !important;
+  }
+
+  body.printing-qr .qr-card-scan-label {
+    background: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #000000 !important;
+  }
+
+  body.printing-qr .qr-card-bezel-frame {
+    background: #f4f4f5 !important;
+    border: 2px solid #000000 !important;
+    box-shadow: none !important;
+  }
+
+  body.printing-qr .qr-scanner-reticle {
+    border-color: #16a34a !important;
+  }
+
+  body.printing-qr .qr-code-viewport {
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+  }
+
+  body.printing-qr .qr-card-destination {
+    color: #52525b !important;
+  }
+
+  body.printing-qr .qr-card-bottom-plate {
+    background: #f4f4f5 !important;
+    border: 1px solid #d4d4d8 !important;
+  }
+
+  body.printing-qr .qr-plate-row {
+    color: #000000 !important;
+  }
+
+  body.printing-qr .qr-plate-row b {
+    color: #16a34a !important;
+  }
+
+  body.printing-qr .qr-plate-sub {
+    color: #52525b !important;
+  }
+}

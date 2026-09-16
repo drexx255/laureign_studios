@@ -1,116 +1,281 @@
 // ============================================================
 //  packages-data.js — Official Studio Rate Card & Samples Architecture
 //  Brand: Laureign Studios · Official WhatsApp: 0790048905
+//  Auto-synchronized by sync-samples.js
 // ============================================================
 
 const PACKAGES_CONFIG = {
-  studioName: "Laureign Studios",
-  tagline: "Official Rates, Packages & Booking Platform",
-  whatsappNumber: "254790048905",
-  phoneDisplay: "+254 790 048 905",
-  currency: "KSh ",
-  locations: ["Nairobi", "Kakamega", "Eldoret", "Kisumu", "Across Kenya"],
-  bookingPortalUrl: "index.html#book"
+  "studioName": "Laureign Studios",
+  "tagline": "Official Rates, Packages & Booking Platform",
+  "whatsappNumber": "254790048905",
+  "phoneDisplay": "+254 790 048 905",
+  "currency": "KSh ",
+  "locations": [
+    "Nairobi",
+    "Kakamega",
+    "Eldoret",
+    "Kisumu",
+    "Across Kenya"
+  ],
+  "bookingPortalUrl": "index.html#book"
 };
 
-// High-Level Pathways (4 Distinct Experience Categories)
 const PATHWAYS = [
   {
-    id: "studio",
-    title: "Studio & Portrait Sessions",
-    tagline: "In-Studio Controlled Lighting & High-Fashion Styled Shoots",
-    desc: "Graduation Milestones, Executive Headshots, White Shirt, Silk Wrap, Studio Birthdays, Maternity & Family.",
-    icon: "📸",
-    subcategories: [
-      { id: "all", name: "🌟 All Studio Sessions" },
-      { id: "graduation", name: "🎓 Graduation Shoots" },
-      { id: "portraits", name: "👔 Executive Headshots" },
-      { id: "white-shirt", name: "👔 Crisp White Shirt" },
-      { id: "silk-wrap", name: "✨ Luxury Silk Wrap" },
-      { id: "boudoir", name: "🌹 Luxury Boudoir Shoot" },
-      { id: "traditional", name: "👑 Traditional Cultural Shoot" },
-      { id: "maternity-kids", name: "🍼 Maternity, Newborn & Kids" },
-      { id: "couples-family", name: "👨‍👩‍👧 Couples & Family Studio" }
+    "id": "studio",
+    "title": "Studio & Portrait Sessions",
+    "tagline": "In-Studio Controlled Lighting & High-Fashion Styled Shoots",
+    "desc": "Graduation Milestones, Executive Headshots, White Shirt, Silk Wrap, Studio Birthdays, Maternity & Family.",
+    "icon": "📸",
+    "subcategories": [
+      {
+        "id": "all",
+        "name": "🌟 All Studio Sessions"
+      },
+      {
+        "id": "graduation",
+        "name": "🎓 Graduation Shoots"
+      },
+      {
+        "id": "portraits",
+        "name": "👔 Executive Headshots"
+      },
+      {
+        "id": "white-shirt",
+        "name": "👔 Crisp White Shirt"
+      },
+      {
+        "id": "silk-wrap",
+        "name": "✨ Luxury Silk Wrap"
+      },
+      {
+        "id": "boudoir",
+        "name": "🌹 Luxury Boudoir Shoot"
+      },
+      {
+        "id": "traditional",
+        "name": "👑 Traditional Cultural Shoot"
+      },
+      {
+        "id": "maternity-kids",
+        "name": "🍼 Maternity, Newborn & Kids"
+      },
+      {
+        "id": "couples-family",
+        "name": "👨‍👩‍👧 Couples & Family Studio"
+      }
     ]
   },
   {
-    id: "outdoor",
-    title: "Outdoor & Natural Light Sessions",
-    tagline: "Golden Hour, Gardens, Parks & On-Location Lifestyle Shoots",
-    desc: "Natural light headshots, vibrant garden birthdays, golden hour maternity, outdoor family picnics, and romantic couple stories (Minimum 7 images · No single image for outdoor).",
-    icon: "🌿",
-    subcategories: [
-      { id: "all", name: "🌟 All Outdoor Sessions" },
-      { id: "outdoor-headshots", name: "🌿 Outdoor & Model Headshots" },
-      { id: "outdoor-birthdays", name: "🎉 Outdoor Birthdays" },
-      { id: "outdoor-maternity", name: "🍼 Outdoor Baby Bump" },
-      { id: "outdoor-family", name: "👨‍👩‍👧 Outdoor Family & Kids" },
-      { id: "outdoor-couples", name: "❤️ Outdoor Couples" }
+    "id": "outdoor",
+    "title": "Outdoor & Natural Light Sessions",
+    "tagline": "Golden Hour, Gardens, Parks & On-Location Lifestyle Shoots",
+    "desc": "Natural light headshots, vibrant garden birthdays, golden hour maternity, outdoor family picnics, and romantic couple stories (Minimum 7 images · No single image for outdoor).",
+    "icon": "🌿",
+    "subcategories": [
+      {
+        "id": "all",
+        "name": "🌟 All Outdoor Sessions"
+      },
+      {
+        "id": "outdoor-headshots",
+        "name": "🌿 Outdoor & Model Headshots"
+      },
+      {
+        "id": "outdoor-birthdays",
+        "name": "🎉 Outdoor Birthdays"
+      },
+      {
+        "id": "outdoor-maternity",
+        "name": "🍼 Outdoor Baby Bump"
+      },
+      {
+        "id": "outdoor-family",
+        "name": "👨‍👩‍👧 Outdoor Family & Kids"
+      },
+      {
+        "id": "outdoor-couples",
+        "name": "❤️ Outdoor Couples"
+      },
+      {
+        "id": "outdoor-traditional",
+        "name": "👑 Traditional Cultural (Outdoor)"
+      }
     ]
   },
   {
-    id: "events",
-    title: "Weddings & Event Coverage",
-    tagline: "On-Location Photography & Multi-Cam Cinematography",
-    desc: "Full-day Weddings, Traditional Matrimony, Corporate Summits, Galas & Memorial Tributes.",
-    icon: "💍",
-    subcategories: [
-      { id: "all", name: "🌟 All Event Coverage" },
-      { id: "weddings", name: "💍 Weddings & Matrimony" },
-      { id: "corporate-events", name: "🏢 Corporate Summits & Galas" },
-      { id: "memorials", name: "🕊️ Burial & Memorial Tributes" },
-      { id: "parties-galas", name: "🎉 Birthday & Graduation Events" },
-      { id: "school-club-events", name: "🏫 Schools, Nightlife & Clubs" }
+    "id": "events",
+    "title": "Weddings & Event Coverage",
+    "tagline": "On-Location Photography & Multi-Cam Cinematography",
+    "desc": "Full-day Weddings, Traditional Matrimony, Corporate Summits, Galas & Memorial Tributes.",
+    "icon": "💍",
+    "subcategories": [
+      {
+        "id": "all",
+        "name": "🌟 All Event Coverage"
+      },
+      {
+        "id": "weddings",
+        "name": "💍 Weddings & Matrimony"
+      },
+      {
+        "id": "corporate-events",
+        "name": "🏢 Corporate Summits & Galas"
+      },
+      {
+        "id": "memorials",
+        "name": "🕊️ Burial & Memorial Tributes"
+      },
+      {
+        "id": "parties-galas",
+        "name": "🎉 Birthday & Graduation Events"
+      },
+      {
+        "id": "school-club-events",
+        "name": "🏫 Schools, Nightlife & Clubs"
+      }
     ]
   },
   {
-    id: "commercial",
-    title: "Commercial & Brand Growth",
-    tagline: "Business Assets, Products & Graphic Design",
-    desc: "E-Commerce Product Shoots, Hotel/Hospitality & Full Corporate Brand Identity.",
-    icon: "🚀",
-    subcategories: [
-      { id: "all", name: "🌟 All Commercial" },
-      { id: "products-hospitality", name: "📦 Products & Hotels" },
-      { id: "graphic-design", name: "🎨 Graphic Design & Branding" }
+    "id": "commercial",
+    "title": "Commercial & Brand Growth",
+    "tagline": "Business Assets, Products & Graphic Design",
+    "desc": "E-Commerce Product Shoots, Hotel/Hospitality & Full Corporate Brand Identity.",
+    "icon": "🚀",
+    "subcategories": [
+      {
+        "id": "all",
+        "name": "🌟 All Commercial"
+      },
+      {
+        "id": "products-hospitality",
+        "name": "📦 Products & Hotels"
+      },
+      {
+        "id": "graphic-design",
+        "name": "🎨 Graphic Design & Branding"
+      }
     ]
   }
 ];
 
 const ADD_ONS_LIST = [
-  { id: "unedited-proofs", name: "RAW Unedited Soft Copies", price: 150, unit: "per image", desc: "Original high-resolution unedited camera proofs at KSh 150 each" },
-  { id: "extra-photo", name: "Extra Retouched Photo", price: 300, unit: "per image", desc: "Magazine-grade skin retouching & color grade" },
-  { id: "simple-makeup", name: "Simple Makeup (Natural Glow)", price: 1500, unit: "per person", desc: "Clean camera skin prep, foundation & soft tint (20–25 mins)" },
-  { id: "full-glam-makeup", name: "Full Studio Glam Makeup", price: 2500, unit: "per person", desc: "Full facial contour, luxury eyeshadow & mink lashes (40–50 mins)" },
-  { id: "men-touchup", name: "Men & Executive Touch-Up", price: 500, unit: "per person", desc: "Anti-shine powder, hairline grooming & skin tone balancing (10 mins)" },
-  { id: "wardrobe-wrap", name: "Studio Silk Wrap / Outfit Session", price: 800, unit: "per session", desc: "6-meter luxury satin wrap or studio styling piece during shoot" },
-  { id: "white-shirt", name: "Studio Crisp White Shirt Session", price: 500, unit: "per session", desc: "Tailored or oversized boyfriend white shirt during shoot" },
-  { id: "a4-mount", name: "A4 Photo Mount (21×30cm)", price: 1200, unit: "per mount", desc: "Solid MDF wooden mount, laminated print, ready to hang (Was KSh 1,500 · Save KSh 300)" },
-  { id: "a3-mount", name: "A3 Photo Mount (30×42cm)", price: 2300, unit: "per mount", desc: "Statement living room wooden wall mount (Was KSh 2,500 · Save KSh 200)" },
-  { id: "a2-mount", name: "A2 Grand Photo Mount (42×60cm)", price: 4000, unit: "per mount", desc: "Luxury centerpiece gallery wall mount (Was KSh 4,500 · Save KSh 500)" },
-  { id: "cinematic-reel", name: "🎬 45s–60s Vertical Video Reel", price: 1500, unit: "per reel", desc: "Trending vertical 4K video reel cut to viral TikTok & IG audio (Top Client Add-on · Only KSh 1,500)" },
-  { id: "luxury-album", name: "Luxury Layflat Photobook (30 pgs)", price: 8000, unit: "per album", desc: "Hardcover museum-quality printed keepsake" },
-  { id: "rush-delivery", name: "Express 24–48hr Rush Turnaround", price: 3000, unit: "priority", desc: "Jump the queue for fast social posting" },
-  { id: "drone-4k", name: "4K Aerial Drone Coverage", price: 8000, unit: "per event", desc: "Cinematic overhead views for events & venues" }
-];
-
-// Official Client Video Reel Samples (Optional KSh 1,500 Upsell for Any Shoot)
-const REEL_SAMPLES = [
   {
-    id: "reel-1",
-    title: "Editorial Fashion & Glamour Reel",
-    video: "samples/reels/C1261_1.mp4",
-    poster: "samples/studio/silk-wrap/BR2A0814.JPG",
-    tag: "✨ Editorial Glamour",
-    desc: "Slow-motion transitions, luxury studio lighting & viral audio sync"
+    "id": "unedited-proofs",
+    "name": "RAW Unedited Soft Copies",
+    "price": 150,
+    "unit": "per image",
+    "desc": "Original high-resolution unedited camera proofs at KSh 150 each"
   },
   {
-    id: "reel-2",
-    title: "Vibrant Portrait & Smile Reel",
-    video: "samples/studio/shirt-reels/camila.mp4",
-    poster: "samples/studio/indoor-headshots/DSC09594_(2).jpg",
-    tag: "🔥 Viral TikTok Poses",
-    desc: "High-energy rhythm, smile transitions & candid studio poses"
+    "id": "extra-photo",
+    "name": "Extra Retouched Photo",
+    "price": 300,
+    "unit": "per image",
+    "desc": "Magazine-grade skin retouching & color grade"
+  },
+  {
+    "id": "simple-makeup",
+    "name": "Simple Makeup (Natural Glow)",
+    "price": 1500,
+    "unit": "per person",
+    "desc": "Clean camera skin prep, foundation & soft tint (20–25 mins)"
+  },
+  {
+    "id": "full-glam-makeup",
+    "name": "Full Studio Glam Makeup",
+    "price": 2500,
+    "unit": "per person",
+    "desc": "Full facial contour, luxury eyeshadow & mink lashes (40–50 mins)"
+  },
+  {
+    "id": "men-touchup",
+    "name": "Men & Executive Touch-Up",
+    "price": 500,
+    "unit": "per person",
+    "desc": "Anti-shine powder, hairline grooming & skin tone balancing (10 mins)"
+  },
+  {
+    "id": "wardrobe-wrap",
+    "name": "Studio Silk Wrap / Outfit Session",
+    "price": 800,
+    "unit": "per session",
+    "desc": "6-meter luxury satin wrap or studio styling piece during shoot"
+  },
+  {
+    "id": "white-shirt",
+    "name": "Studio Crisp White Shirt Session",
+    "price": 500,
+    "unit": "per session",
+    "desc": "Tailored or oversized boyfriend white shirt during shoot"
+  },
+  {
+    "id": "a4-mount",
+    "name": "A4 Photo Mount (21×30cm)",
+    "price": 1200,
+    "unit": "per mount",
+    "desc": "Solid MDF wooden mount, laminated print, ready to hang (Was KSh 1,500 · Save KSh 300)"
+  },
+  {
+    "id": "a3-mount",
+    "name": "A3 Photo Mount (30×42cm)",
+    "price": 2300,
+    "unit": "per mount",
+    "desc": "Statement living room wooden wall mount (Was KSh 2,500 · Save KSh 200)"
+  },
+  {
+    "id": "a2-mount",
+    "name": "A2 Grand Photo Mount (42×60cm)",
+    "price": 4000,
+    "unit": "per mount",
+    "desc": "Luxury centerpiece gallery wall mount (Was KSh 4,500 · Save KSh 500)"
+  },
+  {
+    "id": "cinematic-reel",
+    "name": "🎬 45s–60s Vertical Video Reel",
+    "price": 1500,
+    "unit": "per reel",
+    "desc": "Trending vertical 4K video reel cut to viral TikTok & IG audio (Top Client Add-on · Only KSh 1,500)"
+  },
+  {
+    "id": "luxury-album",
+    "name": "Luxury Layflat Photobook (30 pgs)",
+    "price": 8000,
+    "unit": "per album",
+    "desc": "Hardcover museum-quality printed keepsake"
+  },
+  {
+    "id": "rush-delivery",
+    "name": "Express 24–48hr Rush Turnaround",
+    "price": 3000,
+    "unit": "priority",
+    "desc": "Jump the queue for fast social posting"
+  },
+  {
+    "id": "drone-4k",
+    "name": "4K Aerial Drone Coverage",
+    "price": 8000,
+    "unit": "per event",
+    "desc": "Cinematic overhead views for events & venues"
+  }
+];
+
+const REEL_SAMPLES = [
+  {
+    "id": "reel-1",
+    "title": "Editorial Fashion & Glamour Reel",
+    "video": "samples/reels/C1261_1.mp4",
+    "poster": "samples/studio/silk-wrap/BR2A0814.JPG",
+    "tag": "✨ Editorial Glamour",
+    "desc": "Slow-motion transitions, luxury studio lighting & viral audio sync"
+  },
+  {
+    "id": "reel-2",
+    "title": "Vibrant Portrait & Smile Reel",
+    "video": "samples/studio/shirt-reels/camila.mp4",
+    "poster": "samples/studio/indoor-headshots/DSC09594_(2).jpg",
+    "tag": "🔥 Viral TikTok Poses",
+    "desc": "High-energy rhythm, smile transitions & candid studio poses"
   }
 ];
 
@@ -136,34 +301,9 @@ const PACKAGES_DATA = [
         "title": "Graduate Milestone Achievement Cover"
       },
       {
-        "url": "samples/studio/graduation-shoot/PRI_5912.jpg",
+        "url": "samples/studio/graduation-shoot/PRI_4998.jpg",
         "type": "image",
-        "title": "Grand Convocation Regalia Portrait"
-      },
-      {
-        "url": "samples/studio/graduation-shoot/PRI_5893.jpg",
-        "type": "image",
-        "title": "Golden Hour Outdoor Graduation Glow"
-      },
-      {
-        "url": "samples/studio/graduation-shoot/DSC09941.JPG",
-        "type": "image",
-        "title": "Official Academic Graduation Portrait"
-      },
-      {
-        "url": "samples/studio/graduation-shoot/DSC09938.JPG",
-        "type": "image",
-        "title": "Graduation Cap & Gown Posing"
-      },
-      {
-        "url": "samples/studio/graduation-shoot/PRI_5363.jpg",
-        "type": "image",
-        "title": "Diploma & Celebration Flower Bouquet"
-      },
-      {
-        "url": "samples/studio/graduation-shoot/DSC09939.JPG",
-        "type": "image",
-        "title": "Degree Scroll & Academic Pride"
+        "title": "Sunlit Campus Convocation Walk"
       },
       {
         "url": "samples/studio/graduation-shoot/PRI_5013.jpg",
@@ -171,29 +311,9 @@ const PACKAGES_DATA = [
         "title": "Academic Hood & Honors Detail"
       },
       {
-        "url": "samples/studio/graduation-shoot/DSC09940.JPG",
+        "url": "samples/studio/graduation-shoot/PRI_5363.jpg",
         "type": "image",
-        "title": "Celebration Gown Studio Lighting"
-      },
-      {
-        "url": "samples/studio/graduation-shoot/PRI_4998.jpg",
-        "type": "image",
-        "title": "Sunlit Campus Convocation Walk"
-      },
-      {
-        "url": "samples/studio/graduation-shoot/DSC09942.JPG",
-        "type": "image",
-        "title": "Close-up Retouched Graduate Portrait"
-      },
-      {
-        "url": "samples/studio/graduation-shoot/PRI_5895.jpg",
-        "type": "image",
-        "title": "Proud Graduate Natural Profile"
-      },
-      {
-        "url": "samples/studio/graduation-shoot/DSC09943.JPG",
-        "type": "image",
-        "title": "Milestone Degree Academic Look"
+        "title": "Diploma & Celebration Flower Bouquet"
       },
       {
         "url": "samples/studio/graduation-shoot/PRI_5412.jpg",
@@ -201,14 +321,19 @@ const PACKAGES_DATA = [
         "title": "Joyful Academic Milestone Smile"
       },
       {
-        "url": "samples/studio/graduation-shoot/DSC09945.JPG",
+        "url": "samples/studio/graduation-shoot/PRI_5893.jpg",
         "type": "image",
-        "title": "Full-Length Academic Regalia Session"
+        "title": "Golden Hour Outdoor Graduation Glow"
       },
       {
-        "url": "samples/studio/graduation-shoot/graduation.jpg",
+        "url": "samples/studio/graduation-shoot/PRI_5895.jpg",
         "type": "image",
-        "title": "Official Graduation Poster Rates & Guide"
+        "title": "Proud Graduate Natural Profile"
+      },
+      {
+        "url": "samples/studio/graduation-shoot/PRI_5912.jpg",
+        "type": "image",
+        "title": "Grand Convocation Regalia Portrait"
       }
     ],
     "options": [
@@ -289,6 +414,146 @@ const PACKAGES_DATA = [
     "sampleFolder": "samples/studio/indoor-headshots",
     "samples": [
       {
+        "url": "samples/studio/indoor-headshots/cover.jpg",
+        "type": "image",
+        "title": "Executive Headshots · Cover"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC00034.JPG_(2).jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC00034.JPG"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC00047.JPG_(2).jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC00047.JPG"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC00061.JPG_(2).jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC00061.JPG"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC02822.jpgj_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC02822.jpgj"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC02827.jpgj_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC02827.jpgj"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC02830.jpgh_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC02830.jpgh"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC02832.jpgh_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC02832.jpgh"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC02836.jpgh_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC02836.jpgh"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC02840.jpgh_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC02840.jpgh"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC02856.jpgu.jpgg_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC02856.jpgu.jpgg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC02891.jpgj_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC02891.jpgj"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC06408.jpgk.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC06408.jpgk"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC06473.jpglo.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC06473.jpglo"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC06479.jpgmjk-hb.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC06479.jpgmjk hb"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC06606.jpgkjh.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC06606.jpgkjh"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07103-Recovered.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07103 Recovered"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07103gjhgj_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07103gjhgj"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07116-7_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07116 7"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07116.ghgfjpg.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07116.ghgfjpg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07119ggggggg_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07119ggggggg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07122.hgjhgjjpg.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07122.hgjhgjjpg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07169.jhggjpg.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07169.jhggjpg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07302.hjghthjpg_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07302.hjghthjpg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07302.hjghthjpg.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07302.hjghthjpg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07306.jpgpo_status.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07306.jpgpo"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC07306.jpgpo.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC07306.jpgpo"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC09428.JPG_(2).jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC09428.JPG"
+      },
+      {
         "url": "samples/studio/indoor-headshots/DSC09594_(2).jpg",
         "type": "image",
         "title": "Polished Executive Studio Headshot"
@@ -299,24 +564,9 @@ const PACKAGES_DATA = [
         "title": "Professional Leadership Portrait"
       },
       {
-        "url": "samples/studio/indoor-headshots/DSC09765_(2).jpg",
-        "type": "image",
-        "title": "Corporate Board & LinkedIn Profile"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC09795_(2).jpg",
-        "type": "image",
-        "title": "Modern Professional Studio Lighting"
-      },
-      {
         "url": "samples/studio/indoor-headshots/work-10.jpg",
         "type": "image",
         "title": "Editorial Studio Headshot Retouching"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/INDOOR HEADSHOTS.jpg",
-        "type": "image",
-        "title": "Official Rates Poster & Guide"
       }
     ],
     "options": [
@@ -389,18 +639,78 @@ const PACKAGES_DATA = [
     "catLabel": "Crisp White Shirt",
     "title": "Crisp White Shirt Shoot (Studio)",
     "tagline": "The viral, clean minimalist studio white shirt look with studio shirts provided",
-    "image": "samples/studio/indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES_thumb.jpg",
-    "imageWebp": "samples/studio/indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES_thumb.webp",
-    "imageHighRes": "samples/studio/indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES.jpg",
+    "image": "samples/studio/indoor-shirt-shoot/cover_thumb.jpg",
+    "imageWebp": "samples/studio/indoor-shirt-shoot/cover_thumb.webp",
+    "imageHighRes": "samples/studio/indoor-shirt-shoot/cover.jpg",
     "badge": "👔 Studio Shirts Provided",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
     "sampleFolder": "samples/studio/indoor-shirt-shoot",
     "samples": [
       {
-        "url": "samples/studio/indoor-shirt-shoot/INDOOR SHIRT SHOOT PACKAHES.jpg",
+        "url": "samples/studio/indoor-shirt-shoot/cover.jpg",
         "type": "image",
-        "title": "Indoor White Shirt Shoot Rates & Guide"
+        "title": "Crisp White Shirt Shoot (Studio) · Cover"
+      },
+      {
+        "url": "samples/studio/indoor-shirt-shoot/DSC00005.jpgcccscc.jpg",
+        "type": "image",
+        "title": "Crisp White Shirt Shoot (Studio) · DSC00005.jpgcccscc"
+      },
+      {
+        "url": "samples/studio/indoor-shirt-shoot/DSC00014.jpgxxxxxx.jpg",
+        "type": "image",
+        "title": "Crisp White Shirt Shoot (Studio) · DSC00014.jpg"
+      },
+      {
+        "url": "samples/studio/indoor-shirt-shoot/DSC00016.jpgggg.jpg",
+        "type": "image",
+        "title": "Crisp White Shirt Shoot (Studio) · DSC00016.jpgggg"
+      },
+      {
+        "url": "samples/studio/indoor-shirt-shoot/DSC00016.jpgghhy.jpg",
+        "type": "image",
+        "title": "Crisp White Shirt Shoot (Studio) · DSC00016.jpgghhy"
+      },
+      {
+        "url": "samples/studio/indoor-shirt-shoot/DSC00016.jpgsssss.jpg",
+        "type": "image",
+        "title": "Crisp White Shirt Shoot (Studio) · DSC00016.jpgsssss"
+      },
+      {
+        "url": "samples/studio/indoor-shirt-shoot/DSC00078.jpgxxxx.jpg",
+        "type": "image",
+        "title": "Crisp White Shirt Shoot (Studio) · DSC00078.jpg"
+      },
+      {
+        "url": "samples/studio/indoor-shirt-shoot/DSC00101.JPG",
+        "type": "image",
+        "title": "Crisp White Shirt Shoot (Studio) · DSC00101"
+      },
+      {
+        "url": "samples/studio/indoor-shirt-shoot/DSC04319.jpgfffff.jpg",
+        "type": "image",
+        "title": "Crisp White Shirt Shoot (Studio) · DSC04319.jpgfffff"
+      },
+      {
+        "url": "samples/studio/indoor-shirt-shoot/DSC07027.JPG",
+        "type": "image",
+        "title": "Crisp White Shirt Shoot (Studio) · DSC07027"
+      },
+      {
+        "url": "samples/studio/indoor-shirt-shoot/DSC07043.jpgddd.jpg",
+        "type": "image",
+        "title": "Crisp White Shirt Shoot (Studio) · DSC07043.jpgddd"
+      },
+      {
+        "url": "samples/studio/indoor-shirt-shoot/DSC07051.jpggggt.jpg",
+        "type": "image",
+        "title": "Crisp White Shirt Shoot (Studio) · DSC07051.jpggggt"
+      },
+      {
+        "url": "samples/studio/indoor-shirt-shoot/DSC07051.jpgvaaaa.jpg",
+        "type": "image",
+        "title": "Crisp White Shirt Shoot (Studio) · DSC07051.jpgvaaaa"
       }
     ],
     "options": [
@@ -485,18 +795,17 @@ const PACKAGES_DATA = [
     "catLabel": "Crisp White Shirt",
     "title": "White Shirt Video Reels",
     "tagline": "Trending short-form vertical video reels for TikTok & Instagram",
-    "image": "samples/studio/shirt-reels/SHIRT SHOOT REELS PACKAGES_thumb.jpg",
-    "imageWebp": "samples/studio/shirt-reels/SHIRT SHOOT REELS PACKAGES_thumb.webp",
-    "imageHighRes": "samples/studio/shirt-reels/SHIRT SHOOT REELS PACKAGES.jpg",
+    "image": "samples/studio/shirt-reels/camila.mp4",
+    "imageHighRes": "samples/studio/shirt-reels/camila.mp4",
     "badge": "🎬 TikTok & Reels",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
     "sampleFolder": "samples/studio/shirt-reels",
     "samples": [
       {
-        "url": "samples/studio/shirt-reels/SHIRT SHOOT REELS PACKAGES.jpg",
-        "type": "image",
-        "title": "White Shirt Video Reels Rates & Production Guide"
+        "url": "samples/studio/shirt-reels/camila.mp4",
+        "type": "video",
+        "title": "White Shirt Video Reels · Camila"
       }
     ],
     "options": [
@@ -551,21 +860,31 @@ const PACKAGES_DATA = [
     "tagline": "Sculpted luxury silk drape sessions with studio drapery wardrobe provided",
     "image": "samples/studio/silk-wrap/cover_thumb.jpg",
     "imageWebp": "samples/studio/silk-wrap/cover_thumb.webp",
-    "imageHighRes": "samples/studio/silk-wrap/cover.JPG",
+    "imageHighRes": "samples/studio/silk-wrap/_R2A6339.jpg",
     "badge": "✨ Luxury Silk Wardrobe",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
     "sampleFolder": "samples/studio/silk-wrap",
     "samples": [
       {
-        "url": "samples/studio/silk-wrap/BR2A0814.JPG",
+        "url": "samples/studio/silk-wrap/_R2A6339.jpg",
         "type": "image",
-        "title": "Flowing Satin Drapery & Studio Silhouette"
+        "title": "Luxury Silk Wrap Shoot · R2A6339"
       },
       {
-        "url": "samples/studio/silk-wrap/BR2A0811.JPG",
+        "url": "samples/studio/silk-wrap/_R2A6346.jpg",
         "type": "image",
-        "title": "High-Key Silk Draping Portrait"
+        "title": "Luxury Silk Wrap Shoot · R2A6346"
+      },
+      {
+        "url": "samples/studio/silk-wrap/_R2A6356.jpg",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · R2A6356"
+      },
+      {
+        "url": "samples/studio/silk-wrap/_R2A6367.jpg",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · R2A6367"
       },
       {
         "url": "samples/studio/silk-wrap/BR2A0797.JPG",
@@ -573,9 +892,29 @@ const PACKAGES_DATA = [
         "title": "Sculpted Silk Glow & Form"
       },
       {
+        "url": "samples/studio/silk-wrap/BR2A0811.JPG",
+        "type": "image",
+        "title": "High-Key Silk Draping Portrait"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A0814.JPG",
+        "type": "image",
+        "title": "Flowing Satin Drapery & Studio Silhouette"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A0819.JPG",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · BR2A0819"
+      },
+      {
         "url": "samples/studio/silk-wrap/BR2A0836.JPG",
         "type": "image",
         "title": "Editorial Satin Lighting & Posing"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A1798.JPG",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · BR2A1798"
       },
       {
         "url": "samples/studio/silk-wrap/BR2A1804.JPG",
@@ -583,19 +922,64 @@ const PACKAGES_DATA = [
         "title": "Dramatic Royal Silk Drapery"
       },
       {
+        "url": "samples/studio/silk-wrap/BR2A1806.JPG",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · BR2A1806"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A1818.JPG",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · BR2A1818"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A1820.JPG",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · BR2A1820"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A1827.JPG",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · BR2A1827"
+      },
+      {
         "url": "samples/studio/silk-wrap/BR2A1829.JPG",
         "type": "image",
         "title": "Graceful Studio Satin Texture"
       },
       {
-        "url": "samples/studio/silk-wrap/INDOOR WRAP SHOOT PACKAGES.jpg",
+        "url": "samples/studio/silk-wrap/BR2A1831.JPG",
         "type": "image",
-        "title": "Indoor Wrap Shoot Rates & Guide"
+        "title": "Luxury Silk Wrap Shoot · BR2A1831"
       },
       {
-        "url": "samples/studio/silk-wrap/SPECIAL WRAP BUMP SHOOT PACKAGES.jpg",
+        "url": "samples/studio/silk-wrap/BR2A1834.JPG",
         "type": "image",
-        "title": "Special Wrap Bump Shoot Rates & Guide"
+        "title": "Luxury Silk Wrap Shoot · BR2A1834"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A1835.JPG",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · BR2A1835"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A1852.JPG",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · BR2A1852"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A1873.JPG",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · BR2A1873"
+      },
+      {
+        "url": "samples/studio/silk-wrap/BR2A1875.JPG",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · BR2A1875"
+      },
+      {
+        "url": "samples/studio/silk-wrap/cover.JPG",
+        "type": "image",
+        "title": "Luxury Silk Wrap Shoot · Cover"
       }
     ],
     "options": [
@@ -675,53 +1059,78 @@ const PACKAGES_DATA = [
   },
   {
     "id": "traditional-creative",
-    "pathway": "outdoor",
-    "subcat": "outdoor-traditional",
-    "catLabel": "Outdoor Cultural",
-    "title": "Traditional Cultural Shoot (Outdoor & Creative)",
-    "tagline": "African heritage regalia, tribal beads & creative outdoor lighting on location or cultural gardens",
-    "image": "samples/outdoor/traditional-creative/cover_thumb.jpg",
-    "imageWebp": "samples/outdoor/traditional-creative/cover_thumb.webp",
-    "imageHighRes": "samples/outdoor/traditional-creative/cover.jpg",
+    "pathway": "studio",
+    "subcat": "traditional",
+    "catLabel": "Studio Cultural Regalia",
+    "title": "Traditional Creative Shoot (Studio)",
+    "tagline": "African heritage regalia, tribal beads & creative studio fine-art lighting",
+    "image": "samples/studio/traditional-creative/cover_thumb.jpg",
+    "imageWebp": "samples/studio/traditional-creative/cover_thumb.webp",
+    "imageHighRes": "samples/studio/traditional-creative/cover.jpg",
     "badge": "👑 Cultural Heritage",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 200 to KSh 1,100 (lock your slot)",
-    "sampleFolder": "samples/outdoor/traditional-creative",
+    "sampleFolder": "samples/studio/traditional-creative",
     "samples": [
       {
-        "url": "samples/outdoor/traditional-creative/O13A0286.jpg",
+        "url": "samples/studio/traditional-creative/BRA (2).jpg",
         "type": "image",
-        "title": "Authentic African Heritage Attire"
+        "title": "Traditional Creative Shoot (Studio) · BRA"
       },
       {
-        "url": "samples/outdoor/traditional-creative/O13A0309 (2).jpg",
+        "url": "samples/studio/traditional-creative/BRA (17).jpg",
         "type": "image",
-        "title": "Regal Traditional Beadwork & Posing"
+        "title": "Traditional Creative Shoot (Studio) · BRA"
       },
       {
-        "url": "samples/outdoor/traditional-creative/_R2A6166.jpg",
+        "url": "samples/studio/traditional-creative/BRA (22).jpg",
         "type": "image",
-        "title": "Creative Studio Heritage Composition"
+        "title": "Traditional Creative Shoot (Studio) · BRA"
       },
       {
-        "url": "samples/outdoor/traditional-creative/O13A0278.jpg",
+        "url": "samples/studio/traditional-creative/cover.jpg",
+        "type": "image",
+        "title": "Traditional Creative Shoot (Studio) · Cover"
+      },
+      {
+        "url": "samples/studio/traditional-creative/O13A0278.jpg",
         "type": "image",
         "title": "Cultural Pride & Vibrant Textures"
       },
       {
-        "url": "samples/outdoor/traditional-creative/_R2A6168.jpg",
+        "url": "samples/studio/traditional-creative/O13A0280.jpg",
         "type": "image",
-        "title": "Editorial Creative Studio Portrait"
+        "title": "Traditional Creative Shoot (Studio) · O13A0280"
       },
       {
-        "url": "samples/outdoor/traditional-creative/O13A0317.jpg",
+        "url": "samples/studio/traditional-creative/O13A0281.jpg",
+        "type": "image",
+        "title": "Traditional Creative Shoot (Studio) · O13A0281"
+      },
+      {
+        "url": "samples/studio/traditional-creative/O13A0286.jpg",
+        "type": "image",
+        "title": "Authentic African Heritage Attire"
+      },
+      {
+        "url": "samples/studio/traditional-creative/O13A0297.jpg",
+        "type": "image",
+        "title": "Traditional Creative Shoot (Studio) · O13A0297"
+      },
+      {
+        "url": "samples/studio/traditional-creative/O13A0309 (2).jpg",
+        "type": "image",
+        "title": "Regal Traditional Beadwork & Posing"
+      },
+      {
+        "url": "samples/studio/traditional-creative/O13A0313.jpg",
+        "type": "image",
+        "title": "Traditional Creative Shoot (Studio) · O13A0313"
+      },
+      {
+        "url": "samples/studio/traditional-creative/O13A0317.jpg",
         "type": "image",
         "title": "Modern African Royalty Styling"
-      },
-      {
-        "url": "samples/outdoor/traditional-creative/_INDOOR TRADITIONALCREATIVE  SHOOT.jpg",
-        "type": "image",
-        "title": "Indoor Traditional Shoot Rates & Guide"
       }
     ],
     "options": [
@@ -798,14 +1207,34 @@ const PACKAGES_DATA = [
     "sampleFolder": "samples/studio/baby-bump",
     "samples": [
       {
-        "url": "samples/studio/baby-bump/DSC07764_(2).jpg",
+        "url": "samples/studio/baby-bump/cover.jpg",
         "type": "image",
-        "title": "Radiant Expectant Mother Studio Glow"
+        "title": "Maternity & Baby Bump Shoot (Studio) · Cover"
       },
       {
-        "url": "samples/studio/baby-bump/DSC07893_(2).jpg",
+        "url": "samples/studio/baby-bump/DSC04462.jpgjuhb.jpg",
         "type": "image",
-        "title": "Intimate Belly Bump Silhouette & Retouching"
+        "title": "Maternity & Baby Bump Shoot (Studio) · DSC04462.jpgjuhb"
+      },
+      {
+        "url": "samples/studio/baby-bump/DSC04472.jpgbh,kj.jpg",
+        "type": "image",
+        "title": "Maternity & Baby Bump Shoot (Studio) · DSC04472.jpgbh,kj"
+      },
+      {
+        "url": "samples/studio/baby-bump/DSC04485.jpgb-,lkihj.jpg",
+        "type": "image",
+        "title": "Maternity & Baby Bump Shoot (Studio) · DSC04485.jpgb ,lkihj"
+      },
+      {
+        "url": "samples/studio/baby-bump/DSC04494.jpgj-n.jpg",
+        "type": "image",
+        "title": "Maternity & Baby Bump Shoot (Studio) · DSC04494.jpgj n"
+      },
+      {
+        "url": "samples/studio/baby-bump/DSC04526.jpgin-ik.jpg",
+        "type": "image",
+        "title": "Maternity & Baby Bump Shoot (Studio) · DSC04526.jpgin ik"
       },
       {
         "url": "samples/studio/baby-bump/DSC04963-2.jpg",
@@ -813,14 +1242,34 @@ const PACKAGES_DATA = [
         "title": "Gentle Floral & Studio Maternity Portrait"
       },
       {
+        "url": "samples/studio/baby-bump/DSC07764_(2).jpg",
+        "type": "image",
+        "title": "Radiant Expectant Mother Studio Glow"
+      },
+      {
         "url": "samples/studio/baby-bump/DSC07790_(2).jpg",
         "type": "image",
         "title": "Couples Maternity Studio Connection"
       },
       {
-        "url": "samples/studio/baby-bump/OUTDOOR BABY BUMP SHOOT.jpg",
+        "url": "samples/studio/baby-bump/DSC07849_(2).jpg",
         "type": "image",
-        "title": "Official Rates Poster & Guide"
+        "title": "Maternity & Baby Bump Shoot (Studio) · DSC07849"
+      },
+      {
+        "url": "samples/studio/baby-bump/DSC07849.jpgvvf'.jpg",
+        "type": "image",
+        "title": "Maternity & Baby Bump Shoot (Studio) · DSC07849.jpgvvf'"
+      },
+      {
+        "url": "samples/studio/baby-bump/DSC07872.jpgnj.jpg",
+        "type": "image",
+        "title": "Maternity & Baby Bump Shoot (Studio) · DSC07872.jpgnj"
+      },
+      {
+        "url": "samples/studio/baby-bump/DSC07893_(2).jpg",
+        "type": "image",
+        "title": "Intimate Belly Bump Silhouette & Retouching"
       }
     ],
     "options": [
@@ -901,6 +1350,11 @@ const PACKAGES_DATA = [
     "sampleFolder": "samples/studio/birthday-shoot",
     "samples": [
       {
+        "url": "samples/studio/birthday-shoot/cover.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · Cover"
+      },
+      {
         "url": "samples/studio/birthday-shoot/DSC05153.jpg",
         "type": "image",
         "title": "Birthday Celebrant Glamour with Crown"
@@ -911,9 +1365,19 @@ const PACKAGES_DATA = [
         "title": "Celebratory Toast & Joyous Portrait"
       },
       {
-        "url": "samples/studio/birthday-shoot/DSC07329-.jpgljuhv-b_status.jpg",
+        "url": "samples/studio/birthday-shoot/DSC07430-.jpg-k-gv.jpg",
         "type": "image",
-        "title": "Studio Birthday Milestone"
+        "title": "Birthday Studio Glamour Shoot · DSC07430 .jpg k gv"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC07469.jpghx_status.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC07469.jpghx"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC07469.jpghx.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC07469.jpghx"
       },
       {
         "url": "samples/studio/birthday-shoot/DSC07479.jpgfh_status.jpg",
@@ -921,14 +1385,39 @@ const PACKAGES_DATA = [
         "title": "Party Glamour & Balloons"
       },
       {
-        "url": "samples/studio/birthday-shoot/indoor bd.jpg",
+        "url": "samples/studio/birthday-shoot/DSC07485.jpg,l.jpg",
         "type": "image",
-        "title": "Indoor Birthday Shoot Rates & Guide"
+        "title": "Birthday Studio Glamour Shoot · DSC07485.jpg,l"
       },
       {
-        "url": "samples/studio/birthday-shoot/BIRTHDAY REELS PACKAGE.mp4",
-        "type": "video",
-        "title": "Cinematic Birthday Video Reel Sample"
+        "url": "samples/studio/birthday-shoot/DSC07536.jpgl.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC07536.jpgl"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC09443.jpggggg.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC09443.jpggggg"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC09465.jpgjjj.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC09465.jpgjjj"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC09471.jpgsss.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC09471.jpgsss"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC09479.jpgsssssssss.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC09479.jpgsssssssss"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/outdoor-cover.JPG",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · Outdoor cover"
       }
     ],
     "options": [
@@ -1010,9 +1499,84 @@ const PACKAGES_DATA = [
     "sampleFolder": "samples/studio/kids-shoot",
     "samples": [
       {
-        "url": "samples/studio/kids-shoot/kids bithday shoot.jpeg",
+        "url": "samples/studio/kids-shoot/cover.jpg",
         "type": "image",
-        "title": "Studio Birthday Boy with Balloon Setup"
+        "title": "Kids & Infant Studio Shoot · Cover"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00006.jpgssssg.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00006.jpgssssg"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00019.jpgddddd.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00019.jpgddddd"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00020.jpgssss.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00020.jpgssss"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00028.jpgdfdf.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00028.jpgdfdf"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00037.jpgdddddd.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00037.jpgdddddd"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00042.jpgssss.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00042.jpgssss"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00189.jpgdddddd.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00189.jpgdddddd"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00238.jpgsssss.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00238.jpgsssss"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00241.jpgfgd.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00241.jpgfgd"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00462.jpgxxxxx.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00462.jpg"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00498.jpgxxx.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00498.jpg"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00566.jpgxx.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00566.jpgxx"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC00658.jpgxxxx.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC00658.jpg"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC02461.JPG",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC02461"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC02482_1.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC02482 1"
       },
       {
         "url": "samples/studio/kids-shoot/DSC07657_(2).jpg",
@@ -1025,19 +1589,29 @@ const PACKAGES_DATA = [
         "title": "Playful Studio Portrait Lighting"
       },
       {
+        "url": "samples/studio/kids-shoot/DSC07673_(2).jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC07673"
+      },
+      {
         "url": "samples/studio/kids-shoot/DSC07698_(2).jpg",
         "type": "image",
         "title": "Innocent Childhood Milestone"
       },
       {
-        "url": "samples/studio/kids-shoot/standard kids INDOOR SHOOT.jpg",
+        "url": "samples/studio/kids-shoot/DSC09374.jpgssss.jpg",
         "type": "image",
-        "title": "Standard Kids Indoor Rates & Guide"
+        "title": "Kids & Infant Studio Shoot · DSC09374.jpgssss"
       },
       {
-        "url": "samples/studio/kids-shoot/Kids birthday reels.mp4",
-        "type": "video",
-        "title": "Kids Birthday Video Reel"
+        "url": "samples/studio/kids-shoot/DSC09393.jpsgh.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC09393.jpsgh"
+      },
+      {
+        "url": "samples/studio/kids-shoot/DSC09493.jpgffffd.jpg",
+        "type": "image",
+        "title": "Kids & Infant Studio Shoot · DSC09493.jpgffffd"
       }
     ],
     "options": [
@@ -1118,9 +1692,19 @@ const PACKAGES_DATA = [
     "sampleFolder": "samples/outdoor/couple-shoot",
     "samples": [
       {
-        "url": "samples/outdoor/couple-shoot/work-2.jpg",
+        "url": "samples/outdoor/couple-shoot/cover.JPG",
         "type": "image",
-        "title": "Magazine-Grade Studio Couple Portrait"
+        "title": "Outdoor Couple Lifestyle & Date Session · Cover"
+      },
+      {
+        "url": "samples/outdoor/couple-shoot/DSC05894_(2).jpg",
+        "type": "image",
+        "title": "Outdoor Couple Lifestyle & Date Session · DSC05894"
+      },
+      {
+        "url": "samples/outdoor/couple-shoot/DSC06110_(2).jpg",
+        "type": "image",
+        "title": "Outdoor Couple Lifestyle & Date Session · DSC06110"
       },
       {
         "url": "samples/outdoor/couple-shoot/DSC07790_(2).jpg",
@@ -1128,14 +1712,24 @@ const PACKAGES_DATA = [
         "title": "Gentle Romantic Embrace"
       },
       {
+        "url": "samples/outdoor/couple-shoot/IMG_5186.JPG",
+        "type": "image",
+        "title": "Outdoor Couple Lifestyle & Date Session · IMG 5186"
+      },
+      {
+        "url": "samples/outdoor/couple-shoot/IMG_5189.JPG",
+        "type": "image",
+        "title": "Outdoor Couple Lifestyle & Date Session · IMG 5189"
+      },
+      {
         "url": "samples/outdoor/couple-shoot/IMG_5195.JPG",
         "type": "image",
         "title": "Connection & Studio Smiles"
       },
       {
-        "url": "samples/outdoor/couple-shoot/COUPLE.jpg",
+        "url": "samples/outdoor/couple-shoot/IMG_5196.JPG",
         "type": "image",
-        "title": "Couple Shoot Rates & Guide"
+        "title": "Outdoor Couple Lifestyle & Date Session · IMG 5196"
       }
     ],
     "options": [
@@ -1215,6 +1809,11 @@ const PACKAGES_DATA = [
     "sampleFolder": "samples/studio/family-shoot",
     "samples": [
       {
+        "url": "samples/studio/family-shoot/cover.jpg",
+        "type": "image",
+        "title": "Family Studio Session · Cover"
+      },
+      {
         "url": "samples/studio/family-shoot/DSC07720_(2).jpg",
         "type": "image",
         "title": "Warm Family Studio Portrait"
@@ -1230,9 +1829,24 @@ const PACKAGES_DATA = [
         "title": "Clean Backlit Studio Composition"
       },
       {
-        "url": "samples/studio/family-shoot/FAMILY SHOOT PCKAGES.jpg",
+        "url": "samples/studio/family-shoot/DSC09416.jpgxxxx.jpg",
         "type": "image",
-        "title": "Family Shoot Rates & Guide"
+        "title": "Family Studio Session · DSC09416.jpg"
+      },
+      {
+        "url": "samples/studio/family-shoot/DSC09422.jpgffffffjfffff.jpg",
+        "type": "image",
+        "title": "Family Studio Session · DSC09422.jpgffffffjfffff"
+      },
+      {
+        "url": "samples/studio/family-shoot/DSC09422.jpgm.jpg",
+        "type": "image",
+        "title": "Family Studio Session · DSC09422.jpgm"
+      },
+      {
+        "url": "samples/studio/family-shoot/outdoor-cover.JPG",
+        "type": "image",
+        "title": "Family Studio Session · Outdoor cover"
       }
     ],
     "options": [
@@ -1304,23 +1918,38 @@ const PACKAGES_DATA = [
     "catLabel": "Outdoor &amp; Model Headshots",
     "title": "Outdoor Natural &amp; Model Headshots",
     "tagline": "Approachable lifestyle and commercial model portraits under natural golden-hour daylight (Minimum 7 images · No single image for outdoor)",
-    "image": "samples/outdoor/outdoor-headshots/FAITH-8_thumb.jpg",
-    "imageWebp": "samples/outdoor/outdoor-headshots/FAITH-8_thumb.webp",
-    "imageHighRes": "samples/outdoor/outdoor-headshots/FAITH-8.jpg",
+    "image": "samples/outdoor/outdoor-headshots/cover_thumb.jpg",
+    "imageWebp": "samples/outdoor/outdoor-headshots/cover_thumb.webp",
+    "imageHighRes": "samples/outdoor/outdoor-headshots/cover.jpg",
     "badge": "🌿 Min 7 Images (No Single Image)",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
     "sampleFolder": "samples/outdoor/outdoor-headshots",
     "samples": [
       {
-        "url": "samples/outdoor/outdoor-headshots/FAITH-8.jpg",
+        "url": "samples/outdoor/outdoor-headshots/_R2A2757.jpg",
         "type": "image",
-        "title": "Editorial Natural Light Fashion Profile"
+        "title": "Outdoor Natural &amp; Model Headshots · R2A2757"
       },
       {
-        "url": "samples/outdoor/outdoor-headshots/FAITH-10.jpg",
+        "url": "samples/outdoor/outdoor-headshots/_R2A2829.jpg",
         "type": "image",
-        "title": "Casual Chic Lifestyle Posing"
+        "title": "Outdoor Natural &amp; Model Headshots · R2A2829"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/cover.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · Cover"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/DSC08912_(2) 2.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · DSC08912 2"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/DSC08912_(2).JPG",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · DSC08912"
       },
       {
         "url": "samples/outdoor/outdoor-headshots/FAITH-6.jpg",
@@ -1328,19 +1957,69 @@ const PACKAGES_DATA = [
         "title": "Fresh Outdoor Daylight Expression"
       },
       {
-        "url": "samples/outdoor/outdoor-headshots/_R2A2783.jpg",
+        "url": "samples/outdoor/outdoor-headshots/FAITH-9.jpg",
         "type": "image",
-        "title": "Relaxed Golden-Hour Casual Shoot"
+        "title": "Outdoor Natural &amp; Model Headshots · FAITH 9"
       },
       {
-        "url": "samples/outdoor/outdoor-headshots/_R2A2808.jpg",
+        "url": "samples/outdoor/outdoor-headshots/FAITH-10.jpg",
         "type": "image",
-        "title": "Warm Environmental Model Portrait"
+        "title": "Casual Chic Lifestyle Posing"
       },
       {
-        "url": "samples/outdoor/outdoor-headshots/_R2A2851.jpg",
+        "url": "samples/outdoor/outdoor-headshots/IMG_0565.JPG",
         "type": "image",
-        "title": "High-Fashion Street and Natural Lighting"
+        "title": "Outdoor Natural &amp; Model Headshots · IMG 0565"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/IMG_0566.JPG",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · IMG 0566"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/IMG_0568.JPG",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · IMG 0568"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/IMG_0598.JPG",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · IMG 0598"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/IMG_0601.JPG",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · IMG 0601"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/IMG_0609.JPG",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · IMG 0609"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/IMG_0627.JPG",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · IMG 0627"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/IMG_0635.JPG",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · IMG 0635"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/IMG_0643.JPG",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · IMG 0643"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/IMG_0646.JPG",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · IMG 0646"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/IMG_0658.JPG",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · IMG 0658"
       },
       {
         "url": "samples/outdoor/outdoor-headshots/O13A0383 (2).jpg",
@@ -1348,14 +2027,84 @@ const PACKAGES_DATA = [
         "title": "Crisp Executive Outdoor Headshot"
       },
       {
+        "url": "samples/outdoor/outdoor-headshots/O13A0383.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · O13A0383"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/O13A0499.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · O13A0499"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/O13A0524.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · O13A0524"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/O13A0577.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · O13A0577"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/O13A0591.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · O13A0591"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/O13A0594.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · O13A0594"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/O13A0600.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · O13A0600"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/O13A0611.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · O13A0611"
+      },
+      {
         "url": "samples/outdoor/outdoor-headshots/O13A0650.jpg",
         "type": "image",
         "title": "Warm Golden Hour Leadership Look"
       },
       {
-        "url": "samples/outdoor/outdoor-headshots/OUTDOOR HEADSHOTS PACKAGES.jpg",
+        "url": "samples/outdoor/outdoor-headshots/O13A0651 (2).jpg",
         "type": "image",
-        "title": "Outdoor Headshots Rates & Guide"
+        "title": "Outdoor Natural &amp; Model Headshots · O13A0651"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/SAG_1255.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · SAG 1255"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/SAG_1257.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · SAG 1257"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/SAG_1261.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · SAG 1261"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/SAG_1270.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · SAG 1270"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/SAG_1276.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · SAG 1276"
+      },
+      {
+        "url": "samples/outdoor/outdoor-headshots/SAG_1288.jpg",
+        "type": "image",
+        "title": "Outdoor Natural &amp; Model Headshots · SAG 1288"
       }
     ],
     "options": [
@@ -1411,33 +2160,22 @@ const PACKAGES_DATA = [
     "catLabel": "Outdoor Birthdays",
     "title": "Outdoor Birthday Celebration",
     "tagline": "Vibrant celebration shoot in natural sunshine, scenic gardens or resorts (Minimum 7 images · No single image for outdoor)",
-    "image": "samples/outdoor/outdoor-birthday-shoot/outdoor-cover_thumb.jpg",
-    "imageWebp": "samples/outdoor/outdoor-birthday-shoot/outdoor-cover_thumb.webp",
-    "imageHighRes": "samples/outdoor/outdoor-birthday-shoot/outdoor-cover.JPG",
+    "image": "samples/outdoor/outdoor-birthday-shoot/IMG_0545.JPG",
+    "imageHighRes": "samples/outdoor/outdoor-birthday-shoot/IMG_0545.JPG",
     "badge": "🎉 Min 7 Images (No Single Image)",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
     "sampleFolder": "samples/outdoor/outdoor-birthday-shoot",
     "samples": [
       {
-        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0990.JPG",
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0545.JPG",
         "type": "image",
-        "title": "Golden-Hour Outdoor Birthday Glow"
+        "title": "Outdoor Birthday Celebration · IMG 0545"
       },
       {
-        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0975.JPG",
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0556.JPG",
         "type": "image",
-        "title": "Vibrant Garden Celebration Portrait"
-      },
-      {
-        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0982.JPG",
-        "type": "image",
-        "title": "Joyful Sunlit Posing"
-      },
-      {
-        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_1074.JPG",
-        "type": "image",
-        "title": "Scenic Resort Outdoor Setup"
+        "title": "Outdoor Birthday Celebration · IMG 0556"
       },
       {
         "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0565.JPG",
@@ -1450,9 +2188,289 @@ const PACKAGES_DATA = [
         "title": "Candid Celebration Happiness"
       },
       {
-        "url": "samples/outdoor/outdoor-birthday-shoot/OUTDOOR BIRTHDAY SHOOT.jpg",
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0568.JPG",
         "type": "image",
-        "title": "Official Rates Poster & Guide"
+        "title": "Outdoor Birthday Celebration · IMG 0568"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0570.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0570"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0573.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0573"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0581.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0581"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0583.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0583"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0593.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0593"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0597.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0597"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0598.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0598"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0601.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0601"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0604.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0604"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0605.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0605"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0609.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0609"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0610.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0610"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0614.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0614"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0619.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0619"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0627.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0627"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0635.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0635"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0640.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0640"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0643.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0643"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0646.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0646"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0651.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0651"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0658.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0658"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0665.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0665"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0696.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0696"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0702.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0702"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0703.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0703"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0716.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0716"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0730.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0730"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0740.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0740"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0749.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0749"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0758.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0758"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0763.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0763"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0783.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0783"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0786.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0786"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0802.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0802"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0852.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0852"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0860.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0860"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0879.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0879"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0894.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0894"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0899.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0899"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0909.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0909"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0912.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0912"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0963.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0963"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0964.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0964"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0969.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0969"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0975.JPG",
+        "type": "image",
+        "title": "Vibrant Garden Celebration Portrait"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0982.JPG",
+        "type": "image",
+        "title": "Joyful Sunlit Posing"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0990.JPG",
+        "type": "image",
+        "title": "Golden-Hour Outdoor Birthday Glow"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_0997.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 0997"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_1055.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 1055"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_1072.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 1072"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_1074.JPG",
+        "type": "image",
+        "title": "Scenic Resort Outdoor Setup"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_2460.jpg",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 2460"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_2467.jpg",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 2467"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_2760.jpg",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 2760"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/IMG_2854.jpg",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · IMG 2854"
+      },
+      {
+        "url": "samples/outdoor/outdoor-birthday-shoot/outdoor-cover.JPG",
+        "type": "image",
+        "title": "Outdoor Birthday Celebration · Outdoor cover"
       }
     ],
     "options": [
@@ -1508,38 +2526,28 @@ const PACKAGES_DATA = [
     "catLabel": "Outdoor Maternity",
     "title": "Outdoor Baby Bump Lifestyle",
     "tagline": "Bespoke natural light maternity celebration in scenic nature (Minimum 7 images · No single image for outdoor)",
-    "image": "samples/outdoor/outdoor-baby-bump/2N4A9118_thumb.jpg",
-    "imageWebp": "samples/outdoor/outdoor-baby-bump/2N4A9118_thumb.webp",
-    "imageHighRes": "samples/outdoor/outdoor-baby-bump/2N4A9118.jpg",
+    "image": "samples/outdoor/outdoor-baby-bump/cover_thumb.jpg",
+    "imageWebp": "samples/outdoor/outdoor-baby-bump/cover_thumb.webp",
+    "imageHighRes": "samples/outdoor/outdoor-baby-bump/cover.jpg",
     "badge": "🍼 Min 7 Images (No Single Image)",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
     "sampleFolder": "samples/outdoor/outdoor-baby-bump",
     "samples": [
       {
-        "url": "samples/outdoor/outdoor-baby-bump/2N4A9118.jpg",
-        "type": "image",
-        "title": "Sunlit Outdoor Maternal Serenity"
-      },
-      {
-        "url": "samples/outdoor/outdoor-baby-bump/2N4A9177.jpg",
-        "type": "image",
-        "title": "Golden Hour Garden Maternity Glow"
-      },
-      {
         "url": "samples/outdoor/outdoor-baby-bump/2N4A9111.jpg",
         "type": "image",
         "title": "Scenic Outdoor Motherhood Radiance"
       },
       {
-        "url": "samples/outdoor/outdoor-baby-bump/DSC_3613.JPG",
+        "url": "samples/outdoor/outdoor-baby-bump/2N4A9118.jpg",
         "type": "image",
-        "title": "Couples Outdoor Baby Bump Connection"
+        "title": "Sunlit Outdoor Maternal Serenity"
       },
       {
-        "url": "samples/outdoor/outdoor-baby-bump/DSC_3684.jpg",
+        "url": "samples/outdoor/outdoor-baby-bump/2N4A9142.jpg",
         "type": "image",
-        "title": "Belly Bump Close-up with Nature Bokeh"
+        "title": "Outdoor Baby Bump Lifestyle · 2N4A9142"
       },
       {
         "url": "samples/outdoor/outdoor-baby-bump/2N4A9167.jpg",
@@ -1547,9 +2555,29 @@ const PACKAGES_DATA = [
         "title": "Natural Sunlight Expecting Grace"
       },
       {
+        "url": "samples/outdoor/outdoor-baby-bump/2N4A9168.jpg",
+        "type": "image",
+        "title": "Outdoor Baby Bump Lifestyle · 2N4A9168"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/2N4A9172.jpg",
+        "type": "image",
+        "title": "Outdoor Baby Bump Lifestyle · 2N4A9172"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/2N4A9177.jpg",
+        "type": "image",
+        "title": "Golden Hour Garden Maternity Glow"
+      },
+      {
         "url": "samples/outdoor/outdoor-baby-bump/2N4A9266.jpg",
         "type": "image",
         "title": "Lush Park Maternity Composition"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/cover.jpg",
+        "type": "image",
+        "title": "Outdoor Baby Bump Lifestyle · Cover"
       },
       {
         "url": "samples/outdoor/outdoor-baby-bump/DSC_3590.JPG",
@@ -1557,19 +2585,54 @@ const PACKAGES_DATA = [
         "title": "Peaceful Motherhood Milestone"
       },
       {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3613.JPG",
+        "type": "image",
+        "title": "Couples Outdoor Baby Bump Connection"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3620.JPG",
+        "type": "image",
+        "title": "Outdoor Baby Bump Lifestyle · DSC 3620"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3679.JPG",
+        "type": "image",
+        "title": "Outdoor Baby Bump Lifestyle · DSC 3679"
+      },
+      {
         "url": "samples/outdoor/outdoor-baby-bump/DSC_3681.JPG",
         "type": "image",
         "title": "Soft Sunlight and Natural Textures"
       },
       {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3684.jpg",
+        "type": "image",
+        "title": "Belly Bump Close-up with Nature Bokeh"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3686.JPG",
+        "type": "image",
+        "title": "Outdoor Baby Bump Lifestyle · DSC 3686"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3688.JPG",
+        "type": "image",
+        "title": "Outdoor Baby Bump Lifestyle · DSC 3688"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3698.JPG",
+        "type": "image",
+        "title": "Outdoor Baby Bump Lifestyle · DSC 3698"
+      },
+      {
+        "url": "samples/outdoor/outdoor-baby-bump/DSC_3698f.jpg",
+        "type": "image",
+        "title": "Outdoor Baby Bump Lifestyle · DSC 3698f"
+      },
+      {
         "url": "samples/outdoor/outdoor-baby-bump/DSC_3709.JPG",
         "type": "image",
         "title": "Radiant Sunset Maternity Stroll"
-      },
-      {
-        "url": "samples/outdoor/outdoor-baby-bump/OUTDOOR BABY BUMP SHOOT.jpg",
-        "type": "image",
-        "title": "Official Rates Poster & Guide"
       }
     ],
     "options": [
@@ -1626,18 +2689,17 @@ const PACKAGES_DATA = [
     "catLabel": "Outdoor Family",
     "title": "Outdoor Family Lifestyle",
     "tagline": "Relaxed on-location family session in lush gardens (Minimum 7 images · No single image for outdoor)",
-    "image": "samples/outdoor/outdoor-family-shoot/outdoor-cover_thumb.jpg",
-    "imageWebp": "samples/outdoor/outdoor-family-shoot/outdoor-cover_thumb.webp",
-    "imageHighRes": "samples/outdoor/outdoor-family-shoot/outdoor-cover.JPG",
+    "image": "samples/outdoor/outdoor-family-shoot/IMG_0010.JPG",
+    "imageHighRes": "samples/outdoor/outdoor-family-shoot/IMG_0010.JPG",
     "badge": "👨‍👩‍👧 Min 7 Images (No Single Image)",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 500 to KSh 1,500 (lock your slot)",
     "sampleFolder": "samples/outdoor/outdoor-family-shoot",
     "samples": [
       {
-        "url": "samples/outdoor/outdoor-family-shoot/IMG_5180.JPG",
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_0010.JPG",
         "type": "image",
-        "title": "Heartwarming Sunlit Family Portrait"
+        "title": "Outdoor Family Lifestyle · IMG 0010"
       },
       {
         "url": "samples/outdoor/outdoor-family-shoot/IMG_0015.JPG",
@@ -1645,14 +2707,94 @@ const PACKAGES_DATA = [
         "title": "Kids & Parents Candid Laughter in Park"
       },
       {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_0036.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 0036"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_0107.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 0107"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_0131.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 0131"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_0154.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 0154"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_0156.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 0156"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5036.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5036"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5041.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5041"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5061.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5061"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5072.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5072"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5074.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5074"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5097.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5097"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5116.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5116"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5119.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5119"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5122.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5122"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5127.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5127"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5128.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5128"
+      },
+      {
         "url": "samples/outdoor/outdoor-family-shoot/IMG_5129.JPG",
         "type": "image",
         "title": "Natural Stroll Through Gardens"
       },
       {
-        "url": "samples/outdoor/outdoor-family-shoot/IMG_5145.JPG",
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5136.JPG",
         "type": "image",
-        "title": "Outdoor Family Hugs & Smiles"
+        "title": "Outdoor Family Lifestyle · IMG 5136"
       },
       {
         "url": "samples/outdoor/outdoor-family-shoot/IMG_5143.JPG",
@@ -1660,14 +2802,84 @@ const PACKAGES_DATA = [
         "title": "Relaxed Compound Family Composition"
       },
       {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5145.JPG",
+        "type": "image",
+        "title": "Outdoor Family Hugs & Smiles"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5151.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5151"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5152.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5152"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5153.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5153"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5163.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5163"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5165.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5165"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5170.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5170"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5180.JPG",
+        "type": "image",
+        "title": "Heartwarming Sunlit Family Portrait"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5185.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5185"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5186.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5186"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5189.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5189"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5190.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5190"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5192.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5192"
+      },
+      {
+        "url": "samples/outdoor/outdoor-family-shoot/IMG_5195.JPG",
+        "type": "image",
+        "title": "Outdoor Family Lifestyle · IMG 5195"
+      },
+      {
         "url": "samples/outdoor/outdoor-family-shoot/IMG_5202.JPG",
         "type": "image",
         "title": "Golden Hour Multi-Generation Group"
       },
       {
-        "url": "samples/outdoor/outdoor-family-shoot/FAMILY OUTDOOR SHOOT PACKAGES.jpg",
+        "url": "samples/outdoor/outdoor-family-shoot/outdoor-cover.JPG",
         "type": "image",
-        "title": "Family Outdoor Rates Poster & Guide"
+        "title": "Outdoor Family Lifestyle · Outdoor cover"
       }
     ],
     "options": [
@@ -1723,23 +2935,128 @@ const PACKAGES_DATA = [
     "catLabel": "Kids & Milestones",
     "title": "Kids Outdoor Sunshine Shoot",
     "tagline": "High-energy outdoor shoot capturing natural laughter and outdoor sunshine (Minimum 7 images · No single image for outdoor)",
-    "image": "samples/outdoor/kids-outdoor-shoot/MAK_7817_thumb.jpg",
-    "imageWebp": "samples/outdoor/kids-outdoor-shoot/MAK_7817_thumb.webp",
-    "imageHighRes": "samples/outdoor/kids-outdoor-shoot/MAK_7817.jpg",
+    "image": "samples/outdoor/kids-outdoor-shoot/cover_thumb.jpg",
+    "imageWebp": "samples/outdoor/kids-outdoor-shoot/cover_thumb.webp",
+    "imageHighRes": "samples/outdoor/kids-outdoor-shoot/cover.jpg",
     "badge": "🎈 Min 7 Images (No Single Image)",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
     "sampleFolder": "samples/outdoor/kids-outdoor-shoot",
     "samples": [
       {
+        "url": "samples/outdoor/kids-outdoor-shoot/cover.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · Cover"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7790.jpg",
+        "type": "image",
+        "title": "Vibrant Summer Day Posing"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7796.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7796"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7804.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7804"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7807.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7807"
+      },
+      {
         "url": "samples/outdoor/kids-outdoor-shoot/MAK_7817.jpg",
         "type": "image",
         "title": "Sunlit Golden Smile Portrait"
       },
       {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7818.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7818"
+      },
+      {
         "url": "samples/outdoor/kids-outdoor-shoot/MAK_7820.jpg",
         "type": "image",
         "title": "Joyful Outdoor Garden Play"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7825.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7825"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7826.jpg",
+        "type": "image",
+        "title": "Outdoor Milestones and Playtime"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7829.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7829"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7831.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7831"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7833.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7833"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7837.jpg",
+        "type": "image",
+        "title": "Authentic Garden Smiles"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7838.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7838"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7872.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7872"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7873.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7873"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7876.jpg",
+        "type": "image",
+        "title": "Heartwarming Kids Outdoor Charm"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7877.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7877"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7883.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7883"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7884.jpg",
+        "type": "image",
+        "title": "High-Energy Birthday Joy"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7885.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7885"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7887.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7887"
       },
       {
         "url": "samples/outdoor/kids-outdoor-shoot/MAK_7905.jpg",
@@ -1752,24 +3069,14 @@ const PACKAGES_DATA = [
         "title": "Candid Park Laughter Moment"
       },
       {
-        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7826.jpg",
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7929.jpg",
         "type": "image",
-        "title": "Outdoor Milestones and Playtime"
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7929"
       },
       {
-        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7790.jpg",
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7944.jpg",
         "type": "image",
-        "title": "Vibrant Summer Day Posing"
-      },
-      {
-        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7876.jpg",
-        "type": "image",
-        "title": "Heartwarming Kids Outdoor Charm"
-      },
-      {
-        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7884.jpg",
-        "type": "image",
-        "title": "High-Energy Birthday Joy"
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7944"
       },
       {
         "url": "samples/outdoor/kids-outdoor-shoot/MAK_7951.jpg",
@@ -1777,9 +3084,19 @@ const PACKAGES_DATA = [
         "title": "Sunny Outdoor Playful Portrait"
       },
       {
-        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7837.jpg",
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7953.jpg",
         "type": "image",
-        "title": "Authentic Garden Smiles"
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7953"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7954.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7954"
+      },
+      {
+        "url": "samples/outdoor/kids-outdoor-shoot/MAK_7957.jpg",
+        "type": "image",
+        "title": "Kids Outdoor Sunshine Shoot · MAK 7957"
       }
     ],
     "options": [
@@ -1835,18 +3152,27 @@ const PACKAGES_DATA = [
     "catLabel": "Crisp White Shirt",
     "title": "Outdoor White Shirt Shoot",
     "tagline": "Chic outdoor white shirt lifestyle session (Minimum 7 images · No single image for outdoor)",
-    "image": "samples/outdoor/outdoor-shirt-shoot/OUTDOOR SHIRT SHOOT PACKAGES_thumb.jpg",
-    "imageWebp": "samples/outdoor/outdoor-shirt-shoot/OUTDOOR SHIRT SHOOT PACKAGES_thumb.webp",
-    "imageHighRes": "samples/outdoor/outdoor-shirt-shoot/OUTDOOR SHIRT SHOOT PACKAGES.jpg",
+    "image": "samples/outdoor/outdoor-shirt-shoot/DSC00014.jpgxxxxxx.jpg",
+    "imageHighRes": "samples/outdoor/outdoor-shirt-shoot/DSC00014.jpgxxxxxx.jpg",
     "badge": "🌿 Min 7 Images (No Single Image)",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
     "sampleFolder": "samples/outdoor/outdoor-shirt-shoot",
     "samples": [
       {
-        "url": "samples/outdoor/outdoor-shirt-shoot/OUTDOOR SHIRT SHOOT PACKAGES.jpg",
+        "url": "samples/outdoor/outdoor-shirt-shoot/DSC00014.jpgxxxxxx.jpg",
         "type": "image",
-        "title": "Outdoor White Shirt Rates & Guide"
+        "title": "Outdoor White Shirt Shoot · DSC00014.jpg"
+      },
+      {
+        "url": "samples/outdoor/outdoor-shirt-shoot/DSC00078.jpgxxxx.jpg",
+        "type": "image",
+        "title": "Outdoor White Shirt Shoot · DSC00078.jpg"
+      },
+      {
+        "url": "samples/outdoor/outdoor-shirt-shoot/DSC00101.JPG",
+        "type": "image",
+        "title": "Outdoor White Shirt Shoot · DSC00101"
       }
     ],
     "options": [
@@ -1900,38 +3226,28 @@ const PACKAGES_DATA = [
     "catLabel": "Pre-Wedding & Romance",
     "title": "Pre-Wedding & Love Story",
     "tagline": "Romantic scenic portrait sessions & save-the-dates (Minimum 7 images · No single image for outdoor)",
-    "image": "samples/outdoor/pre-wedding/IMG_5186_thumb.jpg",
-    "imageWebp": "samples/outdoor/pre-wedding/IMG_5186_thumb.webp",
-    "imageHighRes": "samples/outdoor/pre-wedding/IMG_5186.JPG",
+    "image": "samples/outdoor/pre-wedding/cover_thumb.jpg",
+    "imageWebp": "samples/outdoor/pre-wedding/cover_thumb.webp",
+    "imageHighRes": "samples/outdoor/pre-wedding/cover.jpg",
     "badge": "💍 Min 7 Images (No Single Image)",
     "turnaround": "5–7 Business Days",
     "depositRate": "80% booking deposit required",
     "sampleFolder": "samples/outdoor/pre-wedding",
     "samples": [
       {
-        "url": "samples/outdoor/pre-wedding/IMG_5186.JPG",
+        "url": "samples/outdoor/pre-wedding/cover.jpg",
         "type": "image",
-        "title": "Epic Romantic Golden Hour Connection"
+        "title": "Pre-Wedding & Love Story · Cover"
       },
       {
-        "url": "samples/outdoor/pre-wedding/IMG_5097.JPG",
+        "url": "samples/outdoor/pre-wedding/IMG_0131.JPG",
         "type": "image",
-        "title": "Intimate Couple Love Story Session"
+        "title": "Modern Pre-Wedding Aesthetic"
       },
       {
-        "url": "samples/outdoor/pre-wedding/IMG_5119.JPG",
+        "url": "samples/outdoor/pre-wedding/IMG_0154.JPG",
         "type": "image",
-        "title": "Warm Evening Sunset Embrace"
-      },
-      {
-        "url": "samples/outdoor/pre-wedding/IMG_5151.JPG",
-        "type": "image",
-        "title": "Scenic Outdoor Promenade"
-      },
-      {
-        "url": "samples/outdoor/pre-wedding/IMG_5165.JPG",
-        "type": "image",
-        "title": "Joyful Candid Engagement Laughs"
+        "title": "Pre-Wedding & Love Story · IMG 0154"
       },
       {
         "url": "samples/outdoor/pre-wedding/IMG_0156.JPG",
@@ -1944,9 +3260,89 @@ const PACKAGES_DATA = [
         "title": "Save-The-Date Stroll and Whispers"
       },
       {
+        "url": "samples/outdoor/pre-wedding/IMG_5097.JPG",
+        "type": "image",
+        "title": "Intimate Couple Love Story Session"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5116.JPG",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · IMG 5116"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5119.JPG",
+        "type": "image",
+        "title": "Warm Evening Sunset Embrace"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5122.JPG",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · IMG 5122"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5127.JPG",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · IMG 5127"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5128.JPG",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · IMG 5128"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5129.JPG",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · IMG 5129"
+      },
+      {
         "url": "samples/outdoor/pre-wedding/IMG_5136.JPG",
         "type": "image",
         "title": "Tender Outdoor Couple Portrait"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5143.JPG",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · IMG 5143"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5145.JPG",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · IMG 5145"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5151.JPG",
+        "type": "image",
+        "title": "Scenic Outdoor Promenade"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5152.JPG",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · IMG 5152"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5163.JPG",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · IMG 5163"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5165.JPG",
+        "type": "image",
+        "title": "Joyful Candid Engagement Laughs"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5185.JPG",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · IMG 5185"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5186.JPG",
+        "type": "image",
+        "title": "Epic Romantic Golden Hour Connection"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5189.JPG",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · IMG 5189"
       },
       {
         "url": "samples/outdoor/pre-wedding/IMG_5190.JPG",
@@ -1954,14 +3350,19 @@ const PACKAGES_DATA = [
         "title": "Natural Sunlight Couple Glow"
       },
       {
-        "url": "samples/outdoor/pre-wedding/IMG_0131.JPG",
+        "url": "samples/outdoor/pre-wedding/IMG_5192.JPG",
         "type": "image",
-        "title": "Modern Pre-Wedding Aesthetic"
+        "title": "Pre-Wedding & Love Story · IMG 5192"
       },
       {
-        "url": "samples/outdoor/pre-wedding/PRE WEDDING SHOOT.jpg",
+        "url": "samples/outdoor/pre-wedding/IMG_5195.JPG",
         "type": "image",
-        "title": "Pre-Wedding Rates Poster & Guide"
+        "title": "Pre-Wedding & Love Story · IMG 5195"
+      },
+      {
+        "url": "samples/outdoor/pre-wedding/IMG_5202.JPG",
+        "type": "image",
+        "title": "Pre-Wedding & Love Story · IMG 5202"
       }
     ],
     "options": [
@@ -2016,19 +3417,13 @@ const PACKAGES_DATA = [
     "catLabel": "Weddings & Matrimony",
     "title": "Wedding Shoot (Full-Day Coverage)",
     "tagline": "Complete photo and cinema production for your holy matrimony and reception",
-    "image": "samples/events/wedding-coverage/BASIC WEDDING PACKAGES_thumb.jpg",
-    "imageWebp": "samples/events/wedding-coverage/BASIC WEDDING PACKAGES_thumb.webp",
+    "image": "samples/events/wedding-coverage/BASIC WEDDING PACKAGES.jpg",
     "imageHighRes": "samples/events/wedding-coverage/BASIC WEDDING PACKAGES.jpg",
     "badge": "💍 Holy Matrimony",
     "turnaround": "48hr Teaser · Full Gallery in 3 Weeks",
     "depositRate": "80% booking deposit required",
     "sampleFolder": "samples/events/wedding-coverage",
     "samples": [
-      {
-        "url": "samples/events/wedding-coverage/work-1.jpg",
-        "type": "image",
-        "title": "Luxury Wedding Matrimony Master Portrait"
-      },
       {
         "url": "samples/events/wedding-coverage/BASIC WEDDING PACKAGES.jpg",
         "type": "image",
@@ -2106,18 +3501,23 @@ const PACKAGES_DATA = [
     "catLabel": "Weddings & Matrimony",
     "title": "Traditional Wedding (Ruracio)",
     "tagline": "Authentic cultural ceremony coverage honoring rich Kenyan marital customs",
-    "image": "samples/events/traditional-wedding/OUTDOOR TRADITIONALCREATIVE  SHOOT_thumb.jpg",
-    "imageWebp": "samples/events/traditional-wedding/OUTDOOR TRADITIONALCREATIVE  SHOOT_thumb.webp",
-    "imageHighRes": "samples/events/traditional-wedding/OUTDOOR TRADITIONALCREATIVE  SHOOT.jpg",
+    "image": "samples/events/traditional-wedding/cover_thumb.jpg",
+    "imageWebp": "samples/events/traditional-wedding/cover_thumb.webp",
+    "imageHighRes": "samples/events/traditional-wedding/cover.jpg",
     "badge": "👑 Cultural Matrimony",
     "turnaround": "48hr Teaser · Full Gallery in 3 Weeks",
     "depositRate": "80% booking deposit required",
     "sampleFolder": "samples/events/traditional-wedding",
     "samples": [
       {
-        "url": "samples/events/traditional-wedding/OUTDOOR TRADITIONALCREATIVE  SHOOT.jpg",
+        "url": "samples/events/traditional-wedding/BRA (22).jpg",
         "type": "image",
-        "title": "Outdoor Cultural Attire & Ceremony Setup"
+        "title": "Traditional Wedding (Ruracio) · BRA"
+      },
+      {
+        "url": "samples/events/traditional-wedding/cover.jpg",
+        "type": "image",
+        "title": "Traditional Wedding (Ruracio) · Cover"
       }
     ],
     "options": [
@@ -2191,8 +3591,7 @@ const PACKAGES_DATA = [
     "catLabel": "Burials & Memorials",
     "title": "Burials & Memorials Coverage",
     "tagline": "Dignified, respectful, and unobtrusive photo & video coverage honoring loved ones",
-    "image": "samples/events/burial-coverage/BURIAL COVERAGE PACKAGES_thumb.jpg",
-    "imageWebp": "samples/events/burial-coverage/BURIAL COVERAGE PACKAGES_thumb.webp",
+    "image": "samples/events/burial-coverage/BURIAL COVERAGE PACKAGES.jpg",
     "imageHighRes": "samples/events/burial-coverage/BURIAL COVERAGE PACKAGES.jpg",
     "badge": "🕊️ In Loving Memory",
     "turnaround": "7–10 Business Days",
@@ -2260,8 +3659,7 @@ const PACKAGES_DATA = [
     "catLabel": "Corporate & Summits",
     "title": "Corporate Events & Summits",
     "tagline": "High-level visual documentation for conferences, AGM summits, galas & brand activations",
-    "image": "samples/events/corporate-event/COPORATE EVENT COVERAGE_thumb.jpg",
-    "imageWebp": "samples/events/corporate-event/COPORATE EVENT COVERAGE_thumb.webp",
+    "image": "samples/events/corporate-event/COPORATE EVENT COVERAGE.jpg",
     "imageHighRes": "samples/events/corporate-event/COPORATE EVENT COVERAGE.jpg",
     "badge": "🏢 Conferences & Galas",
     "turnaround": "3–5 Business Days",
@@ -2277,6 +3675,46 @@ const PACKAGES_DATA = [
         "url": "samples/events/corporate-event/CORPORATE PORTRAIT SHOOT.jpg",
         "type": "image",
         "title": "Corporate Portrait & Board Showcase"
+      },
+      {
+        "url": "samples/events/corporate-event/DSC02822.jpgj_status.jpg",
+        "type": "image",
+        "title": "Corporate Events & Summits · DSC02822.jpgj"
+      },
+      {
+        "url": "samples/events/corporate-event/DSC02827.jpgj_status.jpg",
+        "type": "image",
+        "title": "Corporate Events & Summits · DSC02827.jpgj"
+      },
+      {
+        "url": "samples/events/corporate-event/DSC02830.jpgh_status.jpg",
+        "type": "image",
+        "title": "Corporate Events & Summits · DSC02830.jpgh"
+      },
+      {
+        "url": "samples/events/corporate-event/DSC02832.jpgh_status.jpg",
+        "type": "image",
+        "title": "Corporate Events & Summits · DSC02832.jpgh"
+      },
+      {
+        "url": "samples/events/corporate-event/DSC02836.jpgh_status.jpg",
+        "type": "image",
+        "title": "Corporate Events & Summits · DSC02836.jpgh"
+      },
+      {
+        "url": "samples/events/corporate-event/DSC02840.jpgh_status.jpg",
+        "type": "image",
+        "title": "Corporate Events & Summits · DSC02840.jpgh"
+      },
+      {
+        "url": "samples/events/corporate-event/DSC02856.jpgu.jpgg_status.jpg",
+        "type": "image",
+        "title": "Corporate Events & Summits · DSC02856.jpgu.jpgg"
+      },
+      {
+        "url": "samples/events/corporate-event/DSC02891.jpgj_status.jpg",
+        "type": "image",
+        "title": "Corporate Events & Summits · DSC02891.jpgj"
       }
     ],
     "options": [
@@ -2332,63 +3770,1375 @@ const PACKAGES_DATA = [
     "catLabel": "Birthday Party Events",
     "title": "Birthday Party Events Coverage",
     "tagline": "Up to 8 hours on-site birthday party coverage: cake cutting, guest candids, decor details & 4K video reel",
-    "image": "samples/events/birthday-events/event-cover_thumb.jpg",
-    "imageWebp": "samples/events/birthday-events/event-cover_thumb.webp",
-    "imageHighRes": "samples/events/birthday-events/event-cover.JPG",
+    "image": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2370.jpg",
+    "imageWebp": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2460.jpg",
+    "imageHighRes": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2370.jpg",
     "badge": "🎉 Party Extravaganza",
     "turnaround": "48hr Teasers · Full Gallery in 7 Days",
     "depositRate": "Booking deposit: KSh 10,000 to KSh 22,000",
     "sampleFolder": "samples/events/birthday-events",
+    "albums": [
+      {
+        "id": "andrews-birthday",
+        "title": "ANDREW'S BIRTHDAY",
+        "count": 27,
+        "cover": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2370.jpg",
+        "samples": [
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2370.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2370"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2374.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2374"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2432.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2432"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2460.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2460"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2467.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2467"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2489.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2489"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2499.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2499"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2531.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2531"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2575.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2575"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2592.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2592"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2621.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2621"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2629.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2629"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2656.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2656"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2668.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2668"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2679.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2679"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2737.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2737"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2760.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2760"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2792.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2792"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2830.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2830"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2845.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2845"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2854.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2854"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2890.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2890"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2908.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2908"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2986.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 2986"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_3011.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 3011"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_3021.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 3021"
+          },
+          {
+            "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_3065.jpg",
+            "type": "image",
+            "title": "ANDREW'S BIRTHDAY · IMG 3065"
+          }
+        ]
+      },
+      {
+        "id": "ariana-and-carianahs-birthday",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY",
+        "count": 31,
+        "cover": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A4982.JPG",
+        "samples": [
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A4982.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A4982"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5079.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5079"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5090.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5090"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5116.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5116"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5119.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5119"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5158.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5158"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5161.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5161"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5186.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5186"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5190.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5190"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5229.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5229"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5240.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5240"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5394.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5394"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5520.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5520"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5575.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5575"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5594.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5594"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5607.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5607"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5655.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5655"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5674.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5674"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5728.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5728"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5739.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5739"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5772.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5772"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5776.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5776"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5781.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5781"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5806.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5806"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5826.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5826"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5842.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5842"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5869.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5869"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5919.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5919"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5992.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5992"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A6036.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A6036"
+          },
+          {
+            "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/A.JPG",
+            "type": "image",
+            "title": "ARIANA AND CARIANAH'S BIRTHDAY · A"
+          }
+        ]
+      },
+      {
+        "id": "daleyzas-birthday",
+        "title": "DALEYZA'S BIRTHDAY",
+        "count": 28,
+        "cover": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0033 - Copy.JPG",
+        "samples": [
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0033 - Copy.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0033 Copy"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0033.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0033"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0035 - Copy.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0035 Copy"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0035.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0035"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0037 - Copy.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0037 Copy"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0037.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0037"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0059 - Copy.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0059 Copy"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0059.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0059"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0117 - Copy.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0117 Copy"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0117.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0117"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0196 - Copy.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0196 Copy"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0196.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0196"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0203.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0203"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0215.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0215"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0275.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0275"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0285.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0285"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0391.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0391"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0435.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0435"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0440.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0440"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0447.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0447"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0449.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0449"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0451.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · 69A0451"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/@A@ (1).JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · @A@"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/@A@ (11).JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · @A@"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/@A@ (12) - Copy.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · @A@ Copy"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/@A@ (12).JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · @A@"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/@A@ (26) - Copy.JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · @A@ Copy"
+          },
+          {
+            "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/@A@ (26).JPG",
+            "type": "image",
+            "title": "DALEYZA'S BIRTHDAY · @A@"
+          }
+        ]
+      },
+      {
+        "id": "divias-birthday",
+        "title": "DIVIA'S BIRTHDAY",
+        "count": 26,
+        "cover": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0457.jpg",
+        "samples": [
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0457.jpg",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0457"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0471.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0471"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0473.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0473"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0483.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0483"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0504.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0504"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0519.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0519"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0520.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0520"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0526.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0526"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0538.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0538"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0545.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0545"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0556.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0556"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0583.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0583"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0597.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0597"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0605.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0605"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0619.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0619"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0621.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0621"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0629.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · IMG 0629"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6649.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · PRI 6649"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6651.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · PRI 6651"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6813.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · PRI 6813"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6893.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · PRI 6893"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6897.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · PRI 6897"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6914.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · PRI 6914"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6932.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · PRI 6932"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6979.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · PRI 6979"
+          },
+          {
+            "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6991.JPG",
+            "type": "image",
+            "title": "DIVIA'S BIRTHDAY · PRI 6991"
+          }
+        ]
+      },
+      {
+        "id": "imanis-birthday",
+        "title": "IMANI'S BIRTHDAY",
+        "count": 20,
+        "cover": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8077.JPG",
+        "samples": [
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8077.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8077"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8084.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8084"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8086.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8086"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8088.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8088"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8090.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8090"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8099.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8099"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8103.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8103"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8109.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8109"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8114.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8114"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8122.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8122"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8205.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8205"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8305.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8305"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8312.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8312"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8314.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8314"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8315.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8315"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8316.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8316"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8387.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8387"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8399.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8399"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8423.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8423"
+          },
+          {
+            "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8428.JPG",
+            "type": "image",
+            "title": "IMANI'S BIRTHDAY · DSC8428"
+          }
+        ]
+      }
+    ],
     "samples": [
       {
-        "url": "samples/events/birthday-events/DSC07430-.jpg-k-gv.jpg",
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2370.jpg",
         "type": "image",
-        "title": "Birthday Party Events Coverage - Sample Photo"
+        "title": "ANDREW'S BIRTHDAY · IMG 2370"
       },
       {
-        "url": "samples/events/birthday-events/DSC07430-.jpg-k-gv_status.jpg",
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2374.jpg",
         "type": "image",
-        "title": "Birthday Party Events Coverage - Sample Photo"
+        "title": "ANDREW'S BIRTHDAY · IMG 2374"
       },
       {
-        "url": "samples/events/birthday-events/DSC07469.jpghx.jpg",
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2432.jpg",
         "type": "image",
-        "title": "Birthday Party Events Coverage - Sample Photo"
+        "title": "ANDREW'S BIRTHDAY · IMG 2432"
       },
       {
-        "url": "samples/events/birthday-events/DSC07469.jpghx_status.jpg",
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2460.jpg",
         "type": "image",
-        "title": "Birthday Party Events Coverage - Sample Photo"
+        "title": "ANDREW'S BIRTHDAY · IMG 2460"
       },
       {
-        "url": "samples/events/birthday-events/DSC07479.jpgfh.jpg",
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2467.jpg",
         "type": "image",
-        "title": "Birthday Party Events Coverage - Sample Photo"
+        "title": "ANDREW'S BIRTHDAY · IMG 2467"
       },
       {
-        "url": "samples/events/birthday-events/DSC07479.jpgfh_status.jpg",
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2489.jpg",
         "type": "image",
-        "title": "Birthday Party Events Coverage - Sample Photo"
+        "title": "ANDREW'S BIRTHDAY · IMG 2489"
       },
       {
-        "url": "samples/events/birthday-events/DSC07485.jpg,l.jpg",
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2499.jpg",
         "type": "image",
-        "title": "Birthday Party Events Coverage - Sample Photo"
+        "title": "ANDREW'S BIRTHDAY · IMG 2499"
       },
       {
-        "url": "samples/events/birthday-events/event-cover.JPG",
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2531.jpg",
         "type": "image",
-        "title": "Birthday Party Events Coverage - Sample Photo"
+        "title": "ANDREW'S BIRTHDAY · IMG 2531"
       },
       {
-        "url": "samples/events/birthday-events/IMG_0545.JPG",
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2575.jpg",
         "type": "image",
-        "title": "Birthday Party Events Coverage - Sample Photo"
+        "title": "ANDREW'S BIRTHDAY · IMG 2575"
       },
       {
-        "url": "samples/events/birthday-events/IMG_0556.JPG",
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2592.jpg",
         "type": "image",
-        "title": "Birthday Party Events Coverage - Sample Photo"
+        "title": "ANDREW'S BIRTHDAY · IMG 2592"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2621.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2621"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2629.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2629"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2656.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2656"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2668.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2668"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2679.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2679"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2737.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2737"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2760.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2760"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2792.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2792"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2830.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2830"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2845.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2845"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2854.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2854"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2890.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2890"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2908.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2908"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_2986.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 2986"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_3011.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 3011"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_3021.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 3021"
+      },
+      {
+        "url": "samples/events/birthday-events/ANDREW'S BIRTHDAY/IMG_3065.jpg",
+        "type": "image",
+        "title": "ANDREW'S BIRTHDAY · IMG 3065"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A4982.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A4982"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5079.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5079"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5090.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5090"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5116.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5116"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5119.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5119"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5158.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5158"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5161.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5161"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5186.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5186"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5190.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5190"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5229.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5229"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5240.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5240"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5394.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5394"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5520.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5520"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5575.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5575"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5594.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5594"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5607.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5607"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5655.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5655"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5674.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5674"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5728.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5728"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5739.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5739"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5772.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5772"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5776.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5776"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5781.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5781"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5806.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5806"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5826.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5826"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5842.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5842"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5869.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5869"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5919.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5919"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A5992.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A5992"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/_J0A6036.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · J0A6036"
+      },
+      {
+        "url": "samples/events/birthday-events/ARIANA AND CARIANAH'S BIRTHDAY/A.JPG",
+        "type": "image",
+        "title": "ARIANA AND CARIANAH'S BIRTHDAY · A"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0033 - Copy.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0033 Copy"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0033.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0033"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0035 - Copy.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0035 Copy"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0035.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0035"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0037 - Copy.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0037 Copy"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0037.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0037"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0059 - Copy.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0059 Copy"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0059.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0059"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0117 - Copy.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0117 Copy"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0117.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0117"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0196 - Copy.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0196 Copy"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0196.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0196"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0203.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0203"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0215.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0215"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0275.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0275"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0285.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0285"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0391.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0391"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0435.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0435"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0440.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0440"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0447.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0447"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0449.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0449"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/_69A0451.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · 69A0451"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/@A@ (1).JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · @A@"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/@A@ (11).JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · @A@"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/@A@ (12) - Copy.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · @A@ Copy"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/@A@ (12).JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · @A@"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/@A@ (26) - Copy.JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · @A@ Copy"
+      },
+      {
+        "url": "samples/events/birthday-events/DALEYZA'S BIRTHDAY/@A@ (26).JPG",
+        "type": "image",
+        "title": "DALEYZA'S BIRTHDAY · @A@"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0457.jpg",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0457"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0471.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0471"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0473.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0473"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0483.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0483"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0504.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0504"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0519.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0519"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0520.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0520"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0526.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0526"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0538.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0538"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0545.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0545"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0556.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0556"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0583.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0583"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0597.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0597"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0605.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0605"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0619.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0619"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0621.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0621"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/IMG_0629.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · IMG 0629"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6649.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · PRI 6649"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6651.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · PRI 6651"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6813.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · PRI 6813"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6893.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · PRI 6893"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6897.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · PRI 6897"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6914.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · PRI 6914"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6932.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · PRI 6932"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6979.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · PRI 6979"
+      },
+      {
+        "url": "samples/events/birthday-events/DIVIA'S BIRTHDAY/PRI_6991.JPG",
+        "type": "image",
+        "title": "DIVIA'S BIRTHDAY · PRI 6991"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8077.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8077"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8084.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8084"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8086.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8086"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8088.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8088"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8090.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8090"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8099.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8099"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8103.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8103"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8109.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8109"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8114.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8114"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8122.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8122"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8205.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8205"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8305.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8305"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8312.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8312"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8314.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8314"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8315.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8315"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8316.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8316"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8387.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8387"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8399.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8399"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8423.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8423"
+      },
+      {
+        "url": "samples/events/birthday-events/IMANI'S BIRTHDAY/_DSC8428.JPG",
+        "type": "image",
+        "title": "IMANI'S BIRTHDAY · DSC8428"
       }
     ],
     "options": [
@@ -2461,24 +5211,14 @@ const PACKAGES_DATA = [
         "title": "Convocation Milestone Hero Portrait"
       },
       {
-        "url": "samples/events/graduation-events/DSC09938.JPG",
+        "url": "samples/events/graduation-events/PRI_4998.jpg",
         "type": "image",
-        "title": "Cap Toss Moment of Pride"
+        "title": "Campus Convocation Walk"
       },
       {
-        "url": "samples/events/graduation-events/PRI_5912.jpg",
+        "url": "samples/events/graduation-events/PRI_5013.jpg",
         "type": "image",
-        "title": "Grand Convocation Regalia Portrait"
-      },
-      {
-        "url": "samples/events/graduation-events/PRI_5893.jpg",
-        "type": "image",
-        "title": "Golden Hour Campus Celebration"
-      },
-      {
-        "url": "samples/events/graduation-events/DSC09941.JPG",
-        "type": "image",
-        "title": "Honorary Graduate Regalia Walk"
+        "title": "Graduation Ceremonies & Events Coverage · PRI 5013"
       },
       {
         "url": "samples/events/graduation-events/PRI_5363.jpg",
@@ -2486,29 +5226,59 @@ const PACKAGES_DATA = [
         "title": "Celebration Bouquet & Degree Scroll"
       },
       {
-        "url": "samples/events/graduation-events/DSC09940.JPG",
-        "type": "image",
-        "title": "Celebration Studio & Event Lighting"
-      },
-      {
-        "url": "samples/events/graduation-events/PRI_4998.jpg",
-        "type": "image",
-        "title": "Campus Convocation Walk"
-      },
-      {
-        "url": "samples/events/graduation-events/DSC09945.JPG",
-        "type": "image",
-        "title": "Family Convocation Banquet"
-      },
-      {
         "url": "samples/events/graduation-events/PRI_5412.jpg",
         "type": "image",
         "title": "Graduate Joy & Laughter"
       },
       {
-        "url": "samples/events/graduation-events/graduation.jpg",
+        "url": "samples/events/graduation-events/PRI_5893.jpg",
         "type": "image",
-        "title": "Official Academic Graduation Guide"
+        "title": "Golden Hour Campus Celebration"
+      },
+      {
+        "url": "samples/events/graduation-events/PRI_5895.jpg",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · PRI 5895"
+      },
+      {
+        "url": "samples/events/graduation-events/PRI_5912.jpg",
+        "type": "image",
+        "title": "Grand Convocation Regalia Portrait"
+      },
+      {
+        "url": "samples/events/graduation-events/SHE_1757.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · SHE 1757"
+      },
+      {
+        "url": "samples/events/graduation-events/SHE_1765.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · SHE 1765"
+      },
+      {
+        "url": "samples/events/graduation-events/SHE_1768.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · SHE 1768"
+      },
+      {
+        "url": "samples/events/graduation-events/SHE_1770.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · SHE 1770"
+      },
+      {
+        "url": "samples/events/graduation-events/SHE_1773.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · SHE 1773"
+      },
+      {
+        "url": "samples/events/graduation-events/SHE_1865.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · SHE 1865"
+      },
+      {
+        "url": "samples/events/graduation-events/SHE_1873.JPG",
+        "type": "image",
+        "title": "Graduation Ceremonies & Events Coverage · SHE 1873"
       }
     ],
     "options": [
@@ -2566,18 +5336,28 @@ const PACKAGES_DATA = [
     "catLabel": "Hotel & Gala Events",
     "title": "Hotel & Gala Events Coverage",
     "tagline": "Corporate gala dinners, luxury hotel launches, culinary showcases & VIP networking",
-    "image": "samples/events/hotel-events/HOTEL AND HOSPITALITY SHOOT_thumb.jpg",
-    "imageWebp": "samples/events/hotel-events/HOTEL AND HOSPITALITY SHOOT_thumb.webp",
-    "imageHighRes": "samples/events/hotel-events/HOTEL AND HOSPITALITY SHOOT.jpg",
+    "image": "samples/events/hotel-events/cover_thumb.jpg",
+    "imageWebp": "samples/events/hotel-events/cover_thumb.webp",
+    "imageHighRes": "samples/events/hotel-events/cover.jpg",
     "badge": "🥂 Luxury Hospitality",
     "turnaround": "48hr Teasers · Full Gallery in 7 Days",
     "depositRate": "Booking deposit: KSh 10,000 to KSh 22,000",
     "sampleFolder": "samples/events/hotel-events",
     "samples": [
       {
+        "url": "samples/events/hotel-events/cover.jpg",
+        "type": "image",
+        "title": "Hotel & Gala Events Coverage · Cover"
+      },
+      {
         "url": "samples/events/hotel-events/HOTEL AND HOSPITALITY SHOOT.jpg",
         "type": "image",
         "title": "Hotel & Hospitality Official Rates"
+      },
+      {
+        "url": "samples/events/hotel-events/work-5.jpg",
+        "type": "image",
+        "title": "Hotel & Gala Events Coverage · Work 5"
       }
     ],
     "options": [
@@ -2635,23 +5415,28 @@ const PACKAGES_DATA = [
     "catLabel": "Products & E-Commerce",
     "title": "Product Photography",
     "tagline": "Studio lighting, pure white background e-commerce packs, and lifestyle brand imagery",
-    "image": "samples/commercial/product-shoot/PRODUCT SHOOT PACKAGES_thumb.jpg",
-    "imageWebp": "samples/commercial/product-shoot/PRODUCT SHOOT PACKAGES_thumb.webp",
-    "imageHighRes": "samples/commercial/product-shoot/PRODUCT SHOOT PACKAGES.jpg",
+    "image": "samples/commercial/product-shoot/cover_thumb.jpg",
+    "imageWebp": "samples/commercial/product-shoot/cover_thumb.webp",
+    "imageHighRes": "samples/commercial/product-shoot/cover.jpg",
     "badge": "📦 E-Commerce Catalog",
     "turnaround": "3–5 Business Days",
     "depositRate": "80% booking deposit required",
     "sampleFolder": "samples/commercial/product-shoot",
     "samples": [
       {
-        "url": "samples/commercial/product-shoot/PRODUCT SHOOT PACKAGES.jpg",
-        "type": "image",
-        "title": "Product Shoot Packages Official Rates & Inclusions"
-      },
-      {
         "url": "samples/commercial/product-shoot/Business 2 Business.jpg",
         "type": "image",
         "title": "B2B Brand Photography Showcase"
+      },
+      {
+        "url": "samples/commercial/product-shoot/cover.jpg",
+        "type": "image",
+        "title": "Product Photography · Cover"
+      },
+      {
+        "url": "samples/commercial/product-shoot/PRODUCT SHOOT PACKAGES.jpg",
+        "type": "image",
+        "title": "Product Shoot Packages Official Rates & Inclusions"
       }
     ],
     "options": [
@@ -2704,23 +5489,28 @@ const PACKAGES_DATA = [
     "catLabel": "Hotels & Hospitality",
     "title": "Hotel & Hospitality Showcase",
     "tagline": "Architectural, interior, culinary, and experiential imagery for luxury hotels, Airbnbs & resorts",
-    "image": "samples/commercial/hotel-hospitality/HOTEL AND HOSPITALITY SHOOT_thumb.jpg",
-    "imageWebp": "samples/commercial/hotel-hospitality/HOTEL AND HOSPITALITY SHOOT_thumb.webp",
-    "imageHighRes": "samples/commercial/hotel-hospitality/HOTEL AND HOSPITALITY SHOOT.jpg",
+    "image": "samples/commercial/hotel-hospitality/cover_thumb.jpg",
+    "imageWebp": "samples/commercial/hotel-hospitality/cover_thumb.webp",
+    "imageHighRes": "samples/commercial/hotel-hospitality/cover.jpg",
     "badge": "🏖️ Resorts & Luxury",
     "turnaround": "4–6 Business Days",
     "depositRate": "80% booking deposit required",
     "sampleFolder": "samples/commercial/hotel-hospitality",
     "samples": [
       {
-        "url": "samples/commercial/hotel-hospitality/work-5.jpg",
+        "url": "samples/commercial/hotel-hospitality/cover.jpg",
         "type": "image",
-        "title": "Luxury Suite Architectural Lighting & Detail"
+        "title": "Hotel & Hospitality Showcase · Cover"
       },
       {
         "url": "samples/commercial/hotel-hospitality/HOTEL AND HOSPITALITY SHOOT.jpg",
         "type": "image",
         "title": "Hotel & Hospitality Shoot Rates & Guide"
+      },
+      {
+        "url": "samples/commercial/hotel-hospitality/work-5.jpg",
+        "type": "image",
+        "title": "Luxury Suite Architectural Lighting & Detail"
       }
     ],
     "options": [
@@ -2773,18 +5563,62 @@ const PACKAGES_DATA = [
     "catLabel": "Corporate & Branding",
     "title": "Corporate & Brand Growth Suite",
     "tagline": "Cohesive leadership headshots and annual report imagery for company teams",
-    "image": "samples/commercial/corporate-branding/CORPORATE PORTRAIT SHOOT_thumb.jpg",
-    "imageWebp": "samples/commercial/corporate-branding/CORPORATE PORTRAIT SHOOT_thumb.webp",
-    "imageHighRes": "samples/commercial/corporate-branding/CORPORATE PORTRAIT SHOOT.jpg",
+    "image": "samples/commercial/corporate-branding/COPORATE EVENT COVERAGE.jpg",
+    "imageHighRes": "samples/commercial/corporate-branding/COPORATE EVENT COVERAGE.jpg",
     "badge": "🏢 Leadership Suite",
     "turnaround": "3–5 Business Days",
     "depositRate": "80% booking deposit required",
     "sampleFolder": "samples/commercial/corporate-branding",
     "samples": [
       {
+        "url": "samples/commercial/corporate-branding/COPORATE EVENT COVERAGE.jpg",
+        "type": "image",
+        "title": "Corporate & Brand Growth Suite · COPORATE EVENT COVERAGE"
+      },
+      {
         "url": "samples/commercial/corporate-branding/CORPORATE PORTRAIT SHOOT.jpg",
         "type": "image",
         "title": "Corporate Portrait Shoot Rates & Guide"
+      },
+      {
+        "url": "samples/commercial/corporate-branding/DSC02822.jpgj_status.jpg",
+        "type": "image",
+        "title": "Corporate & Brand Growth Suite · DSC02822.jpgj"
+      },
+      {
+        "url": "samples/commercial/corporate-branding/DSC02827.jpgj_status.jpg",
+        "type": "image",
+        "title": "Corporate & Brand Growth Suite · DSC02827.jpgj"
+      },
+      {
+        "url": "samples/commercial/corporate-branding/DSC02830.jpgh_status.jpg",
+        "type": "image",
+        "title": "Corporate & Brand Growth Suite · DSC02830.jpgh"
+      },
+      {
+        "url": "samples/commercial/corporate-branding/DSC02832.jpgh_status.jpg",
+        "type": "image",
+        "title": "Corporate & Brand Growth Suite · DSC02832.jpgh"
+      },
+      {
+        "url": "samples/commercial/corporate-branding/DSC02836.jpgh_status.jpg",
+        "type": "image",
+        "title": "Corporate & Brand Growth Suite · DSC02836.jpgh"
+      },
+      {
+        "url": "samples/commercial/corporate-branding/DSC02840.jpgh_status.jpg",
+        "type": "image",
+        "title": "Corporate & Brand Growth Suite · DSC02840.jpgh"
+      },
+      {
+        "url": "samples/commercial/corporate-branding/DSC02856.jpgu.jpgg_status.jpg",
+        "type": "image",
+        "title": "Corporate & Brand Growth Suite · DSC02856.jpgu.jpgg"
+      },
+      {
+        "url": "samples/commercial/corporate-branding/DSC02891.jpgj_status.jpg",
+        "type": "image",
+        "title": "Corporate & Brand Growth Suite · DSC02891.jpgj"
       }
     ],
     "options": [
@@ -2837,14 +5671,19 @@ const PACKAGES_DATA = [
     "catLabel": "Graphic Design & Branding",
     "title": "Graphic Design Starter Package",
     "tagline": "Essential visual branding assets for startups, small businesses & social campaigns",
-    "image": "samples/commercial/graphic-starter/GRAPHIC DESIGNING STARTER PACKAGE_thumb.jpg",
-    "imageWebp": "samples/commercial/graphic-starter/GRAPHIC DESIGNING STARTER PACKAGE_thumb.webp",
-    "imageHighRes": "samples/commercial/graphic-starter/GRAPHIC DESIGNING STARTER PACKAGE.jpg",
+    "image": "samples/commercial/graphic-starter/cover_thumb.jpg",
+    "imageWebp": "samples/commercial/graphic-starter/cover_thumb.webp",
+    "imageHighRes": "samples/commercial/graphic-starter/cover.jpg",
     "badge": "🎨 Visual Identity",
     "turnaround": "3 Business Days",
     "depositRate": "80% booking deposit required",
     "sampleFolder": "samples/commercial/graphic-starter",
     "samples": [
+      {
+        "url": "samples/commercial/graphic-starter/cover.jpg",
+        "type": "image",
+        "title": "Graphic Design Starter Package · Cover"
+      },
       {
         "url": "samples/commercial/graphic-starter/GRAPHIC DESIGNING STARTER PACKAGE.jpg",
         "type": "image",
@@ -2888,14 +5727,19 @@ const PACKAGES_DATA = [
     "catLabel": "Graphic Design & Branding",
     "title": "Graphic Design Growth Package",
     "tagline": "Comprehensive corporate brand identity, company profile & marketing collateral",
-    "image": "samples/commercial/graphic-growth/GRAPHIC DESGINING GROWTH PACKAGE_thumb.jpg",
-    "imageWebp": "samples/commercial/graphic-growth/GRAPHIC DESGINING GROWTH PACKAGE_thumb.webp",
-    "imageHighRes": "samples/commercial/graphic-growth/GRAPHIC DESGINING GROWTH PACKAGE.jpg",
+    "image": "samples/commercial/graphic-growth/cover_thumb.jpg",
+    "imageWebp": "samples/commercial/graphic-growth/cover_thumb.webp",
+    "imageHighRes": "samples/commercial/graphic-growth/cover.jpg",
     "badge": "Corporate Identity",
     "turnaround": "5 Business Days",
     "depositRate": "80% booking deposit required",
     "sampleFolder": "samples/commercial/graphic-growth",
     "samples": [
+      {
+        "url": "samples/commercial/graphic-growth/cover.jpg",
+        "type": "image",
+        "title": "Graphic Design Growth Package · Cover"
+      },
       {
         "url": "samples/commercial/graphic-growth/GRAPHIC DESGINING GROWTH PACKAGE.jpg",
         "type": "image",
@@ -3021,18 +5865,37 @@ const PACKAGES_DATA = [
     "catLabel": "Newborn Milestones",
     "title": "Newborn Baby Milestone (0–30 Days)",
     "tagline": "Gentle nursery-climate studio photography with sterile organic wraps, nesting baskets & paci breaks",
-    "image": "samples/studio/newborn-shoot/cover_thumb.jpg",
-    "imageWebp": "samples/studio/newborn-shoot/cover_thumb.webp",
-    "imageHighRes": "samples/studio/newborn-shoot/cover.jpg",
+    "image": "samples/studio/newborn-shoot/DSC00462.jpgxxxxx.jpg",
+    "imageHighRes": "samples/studio/newborn-shoot/DSC00462.jpgxxxxx.jpg",
     "badge": "🍼 Nursery Climate Controlled",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 600 to KSh 2,000 (lock your slot)",
     "sampleFolder": "samples/studio/newborn-shoot",
     "samples": [
       {
-        "url": "samples/studio/newborn-shoot/cover.jpg",
+        "url": "samples/studio/newborn-shoot/DSC00462.jpgxxxxx.jpg",
         "type": "image",
-        "title": "Gentle Newborn Sleeping Milestone"
+        "title": "Newborn Baby Milestone (0–30 Days) · DSC00462.jpg"
+      },
+      {
+        "url": "samples/studio/newborn-shoot/DSC00498.jpgxxx.jpg",
+        "type": "image",
+        "title": "Newborn Baby Milestone (0–30 Days) · DSC00498.jpg"
+      },
+      {
+        "url": "samples/studio/newborn-shoot/DSC00566.jpgxx.jpg",
+        "type": "image",
+        "title": "Newborn Baby Milestone (0–30 Days) · DSC00566.jpgxx"
+      },
+      {
+        "url": "samples/studio/newborn-shoot/DSC02461.JPG",
+        "type": "image",
+        "title": "Newborn Baby Milestone (0–30 Days) · DSC02461"
+      },
+      {
+        "url": "samples/studio/newborn-shoot/DSC02482_1.jpg",
+        "type": "image",
+        "title": "Newborn Baby Milestone (0–30 Days) · DSC02482 1"
       }
     ],
     "options": [
@@ -3356,19 +6219,13 @@ const PACKAGES_DATA = [
     "catLabel": "Outdoor Silk Wrap",
     "title": "Outdoor Luxury Silk Wrap Shoot",
     "tagline": "Breathtaking 6-meter flying satin silk wrap session in natural golden-hour wind & outdoor bokeh",
-    "image": "samples/outdoor/outdoor-silk-wrap/cover_thumb.jpg",
-    "imageWebp": "samples/outdoor/outdoor-silk-wrap/cover_thumb.webp",
-    "imageHighRes": "samples/outdoor/outdoor-silk-wrap/cover.jpg",
+    "image": "samples/outdoor/outdoor-silk-wrap/_R2A6339.jpg",
+    "imageHighRes": "samples/outdoor/outdoor-silk-wrap/_R2A6339.jpg",
     "badge": "✨ Flying Silk Satin",
     "turnaround": "2–3 Business Days",
     "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
     "sampleFolder": "samples/outdoor/outdoor-silk-wrap",
     "samples": [
-      {
-        "url": "samples/outdoor/outdoor-silk-wrap/cover.jpg",
-        "type": "image",
-        "title": "Flying Silk Wrap Outdoor Golden Hour"
-      },
       {
         "url": "samples/outdoor/outdoor-silk-wrap/_R2A6339.jpg",
         "type": "image",
@@ -3378,6 +6235,116 @@ const PACKAGES_DATA = [
         "url": "samples/outdoor/outdoor-silk-wrap/_R2A6346.jpg",
         "type": "image",
         "title": "Sunset Silhouette with Silk Flow"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/_R2A6356.jpg",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · R2A6356"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/_R2A6367.jpg",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · R2A6367"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/BR2A1804.JPG",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · BR2A1804"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/BR2A1806.JPG",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · BR2A1806"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/BR2A1818.JPG",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · BR2A1818"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/BR2A1820.JPG",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · BR2A1820"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/BR2A1827.JPG",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · BR2A1827"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/BR2A1829.JPG",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · BR2A1829"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/BR2A1831.JPG",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · BR2A1831"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/BR2A1834.JPG",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · BR2A1834"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/BR2A1835.JPG",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · BR2A1835"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/BR2A1852.JPG",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · BR2A1852"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/BR2A1873.JPG",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · BR2A1873"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/BR2A1875.JPG",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · BR2A1875"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/O13A0278.jpg",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · O13A0278"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/O13A0280.jpg",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · O13A0280"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/O13A0281.jpg",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · O13A0281"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/O13A0286.jpg",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · O13A0286"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/O13A0297.jpg",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · O13A0297"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/O13A0309 (2).jpg",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · O13A0309"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/O13A0313.jpg",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · O13A0313"
+      },
+      {
+        "url": "samples/outdoor/outdoor-silk-wrap/O13A0317.jpg",
+        "type": "image",
+        "title": "Outdoor Luxury Silk Wrap Shoot · O13A0317"
       }
     ],
     "options": [
@@ -3447,9 +6414,34 @@ const PACKAGES_DATA = [
         "title": "Sunlit Campus Convocation Regalia Walk"
       },
       {
+        "url": "samples/outdoor/outdoor-graduation/PRI_4998.jpg",
+        "type": "image",
+        "title": "Campus & Outdoor Graduation Milestone · PRI 4998"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/PRI_5013.jpg",
+        "type": "image",
+        "title": "Campus & Outdoor Graduation Milestone · PRI 5013"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/PRI_5363.jpg",
+        "type": "image",
+        "title": "Degree Scroll & Celebration Bouquet"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/PRI_5412.jpg",
+        "type": "image",
+        "title": "Campus & Outdoor Graduation Milestone · PRI 5412"
+      },
+      {
         "url": "samples/outdoor/outdoor-graduation/PRI_5893.jpg",
         "type": "image",
         "title": "Golden Hour Outdoor Graduation Glow"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/PRI_5895.jpg",
+        "type": "image",
+        "title": "Campus & Outdoor Graduation Milestone · PRI 5895"
       },
       {
         "url": "samples/outdoor/outdoor-graduation/PRI_5912.jpg",
@@ -3457,9 +6449,39 @@ const PACKAGES_DATA = [
         "title": "Grand Convocation Regalia Portrait"
       },
       {
-        "url": "samples/outdoor/outdoor-graduation/PRI_5363.jpg",
+        "url": "samples/outdoor/outdoor-graduation/SHE_1757.JPG",
         "type": "image",
-        "title": "Degree Scroll & Celebration Bouquet"
+        "title": "Campus & Outdoor Graduation Milestone · SHE 1757"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/SHE_1765.JPG",
+        "type": "image",
+        "title": "Campus & Outdoor Graduation Milestone · SHE 1765"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/SHE_1768.JPG",
+        "type": "image",
+        "title": "Campus & Outdoor Graduation Milestone · SHE 1768"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/SHE_1770.JPG",
+        "type": "image",
+        "title": "Campus & Outdoor Graduation Milestone · SHE 1770"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/SHE_1773.JPG",
+        "type": "image",
+        "title": "Campus & Outdoor Graduation Milestone · SHE 1773"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/SHE_1865.JPG",
+        "type": "image",
+        "title": "Campus & Outdoor Graduation Milestone · SHE 1865"
+      },
+      {
+        "url": "samples/outdoor/outdoor-graduation/SHE_1873.JPG",
+        "type": "image",
+        "title": "Campus & Outdoor Graduation Milestone · SHE 1873"
       }
     ],
     "options": [
@@ -3507,37 +6529,125 @@ const PACKAGES_DATA = [
         ]
       }
     ]
-  }
-];
-
-// Frequently Asked Questions
-const FAQS_DATA = [
-  {
-    q: "How do I book a session with Laureign Studios?",
-    a: "Booking takes under 60 seconds! Browse our packages above, view our verified client samples to inspect our quality, select your preferred tier, and tap 'Book via WhatsApp'. You can choose a date and location, and our team will immediately confirm availability and send your deposit invoice."
   },
   {
-    q: "Do you offer both Indoor Studio and Outdoor Natural Light sessions?",
-    a: "Yes! We operate our fully equipped indoor studio with multiple lighting setups, backdrops, and silk/shirt wardrobes, as well as on-location outdoor sessions at scenic gardens, parks, resort compounds, and university campuses across Kakamega, Nairobi, Eldoret, and Western Kenya."
-  },
-  {
-    q: "Can I inspect real sample photos before booking?",
-    a: "Yes! Every single package above features a 'See Client Samples Before Booking' button. Tap it to browse our real client sample photos and video reels before paying any commitment deposit."
-  },
-  {
-    q: "What deposit is required to confirm my booking?",
-    a: "For In-Studio and Outdoor Portrait shoots (such as Graduation, Headshots, White Shirt, Silk Wrap, Birthdays, Maternity), a small commitment deposit of KSh 300 to KSh 1,400 (approx. 25%) secures your time slot. For Weddings, Memorials, and Corporate Events, an 80% deposit is required upon reservation to lock crew and backup gear."
-  },
-  {
-    q: "Where is Laureign Studios located?",
-    a: "Our main studio is located in Kakamega. We also operate regular studio sessions in Nairobi and travel across Kenya (Eldoret, Kisumu, Nakuru, Mombasa) for weddings, graduation events, and commercial assignments."
-  },
-  {
-    q: "How and when will I receive my photos?",
-    a: "Studio and outdoor lifestyle portrait sessions are delivered in 2 to 3 business days via a private, password-protected high-resolution cloud gallery. Wedding teasers are sent within 48 hours for immediate social sharing, with full master galleries delivered in 3 weeks."
-  },
-  {
-    q: "Can I bring my own props, family members or outfit changes?",
-    a: "Absolutely! Graduation clients are encouraged to bring their academic gown, cap, hood, degree scroll, and family members. Birthday clients are welcome to bring balloons and number props. Inclusions for each tier are clearly detailed under each package card above."
+    "id": "outdoor-traditional",
+    "pathway": "outdoor",
+    "subcat": "outdoor-traditional",
+    "catLabel": "Outdoor Cultural Heritage",
+    "title": "Traditional Cultural Shoot (Outdoor)",
+    "tagline": "Cultural attire, beadwork & heritage portraits captured in scenic natural gardens & golden hour light",
+    "image": "samples/outdoor/traditional-creative/cover_thumb.jpg",
+    "imageWebp": "samples/outdoor/traditional-creative/cover_thumb.webp",
+    "imageHighRes": "samples/outdoor/traditional-creative/cover.jpg",
+    "badge": "🌿 Natural Heritage",
+    "turnaround": "2–3 Business Days",
+    "depositRate": "Booking deposit: KSh 1,000 to KSh 2,500 (lock your slot)",
+    "sampleFolder": "samples/outdoor/traditional-creative",
+    "samples": [
+      {
+        "url": "samples/outdoor/traditional-creative/BRA (2).jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · BRA"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/BRA (17).jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · BRA"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/BRA (22).jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · BRA"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/cover.jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · Cover"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/O13A0278.jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · O13A0278"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/O13A0280.jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · O13A0280"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/O13A0281.jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · O13A0281"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/O13A0286.jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · O13A0286"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/O13A0297.jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · O13A0297"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/O13A0309 (2).jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · O13A0309"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/O13A0313.jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · O13A0313"
+      },
+      {
+        "url": "samples/outdoor/traditional-creative/O13A0317.jpg",
+        "type": "image",
+        "title": "Traditional Cultural Shoot (Outdoor) · O13A0317"
+      }
+    ],
+    "options": [
+      {
+        "id": "silver",
+        "name": "Silver Outdoor Cultural",
+        "price": 3500,
+        "deposit": 1000,
+        "summary": "7 retouched photos, 1 outfit, 1 hr session (outdoor garden)",
+        "inclusions": [
+          "7 High-Res Magazine Retouched Photos",
+          "1 Cultural Attire / Traditional Outfit",
+          "1 Hour Outdoor Garden / Scenic Session",
+          "Delivered via Cloud & WhatsApp within 48 Hours"
+        ]
+      },
+      {
+        "id": "gold",
+        "name": "Gold Outdoor Cultural",
+        "popular": true,
+        "price": 5500,
+        "deposit": 1500,
+        "summary": "12 retouched photos, 2 outfits, 1.5 hr session, cultural props",
+        "inclusions": [
+          "12 High-Res Magazine Retouched Photos",
+          "2 Cultural Attire Changes",
+          "1.5 Hours Scenic Outdoor Session",
+          "Delivered via Cloud & WhatsApp within 48 Hours"
+        ]
+      },
+      {
+        "id": "platinum",
+        "name": "Platinum Outdoor Cultural",
+        "price": 8500,
+        "deposit": 2500,
+        "summary": "20 retouched photos, 3 outfits, 2 hr session + 4K highlight reel",
+        "inclusions": [
+          "20 High-Res Magazine Retouched Photos",
+          "3 Cultural Attire Changes",
+          "2 Hours Complete Outdoor Storytelling",
+          "1 Cinematic 4K Highlight Reel Cut for Socials",
+          "Delivered via Cloud & WhatsApp within 48 Hours"
+        ]
+      }
+    ]
   }
 ];

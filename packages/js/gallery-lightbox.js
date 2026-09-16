@@ -332,6 +332,7 @@
   window.closeLightbox = closeGalleryLightbox;
   window.galleryLightboxNext = nextSlide;
   window.galleryLightboxPrev = prevSlide;
+  window.scanPageGallery = scanPageGallery;
 
   // Initialize once DOM is ready
   if (document.readyState === 'loading') {
