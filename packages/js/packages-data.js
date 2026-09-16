@@ -434,6 +434,41 @@ const PACKAGES_DATA = [
         "title": "Executive Headshots · DSC00061.JPG"
       },
       {
+        "url": "samples/studio/indoor-headshots/DSC00662.jpgxxxxx.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC00662.jpg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC00664.jpgxxxx.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC00664.jpg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC00672.jpgxxxxc.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC00672.jpgc"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC00719.jpgxxxxxxxxx.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC00719.jpg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC00725.jpgaaaaaa.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC00725.jpgaaaaaa"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC00731.jpgxxxxxx.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC00731.jpg"
+      },
+      {
+        "url": "samples/studio/indoor-headshots/DSC00759.jpgnnnn.jpg",
+        "type": "image",
+        "title": "Executive Headshots · DSC00759.jpgnnnn"
+      },
+      {
         "url": "samples/studio/indoor-headshots/DSC02822.jpgj_status.jpg",
         "type": "image",
         "title": "Executive Headshots · DSC02822.jpgj"
@@ -444,64 +479,9 @@ const PACKAGES_DATA = [
         "title": "Executive Headshots · DSC02827.jpgj"
       },
       {
-        "url": "samples/studio/indoor-headshots/DSC02830.jpgh_status.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC02830.jpgh"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC02832.jpgh_status.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC02832.jpgh"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC02836.jpgh_status.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC02836.jpgh"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC02840.jpgh_status.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC02840.jpgh"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC02856.jpgu.jpgg_status.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC02856.jpgu.jpgg"
-      },
-      {
         "url": "samples/studio/indoor-headshots/DSC02891.jpgj_status.jpg",
         "type": "image",
         "title": "Executive Headshots · DSC02891.jpgj"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC06408.jpgk.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC06408.jpgk"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC06473.jpglo.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC06473.jpglo"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC06479.jpgmjk-hb.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC06479.jpgmjk hb"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC06606.jpgkjh.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC06606.jpgkjh"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC07103-Recovered.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC07103 Recovered"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC07103gjhgj_status.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC07103gjhgj"
       },
       {
         "url": "samples/studio/indoor-headshots/DSC07116-7_status.jpg",
@@ -517,16 +497,6 @@ const PACKAGES_DATA = [
         "url": "samples/studio/indoor-headshots/DSC07119ggggggg_status.jpg",
         "type": "image",
         "title": "Executive Headshots · DSC07119ggggggg"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC07122.hgjhgjjpg.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC07122.hgjhgjjpg"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/DSC07169.jhggjpg.jpg",
-        "type": "image",
-        "title": "Executive Headshots · DSC07169.jhggjpg"
       },
       {
         "url": "samples/studio/indoor-headshots/DSC07302.hjghthjpg_status.jpg",
@@ -562,11 +532,6 @@ const PACKAGES_DATA = [
         "url": "samples/studio/indoor-headshots/DSC09626_(2).jpg",
         "type": "image",
         "title": "Professional Leadership Portrait"
-      },
-      {
-        "url": "samples/studio/indoor-headshots/work-10.jpg",
-        "type": "image",
-        "title": "Editorial Studio Headshot Retouching"
       }
     ],
     "options": [
@@ -1355,6 +1320,61 @@ const PACKAGES_DATA = [
         "title": "Birthday Studio Glamour Shoot · Cover"
       },
       {
+        "url": "samples/studio/birthday-shoot/DSC00094.jpgsss.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC00094.jpgsss"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC00133.jpgsssss.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC00133.jpgsssss"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC00633.jpgdddddd.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC00633.jpgdddddd"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC00633.jpgxxxx.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC00633.jpg"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC00662.jpgxxxxx.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC00662.jpg"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC00664.jpgxxxx.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC00664.jpg"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC00672.jpgxxxxc.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC00672.jpgc"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC00719.jpgxxxxxxxxx.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC00719.jpg"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC00725.jpgaaaaaa.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC00725.jpgaaaaaa"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC00731.jpgxxxxxx.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC00731.jpg"
+      },
+      {
+        "url": "samples/studio/birthday-shoot/DSC00759.jpgnnnn.jpg",
+        "type": "image",
+        "title": "Birthday Studio Glamour Shoot · DSC00759.jpgnnnn"
+      },
+      {
         "url": "samples/studio/birthday-shoot/DSC05153.jpg",
         "type": "image",
         "title": "Birthday Celebrant Glamour with Crown"
@@ -1378,11 +1398,6 @@ const PACKAGES_DATA = [
         "url": "samples/studio/birthday-shoot/DSC07469.jpghx.jpg",
         "type": "image",
         "title": "Birthday Studio Glamour Shoot · DSC07469.jpghx"
-      },
-      {
-        "url": "samples/studio/birthday-shoot/DSC07479.jpgfh_status.jpg",
-        "type": "image",
-        "title": "Party Glamour & Balloons"
       },
       {
         "url": "samples/studio/birthday-shoot/DSC07485.jpg,l.jpg",
@@ -1413,11 +1428,6 @@ const PACKAGES_DATA = [
         "url": "samples/studio/birthday-shoot/DSC09479.jpgsssssssss.jpg",
         "type": "image",
         "title": "Birthday Studio Glamour Shoot · DSC09479.jpgsssssssss"
-      },
-      {
-        "url": "samples/studio/birthday-shoot/outdoor-cover.JPG",
-        "type": "image",
-        "title": "Birthday Studio Glamour Shoot · Outdoor cover"
       }
     ],
     "options": [
@@ -1688,7 +1698,7 @@ const PACKAGES_DATA = [
     "imageHighRes": "samples/outdoor/couple-shoot/cover.JPG",
     "badge": "❤️ Intimate Romance",
     "turnaround": "2–3 Business Days",
-    "depositRate": "Booking deposit: KSh 200 to KSh 1,400 (lock your slot)",
+    "depositRate": "Booking deposit: KSh 500 to KSh 1,400 (lock your slot)",
     "sampleFolder": "samples/outdoor/couple-shoot",
     "samples": [
       {
@@ -1734,31 +1744,18 @@ const PACKAGES_DATA = [
     ],
     "options": [
       {
-        "id": "starter",
-        "name": "Single Image (Starter)",
-        "price": 300,
-        "deposit": 200,
-        "summary": "1 retouched couple portrait (Pay per image)",
-        "inclusions": [
-          "1 Magazine-Grade Retouched Couple Image",
-          "Couple Posing & Chemistry Guidance",
-          "Extra Retouched Photos: KSh 300 each",
-          "Unedited / RAW Soft Copies: KSh 150 each",
-          "15 Mins Studio Session",
-          "Delivered via WhatsApp & Cloud"
-        ]
-      },
-      {
         "id": "silver",
         "name": "Silver",
         "price": 2000,
         "deposit": 500,
-        "summary": "8 retouched images, 1 outfit, 30 min session",
+        "summary": "8 retouched images, 1 outfit, 30 min outdoor session (Minimum 8 images for outdoor)",
         "inclusions": [
-          "8 Retouched Images (Save KSh 400 vs single rate!)",
-          "1 Outfit of Choice",
-          "Romantic Studio Lighting & Posing Guide",
-          "30 Mins Studio Session",
+          "8 Magazine-Grade Retouched Outdoor Images",
+          "1 Coordinated Couple Outfit",
+          "Natural Light Romantic Posing & Chemistry Direction",
+          "30 Mins Outdoor Session",
+          "Extra Retouched Images: KSh 300 each",
+          "Unedited / RAW Proofs: KSh 150 each",
           "Delivered via WhatsApp & Cloud"
         ]
       },
@@ -1770,10 +1767,11 @@ const PACKAGES_DATA = [
         "deposit": 900,
         "summary": "16 retouched images, 2 outfits, 45 min session",
         "inclusions": [
-          "16 Retouched Images (Save KSh 1,300 vs single rate!)",
+          "16 Retouched Outdoor Images",
           "2 Outfits of Choice",
-          "Candid & Posed Romantic Sets",
-          "45 Mins Studio Session",
+          "Candid & Posed Romantic Scenic Sets",
+          "45 Mins Dedicated Outdoor Session",
+          "Extra Retouched Images: KSh 300 each",
           "Delivered via WhatsApp & Cloud"
         ]
       },

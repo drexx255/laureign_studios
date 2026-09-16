@@ -116,11 +116,11 @@
 #### 5. Outdoor Natural Light Headshots
 *Approachable, friendly lifestyle portraits under natural golden-hour daylight.*
 - **Turnaround:** 2–3 business days
-- **Single Image (Starter):** **KSh 300** (Pay per image · Unedited proofs: KSh 150)
+- **Outdoor Policy:** Minimum 8 images (Silver Tier) due to location travel & setup. Extra images can be added at KSh 300 each (or KSh 150 for unedited proofs).
 - **Tiers:**
-  - **Silver — KSh 2,000** *(Deposit: KSh 500)*: **8 Retouched Images** (Save KSh 400 vs single rate!) · 30 min natural light session · 1 Scenic location backdrop.
-  - **Gold — KSh 3,500** *(Deposit: KSh 900)*: **16 Retouched Images** (Save KSh 1,300 vs single rate!) · 45 min session · 2 Outfits of choice · Multiple outdoor angles.
-  - **Platinum — KSh 5,500** *(Deposit: KSh 1,400)*: **22 Retouched Images** (Over KSh 9,100 total value!) · 1 Hour session · Professional Makeup Included · Soft copy delivery.
+  - **Silver — KSh 2,000** *(Deposit: KSh 500)*: **8 Retouched Images** · 30 min natural light session · 1 Scenic location backdrop.
+  - **Gold — KSh 3,500** *(Deposit: KSh 900)*: **16 Retouched Images** · 45 min session · 2 Outfits of choice · Multiple outdoor angles.
+  - **Platinum — KSh 5,500** *(Deposit: KSh 1,400)*: **22 Retouched Images** · 1 Hour session · Professional Makeup Included · Soft copy delivery.
 
 #### 6. Elegant Indoor Shoot
 *Minimalist, high-fashion studio portraits with dramatic editorial lighting.*
@@ -139,11 +139,12 @@
 
 #### 8. Outdoor White Shirt Shoot
 *Chic outdoor white shirt lifestyle session in urban and nature surroundings.*
-- **Single Image (Starter):** **KSh 350** (Studio button-down shirt rental included · Unedited: KSh 150)
+- **Turnaround:** 2–3 business days
+- **Outdoor Policy:** Minimum 8 images (Silver Tier) due to location travel & setup. Extra images can be added at KSh 300 each (or KSh 150 for unedited proofs).
 - **Tiers:**
-  - **Silver — KSh 2,000** *(Deposit: KSh 500)*: **8 Retouched Outdoor Images** (Save KSh 800 vs single rate!) · 30 min session.
-  - **Gold — KSh 3,500** *(Deposit: KSh 900)*: **16 Retouched Outdoor Images** (Save KSh 2,100 vs single rate!) · 45 min session · 2 Outfits.
-  - **Platinum — KSh 5,500** *(Deposit: KSh 900)*: **24 Retouched Outdoor Images** (Over KSh 9,700 total value!) · 1 hr session · 3 Outfits.
+  - **Silver — KSh 2,000** *(Deposit: KSh 500)*: **8 Retouched Outdoor Images** · 30 min session.
+  - **Gold — KSh 3,500** *(Deposit: KSh 900)*: **16 Retouched Outdoor Images** · 45 min session · 2 Outfits.
+  - **Platinum — KSh 5,500** *(Deposit: KSh 900)*: **24 Retouched Outdoor Images** · 1 hr session · 3 Outfits.
 
 #### 9. White Shirt Video Reels
 *Dynamic vertical video content cut to trending sounds for TikTok, IG Reels, and YouTube Shorts.*

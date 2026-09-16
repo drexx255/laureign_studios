@@ -65,8 +65,8 @@
     try {
       qrCodeInstance = new QRCode(container, {
         text: url,
-        width: 176,
-        height: 176,
+        width: 156,
+        height: 156,
         colorDark: "#000000",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H

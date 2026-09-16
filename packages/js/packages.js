@@ -2220,13 +2220,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return `DATE: ${day} ${mon} ${yr}`;
   }
 
-  // Switch between Online Quotation mode and Walk-in / Official Receipt mode
+  // Official Studio Quotation Mode (Receipt mode removed per client direction)
   function setInvoiceMode(mode) {
-    invoiceMode = mode === "receipt" ? "receipt" : "quotation";
+    invoiceMode = "quotation";
 
-    const btnQuote = document.getElementById("btnModeQuotation");
-    const btnReceipt = document.getElementById("btnModeReceipt");
-    const receiptSettings = document.getElementById("invReceiptSettings");
     const docBadge = document.getElementById("invDisplayDocType");
     const refLabel = document.getElementById("invDisplayRefLabel");
     const validityItem = document.getElementById("invValidityMetaItem");
@@ -2237,76 +2234,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnPdfText = document.getElementById("btnDownloadPdfText");
     const btnWaText = document.getElementById("btnSendWaText");
 
-    if (invoiceMode === "receipt") {
-      if (btnQuote) btnQuote.classList.remove("active", "mode-quote");
-      if (btnReceipt) btnReceipt.classList.add("active");
-      if (receiptSettings) receiptSettings.style.display = "block";
-
-      if (currentInvoiceRef.startsWith("LS-QUO-")) {
-        currentInvoiceRef = currentInvoiceRef.replace("LS-QUO-", "LS-REC-");
-      } else if (!currentInvoiceRef.startsWith("LS-REC-")) {
-        const randNum = Math.floor(1000 + Math.random() * 9000);
-        currentInvoiceRef = `LS-REC-2026-${randNum}`;
-      }
-
-      if (docBadge) docBadge.textContent = "OFFICIAL PAYMENT RECEIPT & CONFIRMATION";
-      if (refLabel) refLabel.textContent = "RECEIPT REF:";
-      if (validityItem) validityItem.style.display = "none";
-      if (verifiedBanner) verifiedBanner.style.display = "flex";
-      if (sealStamp) sealStamp.classList.add("paid-stamp");
-
-      if (termsTitle) termsTitle.textContent = "Official Payment Confirmation & Record";
-      if (termsNote) termsNote.textContent = "* Official payment confirmed with thanks. Digital master deliverables are processed per agreed timeline and delivered via private cloud gallery and WhatsApp download link.";
-      const promiseEl = document.getElementById("invBrandPromise");
-      if (promiseEl) {
-        promiseEl.innerHTML = `
-          <div class="promise-title">✨ PAYMENT AUTHENTICATED · PRODUCTION IN PROGRESS</div>
-          <p class="promise-text">Master color grading, skin frequency retouching, and bespoke cinematography are in active queue. Private gallery preview will be shared per committed studio timeline.</p>
-        `;
-      }
-      const ackNote = document.getElementById("invAckNote");
-      if (ackNote) ackNote.textContent = "Official payment confirmation. Laureign Studios thanks you for your business & partnership!";
-      if (btnPdfText) btnPdfText.textContent = "📥 Download Official Receipt (PDF)";
-      if (btnWaText) btnWaText.textContent = "📲 Send Receipt to Client";
-    } else {
-      if (btnReceipt) btnReceipt.classList.remove("active");
-      if (btnQuote) btnQuote.classList.add("active", "mode-quote");
-      if (receiptSettings) receiptSettings.style.display = "none";
-
-      if (currentInvoiceRef.startsWith("LS-REC-")) {
-        currentInvoiceRef = currentInvoiceRef.replace("LS-REC-", "LS-QUO-");
-      } else if (!currentInvoiceRef.startsWith("LS-QUO-")) {
-        const randNum = Math.floor(1000 + Math.random() * 9000);
-        currentInvoiceRef = `LS-QUO-2026-${randNum}`;
-      }
-
-      if (docBadge) docBadge.textContent = "PROFORMA INVOICE & CLIENT QUOTATION";
-      if (refLabel) refLabel.textContent = "INVOICE REF:";
-      if (validityItem) validityItem.style.display = "flex";
-      if (verifiedBanner) verifiedBanner.style.display = "none";
-      if (sealStamp) sealStamp.classList.remove("paid-stamp");
-
-      if (termsTitle) termsTitle.textContent = "Official Payment & Remittance Details";
-      if (termsNote) termsNote.textContent = "* An 80% commitment deposit confirms your booking and reserves our creative crew on your event date. The remaining 20% balance is payable upon delivery of your master high-resolution deliverables.";
-      const promiseEl = document.getElementById("invBrandPromise");
-      if (promiseEl) {
-        promiseEl.innerHTML = `
-          <div class="promise-title">✨ LAUREIGN STUDIOS OFFICIAL PROMISE</div>
-          <p class="promise-text">Every milestone. Captured with precision. Curated, museum-grade photography &amp; bespoke cinematography by Laureign Studios.</p>
-        `;
-      }
-      const ackNote = document.getElementById("invAckNote");
-      if (ackNote) ackNote.textContent = "Official client invoice. Payment of commitment deposit signifies reservation of date and crew. Thank you for choosing Laureign Studios!";
-      if (btnPdfText) btnPdfText.textContent = "📥 Download Official PDF";
-      if (btnWaText) btnWaText.textContent = "📲 Send PDF via WhatsApp";
+    if (currentInvoiceRef.startsWith("LS-REC-")) {
+      currentInvoiceRef = currentInvoiceRef.replace("LS-REC-", "LS-QUO-");
+    } else if (!currentInvoiceRef.startsWith("LS-QUO-")) {
+      const randNum = Math.floor(1000 + Math.random() * 9000);
+      currentInvoiceRef = `LS-QUO-2026-${randNum}`;
     }
+
+    if (docBadge) docBadge.textContent = "OFFICIAL PROFORMA RATE PROPOSAL";
+    if (refLabel) refLabel.textContent = "QUOTATION REF:";
+    if (validityItem) validityItem.style.display = "flex";
+    if (verifiedBanner) verifiedBanner.style.display = "none";
+    if (sealStamp) sealStamp.classList.remove("paid-stamp");
+
+    if (termsTitle) termsTitle.textContent = "Studio Terms & Production Policies";
+    if (termsNote) termsNote.textContent = "* Official studio quotation & rate proposal. Payment of the booking deposit confirms your session date and creative crew allocation. The remaining balance is payable upon master gallery delivery.";
+    const promiseEl = document.getElementById("invBrandPromise");
+    if (promiseEl) {
+      promiseEl.innerHTML = `
+        <div class="promise-title">✨ LAUREIGN STUDIOS OFFICIAL PROMISE</div>
+        <p class="promise-text">Every milestone. Captured with precision. Curated, museum-grade photography &amp; bespoke cinematography by Laureign Studios.</p>
+      `;
+    }
+    const ackNote = document.getElementById("invAckNote");
+    if (ackNote) ackNote.textContent = "Official client quotation. Payment of booking deposit signifies reservation of date and crew. Thank you for choosing Laureign Studios!";
+    if (btnPdfText) btnPdfText.textContent = "📥 Download Quotation (PDF)";
+    if (btnWaText) btnWaText.textContent = "📲 Send Quotation via WhatsApp";
 
     updateInvoiceDisplay();
   }
 
-  // 1-Click Preset for Studio Walk-in Clients (auto-fills today's shoot details)
+  // 1-Click Preset for Studio Sessions (auto-fills today's shoot details)
   function applyWalkinPreset(status = "full") {
-    setInvoiceMode("receipt");
+    setInvoiceMode("quotation");
     setInvoiceCategory("studio");
 
     const today = new Date();
@@ -3328,7 +3288,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (isReceipt) {
         elStampTitle.textContent = paymentStatus === "deposit" ? "DEPOSIT CONFIRMED" : "PAID & CONFIRMED";
       } else {
-        elStampTitle.textContent = "OFFICIAL INVOICE";
+        elStampTitle.textContent = "OFFICIAL QUOTE";
       }
     }
   }

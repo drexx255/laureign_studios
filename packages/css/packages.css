@@ -6318,20 +6318,66 @@ h2.serif,
    Zero Rainbow Colors. Pure Corporate Elegance.
    ============================================================ */
 
+/* ============================================================
+   LAUREIGN STUDIOS EXECUTIVE QUOTATION SHEET (LUXURY STATIONERY)
+   Style: Haute Couture Ivory & Parchment Texture, Emerald Green Accents (#15803d / #16a34a),
+   Deep Obsidian Typography (#0f172a), Fixed-Size True A4 Precision.
+   ============================================================ */
+
 .invoice-printable-sheet {
-  width: 100%;
-  max-width: 860px;
-  background: #ffffff !important;
+  width: 820px !important;
+  min-width: 820px !important;
+  max-width: 820px !important;
+  margin: 0 auto !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  background: radial-gradient(circle at 50% 0%, #ffffff 0%, #fbf9f5 45%, #f5f0e6 100%) !important;
   color: #0f172a !important;
-  border-radius: 14px;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.4), 0 0 1px rgba(0, 0, 0, 0.12);
-  padding: 40px 44px;
-  box-sizing: border-box;
+  border-radius: 16px !important;
+  border: 1px solid rgba(21, 128, 61, 0.26) !important;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(21, 128, 61, 0.15), inset 0 0 0 2px rgba(255, 255, 255, 0.7) !important;
+  padding: 40px 44px !important;
   font-family: 'Jost', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   line-height: 1.45;
-  position: relative;
+  position: relative !important;
+  overflow: hidden !important;
   -webkit-font-smoothing: antialiased !important;
   text-rendering: optimizeLegibility !important;
+}
+
+/* Subtle luxury micro-linen security mesh texture (eliminates flat plain white) */
+.invoice-printable-sheet::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background-image: 
+    radial-gradient(rgba(21, 128, 61, 0.035) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(21, 128, 61, 0.02) 0%, transparent 45%, rgba(21, 128, 61, 0.02) 100%) !important;
+  background-size: 20px 20px, 100% 100% !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Subtle luxury studio watermark across the center */
+.invoice-printable-sheet::after {
+  content: "LAUREIGN STUDIOS OFFICIAL" !important;
+  position: absolute !important;
+  top: 48% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) rotate(-24deg) !important;
+  font-family: 'Jost', -apple-system, sans-serif !important;
+  font-size: 40px !important;
+  font-weight: 900 !important;
+  letter-spacing: 12px !important;
+  color: rgba(21, 128, 61, 0.035) !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+.invoice-printable-sheet > * {
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 /* ============================================================
@@ -6371,6 +6417,9 @@ h2.serif,
   flex-shrink: 0 !important;
   object-fit: contain !important;
   border-radius: 8px !important;
+  border: 1.5px solid #16a34a !important;
+  padding: 2px !important;
+  background: #ffffff !important;
 }
 
 .inv-brand-titles-wrap {
@@ -6382,8 +6431,8 @@ h2.serif,
 .inv-brand-eyebrow {
   font-family: 'Jost', -apple-system, sans-serif !important;
   font-size: 9.5px !important;
-  font-weight: 700 !important;
-  color: #64748b !important;
+  font-weight: 800 !important;
+  color: #15803d !important;
   letter-spacing: 2px !important;
   text-transform: uppercase !important;
   margin-bottom: 2px !important;
@@ -6401,9 +6450,13 @@ h2.serif,
   color: #0f172a !important;
 }
 
-.inv-brand-name .brand-part-main,
-.inv-brand-name .brand-part-accent {
+.inv-brand-name .brand-part-main {
   color: #0f172a !important;
+  font-weight: 900 !important;
+}
+
+.inv-brand-name .brand-part-accent {
+  color: #15803d !important;
   font-weight: 900 !important;
 }
 
@@ -6421,11 +6474,11 @@ h2.serif,
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
-  padding: 3px 10px !important;
+  padding: 4px 10px !important;
   border-radius: 4px !important;
-  background: #f1f5f9 !important;
-  color: #0f172a !important;
-  border: 1px solid #cbd5e1 !important;
+  background: linear-gradient(135deg, rgba(22, 163, 74, 0.12) 0%, rgba(21, 128, 61, 0.18) 100%) !important;
+  color: #15803d !important;
+  border: 1px solid rgba(22, 163, 74, 0.4) !important;
   font-size: 9.5px !important;
   font-weight: 800 !important;
   letter-spacing: 1.2px !important;
@@ -6494,9 +6547,9 @@ h2.serif,
 }
 
 .inv-ref-pill {
-  background: #f8fafc !important;
-  border: 1px solid #cbd5e1 !important;
-  border-left: 3.5px solid #0f172a !important;
+  background: rgba(240, 253, 244, 0.7) !important;
+  border: 1px solid rgba(22, 163, 74, 0.3) !important;
+  border-left: 3.5px solid #16a34a !important;
   border-radius: 4px !important;
   padding: 5px 12px !important;
   display: inline-flex !important;
@@ -6506,7 +6559,7 @@ h2.serif,
 }
 
 .inv-ref-label {
-  color: #64748b !important;
+  color: #15803d !important;
   font-size: 10px !important;
   font-weight: 800 !important;
   letter-spacing: 0.8px !important;
@@ -6547,9 +6600,9 @@ h2.serif,
 
 .inv-meta-item .val.status-proforma,
 .inv-meta-item .status-proforma {
-  color: #0f172a !important;
-  background: #f1f5f9 !important;
-  border: 1px solid #cbd5e1 !important;
+  color: #15803d !important;
+  background: rgba(240, 253, 244, 0.8) !important;
+  border: 1px solid rgba(22, 163, 74, 0.35) !important;
   padding: 2px 8px !important;
   border-radius: 4px !important;
   font-size: 9.5px !important;
@@ -6559,9 +6612,9 @@ h2.serif,
 }
 
 .inv-meta-item .status-paid {
-  color: #0f172a !important;
-  background: #f1f5f9 !important;
-  border: 1px solid #cbd5e1 !important;
+  color: #15803d !important;
+  background: rgba(240, 253, 244, 0.8) !important;
+  border: 1px solid rgba(22, 163, 74, 0.35) !important;
   padding: 2px 8px !important;
   border-radius: 4px !important;
   font-size: 9.5px !important;
@@ -6571,16 +6624,7 @@ h2.serif,
 }
 
 .inv-receipt-verified-banner {
-  background: #f8fafc !important;
-  border: 1px solid #0f172a !important;
-  color: #0f172a !important;
-  padding: 8px 14px !important;
-  border-radius: 6px !important;
-  font-weight: 800 !important;
-  font-size: 11px !important;
-  text-align: center !important;
-  letter-spacing: 0.5px !important;
-  margin-bottom: 18px !important;
+  display: none !important;
 }
 
 /* ============================================================
@@ -6595,9 +6639,9 @@ h2.serif,
 
 .inv-client-box,
 .inv-event-box {
-  background: #f8fafc !important;
+  background: rgba(248, 250, 252, 0.85) !important;
   border: 1px solid #e2e8f0 !important;
-  border-left: 3.5px solid #0f172a !important;
+  border-left: 3.5px solid #16a34a !important;
   border-radius: 8px !important;
   padding: 14px 18px !important;
   display: flex;
@@ -6609,7 +6653,7 @@ h2.serif,
   display: block;
   font-size: 9px !important;
   font-weight: 800 !important;
-  color: #64748b !important;
+  color: #15803d !important;
   letter-spacing: 1px !important;
   margin-bottom: 2px !important;
   text-transform: uppercase !important;
@@ -6626,6 +6670,8 @@ h2.serif,
   color: #0f172a !important;
   font-size: 16px !important;
   font-weight: 900 !important;
+  border-left: 2.5px solid #16a34a !important;
+  padding-left: 6px !important;
 }
 
 .spec-category-tag {
@@ -6634,6 +6680,11 @@ h2.serif,
   color: #475569 !important;
   margin: 2px 0 !important;
   text-transform: uppercase !important;
+}
+
+.spec-category-tag span {
+  color: #15803d !important;
+  font-weight: 800 !important;
 }
 
 .spec-sub {
@@ -6669,6 +6720,7 @@ h2.serif,
   letter-spacing: 1px !important;
   padding: 11px 12px !important;
   border: none !important;
+  border-bottom: 2.5px solid #16a34a !important;
 }
 
 .inv-table td {
@@ -6789,22 +6841,27 @@ h2.serif,
   margin-bottom: 18px;
 }
 
-/* Booking Deposit Highlight Card (Left Side, Sample 5) */
+/* /* Booking Deposit Highlight Card (Left Side, Sample 5) */
 .inv-deposit-highlight-card {
-  background: #f8fafc !important;
-  border: 1.5px solid #0f172a !important;
-  border-radius: 8px !important;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+  border: 1.5px solid #86efac !important;
+  border-radius: 10px !important;
   padding: 14px 18px !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 4px !important;
+  box-shadow: 0 4px 16px rgba(22, 163, 74, 0.08) !important;
 }
 
 .inv-dep-header-badge {
   font-family: 'Jost', -apple-system, sans-serif !important;
   font-size: 9.5px !important;
   font-weight: 800 !important;
-  color: #0f172a !important;
+  color: #ffffff !important;
+  background: #15803d !important;
+  border-radius: 4px !important;
+  padding: 2px 8px !important;
+  width: fit-content !important;
   letter-spacing: 1px !important;
   text-transform: uppercase !important;
 }
@@ -6812,7 +6869,7 @@ h2.serif,
 .inv-dep-amount {
   font-size: 28px !important;
   font-weight: 900 !important;
-  color: #0f172a !important;
+  color: #15803d !important;
   line-height: 1.15 !important;
   font-variant-numeric: tabular-nums !important;
   letter-spacing: -0.5px !important;
@@ -6820,14 +6877,14 @@ h2.serif,
 
 .inv-dep-percent-label {
   font-size: 11px !important;
-  color: #334155 !important;
+  color: #166534 !important;
   font-weight: 600 !important;
   line-height: 1.35 !important;
 }
 
 .inv-dep-balance-sub {
   font-size: 10.5px !important;
-  color: #64748b !important;
+  color: #475569 !important;
   line-height: 1.35 !important;
 }
 
@@ -6842,9 +6899,9 @@ h2.serif,
   gap: 5px !important;
   font-size: 9.5px !important;
   font-weight: 700 !important;
-  color: #0f172a !important;
+  color: #15803d !important;
   background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
+  border: 1px solid rgba(22, 163, 74, 0.35) !important;
   border-radius: 4px !important;
   padding: 3px 8px !important;
   margin-top: 3px !important;
@@ -6852,7 +6909,7 @@ h2.serif,
 }
 
 .inv-dep-star {
-  color: #0f172a !important;
+  color: #15803d !important;
   font-size: 10px !important;
 }
 
@@ -6885,6 +6942,7 @@ h2.serif,
   background: #0f172a !important;
   color: #ffffff !important;
   border-radius: 6px !important;
+  border-top: 2.5px solid #16a34a !important;
   padding: 8px 12px !important;
   margin: 4px 0 !important;
   font-size: 13px !important;
@@ -6893,15 +6951,15 @@ h2.serif,
 }
 
 .inv-tot-line.grand-total span:last-child {
-  color: #ffffff !important;
-  font-size: 15px !important;
+  color: #4ade80 !important;
+  font-size: 16px !important;
   font-weight: 900 !important;
 }
 
 .inv-tot-line.deposit-required {
-  background: #f1f5f9 !important;
-  color: #0f172a !important;
-  border: 1px solid #cbd5e1 !important;
+  background: rgba(240, 253, 244, 0.8) !important;
+  color: #15803d !important;
+  border: 1px solid rgba(22, 163, 74, 0.35) !important;
   border-radius: 4px !important;
   padding: 5px 8px !important;
   font-size: 11px !important;
@@ -6909,7 +6967,7 @@ h2.serif,
 }
 
 .inv-tot-line.deposit-required span:last-child {
-  color: #0f172a !important;
+  color: #15803d !important;
 }
 
 .inv-tot-line.balance-due {
@@ -6940,9 +6998,11 @@ h2.serif,
   font-size: 10px !important;
   font-weight: 800 !important;
   letter-spacing: 0.8px !important;
-  color: #0f172a !important;
+  color: #15803d !important;
   margin-bottom: 5px !important;
   text-transform: uppercase !important;
+  border-bottom: 1.5px solid rgba(22, 163, 74, 0.25) !important;
+  padding-bottom: 3px !important;
 }
 
 .inv-policy-bullet-list {
@@ -6966,7 +7026,7 @@ h2.serif,
   content: "•" !important;
   position: absolute !important;
   left: 0 !important;
-  color: #0f172a !important;
+  color: #16a34a !important;
   font-weight: 900 !important;
   font-size: 12px !important;
   line-height: 1 !important;
@@ -6987,15 +7047,15 @@ h2.serif,
 .inv-brand-promise {
   margin-top: 8px !important;
   padding: 8px 10px !important;
-  background: #f8fafc !important;
-  border-left: 3px solid #0f172a !important;
+  background: rgba(240, 253, 244, 0.7) !important;
+  border-left: 3px solid #16a34a !important;
   border-radius: 4px !important;
 }
 
 .inv-brand-promise .promise-title {
   font-size: 9.5px !important;
   font-weight: 800 !important;
-  color: #0f172a !important;
+  color: #15803d !important;
   letter-spacing: 0.8px !important;
   margin-bottom: 2px !important;
 }
@@ -7033,9 +7093,9 @@ h2.serif,
 .pay-line .till-num {
   font-family: 'SF Mono', Consolas, monospace !important;
   font-weight: 800 !important;
-  color: #0f172a !important;
-  background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
+  color: #15803d !important;
+  background: rgba(240, 253, 244, 0.9) !important;
+  border: 1px solid rgba(22, 163, 74, 0.35) !important;
   padding: 1px 5px !important;
   border-radius: 3px !important;
   font-size: 11px !important;
@@ -7069,7 +7129,7 @@ h2.serif,
   font-weight: 700 !important;
   font-size: 10.5px !important;
   color: #0f172a !important;
-  border-top: 1.5px solid #0f172a !important;
+  border-top: 1.5px solid #16a34a !important;
   padding-top: 3px !important;
   display: inline-block !important;
 }
@@ -7099,6 +7159,15 @@ h2.serif,
   position: relative;
   transform: rotate(-3deg);
   transition: transform 0.2s ease;
+}
+
+.official-studio-stamp-svg circle,
+.official-studio-stamp-svg path {
+  stroke: #15803d !important;
+}
+
+.official-studio-stamp-svg text {
+  fill: #15803d !important;
 }
 
 .inv-seal-stamp:hover {
@@ -7193,53 +7262,20 @@ h2.serif,
   .inv-preview-pane {
     width: 100%;
     flex: 1;
-    padding: 12px;
+    padding: 16px 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    justify-content: flex-start;
   }
   .inv-editor-pane.hide-mobile,
   .inv-preview-pane.hide-mobile {
     display: none !important;
   }
-  .inv-specs-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .inv-financials-row {
-    grid-template-columns: 1fr;
-  }
 }
 @media (max-width: 640px) {
   .inv-addon-row {
     grid-template-columns: 1fr 1fr;
-  }
-  .inv-specs-grid {
-    grid-template-columns: 1fr;
-  }
-  .invoice-printable-sheet {
-    padding: 20px 16px;
-  }
-  .inv-sheet-header,
-  .inv-sheet-header-tile {
-    flex-direction: column !important;
-    gap: 16px !important;
-    padding: 0 0 16px 0 !important;
-  }
-  .inv-meta-col {
-    align-items: stretch !important;
-    width: 100% !important;
-    text-align: left !important;
-    gap: 8px !important;
-  }
-  .inv-meta-item {
-    justify-content: space-between !important;
-    text-align: left !important;
-  }
-  .inv-ref-pill {
-    width: 100% !important;
-    justify-content: space-between !important;
-  }
-  .inv-sheet-footer {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    gap: 16px;
   }
 }
 
@@ -7334,25 +7370,6 @@ h2.serif,
   }
 }
 
-@media (max-width: 768px) {
-  .inv-specs-grid {
-    grid-template-columns: 1fr;
-  }
-  .inv-financials-row {
-    grid-template-columns: 1fr;
-  }
-  .inv-policies-remittance-grid {
-    grid-template-columns: 1fr;
-  }
-  .inv-sheet-header {
-    flex-direction: column;
-  }
-  .inv-meta-col {
-    text-align: left;
-    align-items: flex-start;
-    margin-top: 10px;
-  }
-}
 
 
 /* FLOATING BACK-UP ARROW (SCROLL TO TOP) */

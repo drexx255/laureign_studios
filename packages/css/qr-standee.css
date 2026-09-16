@@ -270,17 +270,19 @@
 .qr-card-bezel-frame {
   position: relative;
   z-index: 2;
-  background: linear-gradient(180deg, #050608 0%, #0b0c12 100%);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: radial-gradient(circle at 50% 50%, #0d1017 0%, #050608 100%);
+  border: 1.5px solid rgba(34, 197, 94, 0.4);
   border-radius: 20px;
-  padding: 16px;
-  margin: 0 auto 10px;
-  width: 236px;
-  height: 236px;
+  padding: 12px;
+  margin: 0 auto 12px;
+  width: 220px;
+  height: 220px;
+  box-sizing: border-box !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 3px 12px rgba(0, 0, 0, 0.85), 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 4px 16px rgba(0, 0, 0, 0.95), 0 0 25px rgba(34, 197, 94, 0.08);
+  overflow: hidden;
 }
 
 /* Scanner Corner Reticles (The 4 corners) */
@@ -291,30 +293,42 @@
   border-color: #22c55e;
   border-style: solid;
   pointer-events: none;
+  z-index: 3;
 }
 
-.reticle-tl { top: 10px; left: 10px; border-width: 2.5px 0 0 2.5px; border-top-left-radius: 6px; }
-.reticle-tr { top: 10px; right: 10px; border-width: 2.5px 2.5px 0 0; border-top-right-radius: 6px; }
-.reticle-bl { bottom: 10px; left: 10px; border-width: 0 0 2.5px 2.5px; border-bottom-left-radius: 6px; }
-.reticle-br { bottom: 10px; right: 10px; border-width: 0 2.5px 2.5px 0; border-bottom-right-radius: 6px; }
+.reticle-tl { top: 8px; left: 8px; border-width: 2.5px 0 0 2.5px; border-top-left-radius: 6px; }
+.reticle-tr { top: 8px; right: 8px; border-width: 2.5px 2.5px 0 0; border-top-right-radius: 6px; }
+.reticle-bl { bottom: 8px; left: 8px; border-width: 0 0 2.5px 2.5px; border-bottom-left-radius: 6px; }
+.reticle-br { bottom: 8px; right: 8px; border-width: 0 2.5px 2.5px 0; border-bottom-right-radius: 6px; }
 
 /* The White QR Capsule completely inside the bezel */
 .qr-code-viewport {
   background: #ffffff;
-  padding: 10px;
-  border-radius: 14px;
+  padding: 8px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+  width: 172px;
+  height: 172px;
+  box-sizing: border-box !important;
+  position: relative;
+  overflow: hidden;
 }
 
-.qr-code-viewport img,
+/* CRITICAL: Hide canvas so it doesn't double-render and push the image out of the box */
 .qr-code-viewport canvas {
+  display: none !important;
+}
+
+.qr-code-viewport img {
   display: block !important;
-  width: 180px !important;
-  height: 180px !important;
-  border-radius: 6px;
+  width: 156px !important;
+  height: 156px !important;
+  border-radius: 4px;
+  margin: auto !important;
+  object-fit: contain !important;
 }
 
 .qr-card-destination {
