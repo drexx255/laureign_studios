@@ -8,6 +8,8 @@
     { "source": "/samples/(.*)", "destination": "/packages/samples/$1" },
     { "source": "/posters/(.*)", "destination": "/packages/posters/$1" },
     { "source": "/apple/(.*)", "destination": "/packages/apple/$1" },
+    { "source": "/qr-poster", "destination": "/packages/qr-poster.html" },
+    { "source": "/packages/qr-poster", "destination": "/packages/qr-poster.html" },
     { "source": "/", "destination": "/packages/index.html" },
     { "source": "/packages", "destination": "/packages/index.html" },
     { "source": "/packages/", "destination": "/packages/index.html" }
