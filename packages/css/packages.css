@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap');
+
 /* ============================================================
    PACKAGES & OFFERS WEB PLATFORM
    Brand: Laureign Studios
@@ -6317,9 +6319,9 @@ h2.serif,
   gap: 6px;
   padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(234, 179, 8, 0.12);
-  border: 1px solid rgba(234, 179, 8, 0.35);
-  color: var(--gold-soft);
+  background: rgba(5, 150, 105, 0.12);
+  border: 1px solid rgba(5, 150, 105, 0.35);
+  color: #34d399;
   font-size: 12.5px;
   font-weight: 600;
   cursor: pointer;
@@ -6327,8 +6329,8 @@ h2.serif,
   white-space: nowrap;
 }
 .btn-open-invoice:hover {
-  background: rgba(234, 179, 8, 0.22);
-  border-color: rgba(234, 179, 8, 0.55);
+  background: rgba(5, 150, 105, 0.22);
+  border-color: rgba(16, 185, 129, 0.55);
   transform: translateY(-1px);
 }
 
@@ -6361,9 +6363,9 @@ h2.serif,
   display: flex;
   flex-direction: column;
   background: #080d15;
-  border: 1px solid rgba(197, 160, 89, 0.35);
+  border: 1px solid rgba(5, 150, 105, 0.35);
   border-radius: 20px;
-  box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.92), 0 0 50px rgba(197, 160, 89, 0.12);
+  box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.92), 0 0 50px rgba(5, 150, 105, 0.15);
   overflow: hidden;
   animation: invSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   color-scheme: dark;
@@ -6379,7 +6381,7 @@ h2.serif,
   justify-content: space-between;
   padding: 12px 22px;
   background: rgba(9, 14, 22, 0.95);
-  border-bottom: 1px solid rgba(197, 160, 89, 0.22);
+  border-bottom: 1px solid rgba(5, 150, 105, 0.25);
   gap: 12px;
   flex-shrink: 0;
 }
@@ -6392,11 +6394,12 @@ h2.serif,
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: #d4af37;
+  color: #34d399;
   font-weight: 800;
+  font-family: 'Montserrat', sans-serif;
 }
 .inv-topbar-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   font-weight: 700;
   color: #ffffff;
@@ -6408,7 +6411,7 @@ h2.serif,
 .inv-tab-switcher {
   display: inline-flex;
   background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(197, 160, 89, 0.3);
+  border: 1px solid rgba(5, 150, 105, 0.35);
   border-radius: 999px;
   padding: 3px;
   gap: 4px;
@@ -6423,6 +6426,7 @@ h2.serif,
   background: transparent;
   border: none;
   color: #94a3b8;
+  font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   font-weight: 700;
   padding: 4px 13px;
@@ -6432,10 +6436,10 @@ h2.serif,
   white-space: nowrap;
 }
 .inv-tab-btn.active {
-  background: linear-gradient(135deg, #c5a059 0%, #99732e 100%);
-  color: #090d16;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
   font-weight: 800;
-  box-shadow: 0 2px 10px rgba(197, 160, 89, 0.35);
+  box-shadow: 0 2px 10px rgba(5, 150, 105, 0.35);
 }
 
 .inv-topbar-actions {
@@ -6449,6 +6453,7 @@ h2.serif,
   gap: 6px;
   padding: 7px 14px;
   border-radius: 999px;
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
@@ -6477,11 +6482,11 @@ h2.serif,
 .inv-btn-action.print-btn {
   background: rgba(255,255,255,0.08);
   color: #ffffff;
-  border: 1px solid rgba(197, 160, 89, 0.25);
+  border: 1px solid rgba(5, 150, 105, 0.35);
 }
 .inv-btn-action.print-btn:hover {
-  background: rgba(197, 160, 89, 0.18);
-  border-color: #d4af37;
+  background: rgba(5, 150, 105, 0.18);
+  border-color: #10b981;
 }
 .inv-btn-close {
   background: rgba(255,255,255,0.08);
@@ -6530,7 +6535,7 @@ h2.serif,
   width: 6px;
 }
 .inv-editor-pane::-webkit-scrollbar-thumb {
-  background: rgba(197, 160, 89, 0.3);
+  background: rgba(5, 150, 105, 0.35);
   border-radius: 999px;
 }
 
@@ -6550,14 +6555,14 @@ h2.serif,
   width: 8px;
 }
 .inv-preview-pane::-webkit-scrollbar-thumb {
-  background: rgba(197, 160, 89, 0.4);
+  background: rgba(5, 150, 105, 0.45);
   border-radius: 999px;
 }
 
 /* Configurator Cards */
 .inv-card-section {
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(197, 160, 89, 0.2);
+  border: 1px solid rgba(5, 150, 105, 0.22);
   border-radius: 14px;
   padding: 12px 14px;
   display: flex;
@@ -6565,6 +6570,7 @@ h2.serif,
   gap: 8px;
 }
 .inv-card-title {
+  font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   font-weight: 700;
   color: #f8fafc;
@@ -6574,11 +6580,13 @@ h2.serif,
   letter-spacing: 0.3px;
 }
 .inv-card-subtitle {
+  font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   color: #94a3b8;
   line-height: 1.35;
 }
 .inv-card-label {
+  font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   color: #94a3b8;
   font-weight: 600;
@@ -6592,6 +6600,7 @@ h2.serif,
   gap: 4px;
 }
 .inv-helper-hint {
+  font-family: 'Montserrat', sans-serif;
   font-size: 10px;
   color: #94a3b8;
 }
@@ -6610,12 +6619,13 @@ h2.serif,
   background: rgba(0, 0, 0, 0.45);
   padding: 3px;
   border-radius: 10px;
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  border: 1px solid rgba(5, 150, 105, 0.25);
 }
 .inv-mode-pill {
   background: transparent;
   border: none;
   color: #94a3b8;
+  font-family: 'Montserrat', sans-serif;
   padding: 5px 12px;
   border-radius: 8px;
   font-size: 11.5px;
@@ -6624,19 +6634,20 @@ h2.serif,
   transition: all 0.2s ease;
 }
 .inv-mode-pill.active.mode-quote {
-  background: linear-gradient(135deg, #c5a059 0%, #99732e 100%);
-  color: #090d16;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
   font-weight: 800;
 }
 .inv-mode-pill.active {
-  background: #059669;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #ffffff;
   font-weight: 800;
 }
 .btn-walkin-preset {
-  background: rgba(197, 160, 89, 0.15);
-  border: 1px solid rgba(197, 160, 89, 0.4);
-  color: #d4af37;
+  background: rgba(5, 150, 105, 0.15);
+  border: 1px solid rgba(5, 150, 105, 0.4);
+  color: #34d399;
+  font-family: 'Montserrat', sans-serif;
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 11.5px;
@@ -6645,21 +6656,22 @@ h2.serif,
   transition: all 0.2s ease;
 }
 .btn-walkin-preset:hover {
-  background: #c5a059;
-  color: #090d16;
+  background: #059669;
+  color: #ffffff;
 }
 
 /* 1-Click Fast Event & Milestone Presets Toolbar */
 .inv-preset-toolbar {
   margin-top: 10px;
   padding-top: 10px;
-  border-top: 1px dashed rgba(197, 160, 89, 0.2);
+  border-top: 1px dashed rgba(5, 150, 105, 0.22);
 }
 .inv-preset-label {
   display: block;
+  font-family: 'Montserrat', sans-serif;
   font-size: 10.5px;
   font-weight: 800;
-  color: #d4af37;
+  color: #34d399;
   letter-spacing: 0.8px;
   margin-bottom: 7px;
   text-transform: uppercase;
@@ -6671,8 +6683,9 @@ h2.serif,
 }
 .inv-preset-pill {
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(197, 160, 89, 0.25);
+  border: 1px solid rgba(5, 150, 105, 0.25);
   color: #e2e8f0;
+  font-family: 'Montserrat', sans-serif;
   padding: 5px 10px;
   border-radius: 6px;
   font-size: 11.5px;
@@ -6684,8 +6697,8 @@ h2.serif,
   gap: 4px;
 }
 .inv-preset-pill:hover {
-  background: rgba(197, 160, 89, 0.25);
-  border-color: #d4af37;
+  background: rgba(5, 150, 105, 0.25);
+  border-color: #10b981;
   color: #ffffff;
   transform: translateY(-1px);
 }
@@ -6702,6 +6715,7 @@ h2.serif,
   gap: 3px;
 }
 .inv-tool-group label {
+  font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   color: #cbd5e1;
   font-weight: 600;
@@ -6710,13 +6724,13 @@ h2.serif,
   padding: 7px 11px;
   border-radius: 8px;
   background-color: #0b1419;
-  border: 1px solid rgba(197, 160, 89, 0.24);
+  border: 1px solid rgba(5, 150, 105, 0.25);
   color: #f8fafc;
   font-size: 12.5px;
   outline: none;
   width: 100%;
   box-sizing: border-box;
-  font-family: inherit;
+  font-family: 'Montserrat', sans-serif;
   color-scheme: dark;
 }
 .inv-select {
@@ -6724,7 +6738,7 @@ h2.serif,
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 13px 13px;
@@ -6735,23 +6749,25 @@ h2.serif,
   color: #f8fafc !important;
   padding: 9px 12px;
   font-size: 12.5px;
+  font-family: 'Montserrat', sans-serif;
 }
 .inv-select option:checked {
-  background-color: #99732e !important;
+  background-color: #047857 !important;
   color: #ffffff !important;
   font-weight: 700;
 }
 .inv-select optgroup {
   background-color: #04090c !important;
-  color: #d4af37 !important;
+  color: #34d399 !important;
   font-weight: 800;
   font-size: 11px;
   letter-spacing: 0.8px;
   padding: 8px 10px 4px;
+  font-family: 'Montserrat', sans-serif;
 }
 .inv-select:focus, .inv-input:focus {
-  border-color: #d4af37;
-  box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.28);
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.28);
 }
 
 /* Session Cards */
@@ -6762,7 +6778,7 @@ h2.serif,
 }
 .inv-session-card {
   background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(197, 160, 89, 0.3);
+  border: 1px solid rgba(5, 150, 105, 0.3);
   border-radius: 12px;
   padding: 12px;
   display: flex;
@@ -6772,7 +6788,7 @@ h2.serif,
   transition: border-color 0.2s ease;
 }
 .inv-session-card:hover {
-  border-color: rgba(197, 160, 89, 0.55);
+  border-color: rgba(16, 185, 129, 0.6);
 }
 .inv-session-header {
   display: flex;
@@ -6780,9 +6796,10 @@ h2.serif,
   align-items: center;
 }
 .inv-session-badge {
+  font-family: 'Montserrat', sans-serif;
   font-size: 11px;
   font-weight: 800;
-  color: #d4af37;
+  color: #34d399;
   letter-spacing: 0.5px;
   display: inline-flex;
   align-items: center;
@@ -6792,6 +6809,7 @@ h2.serif,
   background: rgba(239, 68, 68, 0.15);
   border: 1px solid rgba(239, 68, 68, 0.35);
   color: #f87171;
+  font-family: 'Montserrat', sans-serif;
   border-radius: 6px;
   padding: 3px 8px;
   font-size: 11px;
@@ -6804,11 +6822,12 @@ h2.serif,
   color: #ffffff;
 }
 .inv-btn-add-line {
-  background: linear-gradient(135deg, #c5a059 0%, #99732e 100%);
-  color: #090d16;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
   border: none;
   border-radius: 999px;
   padding: 6px 14px;
+  font-family: 'Montserrat', sans-serif;
   font-size: 11.5px;
   font-weight: 800;
   cursor: pointer;
@@ -6818,7 +6837,7 @@ h2.serif,
   transition: all 0.2s ease;
 }
 .inv-btn-add-line:hover {
-  background: #d4af37;
+  background: #10b981;
   transform: translateY(-1px);
 }
 
@@ -6836,17 +6855,19 @@ h2.serif,
   background: rgba(0, 0, 0, 0.3);
   padding: 8px 10px;
   border-radius: 8px;
-  border: 1px solid rgba(197, 160, 89, 0.2);
+  border: 1px solid rgba(5, 150, 105, 0.2);
 }
 .inv-addon-name {
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   font-weight: 600;
   color: #f8fafc;
 }
 .inv-addon-price {
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   font-weight: 700;
-  color: #d4af37;
+  color: #34d399;
 }
 
 /* Quick Predictive Chips */
@@ -6858,9 +6879,10 @@ h2.serif,
 }
 .inv-predict-chip {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(197, 160, 89, 0.22);
+  border: 1px solid rgba(5, 150, 105, 0.25);
   border-radius: 999px;
   padding: 3px 9px;
+  font-family: 'Montserrat', sans-serif;
   font-size: 10.5px;
   color: #cbd5e1;
   cursor: pointer;
@@ -6869,20 +6891,33 @@ h2.serif,
   white-space: nowrap;
 }
 .inv-predict-chip:hover {
-  background: #c5a059;
-  color: #090d16 !important;
-  border-color: #d4af37;
+  background: #059669;
+  color: #ffffff !important;
+  border-color: #10b981;
   font-weight: 800;
   transform: translateY(-1px);
 }
 
 /* ============================================================
    LAUREIGN STUDIOS BESPOKE LUXURY QUOTATION & ATELIER PROPOSAL
-   High-Jewelry & Fine Art Atelier Aesthetic
-   Palette: Imperial Midnight Obsidian (#090d16), Warm Champagne Gold (#c5a059 / #b38a38),
-   Royal Emerald Foil (#047857 / #064e3b), Archival Warm Ivory Paper (#fdfcf9 / #ffffff),
-   Double Hairline Luxury Framing, True Fixed A4 Precision (820px).
+   Modern High-Precision Apple Dark & Studio Emerald Aesthetic
+   Palette: Imperial Obsidian Dark (#090d16), Signature Studio Emerald (#059669 / #10b981),
+   Deep Forest Velvet (#064e3b / #047857), Crisp Ceramic White Paper (#ffffff),
+   Double Hairline Emerald Framing, True Fixed A4 Precision (820px).
+   Typography: Pure Modern Montserrat (300 to 900)
    ============================================================ */
+
+.invoice-printable-sheet,
+.invoice-printable-sheet * {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+.invoice-printable-sheet .inv-ref-val,
+.invoice-printable-sheet .till-num,
+.invoice-printable-sheet #receiptVerifyCode,
+.invoice-printable-sheet .is-mono {
+  font-family: 'SF Mono', Consolas, Monaco, monospace !important;
+}
 
 .invoice-printable-sheet {
   width: 820px !important;
@@ -6894,10 +6929,9 @@ h2.serif,
   background: #ffffff !important;
   color: #090d16 !important;
   border-radius: 12px !important;
-  border: 1.5px solid #c5a059 !important;
-  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(197, 160, 89, 0.25), inset 0 0 0 3px #ffffff, inset 0 0 0 4.5px rgba(197, 160, 89, 0.35) !important;
+  border: 1.5px solid #059669 !important;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(5, 150, 105, 0.3), inset 0 0 0 3px #ffffff, inset 0 0 0 4.5px rgba(5, 150, 105, 0.35) !important;
   padding: 36px 42px !important;
-  font-family: 'Jost', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   line-height: 1.45;
   position: relative !important;
   overflow: hidden !important;
@@ -6911,8 +6945,8 @@ h2.serif,
   position: absolute !important;
   inset: 0 !important;
   background-image: 
-    radial-gradient(rgba(197, 160, 89, 0.04) 1px, transparent 1px),
-    linear-gradient(135deg, rgba(197, 160, 89, 0.02) 0%, transparent 45%, rgba(197, 160, 89, 0.02) 100%) !important;
+    radial-gradient(rgba(5, 150, 105, 0.04) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(5, 150, 105, 0.02) 0%, transparent 45%, rgba(5, 150, 105, 0.02) 100%) !important;
   background-size: 20px 20px, 100% 100% !important;
   pointer-events: none !important;
   z-index: 0 !important;
@@ -6925,11 +6959,11 @@ h2.serif,
   top: 48% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) rotate(-22deg) !important;
-  font-family: 'Playfair Display', serif !important;
-  font-size: 36px !important;
-  font-weight: 800 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 34px !important;
+  font-weight: 900 !important;
   letter-spacing: 12px !important;
-  color: rgba(197, 160, 89, 0.035) !important;
+  color: rgba(5, 150, 105, 0.035) !important;
   white-space: nowrap !important;
   pointer-events: none !important;
   z-index: 0 !important;
@@ -6966,7 +7000,7 @@ h2.serif,
   left: 0 !important;
   right: 0 !important;
   height: 1px !important;
-  background: rgba(197, 160, 89, 0.45) !important;
+  background: rgba(5, 150, 105, 0.45) !important;
 }
 
 .inv-brand-col {
@@ -6988,10 +7022,10 @@ h2.serif,
   flex-shrink: 0 !important;
   object-fit: contain !important;
   border-radius: 8px !important;
-  border: 1.5px solid #c5a059 !important;
+  border: 1.5px solid #059669 !important;
   padding: 2px !important;
   background: #ffffff !important;
-  box-shadow: 0 2px 10px rgba(197, 160, 89, 0.2) !important;
+  box-shadow: 0 2px 10px rgba(5, 150, 105, 0.25) !important;
 }
 
 .inv-brand-titles-wrap {
@@ -7001,21 +7035,21 @@ h2.serif,
 }
 
 .inv-brand-eyebrow {
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 8.5px !important;
   font-weight: 800 !important;
-  color: #b38a38 !important;
-  letter-spacing: 2.8px !important;
+  color: #059669 !important;
+  letter-spacing: 2.5px !important;
   text-transform: uppercase !important;
   margin-bottom: 2px !important;
   display: block !important;
 }
 
 .inv-brand-name {
-  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif !important;
-  font-size: 28px !important;
-  font-weight: 800 !important;
-  letter-spacing: 2.5px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 27px !important;
+  font-weight: 900 !important;
+  letter-spacing: 2px !important;
   margin: 0 !important;
   line-height: 1.1 !important;
   text-transform: uppercase !important;
@@ -7024,20 +7058,20 @@ h2.serif,
 
 .inv-brand-name .brand-part-main {
   color: #090d16 !important;
-  font-weight: 800 !important;
+  font-weight: 900 !important;
 }
 
 .inv-brand-name .brand-part-accent {
-  color: #b38a38 !important;
-  font-weight: 800 !important;
+  color: #059669 !important;
+  font-weight: 900 !important;
 }
 
 .inv-brand-tagline {
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 9.5px !important;
   font-weight: 700 !important;
   color: #475569 !important;
-  letter-spacing: 1.8px !important;
+  letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
   margin: 3px 0 0 0 !important;
 }
@@ -7048,9 +7082,10 @@ h2.serif,
   gap: 6px !important;
   padding: 3px 9px !important;
   border-radius: 4px !important;
-  background: linear-gradient(135deg, rgba(197, 160, 89, 0.12) 0%, rgba(197, 160, 89, 0.22) 100%) !important;
-  color: #8c6820 !important;
-  border: 1px solid rgba(197, 160, 89, 0.45) !important;
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.12) 0%, rgba(5, 150, 105, 0.22) 100%) !important;
+  color: #047857 !important;
+  border: 1px solid rgba(5, 150, 105, 0.45) !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 8.5px !important;
   font-weight: 800 !important;
   letter-spacing: 1.5px !important;
@@ -7084,7 +7119,7 @@ h2.serif,
 }
 
 .contact-sep {
-  color: #c5a059 !important;
+  color: #059669 !important;
   font-weight: 700 !important;
   font-size: 11px !important;
 }
@@ -7108,10 +7143,10 @@ h2.serif,
 }
 
 .inv-doc-wordmark {
-  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif !important;
-  font-size: 32px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 29px !important;
   font-weight: 900 !important;
-  letter-spacing: 5px !important;
+  letter-spacing: 4px !important;
   color: #090d16 !important;
   line-height: 1 !important;
   text-transform: uppercase !important;
@@ -7119,9 +7154,9 @@ h2.serif,
 }
 
 .inv-ref-pill {
-  background: #fdfbf7 !important;
-  border: 1px solid rgba(197, 160, 89, 0.35) !important;
-  border-left: 3.5px solid #c5a059 !important;
+  background: #f0fdf4 !important;
+  border: 1px solid rgba(5, 150, 105, 0.35) !important;
+  border-left: 3.5px solid #059669 !important;
   border-radius: 4px !important;
   padding: 4px 11px !important;
   display: inline-flex !important;
@@ -7131,7 +7166,8 @@ h2.serif,
 }
 
 .inv-ref-label {
-  color: #8c6820 !important;
+  color: #047857 !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 9.5px !important;
   font-weight: 800 !important;
   letter-spacing: 1px !important;
@@ -7159,11 +7195,13 @@ h2.serif,
 
 .inv-meta-item .lbl {
   color: #64748b !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 600 !important;
   font-size: 10px !important;
 }
 
 .inv-meta-item .val {
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 700 !important;
   color: #090d16 !important;
   font-size: 11px !important;
@@ -7177,6 +7215,7 @@ h2.serif,
   border: 1px solid rgba(217, 119, 6, 0.35) !important;
   padding: 2px 7px !important;
   border-radius: 3px !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 9px !important;
   font-weight: 800 !important;
   letter-spacing: 0.8px !important;
@@ -7189,6 +7228,7 @@ h2.serif,
   border: 1px solid rgba(4, 120, 87, 0.35) !important;
   padding: 2px 7px !important;
   border-radius: 3px !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 9px !important;
   font-weight: 800 !important;
   letter-spacing: 0.8px !important;
@@ -7213,7 +7253,7 @@ h2.serif,
 .inv-event-box {
   background: #ffffff !important;
   border: 1px solid #e7e2d9 !important;
-  border-top: 2.5px solid #c5a059 !important;
+  border-top: 2.5px solid #059669 !important;
   border-radius: 6px !important;
   padding: 13px 16px !important;
   display: flex;
@@ -7224,33 +7264,35 @@ h2.serif,
 
 .spec-label {
   display: block;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 8.5px !important;
   font-weight: 800 !important;
-  color: #8c6820 !important;
+  color: #047857 !important;
   letter-spacing: 1.4px !important;
   margin-bottom: 2px !important;
   text-transform: uppercase !important;
 }
 
 .spec-value {
-  font-family: 'Playfair Display', serif !important;
-  font-size: 15px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 14.5px !important;
   font-weight: 700 !important;
   color: #090d16 !important;
   line-height: 1.3 !important;
 }
 
 .spec-value.highlight {
-  font-family: 'Playfair Display', serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   color: #090d16 !important;
-  font-size: 16.5px !important;
+  font-size: 15.5px !important;
   font-weight: 800 !important;
-  border-left: 2.5px solid #c5a059 !important;
+  border-left: 2.5px solid #059669 !important;
   padding-left: 8px !important;
   line-height: 1.25 !important;
 }
 
 .spec-category-tag {
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 9.5px !important;
   font-weight: 800 !important;
   color: #64748b !important;
@@ -7260,11 +7302,12 @@ h2.serif,
 }
 
 .spec-category-tag span {
-  color: #8c6820 !important;
+  color: #059669 !important;
   font-weight: 800 !important;
 }
 
 .spec-sub {
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 10.5px !important;
   color: #475569 !important;
   line-height: 1.45 !important;
@@ -7276,7 +7319,7 @@ h2.serif,
    ============================================================ */
 .inv-table-wrap {
   margin-bottom: 16px;
-  border: 1px solid #d9d2c5 !important;
+  border: 1px solid #d1fae5 !important;
   border-radius: 6px !important;
   overflow: hidden;
   box-shadow: 0 1px 4px rgba(0,0,0,0.02) !important;
@@ -7291,14 +7334,14 @@ h2.serif,
 .inv-table th {
   background: #090d16 !important;
   color: #ffffff !important;
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 9px !important;
   font-weight: 800 !important;
   text-transform: uppercase !important;
   letter-spacing: 1.4px !important;
   padding: 10px 12px !important;
   border: none !important;
-  border-bottom: 2px solid #c5a059 !important;
+  border-bottom: 2px solid #059669 !important;
 }
 
 .inv-table td {
@@ -7306,6 +7349,7 @@ h2.serif,
   border-bottom: 1px solid #ede8e1 !important;
   vertical-align: top;
   color: #1e293b !important;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 .inv-table tr:last-child td {
@@ -7313,7 +7357,7 @@ h2.serif,
 }
 
 .inv-table tbody tr:nth-child(even) {
-  background: #fbf9f5 !important;
+  background: #f0fdf4 !important;
 }
 
 .inv-table tbody tr:nth-child(odd) {
@@ -7324,7 +7368,7 @@ h2.serif,
   text-align: center;
   font-size: 11px;
   font-weight: 800;
-  color: #8c6820;
+  color: #059669;
   font-variant-numeric: tabular-nums;
   padding-top: 10px !important;
 }
@@ -7360,6 +7404,7 @@ h2.serif,
 }
 
 .inv-item-title {
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 700 !important;
   font-size: 12px !important;
   color: #090d16 !important;
@@ -7367,9 +7412,10 @@ h2.serif,
 }
 
 .inv-item-sub {
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 9px !important;
   font-weight: 700 !important;
-  color: #8c6820 !important;
+  color: #047857 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.8px !important;
 }
@@ -7387,9 +7433,9 @@ h2.serif,
 
 /* Special Notes Box */
 .inv-notes-box {
-  background: #fdfbf7 !important;
-  border: 1px solid #e7e2d9 !important;
-  border-left: 3px solid #c5a059 !important;
+  background: #f0fdf4 !important;
+  border: 1px solid #d1fae5 !important;
+  border-left: 3.5px solid #059669 !important;
   border-radius: 4px !important;
   padding: 9px 13px !important;
   font-size: 10.5px !important;
@@ -7398,7 +7444,8 @@ h2.serif,
 }
 
 .inv-notes-box b {
-  color: #8c6820 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  color: #047857 !important;
   font-weight: 800 !important;
   font-size: 9.5px !important;
   letter-spacing: 0.8px !important;
@@ -7425,8 +7472,8 @@ h2.serif,
 
 /* Booking Deposit Highlight Card (Left Side) */
 .inv-deposit-highlight-card {
-  background: linear-gradient(145deg, #090e17 0%, #111a26 100%) !important;
-  border: 1px solid rgba(197, 160, 89, 0.45) !important;
+  background: linear-gradient(145deg, #090e17 0%, #064e3b 60%, #022c22 100%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.45) !important;
   border-radius: 8px !important;
   padding: 14px 18px !important;
   display: flex !important;
@@ -7437,11 +7484,11 @@ h2.serif,
 }
 
 .inv-dep-header-badge {
-  font-family: 'Jost', sans-serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 9px !important;
   font-weight: 800 !important;
-  color: #090d16 !important;
-  background: linear-gradient(135deg, #c5a059 0%, #a87e2a 100%) !important;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
   border-radius: 3px !important;
   padding: 2px 8px !important;
   width: fit-content !important;
@@ -7450,10 +7497,10 @@ h2.serif,
 }
 
 .inv-dep-amount {
-  font-family: 'Playfair Display', serif !important;
-  font-size: 28px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 27px !important;
   font-weight: 900 !important;
-  color: #fcd34d !important;
+  color: #34d399 !important;
   line-height: 1.15 !important;
   font-variant-numeric: tabular-nums !important;
   letter-spacing: -0.5px !important;
@@ -7483,9 +7530,9 @@ h2.serif,
   gap: 5px !important;
   font-size: 9px !important;
   font-weight: 700 !important;
-  color: #fde68a !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(197, 160, 89, 0.35) !important;
+  color: #a7f3d0 !important;
+  background: rgba(16, 185, 129, 0.12) !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
   border-radius: 3px !important;
   padding: 2px 8px !important;
   margin-top: 3px !important;
@@ -7493,7 +7540,7 @@ h2.serif,
 }
 
 .inv-dep-star {
-  color: #fcd34d !important;
+  color: #34d399 !important;
   font-size: 10px !important;
 }
 
@@ -7526,7 +7573,7 @@ h2.serif,
   background: #090d16 !important;
   color: #ffffff !important;
   border-radius: 5px !important;
-  border-top: 2px solid #c5a059 !important;
+  border-top: 2px solid #059669 !important;
   padding: 7px 11px !important;
   margin: 3px 0 !important;
   font-size: 12px !important;
@@ -7535,16 +7582,16 @@ h2.serif,
 }
 
 .inv-tot-line.grand-total span:last-child {
-  color: #fbbf24 !important;
-  font-family: 'Playfair Display', serif !important;
+  color: #10b981 !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 16px !important;
   font-weight: 900 !important;
 }
 
 .inv-tot-line.deposit-required {
-  background: rgba(197, 160, 89, 0.09) !important;
-  color: #8c6820 !important;
-  border: 1px solid rgba(197, 160, 89, 0.35) !important;
+  background: rgba(5, 150, 105, 0.09) !important;
+  color: #047857 !important;
+  border: 1px solid rgba(5, 150, 105, 0.35) !important;
   border-radius: 4px !important;
   padding: 4px 7px !important;
   font-size: 10.5px !important;
@@ -7594,6 +7641,7 @@ h2.serif,
 }
 
 .inv-terms-title {
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 9px !important;
   font-weight: 800 !important;
   letter-spacing: 1.2px !important;
@@ -7625,7 +7673,7 @@ h2.serif,
   content: "•" !important;
   position: absolute !important;
   left: 0 !important;
-  color: #10b981 !important;
+  color: #059669 !important;
   font-weight: 900 !important;
   font-size: 11px !important;
   line-height: 1 !important;
@@ -7653,6 +7701,7 @@ h2.serif,
 }
 
 .inv-brand-promise .promise-title {
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 8.5px !important;
   font-weight: 800 !important;
   color: #047857 !important;
@@ -7661,7 +7710,7 @@ h2.serif,
 }
 
 .inv-brand-promise .promise-text {
-  font-family: 'Playfair Display', serif !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-style: italic !important;
   font-size: 9.5px !important;
   color: #1e293b !important;
@@ -7728,6 +7777,7 @@ h2.serif,
 }
 
 .inv-sign-line {
+  font-family: 'Montserrat', sans-serif !important;
   font-weight: 700 !important;
   font-size: 10px !important;
   color: #090d16 !important;
@@ -7737,6 +7787,7 @@ h2.serif,
 }
 
 .inv-sign-role {
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 9px !important;
   color: #64748b !important;
   margin-top: 1px !important;
@@ -7744,6 +7795,7 @@ h2.serif,
 }
 
 .inv-ack-note {
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 8.5px !important;
   color: #94a3b8 !important;
   margin-top: 2px !important;
@@ -7751,34 +7803,404 @@ h2.serif,
   font-weight: 500 !important;
 }
 
+/* Security Watermark Overlay across Quotation & Receipt */
+.invoice-printable-sheet {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.inv-security-watermark-overlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  opacity: 0.038 !important;
+  transform: rotate(-24deg) scale(1.16) !important;
+  user-select: none !important;
+}
+
+.inv-watermark-row {
+  font-family: 'Montserrat', 'Jost', -apple-system, sans-serif !important;
+  font-size: 19px !important;
+  font-weight: 900 !important;
+  letter-spacing: 5.5px !important;
+  color: #047857 !important;
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+}
+
+.invoice-printable-sheet > *:not(.inv-security-watermark-overlay) {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Anti-Fraud Notice Banner in Remittance Box */
+.inv-fraud-alert-banner {
+  margin-top: 6px !important;
+  padding: 6px 8px !important;
+  background: #fffbeb !important;
+  border: 1px solid #fde68a !important;
+  border-left: 3px solid #d97706 !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.fraud-shield-badge {
+  font-size: 8px !important;
+  font-weight: 800 !important;
+  color: #b45309 !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+}
+
+.fraud-shield-msg {
+  font-size: 8.5px !important;
+  line-height: 1.35 !important;
+  color: #78350f !important;
+}
+
+/* Sheet Footer: 3-column layout with Signature, Live Verification QR, Stamp */
+.inv-sheet-footer {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  gap: 12px !important;
+}
+
+.inv-sign-col {
+  flex: 1 1 34% !important;
+  max-width: 38% !important;
+}
+
+.inv-verify-qr-col {
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 5px 8px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+.inv-qr-frame {
+  width: 54px !important;
+  height: 54px !important;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 5px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
+.inv-qr-frame canvas,
+.inv-qr-frame img {
+  width: 48px !important;
+  height: 48px !important;
+  display: block !important;
+}
+
+.inv-verify-meta {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.inv-verify-pill {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 8px !important;
+  font-weight: 800 !important;
+  color: #047857 !important;
+  background: #ecfdf5 !important;
+  border: 1px solid #a7f3d0 !important;
+  padding: 1px 5px !important;
+  border-radius: 4px !important;
+  letter-spacing: 0.4px !important;
+  display: inline-block !important;
+  width: fit-content !important;
+}
+
+.inv-verify-note {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 8px !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+}
+
+.inv-verify-id {
+  font-family: 'SF Mono', Consolas, monospace !important;
+  font-size: 7.8px !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
 .inv-seal-col {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  flex: 0 0 auto !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
 }
 
 .inv-seal-stamp {
-  position: relative;
-  transform: rotate(-3deg);
-  transition: transform 0.2s ease;
+  position: relative !important;
+  transform: rotate(-3deg) !important;
+  transition: transform 0.2s ease !important;
 }
 
 .official-studio-stamp-svg circle,
-.official-studio-stamp-svg path {
-  stroke: #059669 !important;
+.official-studio-stamp-svg path,
+.official-studio-stamp-svg line {
+  stroke: #047857 !important;
 }
 
 .official-studio-stamp-svg text {
-  fill: #059669 !important;
+  fill: #047857 !important;
 }
 
 .inv-seal-stamp:hover {
-  transform: rotate(0deg) scale(1.05);
+  transform: rotate(0deg) scale(1.04) !important;
 }
 
 .official-studio-stamp-svg {
+  display: block !important;
+  overflow: visible !important;
+}
+
+/* Interactive Verification Shield Modal (Shown when ?verify=LS-QUO-... is opened) */
+.verify-shield-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 7, 12, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 999999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.verify-shield-modal.open {
+  display: flex !important;
+}
+
+.verify-shield-card {
+  background: #090e17;
+  border: 1px solid rgba(5, 150, 105, 0.4);
+  border-radius: 20px;
+  max-width: 540px;
+  width: 100%;
+  padding: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(5, 150, 105, 0.2);
+  color: #f8fafc;
+  font-family: 'Jost', -apple-system, sans-serif;
+  position: relative;
+}
+
+.verify-shield-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 14px;
+}
+
+.verify-shield-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.verify-shield-titles {
+  flex: 1;
+}
+
+.verify-shield-badge {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #34d399;
+  text-transform: uppercase;
   display: block;
-  overflow: visible;
+  margin-bottom: 4px;
+}
+
+.verify-shield-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.verify-shield-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 6px;
+  transition: color 0.15s ease;
+}
+
+.verify-shield-close:hover {
+  color: #ffffff;
+}
+
+.verify-grid-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+
+.verify-grid-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.verify-grid-item .v-lbl {
+  font-size: 10px;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.verify-grid-item .v-val {
+  font-size: 12px;
+  color: #f1f5f9;
+  font-weight: 700;
+}
+
+.verify-grid-item .ref-tag {
+  font-family: 'SF Mono', Consolas, monospace;
+  color: #6ee7b7;
+  letter-spacing: 0.5px;
+}
+
+.verify-grid-item .status-cleared {
+  color: #34d399;
+  font-weight: 800;
+}
+
+.verify-security-alert-box {
+  background: rgba(234, 179, 8, 0.08);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 18px;
+}
+
+.verify-security-alert-box .alert-title {
+  font-size: 11px;
+  font-weight: 800;
+  color: #fde047;
+  letter-spacing: 0.8px;
+  margin-bottom: 6px;
+}
+
+.verify-security-alert-box p {
+  font-size: 11.5px;
+  color: #cbd5e1;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.verify-accounts-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.verify-accounts-pills .acc-pill {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  color: #e2e8f0;
+}
+
+.verify-accounts-pills .acc-pill .num {
+  color: #6ee7b7;
+  font-family: 'SF Mono', Consolas, monospace;
+  font-weight: 800;
+}
+
+.verify-security-alert-box .alert-sub {
+  font-size: 10px;
+  color: #f87171;
+  line-height: 1.35;
+  margin-top: 4px;
+}
+
+.verify-shield-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-verify-primary {
+  background: #059669;
+  color: #ffffff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-verify-primary:hover {
+  background: #10b981;
+}
+
+.btn-verify-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(37, 211, 102, 0.15);
+  border: 1px solid rgba(37, 211, 102, 0.4);
+  color: #25d366;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.btn-verify-wa:hover {
+  background: rgba(37, 211, 102, 0.25);
+  color: #ffffff;
 }
 
 /* Minimalist 3-Column Footer Strip */
@@ -7790,6 +8212,7 @@ h2.serif,
   border-bottom: 1px solid rgba(5, 150, 105, 0.35) !important;
   margin-top: 10px !important;
   padding: 6px 0 !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 9px !important;
   color: #475569 !important;
   font-weight: 600 !important;
@@ -7842,7 +8265,7 @@ h2.serif,
   background-image: 
     radial-gradient(rgba(5, 150, 105, 0.05) 1px, transparent 1px),
     repeating-linear-gradient(45deg, rgba(5, 150, 105, 0.018) 0, rgba(5, 150, 105, 0.018) 1px, transparent 0, transparent 20px),
-    linear-gradient(135deg, rgba(5, 150, 105, 0.025) 0%, transparent 45%, rgba(197, 160, 89, 0.025) 100%) !important;
+    linear-gradient(135deg, rgba(5, 150, 105, 0.025) 0%, transparent 45%, rgba(5, 150, 105, 0.025) 100%) !important;
   background-size: 20px 20px, 20px 20px, 100% 100% !important;
   pointer-events: none !important;
   z-index: 0 !important;
@@ -7851,6 +8274,7 @@ h2.serif,
 /* Center Watermark for Official Payment Receipt */
 .invoice-printable-sheet.is-receipt-mode::after {
   content: "OFFICIAL PAYMENT RECEIPT · VERIFIED" !important;
+  font-family: 'Montserrat', sans-serif !important;
   color: rgba(5, 150, 105, 0.04) !important;
   letter-spacing: 9px !important;
 }
@@ -7911,6 +8335,7 @@ h2.serif,
 .receipt-clearance-badge {
   display: inline-flex !important;
   align-items: center !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 8.5px !important;
   font-weight: 800 !important;
   color: #047857 !important;
@@ -7933,6 +8358,7 @@ h2.serif,
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 9.5px !important;
   line-height: 1.35 !important;
   border-bottom: 1px dashed rgba(5, 150, 105, 0.18) !important;
@@ -7964,11 +8390,13 @@ h2.serif,
 .invoice-printable-sheet.is-receipt-mode .inv-dep-header-badge {
   background: linear-gradient(135deg, #34d399 0%, #059669 100%) !important;
   color: #ffffff !important;
+  font-family: 'Montserrat', sans-serif !important;
   letter-spacing: 1.2px !important;
 }
 
 .invoice-printable-sheet.is-receipt-mode .inv-dep-amount {
   color: #6ee7b7 !important;
+  font-family: 'Montserrat', sans-serif !important;
   text-shadow: 0 0 20px rgba(110, 231, 183, 0.3) !important;
 }
 
@@ -8013,12 +8441,13 @@ h2.serif,
   gap: 8px;
   padding: 10px 20px;
   background: rgba(9, 14, 22, 0.95);
-  border-top: 1px solid rgba(197, 160, 89, 0.22);
+  border-top: 1px solid rgba(5, 150, 105, 0.25);
   flex-shrink: 0;
 }
 .inv-dock-btn {
   padding: 8px 15px;
   border-radius: 999px;
+  font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
@@ -8028,11 +8457,11 @@ h2.serif,
 .inv-dock-btn.print {
   background: rgba(255,255,255,0.08);
   color: #ffffff;
-  border: 1px solid rgba(197, 160, 89, 0.25);
+  border: 1px solid rgba(5, 150, 105, 0.35);
 }
 .inv-dock-btn.print:hover {
-  background: rgba(197, 160, 89, 0.2);
-  border-color: #d4af37;
+  background: rgba(5, 150, 105, 0.2);
+  border-color: #10b981;
 }
 .inv-dock-btn.close {
   background: transparent;
@@ -8171,7 +8600,7 @@ h2.serif,
     height: auto !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    border: 1.5px solid #c5a059 !important;
+    border: 1.5px solid #059669 !important;
     box-shadow: none !important;
   }
   .invoice-printable-sheet.is-receipt-mode {

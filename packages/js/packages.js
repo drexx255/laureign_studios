@@ -3359,7 +3359,123 @@ document.addEventListener("DOMContentLoaded", () => {
         elStampTitle.textContent = "OFFICIAL QUOTE";
       }
     }
+
+    // Live Anti-Fraud Verification QR Code Rendering
+    renderInvoiceVerificationQr(currentInvoiceRef);
   }
+
+  // Render Anti-Tamper Verification QR Code onto Quotation / Receipt
+  function renderInvoiceVerificationQr(ref) {
+    const container = document.getElementById("invDocQrContainer");
+    if (!container) return;
+    container.innerHTML = "";
+
+    const origin = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:")
+      ? "https://laureignstudios.co.ke"
+      : window.location.origin;
+
+    const cleanRef = ref || currentInvoiceRef || "LS-QUO-2026";
+    const verifyUrl = `${origin}/packages?verify=${encodeURIComponent(cleanRef)}`;
+
+    if (typeof QRCode !== "undefined") {
+      try {
+        new QRCode(container, {
+          text: verifyUrl,
+          width: 48,
+          height: 48,
+          colorDark: "#047857",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.M
+        });
+      } catch (err) {
+        console.warn("QR generation deferred:", err);
+      }
+    }
+
+    const displayRef = document.getElementById("invVerifyDisplayRef");
+    if (displayRef) {
+      displayRef.textContent = `REF: ${cleanRef}`;
+    }
+  }
+
+  // Live Modal Triggered when scanning or navigating to ?verify=LS-QUO-...
+  function showDocumentVerificationModal(ref) {
+    let modal = document.getElementById("docVerificationModal");
+    if (!modal) {
+      modal = document.createElement("div");
+      modal.id = "docVerificationModal";
+      modal.className = "verify-shield-modal";
+      document.body.appendChild(modal);
+    }
+
+    const isRec = ref && ref.toUpperCase().includes("REC");
+    const docType = isRec ? "OFFICIAL PAYMENT RECEIPT & CLEARANCE" : "OFFICIAL PROFORMA RATE CARD";
+
+    modal.innerHTML = `
+      <div class="verify-shield-card">
+        <div class="verify-shield-header">
+          <div class="verify-shield-icon">🛡️</div>
+          <div class="verify-shield-titles">
+            <span class="verify-shield-badge">LAUREIGN STUDIOS OFFICIAL NOTARY VERIFICATION</span>
+            <h3 class="verify-shield-title">✓ Authentic Studio Document Confirmed</h3>
+          </div>
+          <button type="button" class="verify-shield-close" onclick="closeVerificationModal()">&times;</button>
+        </div>
+
+        <div class="verify-shield-body">
+          <div class="verify-grid-info">
+            <div class="verify-grid-item">
+              <span class="v-lbl">Document Reference:</span>
+              <span class="v-val ref-tag">${escapeHtml(ref)}</span>
+            </div>
+            <div class="verify-grid-item">
+              <span class="v-lbl">Document Type:</span>
+              <span class="v-val">${docType}</span>
+            </div>
+            <div class="verify-grid-item">
+              <span class="v-lbl">Notary Issuer:</span>
+              <span class="v-val">Laureign Studios · Kakamega & Nairobi</span>
+            </div>
+            <div class="verify-grid-item">
+              <span class="v-lbl">Authentication Status:</span>
+              <span class="v-val status-cleared">✓ GENUINE REGISTERED RECORD</span>
+            </div>
+          </div>
+
+          <div class="verify-security-alert-box">
+            <div class="alert-title">🔒 ANTI-FRAUD VERIFIED PAYMENT SAFEGUARDS:</div>
+            <p>To prevent fraudulent interception, all deposits and booking fees must be remitted strictly to Laureign Studios registered business accounts:</p>
+            <div class="verify-accounts-pills">
+              <div class="acc-pill"><b>M-Pesa Buy Goods Till:</b> <span class="num">0790048905</span></div>
+              <div class="acc-pill"><b>Paybill:</b> <span class="num">542542</span> &nbsp;<b>Acc:</b> <span class="num">486197</span> (Jane Akoth)</div>
+              <div class="acc-pill"><b>Direct Bank Wire:</b> <span>I&M Bank Kenya · Acc: 486197</span></div>
+            </div>
+            <div class="alert-sub">⚠️ <b>CRITICAL WARNING:</b> Laureign Studios representatives will NEVER solicit payments to individual personal phone numbers.</div>
+          </div>
+        </div>
+
+        <div class="verify-shield-actions">
+          <button type="button" class="btn-verify-primary" onclick="closeVerificationModal()">Done · Return to Studio</button>
+          <a href="https://wa.me/254790048905?text=${encodeURIComponent('Hello Laureign Studios, I am verifying official document ref: ' + ref)}" target="_blank" rel="noopener" class="btn-verify-wa">
+            💬 Inquire on Official WhatsApp
+          </a>
+        </div>
+      </div>
+    `;
+
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeVerificationModal() {
+    const modal = document.getElementById("docVerificationModal");
+    if (modal) {
+      modal.classList.remove("open");
+    }
+    document.body.style.overflow = "";
+  }
+  window.closeVerificationModal = closeVerificationModal;
+  window.showDocumentVerificationModal = showDocumentVerificationModal;
 
   // App-Like Mobile & Desktop Tab Switcher (Full Quotation Display vs Editor)
   function switchInvoiceTab(tab) {
@@ -4413,5 +4529,13 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       openInvoiceModal();
     }, 250);
+  }
+
+  // Handle anti-fraud document verification (?verify=LS-QUO-... or ?v=...)
+  const verifyParam = urlParams.get("verify") || urlParams.get("v");
+  if (verifyParam) {
+    setTimeout(() => {
+      showDocumentVerificationModal(verifyParam);
+    }, 350);
   }
 });

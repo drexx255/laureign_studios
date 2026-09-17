@@ -1,6 +1,7 @@
 {
   "version": 2,
   "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     { "source": "/css/(.*)", "destination": "/packages/css/$1" },
     { "source": "/js/(.*)", "destination": "/packages/js/$1" },
@@ -8,11 +9,22 @@
     { "source": "/samples/(.*)", "destination": "/packages/samples/$1" },
     { "source": "/posters/(.*)", "destination": "/packages/posters/$1" },
     { "source": "/apple/(.*)", "destination": "/packages/apple/$1" },
+
     { "source": "/qr-poster", "destination": "/packages/qr-poster.html" },
     { "source": "/packages/qr-poster", "destination": "/packages/qr-poster.html" },
+
     { "source": "/", "destination": "/packages/index.html" },
     { "source": "/packages", "destination": "/packages/index.html" },
-    { "source": "/packages/", "destination": "/packages/index.html" }
+    { "source": "/packages/", "destination": "/packages/index.html" },
+    { "source": "/index", "destination": "/packages/index.html" },
+    { "source": "/index.html", "destination": "/packages/index.html" },
+    { "source": "/packages/index", "destination": "/packages/index.html" },
+    { "source": "/packages/index.html", "destination": "/packages/index.html" },
+
+    { "source": "/packages/:page.html", "destination": "/packages/:page.html" },
+    { "source": "/packages/:page", "destination": "/packages/:page.html" },
+    { "source": "/:page.html", "destination": "/packages/:page.html" },
+    { "source": "/:page", "destination": "/packages/:page.html" }
   ],
   "headers": [
     {
@@ -24,14 +36,14 @@
       ]
     },
     {
-      "source": "/packages/css/(.*)",
+      "source": "/(packages/)?css/(.*)",
       "headers": [
         { "key": "Content-Type", "value": "text/css; charset=utf-8" },
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     },
     {
-      "source": "/packages/js/(.*)",
+      "source": "/(packages/)?js/(.*)",
       "headers": [
         { "key": "Content-Type", "value": "application/javascript; charset=utf-8" },
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
@@ -51,5 +63,3 @@
     }
   ]
 }
-
-
