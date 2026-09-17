@@ -21,6 +21,14 @@
   <link rel="stylesheet" href="css/packages.css?v=20260916_emerald_dark">
   <link rel="stylesheet" href="css/qr-standee.css?v=20260916_emerald_dark">
   <script src="js/theme-switcher.js?v=20260916_emerald_dark"></script>
+  <script>
+    // Resilient base path: ensures all package showcase links resolve inside /packages/ on web servers, while keeping local file preview intact
+    if (window.location.protocol !== 'file:' && !document.querySelector('base')) {
+      var baseEl = document.createElement('base');
+      baseEl.href = '/packages/';
+      document.head.appendChild(baseEl);
+    }
+  </script>
 </head>
 <body>
 
