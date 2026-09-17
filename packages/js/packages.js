@@ -149,46 +149,163 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ------------------------------------------------------------
-  // Switch Pathway (Studio / Outdoor / Events / Commercial / Hub)
+  // Chapter Navigation, Scroll-Spy & Deep Link Controller
   // ------------------------------------------------------------
-  function setPathway(pathwayId, doScroll) {
-    if (!pathwayId || pathwayId === "hub") {
-      currentPathway = null;
+  let isManualScrolling = false;
+
+  window.scrollToSection = function(sectionId, updateHash = true) {
+    const el = document.getElementById(sectionId);
+    if (!el) return;
+    isManualScrolling = true;
+    if (updateHash && window.location.hash !== '#' + sectionId) {
+      history.replaceState(null, null, '#' + sectionId);
+    }
+    updateStickyNav(sectionId);
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(() => {
+      isManualScrolling = false;
+    }, 900);
+  };
+
+  window.copySectionShareLink = function(sectionId) {
+    const origin = window.location.origin;
+    let pathname = window.location.pathname;
+    if (!pathname.endsWith('/')) {
+      pathname = pathname.replace(/\/[^/]*$/, '/');
+    }
+    const fullUrl = origin + pathname + '#' + sectionId;
+
+    const names = {
+      studio: "Studio & Portrait Sessions",
+      outdoor: "Outdoor & Natural Light Sessions",
+      events: "Weddings & Event Coverage",
+      commercial: "Commercial & Brand Growth"
+    };
+    const sectionName = names[sectionId] || "Photoshoot Packages";
+
+    if (navigator.share && /mobile|android|iphone|ipad/i.test(navigator.userAgent)) {
+      navigator.share({
+        title: `Laureign Studios · ${sectionName}`,
+        text: `Explore ${sectionName} rates & packages at Laureign Studios Kakamega:`,
+        url: fullUrl
+      }).catch(() => {
+        copyToClipboard(fullUrl, sectionName);
+      });
     } else {
-      currentPathway = pathwayId;
+      copyToClipboard(fullUrl, sectionName);
     }
-    currentSubcat = "all";
+  };
 
-    // Update Pathway Gateway Cards
-    pathwayCards.forEach(c => {
-      c.classList.toggle("active", Boolean(currentPathway && c.dataset.pathway === currentPathway));
+  function copyToClipboard(url, name) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => {
+        showShareToast(`✓ Link copied! Anyone opening this will view ${name} directly.`);
+      }).catch(() => {
+        fallbackCopy(url, name);
+      });
+    } else {
+      fallbackCopy(url, name);
+    }
+  }
+
+  function fallbackCopy(url, name) {
+    const ta = document.createElement("textarea");
+    ta.value = url;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    showShareToast(`✓ Link copied! Anyone opening this will view ${name} directly.`);
+  }
+
+  function showShareToast(msg) {
+    let toast = document.getElementById("chapterShareToast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "chapterShareToast";
+      toast.className = "share-toast";
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<span style="font-size:16px;">🔗</span><span>${msg}</span>`;
+    toast.classList.add("show");
+    clearTimeout(window._shareToastTimer);
+    window._shareToastTimer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3600);
+  }
+
+  function updateStickyNav(activeId) {
+    const nav = document.getElementById("stickyPathwayNav");
+    if (!nav) return;
+    const btns = nav.querySelectorAll(".sticky-pathway-btn");
+    let activeBtn = null;
+    btns.forEach(btn => {
+      const isAct = btn.dataset.target === activeId;
+      btn.classList.toggle("active", isAct);
+      if (isAct) activeBtn = btn;
     });
+    if (activeBtn && typeof activeBtn.scrollIntoView === "function") {
+      activeBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }
+  }
 
-    // Update Sticky Switcher Buttons
-    pathwayToggleBtns.forEach(b => {
-      if (!currentPathway) {
-        b.classList.toggle("active", b.dataset.pathway === "hub");
+  window.filterChapterSubcat = function(chapterId, subcatId, btnEl) {
+    const sectionEl = document.getElementById(chapterId);
+    if (!sectionEl) return;
+    sectionEl.querySelectorAll(".subcat-pill").forEach(p => p.classList.remove("active"));
+    if (btnEl) btnEl.classList.add("active");
+
+    const cards = sectionEl.querySelectorAll(".mount-card");
+    cards.forEach(card => {
+      if (subcatId === "all") {
+        card.style.display = "";
       } else {
-        b.classList.toggle("active", b.dataset.pathway === currentPathway);
+        card.style.display = (card.dataset.subcat === subcatId) ? "" : "none";
       }
     });
+  };
 
-    // Smoothly center active button in horizontal scroll strip
-    const activeToggleBtn = Array.from(pathwayToggleBtns).find(b =>
-      !currentPathway ? b.dataset.pathway === "hub" : b.dataset.pathway === currentPathway
-    );
-    if (activeToggleBtn && typeof activeToggleBtn.scrollIntoView === "function") {
-      activeToggleBtn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  let scrollSpyObserver = null;
+  function initScrollSpy() {
+    if (scrollSpyObserver) {
+      scrollSpyObserver.disconnect();
     }
+    const targets = ["studio", "outdoor", "events", "commercial"]
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
 
-    renderSubcategories();
-    renderPackages();
+    if (!targets.length || !("IntersectionObserver" in window)) return;
 
-    if (doScroll) {
-      const target = document.getElementById("packagesBrowse") || packagesGrid;
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+    scrollSpyObserver = new IntersectionObserver((entries) => {
+      if (isManualScrolling) return;
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.dataset.chapter || entry.target.id;
+          if (id) {
+            if (window.location.hash !== '#' + id) {
+              history.replaceState(null, null, '#' + id);
+            }
+            updateStickyNav(id);
+          }
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: "-20% 0px -55% 0px",
+      threshold: 0
+    });
+
+    targets.forEach(t => scrollSpyObserver.observe(t));
+  }
+
+  // Switch Pathway (Legacy compatibility)
+  function setPathway(pathwayId, doScroll) {
+    if (!pathwayId || pathwayId === "hub" || pathwayId === "all") {
+      if (doScroll) window.scrollToSection("studio");
+    } else {
+      window.scrollToSection(pathwayId, Boolean(doScroll));
     }
   }
 
@@ -197,415 +314,681 @@ document.addEventListener("DOMContentLoaded", () => {
     searchQuery = "";
     if (searchInput) searchInput.value = "";
     if (searchClearBtn) searchClearBtn.style.display = "none";
-    const targetPid = (!pid || pid === "hub") ? null : pid;
-    setPathway(targetPid, Boolean(targetPid));
+    if (!pid || pid === "hub" || pid === "all") {
+      window.scrollToSection("studio");
+    } else {
+      window.scrollToSection(pid);
+    }
   };
 
+  function getPackageShowcaseUrl(pkg) {
+    if (pkg.id === "graduation-shoot") return "graduation-shoot.html";
+    if (pkg.id === "indoor-headshots" || pkg.id === "outdoor-headshots") return "headshots.html";
+    if (pkg.id === "indoor-shirt-shoot" || pkg.id === "outdoor-shirt-shoot" || pkg.id === "shirt-reels") return "shirt-shoot.html";
+    if (pkg.id === "silk-wrap" || pkg.id === "outdoor-silk-wrap") return "wrap-shoot.html";
+    if (pkg.id === "traditional-creative" || pkg.id === "outdoor-traditional") return "portrait-shoot.html";
+    if (pkg.id === "baby-bump" || pkg.id === "outdoor-baby-bump") return "maternity-shoot.html";
+    if (pkg.id === "birthday-shoot" || pkg.id === "outdoor-birthday-shoot") return "birthday-shoots.html";
+    if (pkg.id === "kids-photoshoot" || pkg.id === "kids-shoot" || pkg.id === "kids-outdoor-shoot") return "kids-shoot.html";
+    if (pkg.id === "couple-shoot") return "couple-shoot.html";
+    if (pkg.id === "family-shoot" || pkg.id === "outdoor-family-shoot") return "family-shoot.html";
+    if (pkg.id === "pre-wedding") return "pre-wedding-shoot.html";
+    if (pkg.id === "wedding-coverage") return "wedding-shoot.html";
+    if (pkg.id === "traditional-wedding") return "traditional-wedding.html";
+    if (pkg.id === "burial-coverage") return "burials.html";
+    if (pkg.id === "birthday-events") return "birthday-events.html";
+    if (pkg.id === "graduation-events" || pkg.id === "outdoor-graduation") return "graduation-events.html";
+    if (pkg.id === "corporate-event") return "corporate-events.html";
+    if (pkg.id === "hotel-events") return "hotel-events.html";
+    if (pkg.id === "product-shoot") return "product-shoot.html";
+    if (pkg.id === "hotel-hospitality") return "hotel-shoot.html";
+    if (pkg.id === "boudoir-shoot") return "boudoir-shoot.html";
+    if (pkg.id === "model-portfolio") return "model-portfolio.html";
+    if (pkg.id === "newborn-shoot") return "newborn-shoot.html";
+    if (pkg.id === "club-events") return "club-events.html";
+    if (pkg.id === "school-events") return "school-events.html";
+    if (pkg.id === "fun-club-events") return "fun-club-events.html";
+    if (pkg.id === "events") return "events.html";
+    if (pkg.id === "corporate-branding") return "corporate-branding.html";
+    if (pkg.id === "graphic-starter" || pkg.id === "graphic-growth") return "commercial-branding.html";
+    return "graduation-shoot.html";
+  }
+
+  function renderCardHtml(pkg, idx, isAboveTheFold) {
+    const lowestOpt = pkg.options[0] || {};
+    const targetUrl = getPackageShowcaseUrl(pkg);
+    const isStudioOrOutdoor = pkg.pathway === "studio" || pkg.pathway === "outdoor";
+    const hasReel = !!activeReels[pkg.id];
+    const basePrice = lowestOpt.price || 0;
+    const currentPrice = hasReel ? basePrice + 1500 : basePrice;
+
+    const waText = hasReel
+      ? `Hello Laureign Studios! 🎬 I want to book ${pkg.title} WITH the 45s–60s 4K Video Reel (+KSh 1,500). Total: KSh ${formatMoney(currentPrice)} 📸✨`
+      : `Hello Laureign Studios! I want to inquire about ${pkg.title} 📸`;
+    const waUrl = `https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=${encodeURIComponent(waText)}`;
+
+    const isEager = Boolean(isAboveTheFold);
+    const webpSource = pkg.imageWebp ? `<source srcset="${pkg.imageWebp}" type="image/webp">` : '';
+
+    return `
+      <article class="pkg-card mount-card ${hasReel ? 'has-reel-selected' : ''}" id="pkg-${pkg.id}" data-subcat="${pkg.subcat || ''}" data-pathway="${pkg.pathway || ''}">
+        <div class="pkg-top-meta-row">
+          <span class="mount-tag-pill">${pkg.catLabel}</span>
+          ${pkg.badge ? `<span class="mount-discount-pill">${pkg.badge}</span>` : ''}
+        </div>
+        <h4 class="mount-name"><a href="${targetUrl}">${pkg.title}</a></h4>
+        <div class="mount-dimensions">
+          <span>⏱️ ${pkg.turnaround}</span>
+          <span>· RAW Proofs @ KSh 150</span>
+        </div>
+
+        <div class="mount-preview-frame js-card-zoom-trigger" data-pkg-id="${pkg.id}" style="cursor:pointer;" title="Click to enlarge & zoom photo for ${pkg.title}">
+          <picture>
+            ${webpSource}
+            <img src="${pkg.image}" alt="${pkg.title}" loading="${isEager ? 'eager' : 'lazy'}" decoding="async" ${isEager ? 'fetchpriority="high"' : ''}>
+          </picture>
+          <span class="mount-zoom-badge">🔍 Zoom Photo</span>
+        </div>
+
+        <div class="mount-price-box">
+          <div class="mount-price-row">
+            <span class="mount-price-lbl">Starting Package Rate</span>
+            <div>
+              <span style="font-size:12px;color:var(--muted);margin-right:4px;">From</span>
+              <span class="mount-new-price" id="pkg-price-${pkg.id}">${PACKAGES_CONFIG.currency}${formatMoney(currentPrice)}</span>
+            </div>
+          </div>
+          ${hasReel ? `<div class="mount-reel-included-badge">✨ Shoot + 4K Video Reel Included</div>` : ''}
+        </div>
+
+        ${isStudioOrOutdoor ? `
+        <div class="card-reel-box ${hasReel ? 'reel-selected' : ''}" id="reel-box-${pkg.id}">
+          <div class="reel-box-top">
+            <div class="reel-box-title-group">
+              <span class="reel-box-icon">🎬</span>
+              <span class="reel-box-title">Optional 4K Video Reel</span>
+            </div>
+            <span class="reel-box-rate-badge">+KSh 1,500</span>
+          </div>
+
+          <p class="reel-box-text">
+            45s–60s vertical video cut to trending audio for TikTok, Instagram &amp; Status.
+          </p>
+
+          <div class="reel-box-action-row">
+            <label class="reel-box-checkbox-label" for="reel-toggle-${pkg.id}" title="Click to include 4K Video Reel">
+              <input type="checkbox" class="reel-box-input js-card-reel-toggle" id="reel-toggle-${pkg.id}" data-pkg-id="${pkg.id}" ${hasReel ? 'checked' : ''}>
+              <span class="reel-box-custom-check"></span>
+              <span class="reel-box-toggle-text">${hasReel ? '✓ Reel Added (+1,500)' : '+ Add Reel to Shoot'}</span>
+            </label>
+
+            <button type="button" class="btn-reel-preview js-open-reels-modal" data-pkg-id="${pkg.id}" data-pkg-title="${pkg.title}" title="Watch sample vertical video reels">
+              <span>▶ View Reel Samples</span>
+            </button>
+          </div>
+        </div>
+        ` : `
+        <div class="mount-reel-option-strip" title="Optional 45s-60s Reel Add-on available for this shoot">
+          <span>🎬 Reel Option: <b>+KSh 1,500</b></span>
+        </div>
+        `}
+
+        <p class="mount-sub-desc">${pkg.tagline}</p>
+
+        <div class="pkg-card-actions">
+          <a href="${targetUrl}${hasReel ? '?reel=1' : ''}" class="btn-open-package-main">
+            <span class="btn-text-full">View Packages &amp; Rates &rsaquo;</span>
+            <span class="btn-text-short">View Rates &rsaquo;</span>
+          </a>
+          <a href="${waUrl}" id="wa-btn-${pkg.id}" target="_blank" rel="noopener" class="btn-card-wa-clean">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
+            <span id="wa-btn-text-${pkg.id}">
+              <span class="wa-text-full">${hasReel ? 'Book Shoot + Reel on WhatsApp' : 'Quick WhatsApp Inquiry'}</span>
+              <span class="wa-text-short">${hasReel ? 'Shoot + Reel' : 'WhatsApp'}</span>
+            </span>
+          </a>
+        </div>
+      </article>
+    `;
+  }
+
   // ------------------------------------------------------------
-  // Render Packages Grid
+  // Search Intelligence Engine: Prefix Matching & Typo Tolerance
+  // ------------------------------------------------------------
+  const POPULAR_SEARCH_REFERENCES = [
+    { label: "🎂 Birthday Shoots", query: "birthday", tags: ["birthday", "birthdat", "bday", "party", "celebration", "birthdays"] },
+    { label: "🌿 Outdoor Sessions", query: "outdoor", tags: ["outdoor", "outdoors", "outside", "nature", "sunshine", "natural light", "park"] },
+    { label: "💼 Executive Headshots", query: "headshot", tags: ["headshot", "headshots", "hedshot", "portrait", "corporate headshot", "linkedin", "profile"] },
+    { label: "🎓 Graduation Shoots", query: "graduation", tags: ["graduation", "graduaton", "graduate", "gown", "campus", "degree"] },
+    { label: "🤰 Maternity & Baby Bump", query: "maternity", tags: ["maternity", "maternty", "baby bump", "pregnancy", "pregnant", "bump"] },
+    { label: "✨ Silk Wrap Portraits", query: "silk wrap", tags: ["silk wrap", "wrap", "silk", "glamour"] },
+    { label: "🤍 White Shirt Concepts", query: "white shirt", tags: ["white shirt", "shirt", "crisp shirt"] },
+    { label: "💍 Weddings & Matrimony", query: "wedding", tags: ["wedding", "wedin", "weddings", "ruracio", "bride", "groom", "matrimony"] },
+    { label: "👶 Kids & Milestones", query: "kids", tags: ["kids", "children", "baby", "infant", "newborn", "toddler"] },
+    { label: "👨‍👩‍👧 Family Sessions", query: "family", tags: ["family", "famly", "parents", "relatives", "group"] },
+    { label: "❤️ Couple & Romance", query: "couple", tags: ["couple", "couples", "love", "date", "pre-wedding", "anniversary"] },
+    { label: "🕊️ Burials & Memorials", query: "burial", tags: ["burial", "burials", "memorial", "funeral", "sendoff"] },
+    { label: "📊 Corporate & Summits", query: "corporate", tags: ["corporate", "corparate", "conference", "summit", "business", "company"] },
+    { label: "📦 Product & E-Commerce", query: "product", tags: ["product", "products", "ecommerce", "catalog", "merchandise"] },
+    { label: "🏖️ Hotels & Hospitality", query: "hotel", tags: ["hotel", "hospitality", "resort", "airbnb", "lodge"] },
+    { label: "🎨 Graphic Design", query: "graphic design", tags: ["graphic", "design", "logo", "branding", "flyer", "poster"] },
+    { label: "🌹 Boudoir Portraits", query: "boudoir", tags: ["boudoir", "intimate", "lingerie", "beauty"] },
+    { label: "👑 Cultural & Traditional", query: "traditional", tags: ["traditional", "cultural", "regalia", "heritage"] },
+    { label: "🎧 Club & Nightlife", query: "club", tags: ["club", "nightlife", "dj", "party", "rave"] },
+    { label: "🎬 4K Video Reels", query: "reel", tags: ["reel", "reels", "video", "tiktok", "cinematic", "shorts"] }
+  ];
+
+  function calcLevenshteinDistance(a, b) {
+    if (a === b) return 0;
+    if (!a.length) return b.length;
+    if (!b.length) return a.length;
+    const m = a.length, n = b.length;
+    const d = Array.from({ length: m + 1 }, () => new Array(n + 1));
+    for (let i = 0; i <= m; i++) d[i][0] = i;
+    for (let j = 0; j <= n; j++) d[0][j] = j;
+    for (let i = 1; i <= m; i++) {
+      for (let j = 1; j <= n; j++) {
+        const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+        d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost);
+      }
+    }
+    return d[m][n];
+  }
+
+  function scoreReference(ref, q) {
+    let score = 0;
+    const labelClean = ref.label.replace(/[^\w\s]/g, '').trim().toLowerCase();
+    const labelWords = labelClean.split(/\s+/).filter(Boolean);
+
+    // 1. Exact query match
+    if (ref.query === q) score += 300;
+
+    // 2. Query starts with q (Prefix match from first letters: "b" -> "birthday", "out" -> "outdoor")
+    if (ref.query.startsWith(q)) score += 200;
+
+    // 3. Label word starts with q (e.g. "b" -> "Birthday", "o" -> "Outdoor")
+    if (labelWords.some(w => w.startsWith(q))) score += 180;
+
+    // 4. Any tag starts with q
+    if (ref.tags && ref.tags.some(t => t.startsWith(q))) score += 160;
+
+    // 5. Query contains q
+    if (ref.query.includes(q)) score += 80;
+    if (labelClean.includes(q)) score += 70;
+    if (ref.tags && ref.tags.some(t => t.includes(q))) score += 60;
+
+    // 6. Typo match (Levenshtein distance <= 1 or 2) when query length >= 4
+    if (q.length >= 4) {
+      const maxDist = q.length >= 6 ? 2 : 1;
+      const targets = [ref.query, ...labelWords, ...(ref.tags || [])];
+      for (const t of targets) {
+        if (Math.abs(t.length - q.length) <= maxDist) {
+          const d = calcLevenshteinDistance(q, t);
+          if (d <= maxDist) {
+            score += Math.max(0, 150 - d * 35);
+            break;
+          }
+        }
+      }
+    }
+
+    return score;
+  }
+
+  function scorePackageMatch(pkg, q) {
+    let score = 0;
+    const title = pkg.title.toLowerCase();
+    const cat = (pkg.catLabel || '').toLowerCase();
+    const subcat = (pkg.subcat || '').toLowerCase();
+    const pathway = (pkg.pathway || '').toLowerCase();
+    const tagline = (pkg.tagline || '').toLowerCase();
+    const badge = (pkg.badge || '').toLowerCase();
+    const titleWords = title.split(/[\s,–\-()]+/).filter(Boolean);
+    const catWords = cat.split(/[\s,–\-()]+/).filter(Boolean);
+
+    // 1. Exact title starts with query (First letters!)
+    if (title.startsWith(q)) score += 250;
+
+    // 2. Any title word starts with query (First letters of word!)
+    // E.g. "Birthday Studio Glamour Shoot", "Outdoor Birthday Celebration", etc.
+    const titleWordPrefix = titleWords.some(w => w.startsWith(q));
+    if (titleWordPrefix) score += 180;
+
+    // 3. Category or pathway starts with query
+    if (cat.startsWith(q) || pathway.startsWith(q)) score += 140;
+    if (catWords.some(w => w.startsWith(q))) score += 120;
+
+    // 4. Substring in title or category
+    if (title.includes(q)) score += 90;
+    if (cat.includes(q)) score += 80;
+    if (pathway.includes(q) || subcat.includes(q)) score += 50;
+    if (tagline.includes(q) || badge.includes(q)) score += 40;
+
+    // 5. Typo tolerance if query length >= 4 (handles "birthdat" -> "birthday", "outdor" -> "outdoor")
+    if (q.length >= 4) {
+      const maxDist = q.length >= 6 ? 2 : 1;
+      const targets = [...titleWords, ...catWords, pathway, subcat];
+      for (const t of targets) {
+        if (Math.abs(t.length - q.length) <= maxDist) {
+          const d = calcLevenshteinDistance(q, t);
+          if (d <= maxDist) {
+            score += Math.max(0, 160 - d * 40);
+            break;
+          }
+        }
+      }
+    }
+
+    // 6. Options inclusion
+    if (pkg.options && pkg.options.some(o => (o.name + ' ' + o.summary).toLowerCase().includes(q))) {
+      score += 25;
+    }
+
+    return score;
+  }
+
+  function highlightSearchMatch(str, rawQ) {
+    if (!rawQ || !str) return str || '';
+    const q = rawQ.trim().toLowerCase();
+    const lower = str.toLowerCase();
+
+    // 1. Direct substring match
+    const idx = lower.indexOf(q);
+    if (idx !== -1) {
+      return str.slice(0, idx) + '<mark class="search-hl">' + str.slice(idx, idx + q.length) + '</mark>' + str.slice(idx + q.length);
+    }
+
+    // 2. Prefix match on individual words
+    const words = str.split(/(\s+|[-–/(),.])/);
+    let matched = false;
+    const res = words.map(w => {
+      if (matched) return w;
+      const lw = w.toLowerCase();
+      if (lw.startsWith(q)) {
+        matched = true;
+        return '<mark class="search-hl">' + w.slice(0, q.length) + '</mark>' + w.slice(q.length);
+      }
+      return w;
+    });
+    if (matched) return res.join('');
+
+    // 3. Typo / fuzzy match on words (e.g. birthdat -> birthday)
+    if (q.length >= 4) {
+      const maxDist = q.length >= 6 ? 2 : 1;
+      let matchedTypo = false;
+      const res2 = words.map(w => {
+        if (matchedTypo) return w;
+        const lw = w.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (lw.length >= 4 && Math.abs(lw.length - q.length) <= maxDist) {
+          if (calcLevenshteinDistance(q, lw) <= maxDist) {
+            matchedTypo = true;
+            return '<mark class="search-hl">' + w + '</mark>';
+          }
+        }
+        return w;
+      });
+      if (matchedTypo) return res2.join('');
+    }
+
+    return str;
+  }
+
+  function sortList(list) {
+    const cloned = [...list];
+    if (currentSort === "price-low") {
+      cloned.sort((a, b) => getActiveOption(a).price - getActiveOption(b).price);
+    } else if (currentSort === "price-high") {
+      cloned.sort((a, b) => getActiveOption(b).price - getActiveOption(a).price);
+    }
+    return cloned;
+  }
+
+  // ------------------------------------------------------------
+  // Render Packages Grid (Multi-Chapter Layout or Search Results)
   // ------------------------------------------------------------
   function renderPackages() {
     if (controlsBar) controlsBar.style.display = "block";
 
-    const hubBannerHtml = `
-      <div class="gateway-hub-container" style="grid-column: 1 / -1; padding: 4px 0 20px;">
-        <div class="gateway-hub-card">
-          <div class="gateway-hub-badge">✨ Explore by Category</div>
-          <h3 class="gateway-hub-title">What type of photoshoot are you planning?</h3>
-          <p class="gateway-hub-sub">
-            Tap any category below to filter instantly, or scroll down to browse our complete 30-package rate card:
-          </p>
-
-          <div class="gateway-hub-grid">
-
-            <!-- 1. Studio Sessions -->
-            <div class="gateway-hub-tile" onclick="window.setPathwayExternal('studio')">
-              <div class="tile-top-row">
-                <span class="tile-icon-bubble">📸</span>
-                <span class="tile-badge">11 In-Studio Sessions</span>
-              </div>
-              <div class="tile-content">
-                <h4 class="tile-title">Studio &amp; Portrait Sessions</h4>
-                <p class="tile-desc">Graduation Milestones, Executive Headshots, White Shirt, Silk Wrap, Studio Birthdays, Maternity &amp; Family.</p>
-                <div class="tile-rate">From KSh 2,000 <span class="tile-rate-sub">· Solo from KSh 300</span></div>
-              </div>
-              <div class="tile-action">
-                <span>Explore Studio Packages</span>
-                <span class="apple-chevron">›</span>
-              </div>
-            </div>
-
-            <!-- 2. Outdoor Sessions -->
-            <div class="gateway-hub-tile highlight" onclick="window.setPathwayExternal('outdoor')">
-              <div class="tile-top-row">
-                <span class="tile-icon-bubble">🌿</span>
-                <span class="tile-badge badge-gold">Golden Hour &amp; Nature</span>
-              </div>
-              <div class="tile-content">
-                <h4 class="tile-title">Outdoor &amp; Natural Light</h4>
-                <p class="tile-desc">Natural Light Headshots, Garden Birthdays, Golden Hour Baby Bump, Family Picnics &amp; Pre-Wedding Stories.</p>
-                <div class="tile-rate rate-gold">From KSh 1,500 <span class="tile-rate-sub">· On-Location Shoots</span></div>
-              </div>
-              <div class="tile-action">
-                <span>Explore Outdoor Packages</span>
-                <span class="apple-chevron">›</span>
-              </div>
-            </div>
-
-            <!-- 3. Weddings & Events -->
-            <div class="gateway-hub-tile" onclick="window.setPathwayExternal('events')">
-              <div class="tile-top-row">
-                <span class="tile-icon-bubble">💍</span>
-                <span class="tile-badge">7 Event Coverages</span>
-              </div>
-              <div class="tile-content">
-                <h4 class="tile-title">Weddings &amp; Event Coverage</h4>
-                <p class="tile-desc">Full-Day Holy Matrimony, Traditional Ruracio, Birthday Parties, Convocation Walk, Galas &amp; Memorials.</p>
-                <div class="tile-rate">From KSh 25,000 <span class="tile-rate-sub">· Multi-Cam &amp; 4K Cinema</span></div>
-              </div>
-              <div class="tile-action">
-                <span>Explore Event Packages</span>
-                <span class="apple-chevron">›</span>
-              </div>
-            </div>
-
-            <!-- 4. Commercial & Brand -->
-            <div class="gateway-hub-tile" onclick="window.setPathwayExternal('commercial')">
-              <div class="tile-top-row">
-                <span class="tile-icon-bubble">🚀</span>
-                <span class="tile-badge">5 Business Suites</span>
-              </div>
-              <div class="tile-content">
-                <h4 class="tile-title">Commercial &amp; Brand Growth</h4>
-                <p class="tile-desc">E-Commerce Product Photography, Luxury Hotels &amp; Resorts, Corporate Branding &amp; Graphic Design.</p>
-                <div class="tile-rate">From KSh 2,500 <span class="tile-rate-sub">· Commercial Licensing</span></div>
-              </div>
-              <div class="tile-action">
-                <span>Explore Commercial Packages</span>
-                <span class="apple-chevron">›</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    `;
-
-    // 1. Initial State / Hub Mode: No pathway chosen and not searching -> ONLY SHOW HUB
-    if (!currentPathway && searchQuery.trim() === "") {
-      if (metaCountBar) metaCountBar.style.display = "none";
-      const floatingReturnBtn = document.getElementById("floatingCategoryReturn");
-      if (floatingReturnBtn) floatingReturnBtn.style.display = "none";
-      packagesGrid.innerHTML = hubBannerHtml;
-      return;
-    }
-
-    // 2. Category Selected or Searching
-    if (metaCountBar) metaCountBar.style.display = "flex";
-
-    // Show either filtered category list or all packages
-    let list = (currentPathway && currentPathway !== "all")
-      ? PACKAGES_DATA.filter(pkg => pkg.pathway === currentPathway)
-      : [...PACKAGES_DATA];
-
-    // Filter by subcategory
-    if (currentSubcat !== "all") {
-      list = list.filter(pkg => pkg.subcat === currentSubcat);
-    }
-
-    // Filter by search query
+    // 1. Live Search Results Mode
     if (searchQuery.trim() !== "") {
-      const q = searchQuery.toLowerCase();
-      list = list.filter(pkg => {
-        const matchTitle = pkg.title.toLowerCase().includes(q);
-        const matchTagline = pkg.tagline.toLowerCase().includes(q);
-        const matchCat = (pkg.catLabel || "").toLowerCase().includes(q);
-        const matchOptions = pkg.options.some(o =>
-          o.name.toLowerCase().includes(q) ||
-          o.summary.toLowerCase().includes(q) ||
-          (o.inclusions && o.inclusions.some(inc => inc.toLowerCase().includes(q)))
-        );
-        return matchTitle || matchTagline || matchCat || matchOptions;
-      });
-    }
+      const q = searchQuery.toLowerCase().trim();
+      let matched = PACKAGES_DATA
+        .map(pkg => ({ pkg, score: scorePackageMatch(pkg, q) }))
+        .filter(item => item.score > 0);
 
-    if (currentSort === "price-low") {
-      list.sort((a, b) => getActiveOption(a).price - getActiveOption(b).price);
-    } else if (currentSort === "price-high") {
-      list.sort((a, b) => getActiveOption(b).price - getActiveOption(a).price);
-    }
-
-    const pathwayName = (PATHWAYS.find(p => p.id === currentPathway) || {}).title || "Selected";
-    if (resultsCount) {
-      if (searchQuery.trim() !== "") {
-        resultsCount.innerHTML = `
-          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-            <span>Found <b>${list.length}</b> matching shoot${list.length === 1 ? '' : 's'} for "${searchQuery}"</span>
-            <button type="button" class="btn-reset-category" onclick="document.getElementById('searchClearBtn').click()">‹ Clear Search</button>
-            <button type="button" class="btn-reset-category" onclick="window.setPathwayExternal(null)">‹ Back to Explore by Category</button>
-          </div>
-          <span style="font-size:12.5px; color:var(--head-sub); font-weight:500;">Upfront Pricing · RAW Images @ KSh 150</span>
-        `;
-      } else if (currentPathway && currentPathway !== "all") {
-        resultsCount.innerHTML = `
-          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-            <span>Showing <b>${list.length}</b> ${pathwayName} Package${list.length === 1 ? '' : 's'}</span>
-            <button type="button" class="btn-reset-category" onclick="window.setPathwayExternal(null)">‹ Back to Explore by Category</button>
-          </div>
-          <span style="font-size:12.5px; color:var(--head-sub); font-weight:500;">Upfront Pricing · RAW Images @ KSh 150</span>
-        `;
+      if (currentSort === "price-low") {
+        matched.sort((a, b) => getActiveOption(a.pkg).price - getActiveOption(b.pkg).price);
+      } else if (currentSort === "price-high") {
+        matched.sort((a, b) => getActiveOption(b.pkg).price - getActiveOption(a.pkg).price);
       } else {
+        // Default: Sort by relevance score (first-letter prefix matches and typo matches fronted!)
+        matched.sort((a, b) => b.score - a.score);
+      }
+      matched = matched.map(item => item.pkg);
+      currentRenderedPackages = matched;
+
+      // Check if reference typo was matched (e.g. birthdat -> Birthday Shoots)
+      let typoNoticeText = "";
+      const topRef = POPULAR_SEARCH_REFERENCES
+        .map(ref => ({ ref, score: scoreReference(ref, q) }))
+        .filter(x => x.score >= 90)
+        .sort((a, b) => b.score - a.score)[0];
+      if (topRef && topRef.ref.query !== q && q.length >= 4) {
+        typoNoticeText = topRef.ref.label;
+      }
+
+      if (resultsCount) {
+        const typoBadge = typoNoticeText
+          ? `<span style="display:inline-flex; align-items:center; gap:4px; font-size:12px; color:var(--gold-soft); background:rgba(234,179,8,0.12); padding:2px 8px; border-radius:999px; border:1px solid rgba(234,179,8,0.3);">💡 Matched ${escapeHtml(typoNoticeText)}</span>`
+          : "";
         resultsCount.innerHTML = `
           <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-            <span>Showing all <b>${list.length}</b> official session packages</span>
-            <button type="button" class="btn-reset-category" onclick="window.setPathwayExternal(null)">‹ Back to Explore by Category</button>
+            <span>Found <b>${matched.length}</b> matching shoot${matched.length === 1 ? '' : 's'} for "${escapeHtml(searchQuery)}"</span>
+            ${typoBadge}
+            <button type="button" class="btn-reset-category" onclick="document.getElementById('searchClearBtn').click()">‹ Clear Search</button>
           </div>
           <span style="font-size:12.5px; color:var(--head-sub); font-weight:500;">Upfront Pricing · RAW Images @ KSh 150</span>
         `;
       }
-    }
+      if (metaCountBar) metaCountBar.style.display = "flex";
 
-    if (list.length === 0) {
-      packagesGrid.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
-          <h3 style="font-family: var(--font-display); font-size: 24px; color: var(--head); margin-bottom: 8px;">No packages found</h3>
-          <p style="color: var(--muted); margin-bottom: 20px;">No packages matched "${searchQuery}".</p>
-          <div style="display:flex; justify-content:center; gap:10px;">
-            <button type="button" class="btn-book-wa" style="max-width: 220px;" onclick="document.getElementById('searchClearBtn').click()">Clear Search</button>
-            <button type="button" class="btn-reset-category" style="padding:10px 18px; font-size:14px;" onclick="window.setPathwayExternal(null)">‹ Back to Category Hub</button>
-          </div>
-        </div>
-      `;
-      return;
-    }
-
-    function getPackageShowcaseUrl(pkg) {
-      if (pkg.id === "graduation-shoot") return "graduation-shoot.html";
-      if (pkg.id === "indoor-headshots" || pkg.id === "outdoor-headshots") return "headshots.html";
-      if (pkg.id === "indoor-shirt-shoot" || pkg.id === "outdoor-shirt-shoot" || pkg.id === "shirt-reels") return "shirt-shoot.html";
-      if (pkg.id === "silk-wrap") return "wrap-shoot.html";
-      if (pkg.id === "traditional-creative") return "portrait-shoot.html";
-      if (pkg.id === "baby-bump" || pkg.id === "outdoor-baby-bump") return "maternity-shoot.html";
-      if (pkg.id === "birthday-shoot" || pkg.id === "outdoor-birthday-shoot") return "birthday-shoots.html";
-      if (pkg.id === "kids-photoshoot" || pkg.id === "kids-shoot" || pkg.id === "kids-outdoor-shoot") return "kids-shoot.html";
-      if (pkg.id === "couple-shoot") return "couple-shoot.html";
-      if (pkg.id === "family-shoot" || pkg.id === "outdoor-family-shoot") return "family-shoot.html";
-      if (pkg.id === "pre-wedding") return "pre-wedding-shoot.html";
-      if (pkg.id === "wedding-coverage") return "wedding-shoot.html";
-      if (pkg.id === "traditional-wedding") return "traditional-wedding.html";
-      if (pkg.id === "burial-coverage") return "burials.html";
-      if (pkg.id === "birthday-events") return "birthday-events.html";
-      if (pkg.id === "graduation-events") return "graduation-events.html";
-      if (pkg.id === "corporate-event") return "corporate-events.html";
-      if (pkg.id === "hotel-events") return "hotel-events.html";
-      if (pkg.id === "product-shoot") return "product-shoot.html";
-      if (pkg.id === "hotel-hospitality") return "hotel-shoot.html";
-      if (pkg.id === "boudoir-shoot") return "boudoir-shoot.html";
-      if (pkg.id === "model-portfolio") return "model-portfolio.html";
-      if (pkg.id === "newborn-shoot") return "newborn-shoot.html";
-      if (pkg.id === "club-events") return "club-events.html";
-      if (pkg.id === "school-events") return "school-events.html";
-      if (pkg.id === "fun-club-events") return "fun-club-events.html";
-      if (pkg.id === "events") return "events.html";
-      if (pkg.id === "corporate-branding") return "corporate-branding.html";
-      if (pkg.id === "graphic-starter" || pkg.id === "graphic-growth") return "commercial-branding.html";
-      return "graduation-shoot.html";
-    }
-
-    const cardsHtml = list.map((pkg, idx) => {
-      const lowestOpt = pkg.options[0] || {};
-      const targetUrl = getPackageShowcaseUrl(pkg);
-      const isStudioOrOutdoor = pkg.pathway === "studio" || pkg.pathway === "outdoor";
-      const hasReel = !!activeReels[pkg.id];
-      const basePrice = lowestOpt.price || 0;
-      const currentPrice = hasReel ? basePrice + 1500 : basePrice;
-
-      const waText = hasReel
-        ? `Hello Laureign Studios! 🎬 I want to book ${pkg.title} WITH the 45s–60s 4K Video Reel (+KSh 1,500). Total: KSh ${formatMoney(currentPrice)} 📸✨`
-        : `Hello Laureign Studios! I want to inquire about ${pkg.title} 📸`;
-      const waUrl = `https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=${encodeURIComponent(waText)}`;
-
-      const isAboveTheFold = idx < 4;
-      const webpSource = pkg.imageWebp ? `<source srcset="${pkg.imageWebp}" type="image/webp">` : '';
-
-      return `
-        <article class="pkg-card mount-card ${hasReel ? 'has-reel-selected' : ''}" id="pkg-${pkg.id}">
-          <!-- Clean Meta Row: Prevents text overlap on mobile and all screen sizes -->
-          <div class="pkg-top-meta-row">
-            <span class="mount-tag-pill">${pkg.catLabel}</span>
-            ${pkg.badge ? `<span class="mount-discount-pill">${pkg.badge}</span>` : ''}
-          </div>
-          <h4 class="mount-name"><a href="${targetUrl}">${pkg.title}</a></h4>
-          <div class="mount-dimensions">
-            <span>⏱️ ${pkg.turnaround}</span>
-            <span>· RAW Proofs @ KSh 150</span>
-          </div>
-
-          <!-- Inset Photo Preview Frame with High-Res Zoom Lightbox Trigger -->
-          <div class="mount-preview-frame js-card-zoom-trigger" data-pkg-id="${pkg.id}" style="cursor:pointer;" title="Click to enlarge & zoom photo for ${pkg.title}">
-            <picture>
-              ${webpSource}
-              <img src="${pkg.image}" alt="${pkg.title}" loading="${isAboveTheFold ? 'eager' : 'lazy'}" decoding="async" ${isAboveTheFold ? 'fetchpriority="high"' : ''}>
-            </picture>
-            <span class="mount-zoom-badge">🔍 Zoom Photo</span>
-          </div>
-
-          <!-- Inset Price Box matching Photo Mounts -->
-          <div class="mount-price-box">
-            <div class="mount-price-row">
-              <span class="mount-price-lbl">Starting Package Rate</span>
-              <div>
-                <span style="font-size:12px;color:var(--muted);margin-right:4px;">From</span>
-                <span class="mount-new-price" id="pkg-price-${pkg.id}">${PACKAGES_CONFIG.currency}${formatMoney(currentPrice)}</span>
-              </div>
-            </div>
-            ${hasReel ? `<div class="mount-reel-included-badge">✨ Shoot + 4K Video Reel Included</div>` : ''}
-          </div>
-
-          <!-- DEDICATED REEL BOX FOR STUDIO & OUTDOOR PACKAGES -->
-          ${isStudioOrOutdoor ? `
-          <div class="card-reel-box ${hasReel ? 'reel-selected' : ''}" id="reel-box-${pkg.id}">
-            <div class="reel-box-top">
-              <div class="reel-box-title-group">
-                <span class="reel-box-icon">🎬</span>
-                <span class="reel-box-title">Optional 4K Video Reel</span>
-              </div>
-              <span class="reel-box-rate-badge">+KSh 1,500</span>
-            </div>
-
-            <p class="reel-box-text">
-              45s–60s vertical video cut to trending audio for TikTok, Instagram &amp; Status.
-            </p>
-
-            <div class="reel-box-action-row">
-              <label class="reel-box-checkbox-label" for="reel-toggle-${pkg.id}" title="Click to include 4K Video Reel">
-                <input type="checkbox" class="reel-box-input js-card-reel-toggle" id="reel-toggle-${pkg.id}" data-pkg-id="${pkg.id}" ${hasReel ? 'checked' : ''}>
-                <span class="reel-box-custom-check"></span>
-                <span class="reel-box-toggle-text">${hasReel ? '✓ Reel Added (+1,500)' : '+ Add Reel to Shoot'}</span>
-              </label>
-
-              <button type="button" class="btn-reel-preview js-open-reels-modal" data-pkg-id="${pkg.id}" data-pkg-title="${pkg.title}" title="Watch sample vertical video reels">
-                <span>▶ View Reel Samples</span>
-              </button>
-            </div>
-          </div>
-          ` : `
-          <div class="mount-reel-option-strip" title="Optional 45s-60s Reel Add-on available for this shoot">
-            <span>🎬</span>
-            <span>Reel Option: <b>+KSh 1,500</b></span>
-          </div>
-          `}
-
-          <p class="mount-sub-desc">${pkg.tagline}</p>
-
-          <div class="pkg-card-actions" style="margin-top:auto;display:flex;flex-direction:column;gap:8px;">
-            <a href="${targetUrl}${hasReel ? '?reel=1' : ''}" class="btn-open-package-main" style="margin-top:0;">
-              <span>View Packages &amp; Rates</span>
-              <span class="btn-arrow" style="font-size:16px; margin-left:3px;">›</span>
-            </a>
-            <a href="${waUrl}" id="wa-btn-${pkg.id}" target="_blank" rel="noopener" class="btn-card-wa-clean" style="margin-top:0;">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/></svg>
-              <span id="wa-btn-text-${pkg.id}">${hasReel ? 'Book Shoot + Reel on WhatsApp' : 'Quick WhatsApp Inquiry'}</span>
-            </a>
-          </div>
-        </article>
-      `;
-    }).join("");
-
-    const pathwayObj = PATHWAYS.find(p => p.id === currentPathway);
-    const pathwayIcon = pathwayObj ? pathwayObj.icon : "✨";
-
-    let topBannerHtml = "";
-    let bottomCardHtml = "";
-
-    if (searchQuery.trim() !== "") {
-      topBannerHtml = `
-        <div class="category-header-banner">
+      const searchBanner = `
+        <div class="category-header-banner" style="grid-column: 1 / -1;">
           <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
             <button type="button" class="btn-return-prominent" onclick="document.getElementById('searchClearBtn').click()" title="Clear Search">
               <span style="font-size:18px; font-weight:700; line-height:1;">‹</span>
               <span>Clear Search</span>
             </button>
-            <button type="button" class="btn-return-prominent" onclick="window.setPathwayExternal(null)" title="Return to Category Hub">
-              <span style="font-size:18px; font-weight:700; line-height:1;">‹</span>
-              <span>Return to Categories</span>
-            </button>
             <div>
               <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--gold-soft); font-weight:700;">Search Results</div>
-              <h3 style="font-family:var(--font-display); font-size:22px; color:var(--head); margin:2px 0 0; line-height:1.2;">Found ${list.length} matching packages for "${searchQuery}"</h3>
+              <h3 style="font-family:var(--font-display); font-size:22px; color:var(--head); margin:2px 0 0; line-height:1.2;">
+                Found ${matched.length} matching packages for "${escapeHtml(searchQuery)}"
+                ${typoNoticeText ? `<span style="font-size:14px; font-weight:600; color:var(--gold-soft); margin-left:8px;">(${escapeHtml(typoNoticeText)})</span>` : ''}
+              </h3>
             </div>
           </div>
-          <div style="display:flex; align-items:center; gap:8px;">
-            <button type="button" class="btn-reset-category" onclick="window.setPathwayExternal(null)">‹ Category Hub</button>
-          </div>
+          <button type="button" class="btn-reset-category" onclick="document.getElementById('searchClearBtn').click()">‹ Back to All Chapters</button>
         </div>
       `;
 
-      bottomCardHtml = `
-        <div class="category-bottom-return-card">
-          <span style="display:inline-block; font-size:28px; margin-bottom:8px;">✨</span>
-          <h3 style="font-family:var(--font-display); font-size:22px; color:var(--head); margin-bottom:6px;">Done with your search?</h3>
-          <p style="font-size:13.5px; color:var(--muted); max-width:480px; margin-bottom:18px;">Return to our Category Hub to browse packages organized by category.</p>
-          <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-            <button type="button" class="btn-return-prominent-large" onclick="window.setPathwayExternal(null)">
-              <span style="font-size:18px; font-weight:700;">‹</span>
-              <span>Return to Explore by Category</span>
-            </button>
-            <button type="button" class="btn-scroll-top-cat" onclick="document.getElementById('packagesBrowse').scrollIntoView({behavior:'smooth'})">
-              <span>↑ Back to Top</span>
-            </button>
-          </div>
-        </div>
-      `;
-    } else if (currentPathway) {
-      topBannerHtml = `
-        <div class="category-header-banner">
-          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-            <button type="button" class="btn-return-prominent" onclick="window.setPathwayExternal(null)" title="Return to Explore by Category">
-              <span style="font-size:18px; font-weight:700; line-height:1;">‹</span>
-              <span>Return to Categories</span>
-            </button>
-            <div>
-              <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--gold-soft); font-weight:700;">Explore Categories › ${pathwayName}</div>
-              <h3 style="font-family:var(--font-display); font-size:22px; color:var(--head); margin:2px 0 0; line-height:1.2;">${pathwayIcon} ${pathwayName} (${list.length} Packages)</h3>
+      if (matched.length === 0) {
+        packagesGrid.innerHTML = `
+          ${searchBanner}
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+            <h3 style="font-family: var(--font-display); font-size: 24px; color: var(--head); margin-bottom: 8px;">No packages found</h3>
+            <p style="color: var(--muted); margin-bottom: 20px;">No packages matched "${escapeHtml(searchQuery)}".</p>
+            <div style="display:flex; justify-content:center; gap:10px;">
+              <button type="button" class="btn-book-wa" style="max-width: 220px;" onclick="document.getElementById('searchClearBtn').click()">Clear Search</button>
             </div>
           </div>
-          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-            <span style="font-size:12px; color:var(--muted); font-weight:500;">Upfront Pricing · RAW Proofs @ KSh 150</span>
-            <button type="button" class="btn-reset-category" onclick="window.setPathwayExternal(null)" title="Back to Category Hub">
-              ‹ All Categories
-            </button>
+        `;
+      } else {
+        packagesGrid.innerHTML = `
+          ${searchBanner}
+          <div class="chapter-cards-grid" style="grid-column: 1 / -1;">
+            ${matched.map((p, idx) => renderCardHtml(p, idx, idx < 3)).join("")}
           </div>
-        </div>
-      `;
+        `;
+      }
+      attachCardListeners();
+      return;
+    }
 
-      bottomCardHtml = `
-        <div class="category-bottom-return-card">
-          <span style="display:inline-block; font-size:28px; margin-bottom:8px;">✨</span>
-          <h3 style="font-family:var(--font-display); font-size:22px; color:var(--head); margin-bottom:6px;">Finished exploring ${pathwayName}?</h3>
-          <p style="font-size:13.5px; color:var(--muted); max-width:480px; margin-bottom:18px;">You've viewed all ${list.length} packages in <b>${pathwayName}</b>. Return to our Category Hub to explore our other shoots and sessions.</p>
-          <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-            <button type="button" class="btn-return-prominent-large" onclick="window.setPathwayExternal(null)">
-              <span style="font-size:18px; font-weight:700;">‹</span>
-              <span>Return to Explore by Category</span>
-            </button>
-            <button type="button" class="btn-scroll-top-cat" onclick="document.getElementById('packagesBrowse').scrollIntoView({behavior:'smooth'})">
-              <span>↑ Back to Top of ${pathwayName}</span>
-            </button>
-          </div>
+    // 2. Multi-Chapter Continuous Scroll Mode (Default)
+    if (metaCountBar) metaCountBar.style.display = "flex";
+    if (resultsCount) {
+      resultsCount.innerHTML = `
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <span>Showing all <b>${PACKAGES_DATA.length}</b> official session packages organized across 4 chapters</span>
         </div>
+        <span style="font-size:12.5px; color:var(--head-sub); font-weight:500;">Upfront Pricing · RAW Images @ KSh 150</span>
       `;
     }
 
-    packagesGrid.innerHTML = topBannerHtml + cardsHtml + bottomCardHtml;
+    currentRenderedPackages = PACKAGES_DATA;
+
+    // ----------------------------------------------------
+    // CHAPTER 1: STUDIO & PORTRAIT SESSIONS
+    // ----------------------------------------------------
+    const studioList = sortList(PACKAGES_DATA.filter(p => p.pathway === "studio"));
+    const studioSubcats = (PATHWAYS.find(p => p.id === "studio") || {}).subcategories || [];
+    const studioSubcatsHtml = studioSubcats.map((sub, i) => `
+      <button type="button" class="subcat-pill ${i === 0 ? 'active' : ''}" onclick="window.filterChapterSubcat('studio', '${sub.id}', this)">
+        ${sub.name}
+      </button>
+    `).join("");
+    const studioCardsHtml = studioList.map((p, idx) => renderCardHtml(p, idx, idx < 2)).join("");
+
+    const studioChapterHtml = `
+      <section class="chapter-section chapter-section-studio" id="studio" data-chapter="studio">
+        <div class="chapter-marquee">
+          <div class="chapter-eyebrow-row">
+            <span class="chapter-badge">📸 CHAPTER 01 · CONTROLLED STUDIO LIGHTING</span>
+            <span class="chapter-count-tag">${studioList.length} Studio Packages</span>
+          </div>
+          <h2 class="chapter-title">Studio &amp; Portrait Sessions</h2>
+          <p class="chapter-desc">
+            Master continuous and strobe studio lighting, customized creative backdrops, graduation cap &amp; gown milestones, and high-fashion styled portraiture.
+          </p>
+          <div class="chapter-highlights-row">
+            <span class="chapter-highlight-item">✨ 12 In-Studio Sessions</span>
+            <span class="chapter-highlight-item">· 💡 Master Strobe &amp; Constant Lighting</span>
+            <span class="chapter-highlight-item">· 🚪 Private Changing Suites</span>
+            <span class="chapter-highlight-item">· ⚡ 48-Hour Retouching</span>
+          </div>
+          <div class="chapter-actions-row">
+            <button type="button" class="btn-chapter-share" onclick="window.copySectionShareLink('studio')" title="Copy direct link to Studio Sessions">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              <span>Share Studio Link</span>
+            </button>
+            <a href="https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Studio%20Sessions%20%F0%9F%93%B8" target="_blank" rel="noopener" class="btn-chapter-wa">
+              <span>💬 WhatsApp Studio Desk</span>
+            </a>
+          </div>
+          <div class="chapter-subcat-bar">
+            ${studioSubcatsHtml}
+          </div>
+        </div>
+        <div class="chapter-cards-grid" id="grid-studio">
+          ${studioCardsHtml}
+        </div>
+      </section>
+    `;
+
+    // Transition Divider Studio -> Outdoor
+    const toOutdoorDivider = `
+      <div class="chapter-transition-divider" aria-hidden="true">
+        <span class="chapter-divider-line"></span>
+        <div class="chapter-divider-badge" onclick="window.scrollToSection('outdoor')">
+          <span>Entering Chapter 02: Outdoor Sessions</span>
+          <span class="divider-arrow">↓</span>
+        </div>
+        <span class="chapter-divider-line"></span>
+      </div>
+    `;
+
+    // ----------------------------------------------------
+    // CHAPTER 2: OUTDOOR & NATURAL LIGHT SESSIONS
+    // ----------------------------------------------------
+    const outdoorList = sortList(PACKAGES_DATA.filter(p => p.pathway === "outdoor"));
+    const outdoorSubcats = (PATHWAYS.find(p => p.id === "outdoor") || {}).subcategories || [];
+    const outdoorSubcatsHtml = outdoorSubcats.map((sub, i) => `
+      <button type="button" class="subcat-pill ${i === 0 ? 'active' : ''}" onclick="window.filterChapterSubcat('outdoor', '${sub.id}', this)">
+        ${sub.name}
+      </button>
+    `).join("");
+    const outdoorCardsHtml = outdoorList.map((p, idx) => renderCardHtml(p, idx, false)).join("");
+
+    const outdoorChapterHtml = `
+      <section class="chapter-section chapter-section-outdoor" id="outdoor" data-chapter="outdoor">
+        <div class="chapter-marquee">
+          <div class="chapter-eyebrow-row">
+            <span class="chapter-badge">🌿 CHAPTER 02 · ON-LOCATION &amp; NATURAL LIGHT</span>
+            <span class="chapter-count-tag">${outdoorList.length} Outdoor Sessions</span>
+          </div>
+          <h2 class="chapter-title">Outdoor &amp; Natural Light Sessions</h2>
+          <p class="chapter-desc">
+            Sunlit golden hours, lush scenic gardens, parks, resorts &amp; on-location lifestyle portraiture across Kakamega &amp; Western Kenya.
+          </p>
+          <div class="chapter-policy-banner">
+            <span class="policy-icon">✨</span>
+            <span><b>Official Studio Policy:</b> Minimum <b>7 Retouched Images</b> per Outdoor Session · No single image packages available for outdoor shoots.</span>
+          </div>
+          <div class="chapter-highlights-row">
+            <span class="chapter-highlight-item">🌿 12 Outdoor Lifestyle Shoots</span>
+            <span class="chapter-highlight-item">· ☀️ Golden Hour &amp; Natural Ambient Light</span>
+            <span class="chapter-highlight-item">· 📍 Kakamega &amp; Regional Locations</span>
+            <span class="chapter-highlight-item">· ⚡ 48-Hour Turnaround</span>
+          </div>
+          <div class="chapter-actions-row">
+            <button type="button" class="btn-chapter-share" onclick="window.copySectionShareLink('outdoor')" title="Copy direct link to Outdoor Sessions (share to someone to view starting from outdoor)">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              <span>Share Outdoor Sessions Link</span>
+            </button>
+            <a href="https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Outdoor%20%26%20Natural%20Light%20Shoots%20%F0%9F%8C%BF" target="_blank" rel="noopener" class="btn-chapter-wa">
+              <span>💬 WhatsApp Outdoor Desk</span>
+            </a>
+          </div>
+          <div class="chapter-subcat-bar">
+            ${outdoorSubcatsHtml}
+          </div>
+        </div>
+        <div class="chapter-cards-grid" id="grid-outdoor">
+          ${outdoorCardsHtml}
+        </div>
+      </section>
+    `;
+
+    // Transition Divider Outdoor -> Events
+    const toEventsDivider = `
+      <div class="chapter-transition-divider" aria-hidden="true">
+        <span class="chapter-divider-line"></span>
+        <div class="chapter-divider-badge" onclick="window.scrollToSection('events')">
+          <span>Entering Chapter 03: Weddings &amp; Events</span>
+          <span class="divider-arrow">↓</span>
+        </div>
+        <span class="chapter-divider-line"></span>
+      </div>
+    `;
+
+    // ----------------------------------------------------
+    // CHAPTER 3: WEDDINGS & EVENT COVERAGE
+    // ----------------------------------------------------
+    const eventsList = sortList(PACKAGES_DATA.filter(p => p.pathway === "events"));
+    const eventsSubcats = (PATHWAYS.find(p => p.id === "events") || {}).subcategories || [];
+    const eventsSubcatsHtml = eventsSubcats.map((sub, i) => `
+      <button type="button" class="subcat-pill ${i === 0 ? 'active' : ''}" onclick="window.filterChapterSubcat('events', '${sub.id}', this)">
+        ${sub.name}
+      </button>
+    `).join("");
+    const eventsCardsHtml = eventsList.map((p, idx) => renderCardHtml(p, idx, false)).join("");
+
+    const eventsChapterHtml = `
+      <section class="chapter-section chapter-section-events" id="events" data-chapter="events">
+        <div class="chapter-marquee">
+          <div class="chapter-eyebrow-row">
+            <span class="chapter-badge">💍 CHAPTER 03 · WEDDINGS &amp; CELEBRATIONS</span>
+            <span class="chapter-count-tag">${eventsList.length} Event Coverages</span>
+          </div>
+          <h2 class="chapter-title">Weddings &amp; Event Coverage</h2>
+          <p class="chapter-desc">
+            Full-day holy matrimony, traditional ruracio, private birthday bashes, corporate summits, galas &amp; dignified memorial tributes.
+          </p>
+          <div class="chapter-highlights-row">
+            <span class="chapter-highlight-item">💍 10 Event Coverages</span>
+            <span class="chapter-highlight-item">· 🎬 Multi-Camera 4K Cinematography</span>
+            <span class="chapter-highlight-item">· 🎙️ Master Audio Recording</span>
+            <span class="chapter-highlight-item">· 🚁 Drone Coverage</span>
+          </div>
+          <div class="chapter-actions-row">
+            <button type="button" class="btn-chapter-share" onclick="window.copySectionShareLink('events')" title="Copy direct link to Weddings &amp; Events">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              <span>Share Events Link</span>
+            </button>
+            <a href="https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Wedding%20%26%20Event%20Coverage%20%F0%9F%92%8D" target="_blank" rel="noopener" class="btn-chapter-wa">
+              <span>💬 WhatsApp Events Desk</span>
+            </a>
+          </div>
+          <div class="chapter-subcat-bar">
+            ${eventsSubcatsHtml}
+          </div>
+        </div>
+        <div class="chapter-cards-grid" id="grid-events">
+          ${eventsCardsHtml}
+        </div>
+      </section>
+    `;
+
+    // Transition Divider Events -> Commercial
+    const toCommercialDivider = `
+      <div class="chapter-transition-divider" aria-hidden="true">
+        <span class="chapter-divider-line"></span>
+        <div class="chapter-divider-badge" onclick="window.scrollToSection('commercial')">
+          <span>Entering Chapter 04: Commercial &amp; Brand Growth</span>
+          <span class="divider-arrow">↓</span>
+        </div>
+        <span class="chapter-divider-line"></span>
+      </div>
+    `;
+
+    // ----------------------------------------------------
+    // CHAPTER 4: COMMERCIAL & BRAND GROWTH
+    // ----------------------------------------------------
+    const commercialList = sortList(PACKAGES_DATA.filter(p => p.pathway === "commercial"));
+    const commercialSubcats = (PATHWAYS.find(p => p.id === "commercial") || {}).subcategories || [];
+    const commercialSubcatsHtml = commercialSubcats.map((sub, i) => `
+      <button type="button" class="subcat-pill ${i === 0 ? 'active' : ''}" onclick="window.filterChapterSubcat('commercial', '${sub.id}', this)">
+        ${sub.name}
+      </button>
+    `).join("");
+    const commercialCardsHtml = commercialList.map((p, idx) => renderCardHtml(p, idx, false)).join("");
+
+    const commercialChapterHtml = `
+      <section class="chapter-section chapter-section-commercial" id="commercial" data-chapter="commercial">
+        <div class="chapter-marquee">
+          <div class="chapter-eyebrow-row">
+            <span class="chapter-badge">🚀 CHAPTER 04 · ENTERPRISE &amp; CREATIVE</span>
+            <span class="chapter-count-tag">${commercialList.length} Business Suites</span>
+          </div>
+          <h2 class="chapter-title">Commercial &amp; Brand Growth</h2>
+          <p class="chapter-desc">
+            High-conversion e-commerce product shoots, hotel &amp; luxury hospitality showcases, corporate executive suites &amp; graphic design services.
+          </p>
+          <div class="chapter-highlights-row">
+            <span class="chapter-highlight-item">🚀 5 Enterprise Suites</span>
+            <span class="chapter-highlight-item">· 🏷️ Full Commercial Licensing Included</span>
+            <span class="chapter-highlight-item">· 📐 Print &amp; Web Ready 300 DPI</span>
+          </div>
+          <div class="chapter-actions-row">
+            <button type="button" class="btn-chapter-share" onclick="window.copySectionShareLink('commercial')" title="Copy direct link to Commercial Suites">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              <span>Share Commercial Link</span>
+            </button>
+            <a href="https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=Hello%20Laureign%20Studios%21%20I%20want%20to%20inquire%20about%20Commercial%20Branding%20%F0%9F%9A%80" target="_blank" rel="noopener" class="btn-chapter-wa">
+              <span>💬 WhatsApp Commercial Desk</span>
+            </a>
+          </div>
+          <div class="chapter-subcat-bar">
+            ${commercialSubcatsHtml}
+          </div>
+        </div>
+        <div class="chapter-cards-grid" id="grid-commercial">
+          ${commercialCardsHtml}
+        </div>
+      </section>
+    `;
+
+    // Render all chapters continuously starting with Studio
+    packagesGrid.innerHTML = studioChapterHtml + toOutdoorDivider + outdoorChapterHtml + toEventsDivider + eventsChapterHtml + toCommercialDivider + commercialChapterHtml;
 
     // Toggle floating return button on screen
     const floatingReturnBtn = document.getElementById("floatingCategoryReturn");
     if (floatingReturnBtn) {
-      floatingReturnBtn.style.display = (currentPathway || searchQuery.trim() !== "") ? "inline-flex" : "none";
+      floatingReturnBtn.style.display = "none";
     }
 
     attachCardListeners();
+    initScrollSpy();
   }
 
   let currentRenderedPackages = [];
@@ -718,7 +1101,14 @@ document.addEventListener("DOMContentLoaded", () => {
       waBtn.href = `https://wa.me/${PACKAGES_CONFIG.whatsappNumber}?text=${encodeURIComponent(waText)}`;
     }
     if (waBtnText) {
-      waBtnText.textContent = isChecked ? "Book Shoot + Reel on WhatsApp" : "Quick WhatsApp Inquiry";
+      const fullSpan = waBtnText.querySelector(".wa-text-full");
+      const shortSpan = waBtnText.querySelector(".wa-text-short");
+      if (fullSpan && shortSpan) {
+        fullSpan.textContent = isChecked ? "Book Shoot + Reel on WhatsApp" : "Quick WhatsApp Inquiry";
+        shortSpan.textContent = isChecked ? "Shoot + Reel" : "WhatsApp";
+      } else {
+        waBtnText.textContent = isChecked ? "Book Shoot + Reel on WhatsApp" : "Quick WhatsApp Inquiry";
+      }
     }
 
     // Add or remove Mount badge
@@ -1550,21 +1940,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ------------------------------------------------------------
   const searchSuggestionsBox = document.getElementById("searchSuggestionsBox");
 
-  const POPULAR_SEARCH_REFERENCES = [
-    { label: "💼 Executive Headshots", query: "headshot", category: "studio" },
-    { label: "🎓 Graduation Shoots", query: "graduation", category: "studio" },
-    { label: "✨ Silk Wrap Portraits", query: "wrap", category: "studio" },
-    { label: "🤍 White Shirt Concepts", query: "shirt", category: "studio" },
-    { label: "🌿 Outdoor Sessions", query: "outdoor", category: "outdoor" },
-    { label: "🤰 Baby Bump & Maternity", query: "maternity", category: "studio" },
-    { label: "🎂 Birthday Shoots", query: "birthday", category: "studio" },
-    { label: "💍 Weddings & Matrimony", query: "wedding", category: "events" },
-    { label: "👶 Kids & Family Picnics", query: "family", category: "outdoor" },
-    { label: "❤️ Couple Love Stories", query: "couple", category: "studio" },
-    { label: "🚀 Commercial & Products", query: "commercial", category: "commercial" },
-    { label: "🎬 4K Vertical Video Reels", query: "reel", category: "studio" }
-  ];
-
   function highlightMatch(str, q) {
     if (!q) return str;
     const idx = str.toLowerCase().indexOf(q.toLowerCase());
@@ -1572,9 +1947,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return str.slice(0, idx) + '<b style="color:#4ade80;font-weight:700;">' + str.slice(idx, idx + q.length) + '</b>' + str.slice(idx + q.length);
   }
 
+  let activeSuggestionIndex = -1;
+
   function renderSearchSuggestions(rawQuery) {
     if (!searchSuggestionsBox) return;
     const q = (rawQuery || "").trim().toLowerCase();
+    activeSuggestionIndex = -1;
 
     if (q === "") {
       searchSuggestionsBox.innerHTML = `
@@ -1583,7 +1961,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="suggestion-chips-row">
           ${POPULAR_SEARCH_REFERENCES.map(ref => `
-            <button type="button" class="suggestion-chip" data-search="${ref.query}">
+            <button type="button" class="suggestion-chip" data-search="${escapeHtml(ref.query)}">
               ${ref.label}
             </button>
           `).join("")}
@@ -1594,27 +1972,38 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Match packages by title, category, tagline, badge, subcat (similar letters & substrings)
-    const matches = PACKAGES_DATA.filter(p => {
-      const hay = `${p.title} ${p.catLabel} ${p.tagline} ${p.badge || ''} ${p.subcat} ${p.pathway}`.toLowerCase();
-      return hay.includes(q) || p.title.toLowerCase().split(/\s+/).some(w => w.startsWith(q));
-    });
+    // Front references from the first letters & typo tolerance
+    const matchingChips = POPULAR_SEARCH_REFERENCES
+      .map(ref => ({ ref, score: scoreReference(ref, q) }))
+      .filter(x => x.score > 0)
+      .sort((a, b) => b.score - a.score);
 
-    const matchingChips = POPULAR_SEARCH_REFERENCES.filter(r =>
-      r.query.includes(q) || r.label.toLowerCase().includes(q)
-    );
+    // Front matching packages from the first letters & typo tolerance
+    const matches = PACKAGES_DATA
+      .map(p => ({ p, score: scorePackageMatch(p, q) }))
+      .filter(x => x.score > 0)
+      .sort((a, b) => b.score - a.score);
 
     let html = "";
+
+    // Check if typo detected (e.g. birthdat -> Birthday Shoots)
+    if (matchingChips.length > 0 && matchingChips[0].ref.query !== q && q.length >= 4 && matchingChips[0].score >= 90) {
+      html += `
+        <div class="suggestion-typo-tip">
+          <span>💡 Showing shoots for <b>${escapeHtml(matchingChips[0].ref.label)}</b> (matched “${escapeHtml(rawQuery)}”)</span>
+        </div>
+      `;
+    }
 
     if (matchingChips.length > 0) {
       html += `
         <div class="suggestion-group-title">
-          <span>🔍 Related Shoot Types</span>
+          <span>🔍 Related Shoot References</span>
         </div>
         <div class="suggestion-chips-row">
-          ${matchingChips.map(ref => `
-            <button type="button" class="suggestion-chip" data-search="${ref.query}">
-              ${ref.label}
+          ${matchingChips.slice(0, 8).map(x => `
+            <button type="button" class="suggestion-chip" data-search="${escapeHtml(x.ref.query)}">
+              ${x.ref.label}
             </button>
           `).join("")}
         </div>
@@ -1627,29 +2016,32 @@ document.addEventListener("DOMContentLoaded", () => {
           <span>📦 Matching Packages (${matches.length})</span>
         </div>
         <div class="suggestion-list">
-          ${matches.slice(0, 6).map(p => `
-            <div class="suggestion-item js-suggestion-pkg" data-pkg-id="${p.id}" data-pathway="${p.pathway}">
-              <img src="${p.image}" alt="${p.title}" class="suggestion-thumb" loading="lazy">
-              <div class="suggestion-info">
-                <div class="suggestion-title">${highlightMatch(p.title, q)}</div>
-                <div class="suggestion-sub">
-                  <span>${p.catLabel}</span>
-                  <span>· ⏱️ ${p.turnaround}</span>
+          ${matches.slice(0, 6).map(item => {
+            const p = item.p;
+            return `
+              <div class="suggestion-item js-suggestion-pkg" data-pkg-id="${p.id}" data-pathway="${p.pathway}">
+                <img src="${p.image}" alt="${escapeHtml(p.title)}" class="suggestion-thumb" loading="lazy">
+                <div class="suggestion-info">
+                  <div class="suggestion-title">${highlightSearchMatch(p.title, q)}</div>
+                  <div class="suggestion-sub">
+                    <span>${highlightSearchMatch(p.catLabel, q)}</span>
+                    <span>· ⏱️ ${p.turnaround}</span>
+                  </div>
+                </div>
+                <div class="suggestion-price">
+                  <span style="font-size:10.5px;color:var(--muted);font-weight:normal;display:block;">From</span>
+                  KSh ${Number((p.options[0]||{}).price||0).toLocaleString()}
                 </div>
               </div>
-              <div class="suggestion-price">
-                <span style="font-size:10.5px;color:var(--muted);font-weight:normal;display:block;">From</span>
-                KSh ${Number((p.options[0]||{}).price||0).toLocaleString()}
-              </div>
-            </div>
-          `).join("")}
+            `;
+          }).join("")}
         </div>
       `;
-    } else {
+    } else if (matchingChips.length === 0) {
       html += `
         <div class="suggestion-empty">
-          <p style="margin-bottom:6px;">No packages found with "<b>${q}</b>"</p>
-          <span style="font-size:11.5px;color:var(--muted);">Try typing: headshot, graduation, maternity, wedding, birthday</span>
+          <p style="margin-bottom:6px;">No packages found with "<b>${escapeHtml(q)}</b>"</p>
+          <span style="font-size:11.5px;color:var(--muted);">Try typing: birthday, outdoor, headshots, graduation, maternity, wedding...</span>
         </div>
       `;
     }
@@ -1702,7 +2094,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (targetCard) {
             targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
             targetCard.style.outline = "2px solid var(--gold-soft)";
-            targetCard.style.boxShadow = "0 0 30px rgba(234, 179, 8, 0.4)";
+            targetCard.style.boxShadow = "0 0 30px rgba(234, 179, 8, 0.45)";
             setTimeout(() => {
               targetCard.style.outline = "";
               targetCard.style.boxShadow = "";
@@ -1714,7 +2106,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function hideSearchSuggestions() {
-    if (searchSuggestionsBox) searchSuggestionsBox.style.display = "none";
+    if (searchSuggestionsBox) {
+      searchSuggestionsBox.style.display = "none";
+      activeSuggestionIndex = -1;
+    }
   }
 
   if (searchInput) {
@@ -1731,6 +2126,38 @@ document.addEventListener("DOMContentLoaded", () => {
       renderSearchSuggestions(searchInput.value);
     });
 
+    // Keyboard navigation (Arrow keys, Enter, Escape)
+    searchInput.addEventListener("keydown", (e) => {
+      if (!searchSuggestionsBox || searchSuggestionsBox.style.display === "none") return;
+      const items = Array.from(searchSuggestionsBox.querySelectorAll(".suggestion-item, .suggestion-chip"));
+      if (items.length === 0) return;
+
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        items.forEach(el => el.classList.remove("selected"));
+        activeSuggestionIndex = (activeSuggestionIndex + 1) % items.length;
+        items[activeSuggestionIndex].classList.add("selected");
+        items[activeSuggestionIndex].scrollIntoView({ block: "nearest", behavior: "smooth" });
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        items.forEach(el => el.classList.remove("selected"));
+        activeSuggestionIndex = (activeSuggestionIndex - 1 + items.length) % items.length;
+        items[activeSuggestionIndex].classList.add("selected");
+        items[activeSuggestionIndex].scrollIntoView({ block: "nearest", behavior: "smooth" });
+      } else if (e.key === "Enter") {
+        if (activeSuggestionIndex >= 0 && items[activeSuggestionIndex]) {
+          e.preventDefault();
+          items[activeSuggestionIndex].click();
+        } else {
+          hideSearchSuggestions();
+          const browse = document.getElementById("packagesBrowse");
+          if (browse) browse.scrollIntoView({ behavior: "smooth" });
+        }
+      } else if (e.key === "Escape") {
+        hideSearchSuggestions();
+      }
+    });
+
     document.addEventListener("click", (e) => {
       if (!e.target.closest(".search-wrap")) {
         hideSearchSuggestions();
@@ -1743,6 +2170,7 @@ document.addEventListener("DOMContentLoaded", () => {
       searchQuery = "";
       if (searchInput) searchInput.value = "";
       searchClearBtn.style.display = "none";
+      hideSearchSuggestions();
       renderPackages();
     });
   }
@@ -1796,14 +2224,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  // Floating Back Up Arrow (Scroll to top) listener
+  // Floating Back Up Arrow (Scroll to top) listener & Sticky Controls Bar State
   const backToTopBtn = document.getElementById("backToTopBtn");
+  const controlsBarEl = document.getElementById("packagesBrowse");
   window.addEventListener("scroll", () => {
-    if (!backToTopBtn) return;
-    if (window.scrollY > 280) {
-      backToTopBtn.classList.add("visible");
-    } else {
-      backToTopBtn.classList.remove("visible");
+    if (backToTopBtn) {
+      if (window.scrollY > 280) {
+        backToTopBtn.classList.add("visible");
+      } else {
+        backToTopBtn.classList.remove("visible");
+      }
+    }
+    if (controlsBarEl) {
+      const rect = controlsBarEl.getBoundingClientRect();
+      const stickyThreshold = window.innerWidth <= 768 ? 68 : 82;
+      if (rect.top <= stickyThreshold) {
+        controlsBarEl.classList.add("is-stuck");
+      } else {
+        controlsBarEl.classList.remove("is-stuck");
+      }
     }
   }, { passive: true });
 
@@ -1924,10 +2363,11 @@ document.addEventListener("DOMContentLoaded", () => {
   enableHorizontalDragScroll(subcategoryPillsWrap);
 
   // Initial runs
-  if (currentPathway) {
-    setPathway(currentPathway, false);
-  } else {
-    setPathway(null, false);
+  renderPackages();
+  if (currentPathway && ["studio", "outdoor", "events", "commercial"].includes(currentPathway)) {
+    setTimeout(() => {
+      window.scrollToSection(currentPathway, false);
+    }, 120);
   }
   renderAddOns();
   updateCalculatorTotal();
@@ -4517,11 +4957,20 @@ document.addEventListener("DOMContentLoaded", () => {
   window.copyAllPhonesWa = copyAllPhonesWa;
   window.seedSampleLeads = seedSampleLeads;
   window.handleVipClubSubmit = handleVipClubSubmit;
+  window.togglePackagesDrawer = togglePackagesDrawer;
 
   initInvoice();
   renderFaqs();
   updateLeadsBadge();
   initStaffMode();
+
+  // Handle initial deep link (e.g. #outdoor, #studio, #events, #commercial, #addons)
+  const initialDeepHash = (window.location.hash || "").replace("#", "").toLowerCase();
+  if (["outdoor", "studio", "events", "commercial", "addons"].includes(initialDeepHash)) {
+    setTimeout(() => {
+      window.scrollToSection(initialDeepHash, false);
+    }, 280);
+  }
 
   // Handle direct navigation to quotation (?quote=open or #quotation)
   const urlParams = new URLSearchParams(window.location.search);

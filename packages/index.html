@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/packages.css?v=20260916_emerald_dark">
+  <link rel="stylesheet" href="css/packages.css?v=20260917_ultra_compact">
   <link rel="stylesheet" href="css/qr-standee.css?v=20260916_emerald_dark">
   <script src="js/theme-switcher.js?v=20260916_emerald_dark"></script>
   <script>
@@ -112,6 +112,18 @@
         <a href="javascript:void(0)" onclick="closeDrawer(); openLeadsModal();" class="drawer-link" style="background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.35); color:#a5b4fc; font-weight:700; border-radius:8px; padding:9px 10px; justify-content:center; font-size:11.5px;">📊 Studio Leads CRM</a>
       </div>
       <a href="index.html" class="drawer-link" style="color:var(--gold-soft);font-weight:700;">← Back to All Packages (Rate Card)</a>
+      
+      <!-- Quick Chapter Jumps on this page -->
+      <div style="margin:6px 8px 12px; padding:10px 12px; background:rgba(255,255,255,0.04); border-radius:12px; border:1px solid rgba(255,255,255,0.08);">
+        <div style="font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--gold-soft); margin-bottom:8px;">Scroll to Chapter on this page:</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+          <a href="#studio" onclick="window.scrollToSection('studio'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:600; border-radius:8px; background:rgba(234,179,8,0.12); color:#fbbf24; text-decoration:none; justify-content:center; border:1px solid rgba(234,179,8,0.25);">📸 Studio (12)</a>
+          <a href="#outdoor" onclick="window.scrollToSection('outdoor'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:600; border-radius:8px; background:rgba(16,185,129,0.12); color:#34d399; text-decoration:none; justify-content:center; border:1px solid rgba(16,185,129,0.25);">🌿 Outdoor (12)</a>
+          <a href="#events" onclick="window.scrollToSection('events'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:600; border-radius:8px; background:rgba(59,130,246,0.12); color:#60a5fa; text-decoration:none; justify-content:center; border:1px solid rgba(59,130,246,0.25);">💍 Events (10)</a>
+          <a href="#commercial" onclick="window.scrollToSection('commercial'); window.togglePackagesDrawer ? window.togglePackagesDrawer(false) : null;" class="drawer-link" style="padding:7px 10px; font-size:11.5px; font-weight:600; border-radius:8px; background:rgba(236,72,153,0.12); color:#f472b6; text-decoration:none; justify-content:center; border:1px solid rgba(236,72,153,0.25);">🚀 Commercial (5)</a>
+        </div>
+      </div>
+
       <!-- 1. STUDIO SESSIONS (11 Packages) -->
       <div style="padding:6px 18px 2px; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--gold-soft); font-weight:700;">📸 Studio &amp; Portrait Sessions</div>
       <a href="graduation-shoot.html" class="drawer-link">🎓 Graduation Milestone Shoot</a>
@@ -200,7 +212,7 @@
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input type="text" id="searchInput" class="search-input" placeholder="Search across all 30 packages (e.g. “headshots”, “maternity”, “wrap”, “birthday”, “wedding”)…" autocomplete="off">
+          <input type="text" id="searchInput" class="search-input" placeholder="Search across all 30 packages (e.g. “birthday”, “outdoor”, “headshots”, “maternity”, “wedding”)…" autocomplete="off">
           <button type="button" id="searchClearBtn" class="search-clear-btn" style="display:none;" aria-label="Clear search">&times;</button>
           
           <!-- Live Search Reference Suggestions Dropdown -->
@@ -214,8 +226,28 @@
         </select>
       </div>
 
-      <!-- Sub-Category Filter Pills (Visible when in a Category) -->
-      <div class="subcategories-scroll-wrap" id="subcategoryPillsWrap">
+      <!-- Sticky Chapter Navigation Strip -->
+      <nav class="sticky-pathway-nav" id="stickyPathwayNav" aria-label="Photoshoot Chapters">
+        <button type="button" class="sticky-pathway-btn active" data-target="studio" onclick="window.scrollToSection('studio')">
+          <span class="btn-icon">📸</span>
+          <span>Studio (12)</span>
+        </button>
+        <button type="button" class="sticky-pathway-btn" data-target="outdoor" onclick="window.scrollToSection('outdoor')">
+          <span class="btn-icon">🌿</span>
+          <span>Outdoor (12)</span>
+        </button>
+        <button type="button" class="sticky-pathway-btn" data-target="events" onclick="window.scrollToSection('events')">
+          <span class="btn-icon">💍</span>
+          <span>Weddings &amp; Events (10)</span>
+        </button>
+        <button type="button" class="sticky-pathway-btn" data-target="commercial" onclick="window.scrollToSection('commercial')">
+          <span class="btn-icon">🚀</span>
+          <span>Commercial (5)</span>
+        </button>
+      </nav>
+
+      <!-- Sub-Category Filter Pills (Visible when in a Category or Search) -->
+      <div class="subcategories-scroll-wrap" id="subcategoryPillsWrap" style="display:none;">
         <!-- Rendered by packages.js -->
       </div>
     </div>
@@ -231,68 +263,16 @@
 
       <!-- Grid of Package Cards -->
       <div class="packages-grid" id="packagesGrid">
-        <!-- Rendered by packages.js -->
+        <!-- Chapters and Package Cards are dynamically rendered here by packages.js -->
       </div>
     </div>
   </main>
 
 
-  <!-- ADD-ONS & ESTIMATOR CALCULATOR -->
-  <section class="addons-section">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-tag">Custom Upgrades</div>
-        <h2 class="section-title">Popular Add-Ons &amp; Session Upgrades</h2>
-        <p class="section-desc">
-          Enhance any shoot with extra retouched photos, cinematic vertical video reels, professional makeup, or printed photobooks.
-        </p>
-      </div>
 
-      <div class="addons-grid" id="addonsGrid">
-        <!-- Rendered by packages.js -->
-      </div>
-
-      <!-- Live Add-Ons Calculator Dock -->
-      <div class="calculator-dock">
-        <div class="calc-summary-left">
-          <div class="calc-icon">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="4" y="2" width="16" height="20" rx="2"></rect>
-              <line x1="8" y1="6" x2="16" y2="6"></line>
-              <line x1="16" y1="14" x2="16" y2="18"></line>
-              <line x1="8" y1="10" x2="8.01" y2="10"></line>
-              <line x1="12" y1="10" x2="12.01" y2="10"></line>
-              <line x1="16" y1="10" x2="16.01" y2="10"></line>
-              <line x1="8" y1="14" x2="8.01" y2="14"></line>
-              <line x1="12" y1="14" x2="12.01" y2="14"></line>
-              <line x1="8" y1="18" x2="8.01" y2="18"></line>
-              <line x1="12" y1="18" x2="12.01" y2="18"></line>
-            </svg>
-          </div>
-          <div>
-            <div class="calc-count-text" id="calcSelectedCount">0 Add-ons Selected</div>
-            <div class="calc-total-amount">
-              <span>Estimated Add-Ons: </span><b id="calcTotalAmount">KSh 0</b>
-            </div>
-          </div>
-        </div>
-
-        <button type="button" class="btn-calc-invoice" id="calcInvoiceBtn" onclick="openInvoiceModalFromCalc()" style="display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:999px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.22); color:#ffffff; font-weight:600; font-size:13px; cursor:pointer; transition:all 0.2s ease;">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-            <span>📄 Generate Proforma Invoice / Quote</span>
-          </button>
-          <button type="button" class="btn-book-wa" id="calcBookWaBtn" style="max-width: 280px;">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-            <path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c2.1.8 2.1.5 2.5.5a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.4-.3z"/>
-          </svg>
-          <span>Book Shoot with Add-Ons</span>
-        </button>
-      </div>
-    </div>
-  </section>
 
   <!-- QUICK COMPARISON MATRIX -->
-  <section class="comparison-section">
+  <section class="comparison-section" id="comparison">
     <div class="wrap">
       <div class="section-head">
         <div class="section-tag">Tier Breakdown</div>
@@ -1148,7 +1128,7 @@
           <a href="javascript:void(0)" onclick="openInvoiceModal()" style="color:#cbd5e1; text-decoration:none;">Instant Quotation</a>
           <a href="javascript:void(0)" onclick="openQrModal()" style="color:#4ade80; text-decoration:none; display:inline-flex; align-items:center; gap:4px; font-weight:600;">📱 QR Standee</a>
           <a href="https://wa.me/254790048905" target="_blank" rel="noopener" style="color:#4ade80; text-decoration:none; font-weight:600;">WhatsApp Support</a>
-          <a href="javascript:void(0)" onclick="toggleStaffMode()" style="color:#64748b; text-decoration:none; font-size:11px; padding:4px 8px; border:1px solid rgba(255,255,255,0.1); border-radius:6px;" title="Unlock Staff Tools (PIN: 2026)">🔑 Staff Portal</a>
+          <a href="javascript:void(0)" onclick="toggleStaffMode()" style="color:#64748b; text-decoration:none; font-size:11px; padding:4px 8px; border:1px solid rgba(255,255,255,0.1); border-radius:6px;" title="Studio Staff Desk">🔑 Staff Portal</a>
         </div>
       </div>
       <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:11px; color:#64748b;">
@@ -2231,7 +2211,7 @@
               </div>
               <div class="qr-pin-lock-form">
                 <input type="password" id="qrStudioPinInput" class="qr-select-control qr-pin-input" 
-                       placeholder="Enter Studio PIN (e.g. 9051)" maxlength="6" inputmode="numeric" 
+                       placeholder="Enter 4-digit PIN" maxlength="6" inputmode="numeric" 
                        onkeydown="if(event.key==='Enter') verifyStudioPin()">
                 <button type="button" class="qr-btn qr-btn-save-link" onclick="verifyStudioPin()">
                   <span>Unlock</span>
@@ -2449,7 +2429,7 @@
   <script src="js/qrcode.min.js"></script>
   <script src="js/html2pdf.bundle.min.js"></script>
   <script src="js/packages-data.js?v=20260916_emerald_dark"></script>
-  <script src="js/packages.js?v=20260916_emerald_dark"></script>
+  <script src="js/packages.js?v=20260917_ultra_compact"></script>
   <script src="js/reels-modal.js"></script>
   <script src="js/qr-standee.js?v=20260916_emerald_dark"></script>
 
