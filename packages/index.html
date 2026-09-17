@@ -1675,7 +1675,7 @@
         <div class="inv-preview-pane" id="invPreviewPane">
           <div class="invoice-printable-sheet" id="invoicePrintableSheet">
             
-            <!-- Museum-Grade Anti-Tamper Security Watermark Overlay -->
+            <!-- Official Studio Anti-Tamper Security Watermark Overlay -->
             <div class="inv-security-watermark-overlay" id="invSecurityWatermark" aria-hidden="true">
               <div class="inv-watermark-row">LAUREIGN STUDIOS OFFICIAL &nbsp;•&nbsp; AUTHENTICATED &nbsp;•&nbsp; LAUREIGN STUDIOS OFFICIAL</div>
               <div class="inv-watermark-row">OFFICIAL PROFORMA &nbsp;•&nbsp; NOTARY VERIFIED &nbsp;•&nbsp; SECURE RATE CARD</div>
@@ -2221,7 +2221,32 @@
             <span class="qr-custom-chip" id="qrCustomModeChip">Live QR Active</span>
           </div>
 
-          <div class="qr-custom-card-fields">
+          <!-- Studio Staff Admin PIN Lock Challenge -->
+          <div class="qr-pin-lock-container" id="qrPinLockContainer" style="display:none;">
+            <div class="qr-pin-lock-content">
+              <div class="qr-pin-lock-icon">🔒</div>
+              <div class="qr-pin-lock-texts">
+                <h4 class="qr-pin-lock-title">Studio Staff PIN Required</h4>
+                <p class="qr-pin-lock-desc">Enter the studio 4-digit PIN to configure custom QR destinations.</p>
+              </div>
+              <div class="qr-pin-lock-form">
+                <input type="password" id="qrStudioPinInput" class="qr-select-control qr-pin-input" 
+                       placeholder="Enter Studio PIN (e.g. 9051)" maxlength="6" inputmode="numeric" 
+                       onkeydown="if(event.key==='Enter') verifyStudioPin()">
+                <button type="button" class="qr-btn qr-btn-save-link" onclick="verifyStudioPin()">
+                  <span>Unlock</span>
+                </button>
+                <button type="button" class="qr-btn qr-btn-subtle" onclick="cancelStudioPin()">
+                  <span>Cancel</span>
+                </button>
+              </div>
+              <div class="qr-pin-error-msg" id="qrPinErrorMsg" style="display:none;">
+                ⚠️ Incorrect PIN. Enter the authorized studio PIN to proceed.
+              </div>
+            </div>
+          </div>
+
+          <div class="qr-custom-card-fields" id="qrCustomCardFields">
             <div class="qr-field-item full-span">
               <label class="qr-sublabel" for="qrCustomDirectUrl">
                 Destination Link / URL <span style="color:#ef4444;">*</span>
@@ -2256,7 +2281,7 @@
             </div>
           </div>
 
-          <div class="qr-custom-card-actions">
+          <div class="qr-custom-card-actions" id="qrCustomCardActions">
             <button type="button" class="qr-btn qr-btn-save-link" id="qrSaveLinkBtn" onclick="saveCurrentCustomLink()">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
               <span id="qrSaveLinkBtnText">💾 Save Link to Destinations</span>

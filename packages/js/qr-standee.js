@@ -1,7 +1,7 @@
 /**
  * Studio QR Smart Poster & Digital Rate Card Engine
- * Supports fixed A4 museum-grade printable posters, domain switching (Vercel, Official Domain),
- * live URL verification, on-screen scanning, direct PNG download, custom link builder,
+ * Supports fixed A4 high-resolution printable posters, domain switching (Vercel, Official Domain),
+ * live URL verification, on-screen scanning, direct PNG download, custom link builder with Studio Staff PIN,
  * permanent localStorage saving, and desk standees.
  */
 
@@ -9,6 +9,8 @@
   const STORAGE_KEY_CUSTOM_LINKS = "laureign_custom_qr_links";
   const STORAGE_KEY_ACTIVE_KEY = "laureign_active_qr_key";
   const STORAGE_KEY_CUSTOM_BASE = "laureign_custom_base_url";
+  const STORAGE_KEY_PIN_AUTH = "laureign_qr_pin_unlocked";
+  const STUDIO_STAFF_PINS = ["9051", "2026"];
 
   let qrCodeInstance = null;
   let currentQrUrl = "";
@@ -102,7 +104,7 @@
       if (window.location.hostname.includes("vercel.app")) {
         return window.location.origin;
       }
-      return "https://drexx255-laureign-studios.vercel.app";
+      return "https://laureignstudios.vercel.app";
     }
     if (currentDomainMode === "custom" && customBaseUrl) {
       return customBaseUrl.replace(/\/$/, "");
@@ -110,7 +112,7 @@
     // Auto-detect
     if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:") {
       // When testing locally, default to live domain so physical phone scans work!
-      return "https://drexx255-laureign-studios.vercel.app";
+      return "https://laureignstudios.vercel.app";
     }
     return window.location.origin;
   }
@@ -203,6 +205,91 @@
     }
   }
 
+  function isStudioPinUnlocked() {
+    try {
+      return sessionStorage.getItem(STORAGE_KEY_PIN_AUTH) === "true";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function showPinLockChallenge() {
+    const customCard = document.getElementById("qrCustomLinkCard");
+    if (customCard) customCard.style.display = "flex";
+
+    const pinLock = document.getElementById("qrPinLockContainer");
+    if (pinLock) pinLock.style.display = "block";
+
+    const fields = document.getElementById("qrCustomCardFields");
+    if (fields) fields.style.display = "none";
+
+    const actions = document.getElementById("qrCustomCardActions");
+    if (actions) actions.style.display = "none";
+
+    const pinErr = document.getElementById("qrPinErrorMsg");
+    if (pinErr) pinErr.style.display = "none";
+
+    const pinInput = document.getElementById("qrStudioPinInput");
+    if (pinInput) {
+      pinInput.value = "";
+      pinInput.style.borderColor = "";
+      setTimeout(() => pinInput.focus(), 60);
+    }
+  }
+
+  function hidePinLockChallenge() {
+    const pinLock = document.getElementById("qrPinLockContainer");
+    if (pinLock) pinLock.style.display = "none";
+
+    const fields = document.getElementById("qrCustomCardFields");
+    if (fields) fields.style.display = "grid";
+
+    const actions = document.getElementById("qrCustomCardActions");
+    if (actions) actions.style.display = "flex";
+  }
+
+  function verifyStudioPin() {
+    const pinInput = document.getElementById("qrStudioPinInput");
+    const pinVal = (pinInput && pinInput.value.trim()) || "";
+    const pinErr = document.getElementById("qrPinErrorMsg");
+
+    if (STUDIO_STAFF_PINS.includes(pinVal)) {
+      try {
+        sessionStorage.setItem(STORAGE_KEY_PIN_AUTH, "true");
+      } catch (e) {}
+
+      hidePinLockChallenge();
+      showQrToast("✓ Studio Staff Authorized");
+
+      const directInput = document.getElementById("qrCustomDirectUrl");
+      if (directInput) {
+        directInput.focus();
+        const len = directInput.value.length;
+        directInput.setSelectionRange(len, len);
+      }
+    } else {
+      if (pinErr) pinErr.style.display = "block";
+      if (pinInput) {
+        pinInput.style.borderColor = "#ef4444";
+        pinInput.value = "";
+        pinInput.focus();
+      }
+      showQrToast("⚠️ Incorrect PIN. Authorization failed.");
+    }
+  }
+
+  function cancelStudioPin() {
+    currentTargetKey = "full";
+    try {
+      localStorage.setItem(STORAGE_KEY_ACTIVE_KEY, "full");
+    } catch (e) {}
+
+    populateDestinationsDropdown("full");
+    currentQrUrl = computeTargetUrl("full");
+    updateDisplayDetails("full");
+    renderQrCode(currentQrUrl);
+  }
+
   function updateDisplayDetails(key) {
     let badgeText = "";
     let subText = "";
@@ -278,6 +365,15 @@
 
       if (customCard) {
         customCard.style.display = "none";
+      }
+    }
+
+    // Check PIN lock visibility when custom destination is selected
+    if (isCustomSaved || isCustomNew) {
+      if (!isStudioPinUnlocked()) {
+        showPinLockChallenge();
+      } else {
+        hidePinLockChallenge();
       }
     }
 
@@ -394,11 +490,17 @@
     renderQrCode(currentQrUrl);
 
     if (targetKey === "custom_new") {
+      if (!isStudioPinUnlocked()) {
+        showPinLockChallenge();
+        return;
+      }
       const input = document.getElementById("qrCustomDirectUrl");
       if (input) {
         input.focus();
         input.select();
       }
+    } else if (targetKey.startsWith("saved_") && !isStudioPinUnlocked()) {
+      showPinLockChallenge();
     }
   }
 
@@ -418,6 +520,11 @@
     currentQrUrl = computeTargetUrl("custom_new");
     updateDisplayDetails("custom_new");
     renderQrCode(currentQrUrl);
+
+    if (!isStudioPinUnlocked()) {
+      showPinLockChallenge();
+      return;
+    }
 
     if (directInput) {
       directInput.focus();
@@ -490,6 +597,11 @@
   }
 
   function saveCurrentCustomLink() {
+    if (!isStudioPinUnlocked()) {
+      showPinLockChallenge();
+      return;
+    }
+
     const directInput = document.getElementById("qrCustomDirectUrl");
     let url = (directInput && directInput.value.trim()) || "";
 
@@ -567,6 +679,11 @@
   }
 
   function deleteCurrentSavedLink() {
+    if (!isStudioPinUnlocked()) {
+      showPinLockChallenge();
+      return;
+    }
+
     if (!currentTargetKey.startsWith("saved_")) return;
 
     const id = currentTargetKey.replace("saved_", "");
@@ -651,7 +768,7 @@
       return;
     }
 
-    showQrToast("⏳ Compiling museum-grade A4 Poster PDF...");
+    showQrToast("⏳ Compiling high-resolution A4 Poster PDF...");
 
     const safeSlug = currentTargetKey.replace(/[^a-zA-Z0-9_-]/g, "_");
     const filename = `Laureign_Studios_A4_Smart_Poster_${safeSlug}.pdf`;
@@ -793,6 +910,8 @@
   });
 
   // Expose methods to global scope
+  window.verifyStudioPin = verifyStudioPin;
+  window.cancelStudioPin = cancelStudioPin;
   window.openQrModal = openQrModal;
   window.closeQrModal = closeQrModal;
   window.onQrTargetChange = onQrTargetChange;

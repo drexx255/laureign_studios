@@ -43,7 +43,7 @@
 ### When they reply: *"Sure, send it over"* or *"What is it?"*
 > "Awesome! Here is the live production system we built:
 > 
-> 🔗 **https://drexx255-laureign-studios.vercel.app/packages**
+> 🔗 **https://laureignstudios.vercel.app/packages**
 > 
 > **Two things to test that our clients are obsessed with:**
 > 1. Tap **'Explore Packages'** or pick any category to see how fast the deliverables calculate.
@@ -81,7 +81,7 @@
 *(Listen to their pain points: slow PDFs, manual typing, haggling, scammers asking for money).*
 
 ### Step 2: Show the Speed & Visual Elegance (Minutes 2–4)
-> *"Here’s what we built for Laureign Studios. Instead of sending messy text messages or static Canva PDFs that go out of date, clients land on this museum-grade experience.
+> *"Here’s what we built for Laureign Studios. Instead of sending messy text messages or static Canva PDFs that go out of date, clients land on this high-end digital studio experience.
 > Notice how fast it loads, how the emerald and gold accents elevate the brand, and how clients can explore packages with transparent deliverable specs."*
 
 ### Step 3: The "Magic Moment" — Quotation & Anti-Fraud Demo (Minutes 4–7)
